@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio Doctor</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-primary navbar-expand-md text-end">
+    <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico Digital</a><button
+        data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
+          navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse text-end" id="navcol-1">
+        <ul class="navbar-nav ms-auto">
+          <img class="fotoPerfil" src="assets/img/image-doctor.png" alt="imagenDoctor">
+          <span class="mx-2 navbar-brand">Nombre usuario</span>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5 float-start">
+    <div class="row">
+      <div class="col-lg-12 offset-lg-2">
+        <div class="card-body text-center">
+          <div class="container-fluid row mb-2">
+            <span class="col titulo">Lista de pacientes</span>
+            <div class=" col container-fluid">
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar nombre" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+              </form>
+            </div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">CURP</th>
+                <th scope="col">No. Seguro Social</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr>
+                <th scope="row">1</th>
+                <td>SENS991230HNTRXR03</td>
+                <td>TEST01</td>
+                <td>Sergio Armando</td>
+                <td>Serrano Nuño</td>
+
+                <i class="fa-solid fa-file-medical text-primary"></i>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>JSDASDASD32421ASDS</td>
+                <td>TEST02</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+
+                <i class="fa-solid fa-file-medical text-primary"></i>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>ASDGDFS314132SDSAD</td>
+                <td>TEST02</td>
+                <td>Larry the Bird</td>
+                <td>-</td>
+
+                <i class="fa-solid fa-file-medical text-primary"></i>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <div class="col-lg-12 offset-lg-2">
+        <div class="card-body text-center">
+          <div class="container-fluidmy-2">
+            <span class="titulo float-start">Expediente clinico</span>
+            <button class="btn btn-md btn-success float-end" routerLink="/nuevo-expediente">Agregar</button>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">CURP</th>
+                <th scope="col">Peso (Kg)</th>
+                <th scope="col">Altura (Cm)</th>
+                <th scope="col">Presión arterial</th>
+                <th scope="col">Padecimiento</th>
+                <th scope="col">Medicación</th>
+                <th scope="col">Doctor</th>
+                <th scope="col">Fecha</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr>
+                <th scope="row">1</th>
+                <td>SENS991230HNTRXR03</td>
+                <td>108</td>
+                <td>182</td>
+                <td>84</td>
+                <td>S.P</td>
+                <td>-</td>
+                <td>Raul Arteaga</td>
+                <td>27/05/2022</td>
+
+                <i class="fa-solid fa-pen-to-square text-primary"></i>
+                <i class="fa-solid fa-trash-can text-danger"></i>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>SENS991230HNTRXR03</td>
+                <td>108</td>
+                <td>182</td>
+                <td>84</td>
+                <td>S.P</td>
+                <td>-</td>
+                <td>Juan Perez</td>
+                <td>14/04/2022</td>
+
+                <i class="fa-solid fa-pen-to-square text-primary"></i>
+                <i class="fa-solid fa-trash-can text-danger"></i>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>SENS991230HNTRXR03</td>
+                <td>108</td>
+                <td>182</td>
+                <td>84</td>
+                <td>S.P</td>
+                <td>-</td>
+                <td>Diana Obrador</td>
+                <td>23/02/2022</td>
+
+                <i class="fa-solid fa-pen-to-square text-primary"></i>
+                <i class="fa-solid fa-trash-can text-danger"></i>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background: #ffe259;
+            background: linear-gradient(to right, #ffa751, #ffe259);
+        }
+
+        .bg {
+            background-image: url(../../../assets/img/avatarDoctor.jpg);
+            background-repeat: no-repeat;
+            background-size: 70% auto;
+            background-position: center center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary navbar-expand-md text-end">
+        <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+                Digital</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-end" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" routerLink="/inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/conocenos">Conócenos</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/transparencia">Transparencia</a></li>
+                    <li class="nav-item"><a class="nav-link active" routerLink="/login">Iniciar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container w-75 bg-primary rounded shadow abajo">
+        <div class="row align-items-stretch">
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+
+            </div>
+            <div class="col bg-white p-5 rounded-end">
+                <h2 class="fw-bold text-center py-5">Bienvenido(a) </h2>
+
+                <!-- Login -->
+                <form action="#">
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Correo electronico</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-primary">Iniciar sesión</button>
+                    </div>
+                    <div class="my-3">
+                        <!-- --> <span>¿No tienes cuenta? <a routerLink="/registroD">Registrate</a> </span><br>
+                        <span>¿Eres un paciente? <a routerLink="/login">Inicia sesión aqui</a> </span><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary navbar-expand-md text-end">
+        <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+                Digital</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-end" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/conocenos">Conocenos</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/transparencia">Transparencia</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/login">Iniciar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Formulario de abajo-->
+    <div class="container w-50 rounded shadow mb-3">
+
+        <h2 class="text-center" style="margin-top: 20px;">Registro Doctor</h2>
+        <div class="form-floating my-2">
+            <input type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" required>
+            <label for="txtNombre">Nombre(s)</label>
+        </div>
+        <div class="row my-2">
+            <div class="col form-floating">
+                <input type="text" class="form-control" id="txtPaterno" placeholder="Apellido paterno" required>
+                <label for="txtPaterno">Apellido paterno</label>
+            </div>
+            <div class="col form-floating">
+                <input type="text" class="form-control" id="txtMaterno" placeholder="Apellido materno" required>
+                <label for="txtMaterno">Apellido materno</label>
+            </div>
+        </div>
+        <div class="form-floating my-2">
+            <input type="text" class="form-control" id="txtCorreo" placeholder="Correo Electronico" required>
+            <label for="txtCorreo">Correo Electronico</label>
+        </div>
+        <div class="form-floating my-2">
+            <input type="password" class="form-control" id="txtPass" placeholder="Contraseña" required>
+            <label for="txtPass">Contraseña</label>
+        </div>
+        <div class="form-floating my-2">
+            <input type="date" class="form-control" id="txtFecha" placeholder="Fecha de nacimiento" required>
+            <label for="txtFecha">Fecha de nacimiento</label>
+        </div>
+        <br>
+        <div class="d-grid col-12 mx-auto">
+            <button class="btn btn-primary" type="submit">Registrarse</button>
+        </div>
+        <br>
+    </div>
+</body>
+
+</html>
