@@ -1,0 +1,15 @@
+#textointro {
+  text-align: center;
+  padding: 40px;
+  background-image: url("../../assets/img/background%201.jpg");
+  background-size: cover;
+}
+
+div.jumbotron.hero-technology {
+  background-image: url('../../assets/img/port.jpg');
+}
+
+#imagendown {
+  scroll-behavior: auto;
+}
+
