@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'registroD', component: RegistroDComponent},
   { path: 'doctor-inicio', component: DInicioComponent},
   { path: 'paciente-inicio', component: PInicioComponent},
-  { path: 'chatBot', component: ChatBotComponent},
+ // { path: 'chatBot', component: ChatBotComponent},
   { path: 'nuevo-expediente', component: NuevoExpedienteComponent},
   { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
 
