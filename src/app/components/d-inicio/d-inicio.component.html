@@ -48,13 +48,14 @@
           </form>
         </div>
       </div>
-      <table class="table" *ngIf="listUsuarios.length > 0 && listUsuarios_Rol.length>0">
+      <table class="table" *ngIf="listUsuarios.length > 0">
         <thead>
           <tr>
-            <th scope="col">No.</th>
             <th scope="col">Usuario</th>
             <th scope="col">Activo</th>
             <th scope="col">Rol</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Calle</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -62,16 +63,20 @@
           <tr *ngFor="let usuario of listUsuarios">
             <td>{{usuario.usuario}}</td>
             <td>{{usuario.activo}}</td>
-            <td>{{usuario.usuario_rol.desRol}}</td>
+            <td>{{usuario.usuario_rol[0].desRol}}</td>
+            <td>{{usuario.usuario_persona[0].nombre}}</td>
+            <td>{{usuario.usuario_persona[0].persona_domicilio[0].calle}}</td>
             <i class="fas fa-edit text-primary"></i>
             <i class="fas fa-lock text-danger"></i>
+
           </tr>
         </tbody>
       </table>
       <h5 style="text-align: start; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay usuarios para mostrar</h5>
 
     </div>
-    <button routerLink="/principal" class="btn btn-secondary btn-lg float-start">JORGE xxx</button>
+    <button routerLink="/principal" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+
     <button type="submit" class="btn btn-success btn-lg float-end" (click)="fnchola()">ACEPTAR</button>
 
 
