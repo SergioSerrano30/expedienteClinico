@@ -12,12 +12,11 @@ import { NuevoExpedienteComponent } from './components/nuevo-expediente/nuevo-ex
 import { PInicioComponent } from './components/p-inicio/p-inicio.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { RegistroDComponent } from './components/registro-d/registro-d.component';
-import { RegistroPComponent } from './components/registro-p/registro-p.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { TransparenciaComponent } from './components/transparencia/transparencia.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
-
+import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
 
 const routes: Routes = [
   { path: 'principal', component: PrincipalComponent},
@@ -26,7 +25,7 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent},
   { path: 'conocenos', component: AboutUsComponent},
   { path: 'transparencia', component: TransparenciaComponent},
-  { path: 'registroP', component: RegistroPComponent},
+  // { path: 'registroP', component: RegistroPComponent},
   { path: 'registroD', component: RegistroDComponent},
   { path: 'doctor-inicio', component: DInicioComponent},
   { path: 'paciente-inicio', component: PInicioComponent},
@@ -37,6 +36,7 @@ const routes: Routes = [
   { path: 'dashboard-doctor', component: DashboardDoctorComponent},
   { path: 'admin-inicio', component:InicioAdminComponent},
   { path: 'modificar-paciente', component:ModificarPacienteComponent},
+  { path: 'registro-paciente',component:RegistroPacienteComponent},
   
   {path: '**', redirectTo: 'doctor-inicio', pathMatch: 'full'}
 ];
