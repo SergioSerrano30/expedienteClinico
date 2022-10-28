@@ -36,36 +36,24 @@
     <div class="form-floating my-2">
         <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" required>
         <label for="nombre">Nombre(s)</label>
-        <div class="text-danger float-start" 
+        <!-- <div class="text-danger float-start" 
         *ngIf="pacienteForm.get('nombre')?.hasError('required') && pacienteForm.get('nombre')?.touched">
             <span>Este campo es <strong>obligatorio</strong></span>
-        </div>
+        </div> -->
     </div>
     <div class="row my-2">
         <div class="col form-floating">
-            <input formControlName="apellidoP" type="text" class="form-control" id="txtPaterno" placeholder="Apellido paterno" required>
-            <label for="apellidoP">Apellido paterno</label>
+            <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno" placeholder="Apellido paterno" required>
+            <label for="apPaterno">Apellido paterno</label>
         </div>
         <div class="col form-floating">
-            <input formControlName="apellidoM" type="text" class="form-control" id="txtMaterno" placeholder="Apellido materno" required>
-            <label for="materno">Apellido materno</label>
+            <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno" placeholder="Apellido materno" required>
+            <label for="apMaterno">Apellido materno</label>
         </div>
     </div>
     <div class="form-floating my-2">
-        <input formControlName="seguro" type="text" class="form-control" id="txtSeguro" placeholder="Número de Seguro Social" required>
-        <label for="seguro">Número de Seguro Social</label>
-    </div>
-    <div class="form-floating my-2">
-        <input formControlName="correo" type="text" class="form-control" id="txtCorreo" placeholder="Correo Electronico" required>
-        <label for="correo">Correo Electronico</label>
-    </div>
-    <div class="form-floating my-2">
-        <input formControlName="nacimiento" type="date" class="form-control" id="txtFecha" placeholder="Fecha de nacimiento" required>
-        <label for="nacimiento">Fecha de nacimiento</label>
-    </div>
-    <div class="form-floating my-2">
-        <input formControlName="curp" type="text" class="form-control" id="txtCurp" placeholder="CURP" required>
-        <label for="curp">CURP</label>
+        <input formControlName="fechaNac" type="date" class="form-control" id="txtFecha" placeholder="Fecha de nacimiento" required>
+        <label for="fechaNac">Fecha de nacimiento</label>
     </div>
     <div class="form-floating my-2">
         <input formControlName="password" type="password" class="form-control" id="txtPass" placeholder="Contraseña" required>
@@ -73,7 +61,7 @@
     </div>
     <br>
     <div class="d-grid col-12 mx-auto">
-        <button class="btn btn-primary" type="submit" [disabled]="pacienteForm.invalid" >Registrarse</button>
+        <button class="btn btn-primary" type="submit" [disabled]="pacienteForm.invalid" >Guardar</button>
     </div>
     <br>
 </form>
