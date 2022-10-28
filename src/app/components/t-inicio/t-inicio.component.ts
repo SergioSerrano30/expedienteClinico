@@ -11,10 +11,10 @@ import {Usuario} from 'src/app/models/usuario'
 
 @Component({
   selector: 'app-d-inicio',
-  templateUrl: './d-inicio.component.html',
-  styleUrls: ['./d-inicio.component.css'],
+  templateUrl: './t-inicio.component.html',
+  styleUrls: ['./t-inicio.component.css'],
 })
-export class DInicioComponent implements OnInit {
+export class TInicioComponent implements OnInit {
   listUsuarios: Usuario[] = [];
   constructor(
     private _usuarioService: UsuarioService,
@@ -39,7 +39,7 @@ export class DInicioComponent implements OnInit {
     this._usuarioService.getUsuarios().subscribe(data => {
             console.log(data);
             //console.log(data.length)
-            this.toastr.success('Usuarios cargados con éxito','Usuarios cargados');
+            //this.toastr.success('Usuarios cargados con éxito','Usuarios cargados');
             this.listUsuarios =data;
           },error => {
             console.log(error);
