@@ -13,7 +13,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { TransparenciaComponent } from './components/transparencia/transparencia.component';
-import { RegistroPComponent } from './components/registro-p/registro-p.component';
 import { RegistroDComponent } from './components/registro-d/registro-d.component';
 import { LoginDComponent } from './components/login-d/login-d.component';
 import { DInicioComponent } from './components/d-inicio/d-inicio.component';
@@ -38,7 +37,6 @@ import { RegistroPacienteComponent } from './components/registro-paciente/regist
     RegistroComponent,
     AboutUsComponent,
     TransparenciaComponent,
-    RegistroPComponent,
     RegistroDComponent,
     LoginDComponent,
     DInicioComponent,
