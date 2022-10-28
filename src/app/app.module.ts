@@ -26,6 +26,7 @@ import { EditarExpedienteComponent } from './components/editar-expediente/editar
 import { AuthModule } from '@auth0/auth0-angular';
 import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
 import { GaleriaComponent } from './components/galeria/galeria.component';
+import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { GaleriaComponent } from './components/galeria/galeria.component';
     EditarExpedienteComponent,
     DashboardDoctorComponent,
     GaleriaComponent,
+    InicioAdminComponent,
 
   
   ],
