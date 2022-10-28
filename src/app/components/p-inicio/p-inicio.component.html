@@ -1,26 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #36d1dc; /* fallback for old browsers */
+      background: -webkit-linear-gradient(
+        to right,
+        #5b86e5,
+        #36d1dc
+      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(
+        to right,
+        #5b86e5,
+        #36d1dc
+      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+  </style>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio paciente</title>
-</head>
-<body>
-    
+  </head>
+
+  <body>
     <nav class="navbar navbar-dark bg-primary navbar-expand-md text-end">
-        <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico Digital</a><button
-            data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
-              navigation</span><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse text-end" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-              <img class="fotoPerfil" src="assets/img/image-pacient.png" alt="imagenPaciente">
-              <span class="mx-2 navbar-brand">Nombre usuario</span>
-              <button class="btn btn-md btn-success"><a href="http://127.0.0.1:8000/chatBot/">ChatBot </a></button>
-            </ul>
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/principal"
+          >Expediente Clínico Digital PACIENTE</a
+        ><button
+          data-bs-toggle="collapse"
+          class="navbar-toggler"
+          data-bs-target="#navcol-1"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-end" id="navcol-1">
+          <ul class="navbar-nav ms-auto">
+            <img
+              class="fotoPerfil"
+              src="assets/img/image-pacient.png"
+              alt="imagenPaciente"
+            />
+            <span class="mx-2 navbar-brand">Out</span>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="card">
+            <div class="card-body text-center">
+              <span>Nombre Paciente</span>
+            </div>
           </div>
         </div>
-      </nav>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="container w-50">
+       
+        <nav class="navbar" style="background-color: #e3f2fd">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Avance</span>
+            <div class="container-sm">
+              <div class="progress">
+                <div
+                  class="progress-bar bg-success"
+                  role="progressbar"
+                  style="width: 25%"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  25%
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary float-end">
+                  <i class="fa-solid fa-book"></i> Mis Consultas
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
       
-</body>
+    </div>
+  </body>
 </html>
