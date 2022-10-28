@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
-import { DInicioComponent } from './components/d-inicio/d-inicio.component';
+import { TInicioComponent as TInicioComponent } from './components/t-inicio/t-inicio.component';
 import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
 import { EditarExpedienteComponent } from './components/editar-expediente/editar-expediente.component';
 import { LoginDComponent } from './components/login-d/login-d.component';
@@ -28,9 +28,12 @@ const routes: Routes = [
   { path: 'transparencia', component: TransparenciaComponent},
   // { path: 'registroP', component: RegistroPComponent},
   { path: 'registroD', component: RegistroDComponent},
-  { path: 'doctor-inicio', component: DInicioComponent},
+
+  { path: 'doctor-inicio', component: TInicioComponent},
+  { path: 'inicio-terapeuta',component:InicioTerapeutaComponent},
+  { path: 'terapeuta-inicio', component: TInicioComponent},
   { path: 'paciente-inicio', component: PInicioComponent},
-  {path: 'inicio-terapeuta', component: InicioTerapeutaComponent},
+  {path:  'inicio-terapeuta', component: InicioTerapeutaComponent},
  // { path: 'chatBot', component: ChatBotComponent},
   { path: 'nuevo-expediente', component: NuevoExpedienteComponent},
   { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
@@ -40,7 +43,7 @@ const routes: Routes = [
   { path: 'modificar-paciente', component:ModificarPacienteComponent},
   { path: 'registro-paciente',component:RegistroPacienteComponent},
   
-  {path: '**', redirectTo: 'doctor-inicio', pathMatch: 'full'}
+  {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'}
 ];
 
 @NgModule({

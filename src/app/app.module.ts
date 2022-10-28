@@ -15,7 +15,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { TransparenciaComponent } from './components/transparencia/transparencia.component';
 import { RegistroDComponent } from './components/registro-d/registro-d.component';
 import { LoginDComponent } from './components/login-d/login-d.component';
-import { DInicioComponent } from './components/d-inicio/d-inicio.component';
+import { TInicioComponent } from './components/t-inicio/t-inicio.component';
 import { PInicioComponent } from './components/p-inicio/p-inicio.component';
 import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
 import { NuevoExpedienteComponent } from './components/nuevo-expediente/nuevo-expediente.component';
@@ -41,7 +41,7 @@ import { InicioTerapeutaComponent } from './componets/inicio-terapeuta/inicio-te
     TransparenciaComponent,
     RegistroDComponent,
     LoginDComponent,
-    DInicioComponent,
+    TInicioComponent,
     PInicioComponent,
     ChatBotComponent,
     NuevoExpedienteComponent,

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DInicioComponent } from './d-inicio.component';
+import { TInicioComponent } from './t-inicio.component';
 
-describe('DInicioComponent', () => {
-  let component: DInicioComponent;
-  let fixture: ComponentFixture<DInicioComponent>;
+describe('TInicioComponent', () => {
+  let component: TInicioComponent;
+  let fixture: ComponentFixture<TInicioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DInicioComponent ]
+      declarations: [ TInicioComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DInicioComponent);
+    fixture = TestBed.createComponent(TInicioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
