@@ -17,7 +17,7 @@ import { TransparenciaComponent } from './components/transparencia/transparencia
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
 import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
-import { InicioTerapeutaComponent } from './components/inicio-terapeuta/inicio-terapeuta.component';
+import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
 
 const routes: Routes = [
   { path: 'principal', component: PrincipalComponent},
@@ -30,10 +30,9 @@ const routes: Routes = [
   { path: 'registroD', component: RegistroDComponent},
 
   { path: 'doctor-inicio', component: TInicioComponent},
-  { path: 'inicio-terapeuta',component:InicioTerapeutaComponent},
+  { path: 'terapeuta',component:TerapeutaComponent},
   { path: 'terapeuta-inicio', component: TInicioComponent},
   { path: 'paciente-inicio', component: PInicioComponent},
-  {path:  'inicio-terapeuta', component: InicioTerapeutaComponent},
  // { path: 'chatBot', component: ChatBotComponent},
   { path: 'nuevo-expediente', component: NuevoExpedienteComponent},
   { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
