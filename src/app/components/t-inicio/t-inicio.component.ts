@@ -30,8 +30,8 @@ export class TInicioComponent implements OnInit {
   }
   fnchola(){
     //console.log("Hola");
-    let dom = this.listUsuarios[0].usuario_persona[0].persona_domicilio[0].calle;
-    console.log(dom);
+    // let dom = this.listUsuarios[0].usuario_persona[0].persona_domicilio[0].calle;
+    // console.log(dom);
     
   }
 
