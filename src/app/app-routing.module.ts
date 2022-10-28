@@ -16,6 +16,8 @@ import { RegistroPComponent } from './components/registro-p/registro-p.component
 import { RegistroComponent } from './components/registro/registro.component';
 import { TransparenciaComponent } from './components/transparencia/transparencia.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
+import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
+
 
 const routes: Routes = [
   { path: 'principal', component: PrincipalComponent},
@@ -34,6 +36,7 @@ const routes: Routes = [
 
   { path: 'dashboard-doctor', component: DashboardDoctorComponent},
   { path: 'admin-inicio', component:InicioAdminComponent},
+  { path: 'modificar-paciente', component:ModificarPacienteComponent},
   
   {path: '**', redirectTo: 'doctor-inicio', pathMatch: 'full'}
 ];

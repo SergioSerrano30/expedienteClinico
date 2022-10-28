@@ -28,6 +28,7 @@ import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboar
 import { GaleriaComponent } from './components/galeria/galeria.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
+import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { RegistroPacienteComponent } from './components/registro-paciente/regist
     GaleriaComponent,
     InicioAdminComponent,
     RegistroPacienteComponent,
+    ModificarPacienteComponent,
 
   
   ],
