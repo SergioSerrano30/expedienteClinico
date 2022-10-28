@@ -1,6 +1,6 @@
 export class Domicilio{
     _id?: string;
-    idDomicilio_PK: number;
+    idDomicilio_PK?: number;
     calle: string;
     numero_EXT: string;
     numero_INT: string;

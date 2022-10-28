@@ -32,7 +32,7 @@
             <img src="assets/img/sneeze%20(1).png" width="100rem">
         </div>
 -->
-        <form action="mt-3" [formGroup]="pacienteForm" (ngSubmit)="agregarPaciente()">
+        <form action="mt-3" [formGroup]="pacienteForm" (ngSubmit)="guardarPaciente()">
             <div class="form-floating my-2">
                 <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)"
                     required>
@@ -64,13 +64,12 @@
                 </div>
                 <div class="col-md">
                     <div class="form-floating my-2">
-                        <select class="form-select" id="floatingSelectGrid">
-                            <option selected>Seleccione un sexo</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                            <option value="O">Otro</option>
+                        <select class="form-select" formControlName="sexo"  id="floatingSelectGrid" >
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
                         </select>
-                        <label for="floatingSelectGrid">Elige uno</label>
+                        <label for="floatingSelectGrid">Elige el sexo</label>
                     </div>
                 </div>
             </div>
@@ -88,7 +87,7 @@
             </div>
             <br>
             <div class="d-grid col-12 mx-auto">
-                <button (onClick)="agregarPaciente()" class="btn btn-primary" type="submit" >Guardar</button>
+                <button (onClick)="guardarPaciente()" class="btn btn-primary" type="submit" >Guardar</button>
             </div>
             <br>
         </form>
