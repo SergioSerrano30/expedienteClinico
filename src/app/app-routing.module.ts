@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'transparencia', component: TransparenciaComponent},
   // { path: 'registroP', component: RegistroPComponent},
   { path: 'registroD', component: RegistroDComponent},
-  { path: 'doctor-inicio', component: DInicioComponent},
+  { path: 'terapeuta-lista', component: DInicioComponent},
   { path: 'paciente-inicio', component: PInicioComponent},
  // { path: 'chatBot', component: ChatBotComponent},
   { path: 'nuevo-expediente', component: NuevoExpedienteComponent},

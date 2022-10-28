@@ -28,6 +28,7 @@ import { GaleriaComponent } from './components/galeria/galeria.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
 import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
+import { InicioTerapeutaComponent } from './componets/inicio-terapeuta/inicio-terapeuta.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { ModificarPacienteComponent } from './components/modificar-paciente/modi
     InicioAdminComponent,
     RegistroPacienteComponent,
     ModificarPacienteComponent,
+    InicioTerapeutaComponent,
 
   
   ],
