@@ -31,6 +31,7 @@ import { ModificarPacienteComponent } from './components/modificar-paciente/modi
 import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,6 @@ import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
     RegistroPacienteComponent,
     ModificarPacienteComponent,
     TerapeutaComponent,
-  
 
   
   ],
