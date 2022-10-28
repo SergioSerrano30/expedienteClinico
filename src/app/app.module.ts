@@ -27,6 +27,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
 import { GaleriaComponent } from './components/galeria/galeria.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
+import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.com
     DashboardDoctorComponent,
     GaleriaComponent,
     InicioAdminComponent,
+    RegistroPacienteComponent,
 
   
   ],
