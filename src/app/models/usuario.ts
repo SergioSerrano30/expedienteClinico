@@ -1,7 +1,7 @@
 
 export class Usuario {
   _id?: string;
-  idUsuario_PK: number;
+  idUsuario_PK?: number;
   usuario: string;
   password: string;
   activo: string;
@@ -12,13 +12,13 @@ export class Usuario {
   }]
   usuario_persona: [{
     _id?: string
-    idPersona_PK: number,
+    idPersona_PK?: number,
     nombre: string, 
     apPaterno: string,
     apMaterno: string,
     fechaNac: string,
     sexo: string,
-    persona_domicilio:
+    persona_domicilio?:
       [{
         _id?: string
         idDomicilio_PK: number

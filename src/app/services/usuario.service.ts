@@ -15,7 +15,7 @@ export class UsuarioService {
     return this.http.get(this.url);
   }
 
-  crearUsuario(usuario:Usuario):Observable<any>{
+  guardarUsuario(usuario:Usuario):Observable<any>{
     return this.http.post(this.url,usuario);
   }
 }
