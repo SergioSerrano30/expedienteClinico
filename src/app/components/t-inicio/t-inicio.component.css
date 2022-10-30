@@ -12,37 +12,34 @@
     height: 50px; 
 }
 
-
-
-
 .bordeImagen {
     width: 150px;
     height: 150px;
     background-repeat: no-repeat;
     border-radius: 30%;
     background-size: 100% auto;
-  }
+}
   
-  .body{
+.body{
     text-align: justify;
     
-  }
+}
   
-  .bordeImagenFooter{
+.bordeImagenFooter{
   border-radius:30%;
   width:70px;
   height: 60px;
   margin-right: 1rem;
-  }
+}
   
-  .imageban{
+.imageban{
   width:1200px;
   height:400x;
   border-radius:10%;
-  }
+}
   
-  .imagelogo{
+.imagelogo{
     width:500px;
     height:350x;
     border-radius:10%;
-    }
+}

@@ -1,101 +1,64 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Modificar Paciente</title>
 </head>
-
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
         <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
-                Digital - [Terapeuta]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                Digital - [Administrador]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-end" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Mis consultas</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Terapeutas</a></li>
                     <li class="nav-item"><a class="nav-link" routerLink="/principal">Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Consultar operaciones</a></li>
                     <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!--<header class="p-3 bg-dark text-white">
-        <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
-              <li><a href="#" class="nav-link px-2 text-white" style="font-size:medium;">Expediente Clínico</a></li>
-            </ul>
-    
-            <div class="text-end">
-              <button type="button" class="btn btn-warning">Cerrar Sesión</button>
-            </div>
-          </div>
-        </div>
-    </header>-->
-
-    <!--Formulario de abajo-->
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;">Registro Paciente</h2>
+            <h2 class="text-center" style="margin-top: 20px;">Modificar Terapeuta</h2>
             <br>
-            <!--
-                <div class="text-center" style="display: block; margin: auto; margin-top: 20px;">
-                <img src="assets/img/sneeze%20(1).png" width="100rem">
-            </div>
-            -->
+
             <div class="etiquetas">
                 <b>Datos personales:</b>
             </div>
-            <form action="mt-3" [formGroup]="pacienteForm" (ngSubmit)="guardarPaciente()">
+
+            <form action="mt-3">
                 <div class="form-floating my-2">
-                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)"
-                        required>
+                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" readonly>
                     <label for="nombre">Nombre(s)</label>
-                    <!-- <div class="text-danger float-start" 
-            *ngIf="pacienteForm.get('nombre')?.hasError('required') && pacienteForm.get('nombre')?.touched">
-                <span>Este campo es <strong>obligatorio</strong></span>
-            </div> -->
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                                placeholder="Apellido paterno" required>
+                                placeholder="Apellido paterno" readonly>
                             <label for="apPaterno">Apellido paterno</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                                placeholder="Apellido materno" required>
+                                placeholder="Apellido materno" readonly>
                             <label for="password">Apellido materno</label>
                         </div>
                     </div>
                 </div>
-
-                <!--<div class="row my-2">
-                    <div class="col form-floating">
-                        <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                            placeholder="Apellido paterno" required>
-                        <label for="apPaterno">Apellido paterno</label>
-                    </div>
-                    <div class="col form-floating">
-                        <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                            placeholder="Apellido materno" required>
-                        <label for="apMaterno">Apellido materno</label>
-                    </div>
-                </div>-->
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31" value="1999-12-30" class="form-control" id="txtFecha"
-                                placeholder="Fecha de nacimiento" required>
+                                placeholder="Fecha de nacimiento" readonly>
                             <label for="fechaNac">Fecha de nacimiento</label>
                         </div>
                     </div>
@@ -110,6 +73,7 @@
                         </div>
                     </div>
                 </div>
+
                 <br>
 
                 <div class="etiquetas">
@@ -132,6 +96,7 @@
                         </div>
                     </div>
                 </div>
+
                 <br>
 
                 <div class="etiquetas">
@@ -214,14 +179,15 @@
                 </div>
 
                 <br>
-                <div class="d-grid col-12 mx-auto">
-                    <button (onClick)="guardarPaciente()" class="btn btn-primary btn-lg" type="submit" style="background-color:rgb(33, 37, 41)">Guardar</button>
-                </div>
-                <br>
-            </form>
 
+                <div class="d-grid col-12 mx-auto">
+                    <button class="btn btn-primary" type="submit" style="background-color:rgb(33, 37, 41)">Guardar</button>
+                </div>
+
+                <br>
+                
+            </form>
         </div>
     </div>
 </body>
-
 </html>
