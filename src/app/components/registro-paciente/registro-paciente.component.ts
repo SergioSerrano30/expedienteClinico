@@ -7,6 +7,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { Persona } from 'src/app/models/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Domicilio } from 'src/app/models/domicilio';
+import { DomicilioService } from 'src/app/services/domicilio.service';
 
 @Component({
   selector: 'app-registro-paciente',
@@ -34,6 +35,16 @@ export class RegistroPacienteComponent implements OnInit {
       sexo: ['', Validators.required],
       usuario: ['', Validators.required],
       password: ['', Validators.required],
+      calle: ['', Validators.required],
+      numero_EXT: ['', Validators.required],
+      numero_INT: ['', Validators.required],
+      colonia: ['', Validators.required],
+      entrecalle1: ['', Validators.required],
+      entrecalle2: ['', Validators.required],
+      referencia: ['', Validators.required],
+      municipio: ['', Validators.required],
+      estado: ['', Validators.required],
+      pais: ['', Validators.required],
     });
     this.id=this.aRouter.snapshot.paramMap.get('id');
   }
@@ -94,7 +105,7 @@ export class RegistroPacienteComponent implements OnInit {
         pais: pais,
         estado: estado,
         municipio: municipio,
-      }, //PENDIENTE CAMBIAR EL TIPO DE DATO EN CADA CONSTANTE
+      },
     };
     
     const USUARIO: Usuario = {
