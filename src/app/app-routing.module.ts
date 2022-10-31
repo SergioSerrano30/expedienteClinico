@@ -18,8 +18,12 @@ import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.com
 import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
 import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
 import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
+import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
 
 const routes: Routes = [
+  // SPRINT 1:
+  { path: 'modificar-terapeuta', component: ModificarTerapeutaComponent},
+
   { path: 'principal', component: PrincipalComponent},
   { path: 'login', component: LoginComponent},
   { path: 'loginD', component: LoginDComponent},

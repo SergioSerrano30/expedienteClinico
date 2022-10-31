@@ -25,7 +25,7 @@
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;">Registrar Terapeuta</h2>
+            <h2 class="text-center" style="margin-top: 20px;">Modificar Terapeuta</h2>
             <br>
 
             <div class="etiquetas">
@@ -34,7 +34,7 @@
 
             <form action="mt-3">
                 <div class="form-floating my-2">
-                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" required>
+                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" readonly>
                     <label for="nombre">Nombre(s)</label>
                 </div>
 
@@ -42,14 +42,14 @@
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                                placeholder="Apellido paterno" required>
+                                placeholder="Apellido paterno" readonly>
                             <label for="apPaterno">Apellido paterno</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                                placeholder="Apellido materno" required>
+                                placeholder="Apellido materno" readonly>
                             <label for="password">Apellido materno</label>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31" value="1999-12-30" class="form-control" id="txtFecha"
-                                placeholder="Fecha de nacimiento" required>
+                                placeholder="Fecha de nacimiento" readonly>
                             <label for="fechaNac">Fecha de nacimiento</label>
                         </div>
                     </div>
