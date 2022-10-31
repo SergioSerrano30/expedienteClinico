@@ -16,6 +16,7 @@ import {Usuario} from 'src/app/models/usuario'
 })
 export class TInicioComponent implements OnInit {
   listUsuarios: Usuario[] = [];
+
   constructor(
     private _usuarioService: UsuarioService,
     private toastr: ToastrService
@@ -45,6 +46,15 @@ export class TInicioComponent implements OnInit {
             console.log(error);
           });
   }
+
+  eliminarUsuario(id:any){
+    this._usuarioService.eliminarUsuario(id).subscribe(data=>{
+      this.toastr.error('El usuario fue Eliminado Exitosamente','usuario eliminado');
+      this.obtenerUsuarios
+    },error=>{
+      console.log(error);
+    })
+  }
   
-  
+
 }

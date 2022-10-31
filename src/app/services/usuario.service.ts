@@ -18,4 +18,17 @@ export class UsuarioService {
   guardarUsuario(usuario:Usuario):Observable<any>{
     return this.http.post(this.url,usuario);
   }
+
+  eliminarUsuario(id: string): Observable<any>{
+    return this.http.delete(this.url+id);
+  }
+
+  obtenerUsuario(id: string): Observable<any>{
+    return this.http.get(this.url+id);
+  }
+
+
+  editarUsuario(id: string,usuario:Usuario): Observable<any>{
+    return this.http.put(this.url+id,usuario);
+  }
 }

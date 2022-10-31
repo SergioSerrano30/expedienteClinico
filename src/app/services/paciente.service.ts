@@ -8,13 +8,12 @@ import { Paciente } from '../models/paciente';
 export class PacienteService {
   url = 'http://localhost:4000/api/pacientes/';
   constructor(private http: HttpClient) { }
+
   getPacientes():Observable<any>{
     return this.http.get(this.url);
   }
 
-  eliminarPaciente(id: string): Observable<any> {
-    return this.http.delete(this.url+id);
-  }
+
   guardarPaciente(paciente: Paciente):Observable<any>{
     return this.http.post(this.url,paciente);
   }
@@ -22,7 +21,9 @@ export class PacienteService {
   obtenerPaciente(id: string): Observable<any>{
     return this.http.get(this.url+id);
   }
-  editarPaciente(id: string, paciente: Paciente):Observable<any>{
+
+  editarPaciente(id: string,paciente:Paciente): Observable<any>{
     return this.http.put(this.url+id,paciente);
   }
+
 }

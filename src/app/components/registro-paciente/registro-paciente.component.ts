@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/usuario';
 import { Persona } from 'src/app/models/persona';
@@ -15,13 +15,16 @@ import { Domicilio } from 'src/app/models/domicilio';
 })
 export class RegistroPacienteComponent implements OnInit {
   pacienteForm: FormGroup;
+  titulo = 'Registro Paciente';
+  id: string | null;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private _usuarioService: UsuarioService,
-    private _personaService: PersonaService
+    private _personaService: PersonaService,
+    private aRouter:ActivatedRoute
   ) {
     this.pacienteForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -32,9 +35,12 @@ export class RegistroPacienteComponent implements OnInit {
       usuario: ['', Validators.required],
       password: ['', Validators.required],
     });
+    this.id=this.aRouter.snapshot.paramMap.get('id');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.esEditar()
+  }
 
   guardarPaciente() {
     let act = 'S';
@@ -57,6 +63,7 @@ export class RegistroPacienteComponent implements OnInit {
     let pais = 'pais'; //this.pacienteForm.get('sexo')?.value
     let estado = 'estado'; //this.pacienteForm.get('sexo')?.value
     let municipio = 'municipio'; //this.pacienteForm.get('sexo')?.value
+
     const DOMICILIO: Domicilio = {
       calle: calle,
       numero_EXT: numero_EXT,
@@ -69,6 +76,7 @@ export class RegistroPacienteComponent implements OnInit {
       estado: estado,
       municipio: municipio,
     };
+
     const PERSONA: Persona = {
       nombre: nombre,
       apPaterno: apPaterno,
@@ -114,14 +122,17 @@ export class RegistroPacienteComponent implements OnInit {
         },
       },
     };
+
     
+    //ZAM: descomenté esto de abajo
     console.log(USUARIO);
     this.guardarPersona();
-    // this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
-    //   this.toastr.success('Se ha guardado el paciente con éxito!', 'Paciente registrado!');
-    //   //this.router.navigate(['/terapeuta-inicio']);
-    // })
+     this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
+       this.toastr.success('Se ha guardado el paciente con éxito!', 'Paciente registrado!');
+       this.router.navigate(['/terapeuta-inicio']);
+     })
   }
+
   guardarPersona() {
     let nombre = this.pacienteForm.get('usuario')?.value;
     let apPaterno = this.pacienteForm.get('apPaterno')?.value;
@@ -164,6 +175,7 @@ export class RegistroPacienteComponent implements OnInit {
     //   //this.router.navigate(['/terapeuta-inicio']);
     // })
   }
+  
   guardarDomicilio() {
     let calle = 'calle'; //this.pacienteForm.get('usuario')?.value
     let numero_EXT = 'numero_EXT'; //this.pacienteForm.get('apPaterno')?.value
@@ -188,5 +200,21 @@ export class RegistroPacienteComponent implements OnInit {
       municipio: municipio,
     };
     console.log(DOMICILIO);
+  }
+
+  //ZAM
+  esEditar(){
+    if(this.id!==null){
+      this.titulo = 'Editar Paciente';
+      console.log("Bandera 1");
+      this._usuarioService.obtenerUsuario(this.id).subscribe(data=>{
+        this.pacienteForm.setValue({
+          usuario: data.usuario,
+          password: data.password
+        })
+        console.log("Bandera 2");
+      })
+      console.log("Bandera 3");
+    }
   }
 }
