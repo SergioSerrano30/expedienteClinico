@@ -7,6 +7,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { Persona } from 'src/app/models/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Domicilio } from 'src/app/models/domicilio';
+import { DomicilioService } from 'src/app/services/domicilio.service';
 
 @Component({
   selector: 'app-registro-paciente',
@@ -21,7 +22,8 @@ export class RegistroPacienteComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private _usuarioService: UsuarioService,
-    private _personaService: PersonaService
+    private _personaService: PersonaService,
+    private _domicilioService: DomicilioService
   ) {
     this.pacienteForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -31,6 +33,16 @@ export class RegistroPacienteComponent implements OnInit {
       sexo: ['', Validators.required],
       usuario: ['', Validators.required],
       password: ['', Validators.required],
+      calle: ['', Validators.required],
+      numero_EXT: ['', Validators.required],
+      numero_INT: ['', Validators.required],
+      colonia: ['', Validators.required],
+      entrecalle1: ['', Validators.required],
+      entrecalle2: ['', Validators.required],
+      referencia: ['', Validators.required],
+      municipio: ['', Validators.required],
+      estado: ['', Validators.required],
+      pais: ['', Validators.required],
     });
   }
 
@@ -47,16 +59,16 @@ export class RegistroPacienteComponent implements OnInit {
     let apMaterno = this.pacienteForm.get('apMaterno')?.value;
     let fechaNac = this.pacienteForm.get('fechaNac')?.value;
     let sexo = this.pacienteForm.get('sexo')?.value;
-    let calle = 'calle'; //this.pacienteForm.get('usuario')?.value
-    let numero_EXT = 'numero_EXT'; //this.pacienteForm.get('apPaterno')?.value
-    let numero_INT = 'numero_INT'; //this.pacienteForm.get('apMaterno')?.value
-    let colonia = 'colonia'; //this.pacienteForm.get('fechaNac')?.value
-    let entrecalle1 = 'entrecalle1'; //this.pacienteForm.get('sexo')?.value
-    let entrecalle2 = 'entrecalle2'; //this.pacienteForm.get('sexo')?.value
-    let referencia = 'referencia'; //this.pacienteForm.get('sexo')?.value
-    let pais = 'pais'; //this.pacienteForm.get('sexo')?.value
-    let estado = 'estado'; //this.pacienteForm.get('sexo')?.value
-    let municipio = 'municipio'; //this.pacienteForm.get('sexo')?.value
+    let calle =this.pacienteForm.get('calle')?.value
+    let numero_EXT = this.pacienteForm.get('numero_EXT')?.value
+    let numero_INT = this.pacienteForm.get('numero_INT')?.value
+    let colonia = this.pacienteForm.get('colonia')?.value
+    let entrecalle1 = this.pacienteForm.get('entrecalle1')?.value
+    let entrecalle2 = this.pacienteForm.get('entrecalle2')?.value
+    let referencia = this.pacienteForm.get('referencia')?.value
+    let pais = this.pacienteForm.get('pais')?.value
+    let estado = this.pacienteForm.get('estado')?.value
+    let municipio = this.pacienteForm.get('municipio')?.value
     const DOMICILIO: Domicilio = {
       calle: calle,
       numero_EXT: numero_EXT,
@@ -86,7 +98,7 @@ export class RegistroPacienteComponent implements OnInit {
         pais: pais,
         estado: estado,
         municipio: municipio,
-      }, //PENDIENTE CAMBIAR EL TIPO DE DATO EN CADA CONSTANTE
+      },
     };
     
     const USUARIO: Usuario = {
@@ -116,77 +128,27 @@ export class RegistroPacienteComponent implements OnInit {
     };
     
     console.log(USUARIO);
-    this.guardarPersona();
-    // this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
-    //   this.toastr.success('Se ha guardado el paciente con éxito!', 'Paciente registrado!');
-    //   //this.router.navigate(['/terapeuta-inicio']);
-    // })
+    this.guardarPersona(PERSONA,DOMICILIO);
+    this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
+      this.toastr.success('Se ha guardado el paciente con éxito!', 'Paciente registrado!');
+      //this.router.navigate(['/terapeuta-inicio']);
+    })
   }
-  guardarPersona() {
-    let nombre = this.pacienteForm.get('usuario')?.value;
-    let apPaterno = this.pacienteForm.get('apPaterno')?.value;
-    let apMaterno = this.pacienteForm.get('apMaterno')?.value;
-    let fechaNac = this.pacienteForm.get('fechaNac')?.value;
-    let sexo = this.pacienteForm.get('sexo')?.value;
-    let calle = 'calle'; //this.pacienteForm.get('usuario')?.value
-    let numero_EXT = 'numero_EXT'; //this.pacienteForm.get('apPaterno')?.value
-    let numero_INT = 'numero_INT'; //this.pacienteForm.get('apMaterno')?.value
-    let colonia = 'colonia'; //this.pacienteForm.get('fechaNac')?.value
-    let entrecalle1 = 'entrecalle1'; //this.pacienteForm.get('sexo')?.value
-    let entrecalle2 = 'entrecalle2'; //this.pacienteForm.get('sexo')?.value
-    let referencia = 'referencia'; //this.pacienteForm.get('sexo')?.value
-    let pais = 'pais'; //this.pacienteForm.get('sexo')?.value
-    let estado = 'estado'; //this.pacienteForm.get('sexo')?.value
-    let municipio = 'municipio'; //this.pacienteForm.get('sexo')?.value
-    const PERSONA: Persona = {
-      nombre: nombre,
-      apPaterno: apPaterno,
-      apMaterno: apMaterno,
-      fechaNac: fechaNac,
-      sexo: sexo,
-      persona_domicilio: {
-        calle: calle,
-        numero_EXT: numero_EXT,
-        numero_INT: numero_INT,
-        colonia: colonia,
-        entrecalle1: entrecalle1,
-        entrecalle2: entrecalle2,
-        referencia: referencia,
-        pais: pais,
-        estado: estado,
-        municipio: municipio,
-      },
-    };
-    console.log(PERSONA);
-    this.guardarDomicilio();
-    // this._personaService.guardarPersona(PERSONA).subscribe(data =>{
-    //   this.toastr.success('Se ha guardado la persona con éxito!', 'Persona registrado!');
-    //   //this.router.navigate(['/terapeuta-inicio']);
-    // })
+  guardarPersona(per:Persona,dom:Domicilio) {
+
+    console.log(per);
+    this.guardarDomicilio(dom);
+    this._personaService.guardarPersona(per).subscribe(data =>{
+      this.toastr.success('Se ha guardado la persona con éxito!', 'Persona registrado!');
+      //this.router.navigate(['/terapeuta-inicio']);
+    })
   }
-  guardarDomicilio() {
-    let calle = 'calle'; //this.pacienteForm.get('usuario')?.value
-    let numero_EXT = 'numero_EXT'; //this.pacienteForm.get('apPaterno')?.value
-    let numero_INT = 'numero_INT'; //this.pacienteForm.get('apMaterno')?.value
-    let colonia = 'colonia'; //this.pacienteForm.get('fechaNac')?.value
-    let entrecalle1 = 'entrecalle1'; //this.pacienteForm.get('sexo')?.value
-    let entrecalle2 = 'entrecalle2'; //this.pacienteForm.get('sexo')?.value
-    let referencia = 'referencia'; //this.pacienteForm.get('sexo')?.value
-    let pais = 'pais'; //this.pacienteForm.get('sexo')?.value
-    let estado = 'estado'; //this.pacienteForm.get('sexo')?.value
-    let municipio = 'municipio'; //this.pacienteForm.get('sexo')?.value
-    const DOMICILIO: Domicilio = {
-      calle: calle,
-      numero_EXT: numero_EXT,
-      numero_INT: numero_INT,
-      colonia: colonia,
-      entrecalle1: entrecalle1,
-      entrecalle2: entrecalle2,
-      referencia: referencia,
-      pais: pais,
-      estado: estado,
-      municipio: municipio,
-    };
-    console.log(DOMICILIO);
+  guardarDomicilio(dom:Domicilio) {
+    console.log(dom);
+    this._domicilioService.guardarDomicilio(dom).subscribe(data =>{
+      this.toastr.success('Se ha guardado el domicilio con éxito!', 'Domicilio registrado!');
+      //this.router.navigate(['/terapeuta-inicio']);
+    })
+    
   }
 }
