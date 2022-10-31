@@ -2,7 +2,7 @@ import { registerLocaleData } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
+
 import { TInicioComponent as TInicioComponent } from './components/t-inicio/t-inicio.component';
 import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
 import { EditarExpedienteComponent } from './components/editar-expediente/editar-expediente.component';
@@ -41,6 +41,8 @@ const routes: Routes = [
   { path: 'admin-inicio', component:InicioAdminComponent},
   { path: 'modificar-paciente', component:ModificarPacienteComponent},
   { path: 'registro-paciente',component:RegistroPacienteComponent},
+
+
   
   {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'}
 ];

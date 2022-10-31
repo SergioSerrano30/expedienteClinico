@@ -17,7 +17,7 @@ import { RegistroDComponent } from './components/registro-d/registro-d.component
 import { LoginDComponent } from './components/login-d/login-d.component';
 import { TInicioComponent } from './components/t-inicio/t-inicio.component';
 import { PInicioComponent } from './components/p-inicio/p-inicio.component';
-import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
+
 import { NuevoExpedienteComponent } from './components/nuevo-expediente/nuevo-expediente.component';
 import { EditarExpedienteComponent } from './components/editar-expediente/editar-expediente.component';
 
@@ -44,7 +44,7 @@ import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
     LoginDComponent,
     TInicioComponent,
     PInicioComponent,
-    ChatBotComponent,
+  
     NuevoExpedienteComponent,
     EditarExpedienteComponent,
     DashboardDoctorComponent,

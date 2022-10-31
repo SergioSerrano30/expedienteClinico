@@ -5,7 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo expediente</title>
+
+    <style>
+        body {
+            background: #36d1dc; /* fallback for old browsers */
+      background: -webkit-linear-gradient(
+        to right,
+        #5b86e5,
+        #36d1dc
+      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(
+        to right,
+        #5b86e5,
+        #36d1dc
+      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+    </style>
+
 </head>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid 3.5rem">
+      <a class="navbar-brand" href="principal">Expediente Clínico Digital</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/conocenos">Conócenos </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/transparencia">Transparencia</a>
+          </li>
+        
+
+        </ul>
+        
+
+      </div>
+    </div>
+</nav>
+
+
+
 <body>
     <div class="container mt-5">
         <div class="row">
@@ -15,47 +58,127 @@
                         <span class="titulo">Nuevo expediente</span>
                         <form action="mt-3" [formGroup]="expedienteForm" (ngSubmit)="agregarExpediente()">
                             <div class="mb-3">
-                                <input formControlName="curp" type="text" class="form-control form-control-lg " placeholder="CURP">
+                                <input formControlName="fecha_registro" type="date" class="form-control form-control-lg " placeholder="fecha Registro (Date)">
                                 <div class="text-danger float-start" 
-                                *ngIf="expedienteForm.get('curp')?.hasError('required') && expedienteForm.get('curp')?.touched">
+                                *ngIf="expedienteForm.get('fecha_registro')?.hasError('required') && expedienteForm.get('fecha_registro')?.touched">
                                     <span>Este campo es <strong>obligatorio</strong></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input formControlName="peso" type="number" class="form-control form-control-lg" placeholder="Peso (Kg)">
+                                <input formControlName="nombre" type="text" class="form-control form-control-lg" placeholder="Nombre(s)">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('nombre')?.hasError('required') && expedienteForm.get('nombre')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="appaterno" type="text" class="form-control form-control-lg" placeholder="Apellido Parterno">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('appaterno')?.hasError('required') && expedienteForm.get('appaterno')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="apmaterno" type="text" class="form-control form-control-lg" placeholder="Apellido Materno">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('apmaterno')?.hasError('required') && expedienteForm.get('apmaterno')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="edad" type="number" class="form-control form-control-lg" placeholder="Edad ">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('edad')?.hasError('required') && expedienteForm.get('edad')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="sexo" type="text" class="form-control form-control-lg" placeholder="Sexo">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('sexo')?.hasError('required') && expedienteForm.get('sexo')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="peso" type="number" class="form-control form-control-lg" placeholder="Peso (kg)">
                                 <div class="text-danger float-start" 
                                 *ngIf="expedienteForm.get('peso')?.hasError('required') && expedienteForm.get('peso')?.touched">
                                     <span>Este campo es <strong>obligatorio</strong></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input formControlName="altura" type="number" class="form-control form-control-lg" placeholder="Altura (Cm)">
+                                <input formControlName="estatura" type="number" class="form-control form-control-lg" placeholder="Estatura(cm)">
                                 <div class="text-danger float-start" 
-                                *ngIf="expedienteForm.get('altura')?.hasError('required') && expedienteForm.get('altura')?.touched">
+                                *ngIf="expedienteForm.get('estatura')?.hasError('required') && expedienteForm.get('estatura')?.touched">
                                     <span>Este campo es <strong>obligatorio</strong></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input formControlName="presion" type="number" class="form-control form-control-lg" placeholder="Presión arterial">
+                                <input formControlName="eme_nombre" type="text" class="form-control form-control-lg" placeholder="Emergencia Nombre">
                                 <div class="text-danger float-start" 
-                                *ngIf="expedienteForm.get('presion')?.hasError('required') && expedienteForm.get('presion')?.touched">
+                                *ngIf="expedienteForm.get('eme_nombre')?.hasError('required') && expedienteForm.get('eme_nombre')?.touched">
                                     <span>Este campo es <strong>obligatorio</strong></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input formControlName="padecimiento" type="text" class="form-control form-control-lg" placeholder="Padecimiento">
+                                <input formControlName="eme_parentesco" type="text" class="form-control form-control-lg" placeholder="Emergencia Parentesco">
                                 <div class="text-danger float-start" 
-                                *ngIf="expedienteForm.get('padecimiento')?.hasError('required') && expedienteForm.get('padecimiento')?.touched">
+                                *ngIf="expedienteForm.get('eme_parentesco')?.hasError('required') && expedienteForm.get('eme_parentesco')?.touched">
                                     <span>Este campo es <strong>obligatorio</strong></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input formControlName="medicacion" type="text" class="form-control form-control-lg" placeholder="Medicación">
+                                <input formControlName="eme_celular" type="number" class="form-control form-control-lg" placeholder="Emergencia Celular">
                                 <div class="text-danger float-start" 
-                                *ngIf="expedienteForm.get('medicacion')?.hasError('required') && expedienteForm.get('medicacion')?.touched">
+                                *ngIf="expedienteForm.get('eme_celular')?.hasError('required') && expedienteForm.get('eme_celular')?.touched">
                                     <span>Este campo es <strong>obligatorio</strong></span>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <input formControlName="alergias" type="text" class="form-control form-control-lg" placeholder="Alergias">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('alergias')?.hasError('required') && expedienteForm.get('alergias')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="traumas_fracturas" type="text" class="form-control form-control-lg" placeholder="Traumas/Fracturas">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('traumas_fracturas')?.hasError('required') && expedienteForm.get('traumas_fracturas')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="enf_congenitas" type="text" class="form-control form-control-lg" placeholder="Enfermedades Congenitas">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('enf_congenitas')?.hasError('required') && expedienteForm.get('enf_congenitas')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="enf_hereditarias" type="text" class="form-control form-control-lg" placeholder="Enfermedades Hereditarias">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('enf_hereditarias')?.hasError('required') && expedienteForm.get('enf_hereditarias')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="otros" type="text" class="form-control form-control-lg" placeholder="Comentarios (otros)">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('otros')?.hasError('required') && expedienteForm.get('otros')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input formControlName="observaciones" type="text" class="form-control form-control-lg" placeholder="Observaciones">
+                                <div class="text-danger float-start" 
+                                *ngIf="expedienteForm.get('observaciones')?.hasError('required') && expedienteForm.get('observaciones')?.touched">
+                                    <span>Este campo es <strong>obligatorio</strong></span>
+                                </div>
+                            </div>
+
+
+
                             <div class="mb-3">
                                 <button routerLink="/doctor-inicio" class="btn btn-secondary float-start">Volver</button>
                                 <button type="submit" [disabled]="expedienteForm.invalid" class="btn btn-primary float-end">Aceptar</button>
