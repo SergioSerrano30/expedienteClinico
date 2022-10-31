@@ -15,6 +15,6 @@ export class DomicilioService {
   }
 
   guardarDomicilio(domicilio:Domicilio):Observable<any>{
-    return this.http.post(this.url,domicilio)
+    return this.http.post(this.url,domicilio);
   }
 }
