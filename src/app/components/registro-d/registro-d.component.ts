@@ -57,6 +57,9 @@ export class RegistroDComponent implements OnInit {
  
   ngOnInit(): void {
     this.obtenerUsuario();
+    if(this.idUM.length>5){
+      this.esEditar();
+    }
   }
 
   obtenerUsuario() {
@@ -66,6 +69,7 @@ export class RegistroDComponent implements OnInit {
         //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+        
       }); 
     }
   }
@@ -148,12 +152,49 @@ export class RegistroDComponent implements OnInit {
       },
     };
     
-    //console.log(USUARIO);
+    if(this.idUM.length>5){
+      //editamos
+      this._usuarioService.editarUsuario(this.idUM,USUARIO).subscribe(data=>{
+        this.toastr.info('Terapeuta modificado con éxito!', 'Terapeuta Actualizada!');
+        this.router.navigate(['/inicio-admin-t/'+this.id]);
+      },error=>{
+        console.log(error);
+        this.usuarioForm.reset();
+      }
+      )
+  }else{
+    //guardamos
     this.guardarPersona(PERSONA,DOMICILIO);
     this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
-      this.toastr.success('Se ha guardado el paciente con éxito!', 'Paciente registrado!');
+      this.toastr.success('Se ha guardado el terapeuta con éxito!', 'Paciente registrado!');
       this.router.navigate(['/inicio-admin-t/'+this.id]);
     })
+  }
+  }
+  esEditar(){
+      this.titulo = 'Editar Terapeuta';
+      this._usuarioService.obtenerUsuario(this.idUM).subscribe(data=>{
+        this.usuarioForm.setValue({
+          nombre:data.usuario_persona.nombre,
+          apPaterno:data.usuario_persona.apMaterno,
+          apMaterno:data.usuario_persona.apPaterno,
+          fechaNac: data.usuario_persona.fechaNac,
+          sexo: data.usuario_persona.sexo,
+          usuario:  data.usuario,
+          password:  data.password,
+          calle: data.usuario_persona.persona_domicilio.calle,
+          numero_EXT: data.usuario_persona.persona_domicilio.numero_EXT,
+          numero_INT: data.usuario_persona.persona_domicilio.numero_INT,
+          colonia: data.usuario_persona.persona_domicilio.colonia,
+          entrecalle1: data.usuario_persona.persona_domicilio.entrecalle1,
+          entrecalle2: data.usuario_persona.persona_domicilio.entrecalle2,
+          referencia: data.usuario_persona.persona_domicilio.referencia,
+          municipio: data.usuario_persona.persona_domicilio.municipio,
+          estado: data.usuario_persona.persona_domicilio.estado,
+          pais: data.usuario_persona.persona_domicilio.pais
+        })
+     
+      })
   }
   guardarPersona(per:Persona,dom:Domicilio) {
 
@@ -172,4 +213,22 @@ export class RegistroDComponent implements OnInit {
     })
     
   }
+  irInicio(){
+    let rol = this.usuario?.usuario_rol.desRol;
+    switch (rol) {
+      case "Paciente":
+        this.router.navigate(['/paciente-inicio/' + this.id])
+        break;
+        case "Administrador":
+        this.router.navigate(['/admin-inicio/' + this.id])
+        break;
+        case "Terapeuta":
+        this.router.navigate(['/terapeuta-inicio/' + this.id])
+        break;
+    
+      default:
+        break;
+    }
+  }
+  
 }

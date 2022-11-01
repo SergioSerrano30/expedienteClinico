@@ -106,7 +106,7 @@ export class TInicioComponent implements OnInit {
     
       default:
         break;
-    }
+    } 
   }
   irLoginD(){
     this.router.navigate(['/loginD'])

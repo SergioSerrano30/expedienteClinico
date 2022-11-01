@@ -10,7 +10,7 @@
 
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
-        <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+        <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()">Expediente Clínico
                 Digital - {{nombre}}</a><button data-bs-toggle="collapse" class="navbar-toggler"
                 data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
@@ -28,7 +28,7 @@
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;">Registrar Terapeuta</h2>
+            <h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>
             <br>
 
             <div class="etiquetas">

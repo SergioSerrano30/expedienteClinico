@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'modificar-terapeuta', component: ModificarTerapeutaComponent},
   { path: 'inicio-admin-t/:id', component: InicioAdminTComponent},
   { path: 'registro-terapeuta/:id', component: RegistroDComponent},
+  { path: 'editar-terapeuta/:id/:idUM',component: RegistroDComponent},
   // SPRINT 2:
   { path: 'modificar-paciente-t', component: ModificarPacienteTComponent},
 
