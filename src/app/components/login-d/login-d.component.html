@@ -6,45 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        body {
-            background: #36d1dc; /* fallback for old browsers */
-            background: -webkit-linear-gradient(
-                to right,
-                #5b86e5,
-                #36d1dc
-            ); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(
-                to right,
-                #5b86e5,
-                #36d1dc
-            ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        }
-
-        .bg {
-            background-image: url(../../../assets/img/avatarDoctor.jpg);
-            background-repeat: no-repeat;
-            background-size: 70% auto;
-            background-position: center center;
-        }
-    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary navbar-expand-md text-end">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
         <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
-                Digital</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                Digital - [Terapeuta]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-end" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" routerLink="/inicio">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/conocenos">Conócenos</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/transparencia">Transparencia</a></li>
-                    <li class="nav-item"><a class="nav-link active" routerLink="/login">Iniciar sesión</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="principal">
     <div class="container w-75 bg-primary rounded shadow abajo">
         <div class="row align-items-stretch">
             <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
@@ -73,6 +49,7 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>
