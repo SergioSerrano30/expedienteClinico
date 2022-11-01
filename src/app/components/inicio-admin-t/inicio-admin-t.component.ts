@@ -47,11 +47,11 @@ export class InicioAdminTComponent implements OnInit {
  
   obtenerUsuarios() {
     this._terapeutaService.getTerapeutas().subscribe(data => {
-            console.log(data);
+            //console.log(data);
             //console.log(data.length)
             //this.toastr.success('Usuarios cargados con éxito','Usuarios cargados');
             this.listUsuarios =data;
-            console.log(data[0].usuario)
+            //console.log(data[0].usuario)
           },error => {
             console.log(error);
           });
@@ -70,6 +70,9 @@ export class InicioAdminTComponent implements OnInit {
 
   irTerapeutaNuevo(){
     this.router.navigate(['/registro-terapeuta/'+this.id]);
+  } 
+  irModificarTerapeuta(idUM:string|undefined){
+    this.router.navigate(['/editar-terapeuta/'+this.id+'/'+idUM]);
   }
   irInicio(){
     let rol = this.usuario?.usuario_rol.desRol;
@@ -89,5 +92,9 @@ export class InicioAdminTComponent implements OnInit {
         break;
     }
   }
+  irLoginD(){
+    this.router.navigate(['/loginD'])
+  }
+  
 
 }
