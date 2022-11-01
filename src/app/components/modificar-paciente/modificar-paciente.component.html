@@ -9,12 +9,13 @@
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
         <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
-                Digital - [Terapeuta]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                Digital - [Administrador]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-end" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Mis consultas</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Terapeutas</a></li>
                     <li class="nav-item"><a class="nav-link" routerLink="/principal">Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Consultar operaciones</a></li>
                     <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
                 </ul>
             </div>
@@ -33,7 +34,7 @@
 
             <form action="mt-3">
                 <div class="form-floating my-2">
-                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" readonly>
+                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" required>
                     <label for="nombre">Nombre(s)</label>
                 </div>
 
@@ -41,14 +42,14 @@
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                                placeholder="Apellido paterno" readonly>
+                                placeholder="Apellido paterno" required>
                             <label for="apPaterno">Apellido paterno</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                                placeholder="Apellido materno" readonly>
+                                placeholder="Apellido materno" required>
                             <label for="password">Apellido materno</label>
                         </div>
                     </div>
@@ -56,8 +57,9 @@
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31" value="" class="form-control" id="txtFecha"
-                                placeholder="Fecha de nacimiento" readonly>
+
+                            <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31" value="aaaa-mm-dd" class="form-control" id="txtFecha"
+                                placeholder="Fecha de nacimiento" required>
                             <label for="fechaNac">Fecha de nacimiento</label>
                         </div>
                     </div>

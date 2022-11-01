@@ -19,10 +19,14 @@ import { ModificarPacienteComponent } from './components/modificar-paciente/modi
 import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
 import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
 import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
+import { ModificarPacienteTComponent } from './components/modificar-paciente-t/modificar-paciente-t.component';
 
 const routes: Routes = [
   // SPRINT 1:
   { path: 'modificar-terapeuta', component: ModificarTerapeutaComponent},
+
+  // SPRINT 2:
+  { path: 'modificar-paciente-t', component: ModificarPacienteTComponent},
 
   { path: 'principal', component: PrincipalComponent},
   { path: 'login', component: LoginComponent},
@@ -33,16 +37,17 @@ const routes: Routes = [
   // { path: 'registroP', component: RegistroPComponent},
   { path: 'registroD', component: RegistroDComponent},
 
-  { path: 'doctor-inicio', component: TInicioComponent},
-  { path: 'terapeuta',component:TerapeutaComponent},
-  { path: 'terapeuta-inicio', component: TInicioComponent},
-  { path: 'paciente-inicio', component: PInicioComponent},
+  { path: 'terapeuta-inicio/:id',component:TerapeutaComponent},
+  { path: 'terapeuta-inicio-pacientes/:id', component: TInicioComponent},
+  { path: 'paciente-inicio/:id', component: PInicioComponent},
  // { path: 'chatBot', component: ChatBotComponent},
   { path: 'nuevo-expediente', component: NuevoExpedienteComponent},
   { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
 
   { path: 'dashboard-doctor', component: DashboardDoctorComponent},
-  { path: 'admin-inicio', component:InicioAdminComponent},
+
+  { path: 'admin-inicio/:id', component:InicioAdminComponent},
+ 
   { path: 'registro-paciente',component:RegistroPacienteComponent},
 
    //ZAMBRANO
@@ -53,6 +58,9 @@ const routes: Routes = [
 
  
   
+
+  {path: '**', redirectTo: 'login', pathMatch: 'full'}
+
 ];
 
 @NgModule({

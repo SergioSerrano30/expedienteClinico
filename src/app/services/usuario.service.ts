@@ -28,4 +28,5 @@ export class UsuarioService {
   editarUsuario(id: string,usuario:Usuario): Observable<any>{
     return this.http.put(this.url+id,usuario);
   }
+
 }
