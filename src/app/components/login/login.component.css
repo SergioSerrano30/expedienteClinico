@@ -2,17 +2,6 @@ body{
     text-align: justify;
     background-size: 100%;
     background: #ffffff;
-    background: -webkit-linear-gradient(
-        to right,
-        #ffffff,
-        #ffffff
-    );
-
-    background: linear-gradient(
-        to right,
-        #ffffff,
-        #ffffff
-    );
 }
 
 .bordeImagenFooter{
@@ -27,8 +16,9 @@ border-radius:30%;
 }
 
 .principal{
-    padding-top: 2%;
+    padding-top: 5%;
     padding-bottom: 1%;
+    background-size:contain;
 }
 
 .etiquetas{
