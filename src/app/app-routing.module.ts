@@ -11,15 +11,25 @@ import { LoginComponent } from './components/login/login.component';
 import { NuevoExpedienteComponent } from './components/nuevo-expediente/nuevo-expediente.component';
 import { PInicioComponent } from './components/p-inicio/p-inicio.component';
 import { PrincipalComponent } from './components/principal/principal.component';
-import { RegistroDComponent } from './components/registro-d/registro-d.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { TransparenciaComponent } from './components/transparencia/transparencia.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
 import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
 import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
+import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
+import { ModificarPacienteTComponent } from './components/modificar-paciente-t/modificar-paciente-t.component';
+import { InicioAdminTComponent } from './components/inicio-admin-t/inicio-admin-t.component';
+import { RegistroDComponent } from './components/registro-d/registro-d.component';
 
 const routes: Routes = [
+  // SPRINT 1:
+  { path: 'modificar-terapeuta', component: ModificarTerapeutaComponent},
+  { path: 'inicio-admin-t/:id', component: InicioAdminTComponent},
+  { path: 'registro-terapeuta/:id', component: RegistroDComponent},
+  // SPRINT 2:
+  { path: 'modificar-paciente-t', component: ModificarPacienteTComponent},
+
   { path: 'principal', component: PrincipalComponent},
   { path: 'login', component: LoginComponent},
   { path: 'loginD', component: LoginDComponent},
@@ -29,22 +39,31 @@ const routes: Routes = [
   // { path: 'registroP', component: RegistroPComponent},
   { path: 'registroD', component: RegistroDComponent},
 
-  { path: 'doctor-inicio', component: TInicioComponent},
-  { path: 'terapeuta',component:TerapeutaComponent},
-  { path: 'terapeuta-inicio', component: TInicioComponent},
-  { path: 'paciente-inicio', component: PInicioComponent},
+  { path: 'terapeuta-inicio/:id',component:TerapeutaComponent},
+  { path: 'terapeuta-inicio-pacientes/:id', component: TInicioComponent},
+  { path: 'paciente-inicio/:id', component: PInicioComponent},
  // { path: 'chatBot', component: ChatBotComponent},
   { path: 'nuevo-expediente', component: NuevoExpedienteComponent},
   { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
 
   { path: 'dashboard-doctor', component: DashboardDoctorComponent},
-  { path: 'admin-inicio', component:InicioAdminComponent},
-  { path: 'modificar-paciente', component:ModificarPacienteComponent},
-  { path: 'registro-paciente',component:RegistroPacienteComponent},
+
+
+  { path: 'admin-inicio/:id', component:InicioAdminComponent},
+ 
+  { path: 'registro-paciente/:id',component:RegistroPacienteComponent},
+
+   //ZAMBRANO
+   { path: 'modificar-paciente/:id', component:ModificarPacienteComponent},
+   { path: 'editar-paciente/:id/:idUM', component:RegistroPacienteComponent},
+
+   //{path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
 
 
   
-  {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'}
+
+  {path: '**', redirectTo: 'loginD', pathMatch: 'full'}
+
 ];
 
 @NgModule({

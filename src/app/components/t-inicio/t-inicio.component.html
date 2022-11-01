@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio Doctor</title>
 </head>
-
+ 
 <body>
 
   <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
-          <li><a href="#" class="nav-link px-2 text-white" style="font-size:medium;">Bienvenido(a): </a></li>
-        </ul>
+          <li><a (click)="irInicio()" class="nav-link px-2 text-white" style="font-size:medium;">Bienvenido(a): {{nombre}} </a></li>
+        </ul> 
 
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
@@ -46,38 +46,44 @@
             <input class="form-control me-2" type="search" placeholder="Buscar usuario" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
-        </div>
+        </div> 
       </div>
+      
       <table class="table" *ngIf="listUsuarios.length > 0">
         <thead>
           <tr>
-            <th scope="col">Usuario</th>
-            <th scope="col">Activo</th>
-            <th scope="col">Rol</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Calle</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">¿Activo?</th>
+            
+            <!-- <th scope="col">Calle</th> -->
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let usuario of listUsuarios">
-            <td>{{usuario.usuario}}</td>
-            <td>{{usuario.activo}}</td>
-            <td>{{usuario.usuario_rol[0].desRol}}</td>
-            <td>{{usuario.usuario_persona[0].nombre}}</td>
-            <td>{{usuario.usuario_persona[0].persona_domicilio[0].calle}}</td>
-            <i class="fas fa-edit text-primary"></i>
-            <i class="fas fa-lock text-danger"></i>
 
+          <div>
+
+          </div>
+          <tr *ngFor="let usuario of listUsuarios" >
+            <td>{{usuario.usuario_persona.nombre}}</td>
+
+            <td>{{usuario.usuario_persona.apPaterno + " " + usuario.usuario_persona.apMaterno}}</td>
+            <td>{{usuario.usuario_persona.sexo}}</td>
+            <td>{{usuario.activo}}</td>
+            <!-- [routerLink]="['/editar-paciente',usuario._id]" -->
+            <i (click)="irModificarPaciente(usuario._id)" class="fas fa-edit text-primary"></i>
+            <i class="fas fa-lock text-danger"></i>
           </tr>
         </tbody>
       </table>
       <h5 style="text-align: start; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay usuarios para mostrar</h5>
 
     </div>
-    <button routerLink="/principal" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+    <button (click)="irInicio()" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
 
-    <button routerLink="/registro-paciente" type="submit" class="btn btn-success btn-lg float-end">Nuevo <i class="fa-solid fa-plus"></i></button>
+    <button (click)="irNuevoPaciente()" type="submit" class="btn btn-success btn-lg float-end">Nuevo <i class="fa-solid fa-plus"></i></button>
 
 
 
