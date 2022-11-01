@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio Doctor</title>
 </head>
-
+ 
 <body>
 
   <header class="p-3 bg-dark text-white">
@@ -72,7 +72,8 @@
             <td>{{usuario.usuario_persona.apPaterno + " " + usuario.usuario_persona.apMaterno}}</td>
             <td>{{usuario.usuario_persona.sexo}}</td>
             <td>{{usuario.activo}}</td>
-            <i [routerLink]="['/editar-paciente',usuario._id]" class="fas fa-edit text-primary"></i>
+            <!-- [routerLink]="['/editar-paciente',usuario._id]" -->
+            <i (click)="irModificarPaciente(usuario._id)" class="fas fa-edit text-primary"></i>
             <i class="fas fa-lock text-danger"></i>
           </tr>
         </tbody>
@@ -82,7 +83,7 @@
     </div>
     <button routerLink="/terapeuta-inicio" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
 
-    <button routerLink="/registro-paciente" type="submit" class="btn btn-success btn-lg float-end">Nuevo <i class="fa-solid fa-plus"></i></button>
+    <button (click)="irNuevoPaciente()" type="submit" class="btn btn-success btn-lg float-end">Nuevo <i class="fa-solid fa-plus"></i></button>
 
 
 
