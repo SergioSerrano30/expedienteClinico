@@ -16,9 +16,11 @@ export class PacienteService {
 
 
 
+
   // guardarPaciente(paciente: Paciente):Observable<any>{
   //   return this.http.post(this.url,paciente);
   // }
+
 
   // obtenerPaciente(id: string): Observable<any>{
   //   return this.http.get(this.url+id);

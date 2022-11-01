@@ -16,11 +16,13 @@ import { DomicilioService } from 'src/app/services/domicilio.service';
 })
 export class RegistroPacienteComponent implements OnInit {
   pacienteForm: FormGroup;
-  titulo = 'Registro Paciente';
+
+  titulo = 'Registrar Paciente';
   id: string;
   idUM: string;
   usuario: Usuario | null;
   nombre: string;
+
 
   constructor(
     private fb: FormBuilder,

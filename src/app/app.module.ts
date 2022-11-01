@@ -31,6 +31,7 @@ import { ModificarPacienteComponent } from './components/modificar-paciente/modi
 import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
 import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
 import { ModificarPacienteTComponent } from './components/modificar-paciente-t/modificar-paciente-t.component';
+import { InicioAdminTComponent } from './components/inicio-admin-t/inicio-admin-t.component';
 
 
 
@@ -57,6 +58,7 @@ import { ModificarPacienteTComponent } from './components/modificar-paciente-t/m
     TerapeutaComponent,
     ModificarTerapeutaComponent,
     ModificarPacienteTComponent,
+    InicioAdminTComponent,
 
   
   ],

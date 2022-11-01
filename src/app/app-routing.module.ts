@@ -20,10 +20,12 @@ import { RegistroPacienteComponent } from './components/registro-paciente/regist
 import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
 import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
 import { ModificarPacienteTComponent } from './components/modificar-paciente-t/modificar-paciente-t.component';
+import { InicioAdminTComponent } from './components/inicio-admin-t/inicio-admin-t.component';
 
 const routes: Routes = [
   // SPRINT 1:
   { path: 'modificar-terapeuta', component: ModificarTerapeutaComponent},
+  { path: 'inicio-admin-t', component: InicioAdminTComponent},
 
   // SPRINT 2:
   { path: 'modificar-paciente-t', component: ModificarPacienteTComponent},
