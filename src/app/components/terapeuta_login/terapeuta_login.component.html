@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+        <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+                Digital - [Terapeuta / Administrador]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-end" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" routerLink="/principal">Principal</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="/principal">Conócenos</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="/principal">Transparencia</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="principal">
+  <div class="container w-75  bg-primary rounded shadow ">
+    <div class="row align-items-stretch">
+      <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+      </div>
+      <div class="col bg-white p-5 rounded-end">
+        <h2 class="fw-bold text-center py-5">Bienvenido(a) </h2>
+
+        <!-- Login -->
+        <form action="mt-3" [formGroup]="loginForm" (ngSubmit)="autenticar()">
+          <div class="mb-4">
+            <label for="usuario" class="form-label">Usuario:</label>
+            <input type="text" class="form-control" formControlName="usuario" name="usuario" required>
+          </div> 
+          <div class="mb-4">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" formControlName="password" name="password" required>
+          </div>
+          <div class="d-grid" *ngIf="intentos<3">
+            
+            <button type="submit" class="btn btn-outline-primary" id="login" name="btnLogin" >Iniciar sesión</button>
+          </div>
+          <div class="d-grid" *ngIf="intentos===3">
+            <button type="submit" class="btn btn-outline-primary" id="login" name="btnLogin"  disabled>Iniciar sesión</button>
+          </div>
+          <div class="my-3">
+            <span>¿Eres un paciente? <a routerLink="/paciente_login">Inicia sesión aqui</a> </span><br>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+
+<!-- <div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a>
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex text-center">
+        <img class="bordeImagenFooter" src="https://www.tepic.tecnm.mx/images/escudo_itt_grande.png">
+      </ul>
+      <span class="mb-3 mb-md-0 text-muted">Instituto Tecnológico de Tepic © (2022) </span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex text-center">
+      <img class="bordeImagenFooter"
+        src="https://img.freepik.com/vector-gratis/doctor-dibujos-animados-centro-medico_24877-2091.jpg">
+      <img class="bordeImagenFooter" src="https://seeklogo.com/images/F/facebook-logo-264A8EFBA1-seeklogo.com.png ">
+      <img class="bordeImagenFooter"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPcAAADMCAMAAACY78UPAAAAbFBMVEUdm/D///8Ale8Alu8Ak+8TmfD4/P/y+f7R6PvI4/vk8v2/3/r1+/7u9/7o9P2MxfZLqvJqtvTh8P2Uyfd6vfWazPchnfA4pPGk0fjO5vtcsfNbsPOCwfWw1/lwufRQrPKr1PgzofG52/kAje4j0eMqAAALW0lEQVR4nOWd2aKiOBCGIUkp6EERFFxwwXn/dxxwZctGFsPMf9V9+jT4maRSqVQlnv//lPfrDyCi2V+UBOFyGR6S1Z+eR7rOHYX7S54BQS8RKK/rc6L8XKe5D+scIwweeA0BAEbe8bZSerS73OGmYvYoqtnznQK6o9zzXYaABv0WJqel5HOD9whxkntRYMylfjQ7Ks8Sz40u6P1HB7mjrRj0UxLkO4zW7z+7x53yO3iHPA9EnnvzsEcW77+5xr3MqLaMLnKZcR4729f2Aq6fHzjGvSWSjf0UzkLWU1dreAwd9P2tPvdhqx9HUEk5orGf+o7cnoLN20rm3x/2uWMiYyJ16ozGUtfg8aAHOzvHH3uB7t+f97iXyCMHc2wMbYkCdu3K9M1buCGNuaHR3H3uvHoCVvMBx+mo0trP9mwN8lm4hdbU0PrnLvehfjtkc/Ocbc3i0UP7I0Af921133gI2n79sfm+Lvfx8buQ+5aVj7LjXT1GcLQsysqSdR9IWp24w716dTZ89a1KD3YFnm4zNOj4oH3rhR3u3bu34Y1Fav+k3snfn7vXzk9B3H5jh7v8PuBiD3urDZsmwIv2K9vcQcOmImv+y03ZknNF7p13trnT5hfPcIG0KlCbt0WEi+5L29x567dR77dNaOZpsmkM7L6VbnFHnW/eSlffGMcempVb3MvuQLMA3nunfuxywAtrca97dtX4dDbLTDc3ZFHvpbc2d9z/DDju/ie9KkxPYZB112lJ8U/Q5h76DJCb9NUT070cd5an0TkmJG3388Xgh4BMfXeCKtNGDbXG6fx8rB33ugs3ucPhLx+wsfV4YnbqBrL7vit6QNc4UYf7TBlrYCwCY7a5sfeJRBzSHL0iEOSxDG9y76g2hpjxYIYHliYBeq4wojC9ou+O08sLbXIX9G8fXzXtv7bEeKE6dnn/C87rU7UsbW5DwMnvcV8YHwMyoeC8lGaUNaMelSVG/fBDNpPjrvr6TTc3zZ5o0gANoPdytMl9ZH/9SLfvdjXumXdFPqFFCW4Pl1pn8sj8srsj9O2yTW7+rNIJUqnJcDcf+PTp9+Xi4/v5X2N9oXXzC9DOZ29OxoLz2Eegr8ktN3d7TS3mt7T+/1VPkwd2h3cnlNDkvom1AGAtTb632t7dCIrAumTgIbEGw761Obx7ocImt/hiGEjByzDgKue/RptI2n17k3sm0fMwqLpv9oY3DLiarXhLKdH1AOVKy/KVPW48kOXW4pYbcoCOCsPcmjkHb2hF1eIWNOjfR6LL6Dntbsmc47IXTu1xy4d9gFwWQ4/lS/Y7Hil0HH59e59oRDC7avNRvV3MSVIUoB3l9W3uUXNqNc5HxCRSC9zDQ3uAe+SmDaBYNjHYCjcaHNoD3KMjP4CyvZwnY4Ob0D9SJ99BYClKEWC8lenuNsY3EW1vcRd9SJUrsxee12xwI/pc083jKvlPYwnj612sv9uYxxB9pulyK68OAaONCLr5fW8pbh0xbUDoxC33seGnSnBrsrN1uc/6wGp2o3tEL8lw/2n7PBh5p31AZbfBLW7XtBrausoLx+lysM/LLHpHitAH20CdRab35RU7wdfiHnR2Fse7CsISn79rmbC0dcuj7FTclkH04rcwkRF6ispQXY2pgP6jshMhr4yPl2JnchP4JULFHuSOTO9TQv0NWAinYjlu/24+Y9SGIJPk9i+2t+yMiFU1Qamb05X//1N1c+0FuCOjKRiW9M5lkeC2vWtnRMAomaDWh4bTt22YUThAr4udvlHHjK2sBndybS9flrKF2K4Jd4tKhrlXBG1a5OHEwRFjA6/BXblpQK7NgHAybavOWI61uGtIQF7x/ZqifNIODCPu0eD+e2b4AaBs+1kyjyzAd0KsItemPf9EAip0XF52YVKt4w7GC0BMCShbgj3uVnnJc81IIJ+sywqs5HFuvuJ0TRtr+m5x29iysijWNNbitpWCYEnM0xrG5XFNQayoQ8c/n+xQHhIwjyxocfMS0Ccl1mqsw203ZdSwEGNVopzP5LAYm0Rd7jH5TM4KWNgd7n4h9GTF9FJ751r8dzo6pmWuDXFbTY42K8ROMupw/3csOmOPaIB7/l/hZsXOB7jtVj8YFGd497gtpsMbFWd49+PnFtIQLAh452X2/r17ds00Bbwa3v73YvxkERvCvJMZ+twWzksyL+4JkZbyemyLe06izbwee8K9OjkR7vl0Y6gvMRI0GdyT3/uGkodN2f8upj3E+d2ctu+v74DLX4jwK7tofs1kd4dqCZx6S+OOJhxyEqnLp/qxq+lyI4HiHrr/vpjqbMZbenO4/cVEuzo7cM7n9ueTzPIAVnqHEHflsU5wHmdu9wty+7vpeW58H1WA2z+MuU/kl2IlIUtw+/52Wn1dyKoJ3dsSlhPKWwT2tpgMd72bMJnOzosfS3HXKT826mA0CAuefyl6P5HQRWi/V/+Ad0XuSssTcr7RhW+ckbqPKjofEf3OPwfEqqxQ4K51SO0fgyksMZ+Fy/3X83Rni+V64JR0R8TdJRHkXqJ4k97u4SEIDuHytt7kQFwe4gLxJSFuHwNgjF9XtTo/lUk0N4fbQs2uRkk0N4d7UgltIHP5BseeO2y7e8L06n5pbqXze+yKnY8qyT2dODqA1LlYPO7JbApLnl/M9dfc9VLaKqWw+dwTSd2UvfuT759PIgtAxmUR5J677qbVkprDxLjVrq+1I/lD2UXWoc6XnYy47lSE+0/ziU3aJeOYS3C7btMF0jrGcftnl8FHXeorGGdaO2zbxINL8twOn1xEPQJZC7d/dBScXQ6pzu0quLTHIsvtZhJA7+Jf/dwuZjHisRe7Su0b7F073GP8vfRy+yWBW7ldILwdpsjtzzYu7YoS6dPmx3L7/t2dJle5oFya259fHBnlmF3xq5u7GuWxC51dILleM7fvh78nB1C6Bm0cd0X+6+QHXiGkIW7fX6QZ+p2NG+unqXNXOhTZj/bDieqVd0rclZJzkePH3rjNtu9dH2ed+wkf3tLtZmMtDIeF03eo0sL91NkatsrE/ZI27pm1ZSoeF2loSxd3YK0oQwu2Lu61tYArFqma4UuPXbNXiKJjbNfSwb2257TqwtbAbbMSQ9/V66rcq43FrZTuJb8KUuOepTbXZf3bbsdLiftms9gICO+MDhkpcJ+tViAADvVRK3DbpfYgG3k/K0XjuP92nt2AC7oq37utzp0UVm7ZaYgorzvVue9X27E1EKwBNMgdbMF6RBGXeoe2NHdY/KCGDJB6kEGBO7pfvF+EEYF1GYdh7tVyHdcBNOvQlR2PlaLko7mjcH/J8K9q5UA5bMrgTgatRhQs99sYE/Sbdn4I5QYM2od7fvkny6+bS7FOd+m62F6O17ysgH9JXAtEjp9R4K4mpxzB48o//AiDV7i/3vyqzfjV0Mj+cjtY2I698Vv6Etz+rPj5BmdDoLKjL8VdB05cIQe0MWfPetzVML86kadFrmo7vNLclSOa/5wc5VrDC2Lc1WIr/2VvB1vUA/5aaH2Z+aWObVEP+qnB5hcpHICONsY1g7uy7WuwO58DRtsx2fOauSvdcmLNTQWU7ek3dZsRfT1mKbRSeccXyRpHHWKtQ2f3k+kzHTCKz4InC+kVZ/292sfGMpYAkzy1O6q/4sdbFkbQK+h4Z94dpUoovhbdjljn3FY9bHMeVxeiS8Lx1CCNQT0UUd9SCfnann9Ck0wceX7YnbzR7HVcg3jXNLQ9ZQ1Kdr9kltyLGMkFoepQDiLZaX3/4YDuaNy+YBLut1W3f+dnDn4Hj58/Djny4uJ2cKKVv1LZ958ny/16e4zLzIP3IU5vVVYwizfF7nxINO9k6pGe/LVZtFokSRAEy2UYhocgWUVzJ3E/0pifOin9X7n/BW6OokXo/nefAAAAAElFTkSuQmCC">
+      <img class="bordeImagenFooter"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png">
+    </ul>
+  </footer>
+</div> -->
+
+</html>

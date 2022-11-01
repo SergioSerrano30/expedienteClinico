@@ -1,0 +1,33 @@
+.principal{
+    background: #ffffff;
+    /*background: -webkit-linear-gradient(
+        to right,
+        #5b86e5,
+        #36d1dc
+    );
+
+    background: linear-gradient(
+        to right,
+        #5b86e5,
+        #36d1dc
+    );*/
+
+    padding-top: 5%;
+    padding-bottom: 1%;
+}
+
+.etiquetas{
+    text-align: center;
+}
+
+.container-fluid{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.bg {
+    background-image: url(../../../assets/img/imgterapeuta.png);
+    background-repeat: no-repeat;
+    background-size: 70% auto;
+    background-position: center center;
+}
