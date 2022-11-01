@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
         <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
-                Digital - {{nombre}}</a><button data-bs-toggle="collapse" class="navbar-toggler"
+            Digital [Administrador] - {{nombre}}</a><button data-bs-toggle="collapse" class="navbar-toggler"
                 data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-end" id="navcol-1">
@@ -40,10 +40,6 @@
                     <input formControlName="nombre" type="text" class="form-control" id="txtNombre"
                         placeholder="Nombre(s)" required>
                     <label for="nombre">Nombre(s)</label>
-                    <!-- <div class="text-danger float-start" 
-            *ngIf="pacienteForm.get('nombre')?.hasError('required') && pacienteForm.get('nombre')?.touched">
-                <span>Este campo es <strong>obligatorio</strong></span>
-            </div> -->
                 </div>
 
                 <div class="row g-4">
@@ -62,19 +58,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!--<div class="row my-2">
-                    <div class="col form-floating">
-                        <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                            placeholder="Apellido paterno" required>
-                        <label for="apPaterno">Apellido paterno</label>
-                    </div>
-                    <div class="col form-floating">
-                        <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                            placeholder="Apellido materno" required>
-                        <label for="apMaterno">Apellido materno</label>
-                    </div>
-                </div>-->
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">

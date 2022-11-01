@@ -1,6 +1,6 @@
 .principal{
-    background: #36d1dc;
-    background: -webkit-linear-gradient(
+    background: #ffffff;
+    /*background: -webkit-linear-gradient(
         to right,
         #5b86e5,
         #36d1dc
@@ -10,9 +10,9 @@
         to right,
         #5b86e5,
         #36d1dc
-    );
+    );*/
 
-    padding-top: 2%;
+    padding-top: 5%;
     padding-bottom: 1%;
 }
 
