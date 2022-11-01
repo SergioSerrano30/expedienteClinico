@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio Doctor</title>
+</head>
+
+<body>
+
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
+          <li><a href="#" class="nav-link px-2 text-white" style="font-size:medium;">Bienvenido(a): {{nombre}} </a></li>
+        </ul> 
+
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/img/image-doctor.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
+          </a>
+        </div>
+
+        <div class="text-end">
+          <button type="button" class="btn btn-warning">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HASTA AQUI ES EL PURO DASHBOARD (BARRA de ARRIBA)-->
+
+
+
+
+  <div class="container mt-5 float-start">
+
+    <div class="col-lg-12 offset-lg-1">
+      <div class="container-fluid row mb-2">
+        <span class="col titulo">Lista de Terapeutas</span>
+        <div class=" col container-fluid">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar usuario" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div> 
+      </div>
+      
+      <table class="table" *ngIf="listUsuarios.length > 0">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">¿Activo?</th>
+            
+            <!-- <th scope="col">Calle</th> -->
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <div>
+
+          </div>
+          <tr *ngFor="let usuario of listUsuarios" >
+            <td>{{usuario.usuario_persona.nombre}}</td>
+
+            <td>{{usuario.usuario_persona.apPaterno + " " + usuario.usuario_persona.apMaterno}}</td>
+            <td>{{usuario.usuario_persona.sexo}}</td>
+            <td>{{usuario.activo}}</td>
+            <i [routerLink]="['/editar-paciente',usuario._id]" class="fas fa-edit text-primary"></i>
+            <i class="fas fa-lock text-danger"></i>
+          </tr>
+        </tbody>
+      </table>
+      <h5 style="text-align: start; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay usuarios para mostrar</h5>
+
+    </div>
+    <button routerLink="/terapeuta-inicio" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+
+    <button routerLink="/registro-paciente" type="submit" class="btn btn-success btn-lg float-end">Nuevo <i class="fa-solid fa-plus"></i></button>
+  </div>
+
+
+</body>
+
+
+
+</html>

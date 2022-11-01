@@ -16,7 +16,7 @@ export class PacienteService {
 
 
 
-  guardarPaciente(paciente: Paciente):Observable<any>{
+  /*guardarPaciente(paciente: Paciente):Observable<any>{
     return this.http.post(this.url,paciente);
   }
 
@@ -26,7 +26,7 @@ export class PacienteService {
 
   editarPaciente(id: string,paciente:Paciente): Observable<any>{
     return this.http.put(this.url+id,paciente);
-  }
+  }*/
 
 
   getPacientesActivos():Observable<any>{
