@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+    <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+            Digital - [Paciente]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-end" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" routerLink="/principal">Principal</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/principal">Conócenos</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/principal">Transparencia</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+ 
+<div class="principal">
+  <div class="container w-75  bg-primary rounded shadow">
+    <div class="row align-items-stretch">
+      <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+      </div>
+      <div class="col bg-white p-5 rounded-end">
+        <h2 class="fw-bold text-center py-5">Bienvenido(a) </h2>
+
+        <!-- Login -->
+        <form action="mt-3" [formGroup]="loginForm" (ngSubmit)="autenticar()">
+          <div class="mb-4">
+            <label for="usuario" class="form-label">Usuario:</label>
+            <input type="text" class="form-control" formControlName="usuario" name="usuario" required>
+          </div>
+          <div class="mb-4">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" formControlName="password" name="password" required>
+          </div>
+          <div class="d-grid" *ngIf="intentos<3">
+            
+            <button type="submit" class="btn btn-outline-primary" id="login" name="btnLogin" >Iniciar sesión</button>
+          </div>
+          <div class="d-grid" *ngIf="intentos===3">
+            <button type="submit" class="btn btn-outline-primary" id="login" name="btnLogin"  disabled>Iniciar sesión</button>
+          </div>
+          <div class="my-3">
+            <span>¿Eres un terapeuta? <a routerLink="/terapeuta_login">Inicia sesión aqui</a> </span><br>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
