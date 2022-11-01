@@ -3,7 +3,7 @@
 
     <style>
         body {
-          background: #F8F9FA; /* fallback for old browsers */
+          background: #ffffff;  /* fallback for old browsers */
      
         }
       </style>
@@ -14,79 +14,59 @@
     <title>Inicio Administrador</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-primary navbar-expand-md text-end">
-        <div class="container-fluid">
-          <a class="navbar-brand" routerLink="/principal"
-            >Expediente Clínico Digital</a
-          ><button
-            data-bs-toggle="collapse"
-            class="navbar-toggler"
-            data-bs-target="#navcol-1"
-          >
-            <span class="visually-hidden">Toggle navigation</span
-            ><span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse text-end" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-              <img
-                class="fotoPerfil"
-                src="assets/img/image-pacient.png"
-                alt="imagenPaciente"
-              />
-              <span class="mx-2 navbar-brand">Out</span>
-            </ul>
-          </div>
+  <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+    <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+        Digital - [Administrador]</a><button data-bs-toggle="collapse" class="navbar-toggler"
+        data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/img/image-doctor.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
+          </a>
         </div>
-      </nav>
-      <br />
+
+        <div class="text-end">
+          <button type="button" class="btn btn-warning">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </nav>
   
       <header class="page-header-ui page-header-ui-light bg-white">
         <div class="page-header-ui-content">
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-xl-8 col-lg-10 text-center">
-                        <img class="mb-4" src="assets/img/admin.png" style="width: 15rem">
+                        <img class="mb-4" src="assets/img/admin.png" style="width: 12rem">
                         <h1 class="page-header-ui-title">Bienvenido {{nombre}}</h1>
-                        <p class="page-header-ui-text">Donde hay una empresa de éxito, alguien tomó alguna vez una decisión valiente, Gestión es hacer las cosas bien, liderazgo es hacer las cosas”. </p>
+                        <p class="page-header-ui-text">Donde hay una empresa de éxito, alguien tomó alguna vez una decisión valiente. Gestión es hacer las cosas bien, liderazgo es hacer las cosas. </p>
+                        <br>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="svg-border-rounded text-light">
-            <!-- Rounded SVG Border-->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
         </div>
     </header>
   
     <div class="container px-5">
       <div class="row gx-5 text-center">
-            <div class="col-lg-6 mb-5 mb-lg-0">
-                <img class="mb-4" src="assets/img/avatarDoctor.jpg" style="width: 15rem">
-                <h3>TERAPEUTAS</h3>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h3>Terapeutas</h3>
+                <img class="mb-10" src="assets/img/terapeuta-fisico.png" style="width: 12rem">
             </div>
             
-            <div class="col-lg-6 mb-9 mb-lg-2">    
-                <img class="mb-10" src="assets/img/avatar.png" style="width: 15rem">
-                <h3>PACIENTES</h3>
+            <div class="col-lg-4 mb-9 mb-lg-2">    
+              <h3>Pacientes</h3>
+              <img class="mb-10" src="assets/img/examen.png" style="width: 12rem">  
             </div>
 
-           <div class="col-lg-13 mb-9 mb-lg-2">    
-                <img class="mb-10" src="assets/img/buscar.jpg" style="width: 15rem">
-                <h3>CONSULTAR OPERACIONES</h3>
+           <div class="col-lg-4 mb-9 mb-lg-2">    
+            <h3>Consulta de Operaciones</h3>    
+            <img class="mb-10" src="assets/img/sistema-operativo.png" style="width: 12rem"> 
             </div>
-          
-             
-              
-             <!--<p class="mb-0">I provide custom illustration services for contract clients</p>--> 
-            </div>
+        </div>
          
       </div>
-  
-                 
-      
-
-
-
-
 </body>
 </html>

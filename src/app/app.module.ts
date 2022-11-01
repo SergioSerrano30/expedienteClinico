@@ -30,6 +30,7 @@ import { RegistroPacienteComponent } from './components/registro-paciente/regist
 import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
 import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
 import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
+import { ModificarPacienteTComponent } from './components/modificar-paciente-t/modificar-paciente-t.component';
 
 
 
@@ -55,6 +56,7 @@ import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/mo
     ModificarPacienteComponent,
     TerapeutaComponent,
     ModificarTerapeutaComponent,
+    ModificarPacienteTComponent,
 
   
   ],

@@ -2,60 +2,24 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <style>
-    body {
-      background: #36d1dc;
-      /* fallback for old browsers */
-      background: -webkit-linear-gradient(to right,
-          #5b86e5,
-          #36d1dc);
-      /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to right,
-          #5b86e5,
-          #36d1dc);
-      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    }
-    .bg {
-            background-image: url(../../../assets/img/terapeuta.png);
-            background-repeat: no-repeat;
-            background-size: 70% auto;
-            background-position: center center;
-        }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid ">
-      <a class="navbar-brand" href="principal">Expediente Clínico Digital</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/principal"> Principal </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/conocenos">Conócenos </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/transparencia">Transparencia</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/login">Registrarse</a>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+        <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+                Digital - [Terapeuta]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-end" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
   <div class="container w-75  bg-primary rounded shadow ">
@@ -88,8 +52,8 @@
         </form>
       </div>
     </div>
-  </div>
 
+  </div>
 
 </body>
 
