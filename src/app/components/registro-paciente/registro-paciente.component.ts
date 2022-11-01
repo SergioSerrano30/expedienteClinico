@@ -154,12 +154,26 @@ export class RegistroPacienteComponent implements OnInit {
       },
     };
     
-    console.log(USUARIO);
+    //console.log(USUARIO);
+    if(this.idUM!==null){
+      //editamos
+      this._usuarioService.editarUsuario(this.idUM,USUARIO).subscribe(data=>{
+        this.toastr.info('Usuario modificado con éxito!', 'Usuario Actualizada!');
+        this.router.navigate(['/terapeuta-inicio-pacientes/'+this.id]);
+      },error=>{
+        console.log(error);
+        this.pacienteForm.reset();
+      }
+      )
+  }else{
+    //guardamos
     this.guardarPersona(PERSONA,DOMICILIO);
     this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
       this.toastr.success('Se ha guardado el paciente con éxito!', 'Paciente registrado!');
       this.router.navigate(['/terapeuta-inicio-pacientes/'+this.id]);
     })
+  }
+    
   }
 
   guardarPersona(per:Persona,dom:Domicilio) {
@@ -186,7 +200,7 @@ export class RegistroPacienteComponent implements OnInit {
   if(this.id!==null){
     this.titulo = 'Editar Paciente Reciclado';
     console.log("Bandera 1");
-    this._usuarioService.obtenerUsuario(this.id).subscribe(data=>{
+    this._usuarioService.obtenerUsuario(this.idUM).subscribe(data=>{
       this.pacienteForm.setValue({
         nombre:data.usuario_persona.nombre,
         apPaterno:data.usuario_persona.apMaterno,
@@ -205,11 +219,28 @@ export class RegistroPacienteComponent implements OnInit {
         municipio: data.usuario_persona.persona_domicilio.municipio,
         estado: data.usuario_persona.persona_domicilio.estado,
         pais: data.usuario_persona.persona_domicilio.pais
-
       })
    
     })
  
+  }
+}
+
+irInicio(){
+  let rol = this.usuario?.usuario_rol.desRol;
+  switch (rol) {
+    case "Paciente":
+      this.router.navigate(['/paciente-inicio/' + this.id])
+      break;
+      case "Administrador":
+      this.router.navigate(['/admin-inicio/' + this.id])
+      break;
+      case "Terapeuta":
+      this.router.navigate(['/terapeuta-inicio/' + this.id])
+      break;
+  
+    default:
+      break;
   }
 }
 
