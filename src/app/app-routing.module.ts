@@ -45,11 +45,22 @@ const routes: Routes = [
   { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
 
   { path: 'dashboard-doctor', component: DashboardDoctorComponent},
+
   { path: 'admin-inicio/:id', component:InicioAdminComponent},
-  { path: 'modificar-paciente', component:ModificarPacienteComponent},
+ 
   { path: 'registro-paciente',component:RegistroPacienteComponent},
+
+   //ZAMBRANO
+   { path: 'modificar-paciente/:id', component:ModificarPacienteComponent},
+   { path: 'editar-paciente/:id', component:RegistroPacienteComponent},
+
+   {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
+
+ 
   
+
   {path: '**', redirectTo: 'login', pathMatch: 'full'}
+
 ];
 
 @NgModule({

@@ -18,9 +18,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TInicioComponent implements OnInit {
   listUsuarios: Usuario[] = [];
+
   id: string;
   usuario: Usuario | null;
   nombre: string;
+
   constructor(
     private _usuarioService: UsuarioService,
     private _pacienteService: PacienteService,
@@ -58,6 +60,7 @@ export class TInicioComponent implements OnInit {
             console.log(error);
           });
   }
+
   // obtenerPacientesActivos(){
   //   this._pacienteService.getPacientesActivos().subscribe(data => {
   //     console.log(data);
@@ -78,7 +81,7 @@ export class TInicioComponent implements OnInit {
       }); 
     }
   }
+
   
-  
-  
+
 }
