@@ -14,7 +14,7 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
-          <li><a href="#" class="nav-link px-2 text-white" style="font-size:medium;">Bienvenido(a): {{nombre}} </a></li>
+          <li><a (click)="irInicio()" class="nav-link px-2 text-white" style="font-size:medium;">Bienvenido(a): {{nombre}} </a></li>
         </ul> 
 
         <div class="dropdown text-end">
@@ -81,7 +81,7 @@
       <h5 style="text-align: start; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay usuarios para mostrar</h5>
 
     </div>
-    <button routerLink="/terapeuta-inicio" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+    <button (click)="irInicio()" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
 
     <button (click)="irNuevoPaciente()" type="submit" class="btn btn-success btn-lg float-end">Nuevo <i class="fa-solid fa-plus"></i></button>
 

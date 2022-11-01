@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Paciente</title>
 </head>
+
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
         <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
-                Digital - [Administrador]</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
-                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                Digital - {{nombre}}</a><button data-bs-toggle="collapse" class="navbar-toggler"
+                data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-end" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" routerLink="/principal">Terapeutas</a></li>
@@ -32,10 +35,15 @@
                 <b>Datos personales:</b>
             </div>
 
-            <form action="mt-3">
+            <form action="mt-3" [formGroup]="usuarioForm" (ngSubmit)="guardarTerapeuta()">
                 <div class="form-floating my-2">
-                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre" placeholder="Nombre(s)" required>
+                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre"
+                        placeholder="Nombre(s)" required>
                     <label for="nombre">Nombre(s)</label>
+                    <!-- <div class="text-danger float-start" 
+            *ngIf="pacienteForm.get('nombre')?.hasError('required') && pacienteForm.get('nombre')?.touched">
+                <span>Este campo es <strong>obligatorio</strong></span>
+            </div> -->
                 </div>
 
                 <div class="row g-4">
@@ -54,26 +62,39 @@
                         </div>
                     </div>
                 </div>
+
+                <!--<div class="row my-2">
+                    <div class="col form-floating">
+                        <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
+                            placeholder="Apellido paterno" required>
+                        <label for="apPaterno">Apellido paterno</label>
+                    </div>
+                    <div class="col form-floating">
+                        <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
+                            placeholder="Apellido materno" required>
+                        <label for="apMaterno">Apellido materno</label>
+                    </div>
+                </div>-->
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31" value="aaaa-mm-dd" class="form-control" id="txtFecha"
-                                placeholder="Fecha de nacimiento" required>
+                            <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31"
+                                value="1999-12-30" class="form-control" id="txtFecha" placeholder="Fecha de nacimiento"
+                                required>
                             <label for="fechaNac">Fecha de nacimiento</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <select class="form-select" formControlName="sexo"  id="floatingSelectGrid" >
-                                <option value="Masculino">Masculino</option>
+                            <select class="form-select" formControlName="sexo" id="floatingSelectGrid">
+                                <option selected value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
-                                <option value="Otro">Otro</option>
+                                <option selected>Otro</option>
                             </select>
                             <label for="floatingSelectGrid">Sexo</label>
                         </div>
                     </div>
                 </div>
-
                 <br>
 
                 <div class="etiquetas">
@@ -96,7 +117,6 @@
                         </div>
                     </div>
                 </div>
-
                 <br>
 
                 <div class="etiquetas">
@@ -104,53 +124,54 @@
                 </div>
 
                 <div class="form-floating my-2">
-                    <input formControlName="calle" type="text" class="form-control" id="calle"
-                        placeholder="Calle" required>
+                    <input formControlName="calle" type="text" class="form-control" id="calle" placeholder="Calle"
+                        required>
                     <label for="calle">Calle</label>
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="numExterno" type="text" class="form-control" id="numExterno"
+                            <input formControlName="numero_EXT" type="text" class="form-control" id="numero_EXT"
                                 placeholder="Número externo" required>
-                            <label for="password">Número externo</label>
+                            <label for="numero_EXT">Número externo</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="numInterno" type="text" class="form-control" id="numInterno"
+                            <input formControlName="numero_INT" type="text" class="form-control" id="numero_INT"
                                 placeholder="Número interno" required>
-                            <label for="password">Número interno</label>
+                            <label for="numero_INT">Número interno</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-floating my-2">
-                    <input formControlName="colonia" type="text" class="form-control" id="colonia"
-                        placeholder="Colonia" required>
-                    <label for="calle">Colonia</label>
+                    <input formControlName="colonia" type="text" class="form-control" id="colonia" placeholder="Colonia"
+                        required>
+                    <label for="colonia">Colonia</label>
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="entCalle1" type="text" class="form-control" id="entCalle1"
+                            <input formControlName="entrecalle1" type="text" class="form-control" id="entrecalle1"
                                 placeholder="Entre calle" required>
-                            <label for="password">Entre calle</label>
+                            <label for="entrecalle1">Entre calle</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="entCalle2" type="text" class="form-control" id="entCalle2"
+                            <input formControlName="entrecalle2" type="text" class="form-control" id="entrecalle2"
                                 placeholder="Y calle" required>
-                            <label for="password">Y calle</label>
+                            <label for="entrecalle2">Y calle</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-floating my-2">
-                    <textarea class="form-control" placeholder="Referencias" id="referecias" style="height: 100px"></textarea>
+                    <textarea class="form-control" formControlName="referencia" placeholder="Referencias" id="referecia"
+                        style="height: 100px"></textarea>
                     <label for="referecias">Referencias</label>
                 </div>
 
@@ -159,7 +180,7 @@
                         <div class="form-floating my-2">
                             <input formControlName="municipio" type="text" class="form-control" id="municipio"
                                 placeholder="Municipio" required>
-                            <label for="password">Municipio</label>
+                            <label for="municipio">Municipio</label>
                         </div>
                     </div>
                     <div class="col-md">
@@ -171,23 +192,22 @@
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="pais" type="text" class="form-control" id="pais"
-                                placeholder="País" required>
+                            <input formControlName="pais" type="text" class="form-control" id="pais" placeholder="País"
+                                required>
                             <label for="password">País</label>
                         </div>
                     </div>
                 </div>
 
                 <br>
-
                 <div class="d-grid col-12 mx-auto">
-                    <button class="btn btn-primary" type="submit" style="background-color:rgb(33, 37, 41)">Guardar</button>
+                    <button (onClick)="guardarTerapeuta()" class="btn btn-primary btn-lg" type="submit"
+                        style="background-color:rgb(33, 37, 41)">Guardar</button>
                 </div>
-
                 <br>
-                
             </form>
         </div>
     </div>
 </body>
+
 </html>

@@ -43,4 +43,21 @@ export class TerapeutaComponent implements OnInit {
   irPacientes(){
     this.router.navigate(['/terapeuta-inicio-pacientes/'+this.id]);
   }
+  irInicio(){
+    let rol = this.usuario?.usuario_rol.desRol;
+    switch (rol) {
+      case "Paciente":
+        this.router.navigate(['/paciente-inicio/' + this.id])
+        break;
+        case "Administrador":
+        this.router.navigate(['/admin-inicio/' + this.id])
+        break;
+        case "Terapeuta":
+        this.router.navigate(['/terapeuta-inicio/' + this.id])
+        break;
+    
+      default:
+        break;
+    }
+  }
 }

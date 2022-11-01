@@ -60,8 +60,8 @@ export class RegistroPacienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar()
-    console.log(this.id);
-    console.log(this.idUM);
+    // console.log(this.id);
+    // console.log(this.idUM);
     this.obtenerUsuario();
   }
   obtenerUsuario() {
@@ -127,7 +127,7 @@ export class RegistroPacienteComponent implements OnInit {
         municipio: municipio,
       },
     };
-    
+     
     const USUARIO: Usuario = {
       usuario: usuario,
       password: password,

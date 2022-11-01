@@ -11,7 +11,6 @@ import { LoginComponent } from './components/login/login.component';
 import { NuevoExpedienteComponent } from './components/nuevo-expediente/nuevo-expediente.component';
 import { PInicioComponent } from './components/p-inicio/p-inicio.component';
 import { PrincipalComponent } from './components/principal/principal.component';
-import { RegistroDComponent } from './components/registro-d/registro-d.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { TransparenciaComponent } from './components/transparencia/transparencia.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
@@ -21,12 +20,13 @@ import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
 import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
 import { ModificarPacienteTComponent } from './components/modificar-paciente-t/modificar-paciente-t.component';
 import { InicioAdminTComponent } from './components/inicio-admin-t/inicio-admin-t.component';
+import { RegistroDComponent } from './components/registro-d/registro-d.component';
 
 const routes: Routes = [
   // SPRINT 1:
   { path: 'modificar-terapeuta', component: ModificarTerapeutaComponent},
-  { path: 'inicio-admin-t', component: InicioAdminTComponent},
-
+  { path: 'inicio-admin-t/:id', component: InicioAdminTComponent},
+  { path: 'registro-terapeuta/:id', component: RegistroDComponent},
   // SPRINT 2:
   { path: 'modificar-paciente-t', component: ModificarPacienteTComponent},
 
@@ -56,7 +56,7 @@ const routes: Routes = [
    { path: 'modificar-paciente/:id', component:ModificarPacienteComponent},
    { path: 'editar-paciente/:id/:idUM', component:RegistroPacienteComponent},
 
-   {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
+   //{path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
 
  
   

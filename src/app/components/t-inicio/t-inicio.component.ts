@@ -91,6 +91,23 @@ export class TInicioComponent implements OnInit {
   irModificarPaciente(idUM:string|undefined){
     this.router.navigate(['/editar-paciente/'+this.id+'/'+idUM]);
   }
+  irInicio(){
+    let rol = this.usuario?.usuario_rol.desRol;
+    switch (rol) {
+      case "Paciente":
+        this.router.navigate(['/paciente-inicio/' + this.id])
+        break;
+        case "Administrador":
+        this.router.navigate(['/admin-inicio/' + this.id])
+        break;
+        case "Terapeuta":
+        this.router.navigate(['/terapeuta-inicio/' + this.id])
+        break;
+    
+      default:
+        break;
+    }
+  }
 
   
 
