@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { findIndex, Observable } from 'rxjs';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { PacienteService } from 'src/app/services/paciente.service';
+import { TerapeutaService } from 'src/app/services/terapeuta.service';
 import {Usuario} from 'src/app/models/usuario'
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+ 
 @Component({
   selector: 'app-inicio-admin-t',
   templateUrl: './inicio-admin-t.component.html',
@@ -17,11 +17,12 @@ export class InicioAdminTComponent implements OnInit {
   id: string;
   usuario: Usuario | null;
   nombre: string;
-
+ 
   constructor(
     private _usuarioService: UsuarioService,
-    private _pacienteService: PacienteService,
+    private _terapeutaService: TerapeutaService,
     private aRouter: ActivatedRoute,
+    private router: Router,
     private toastr: ToastrService
   ) 
   {
@@ -45,7 +46,7 @@ export class InicioAdminTComponent implements OnInit {
   }
  
   obtenerUsuarios() {
-    this._pacienteService.getPacientes().subscribe(data => {
+    this._terapeutaService.getTerapeutas().subscribe(data => {
             console.log(data);
             //console.log(data.length)
             //this.toastr.success('Usuarios cargados con éxito','Usuarios cargados');
@@ -64,6 +65,28 @@ export class InicioAdminTComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
       }); 
+    }
+  }
+
+  irTerapeutaNuevo(){
+    this.router.navigate(['/registro-terapeuta/'+this.id]);
+  }
+  irInicio(){
+    let rol = this.usuario?.usuario_rol.desRol;
+    console.log(rol)
+    switch (rol) {
+      case "Paciente":
+        this.router.navigate(['/paciente-inicio/' + this.id])
+        break;
+        case "Administrador":
+        this.router.navigate(['/admin-inicio/' + this.id])
+        break;
+        case "Terapeuta":
+        this.router.navigate(['/terapeuta-inicio/' + this.id])
+        break;
+    
+      default:
+        break;
     }
   }
 
