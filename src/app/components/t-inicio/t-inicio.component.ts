@@ -9,7 +9,7 @@ import { findIndex, Observable } from 'rxjs';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import {Usuario} from 'src/app/models/usuario'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-d-inicio',
@@ -27,6 +27,7 @@ export class TInicioComponent implements OnInit {
     private _usuarioService: UsuarioService,
     private _pacienteService: PacienteService,
     private aRouter: ActivatedRoute,
+    private router:Router,
     private toastr: ToastrService
   ) 
   {
@@ -80,6 +81,15 @@ export class TInicioComponent implements OnInit {
         this.nombre = this.usuario?.usuario_persona.nombre + '';
       }); 
     }
+  }
+  // irModificarPaciente(idSelec:string|un){
+  //   this.router.navigate(['/editar-paciente/'+this.id]);
+  // }
+  irNuevoPaciente(){
+    this.router.navigate(['/registro-paciente/'+this.id+'/']);
+  }
+  irModificarPaciente(idUM:string|undefined){
+    this.router.navigate(['/editar-paciente/'+this.id+'/'+idUM]);
   }
 
   
