@@ -2,72 +2,46 @@ import { registerLocaleData } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
-import { TInicioComponent as TInicioComponent } from './components/t-inicio/t-inicio.component';
-import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
-import { EditarExpedienteComponent } from './components/editar-expediente/editar-expediente.component';
-import { LoginDComponent } from './components/login-d/login-d.component';
-import { LoginComponent } from './components/login/login.component';
-import { NuevoExpedienteComponent } from './components/nuevo-expediente/nuevo-expediente.component';
-import { PInicioComponent } from './components/p-inicio/p-inicio.component';
+import { TInicioComponent } from './components/paciente_lista/paciente_lista.component';
+import { LoginDComponent } from './components/terapeuta_login/terapeuta_login.component';
+import { LoginComponent } from './components/paciente_login/paciente_login.component';
+import { PInicioComponent } from './components/paciente_inicio/paciente_inicio.component';
 import { PrincipalComponent } from './components/principal/principal.component';
-import { RegistroComponent } from './components/registro/registro.component';
 import { TransparenciaComponent } from './components/transparencia/transparencia.component';
-import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
-import { ModificarPacienteComponent } from './components/modificar-paciente/modificar-paciente.component';
-import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
-import { TerapeutaComponent } from './components/terapeuta/terapeuta.component';
-import { ModificarTerapeutaComponent } from './components/modificar-terapeuta/modificar-terapeuta.component';
-import { ModificarPacienteTComponent } from './components/modificar-paciente-t/modificar-paciente-t.component';
-import { InicioAdminTComponent } from './components/inicio-admin-t/inicio-admin-t.component';
-import { RegistroDComponent } from './components/registro-d/registro-d.component';
+import { RegistroPacienteComponent } from './components/paciente_registro/paciente_registro.component';
+import { TerapeutaComponent } from './components/terapeuta_inicio/terapeuta_inicio.component';
+import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_lista.component';
+import { RegistroDComponent } from './components/terapeuta_registro/terapeuta_registro.component';
+import { InicioAdminComponent } from './components/admin_inicio/admin_inicio.component';
 
 const routes: Routes = [
-  // SPRINT 1:
-  { path: 'modificar-terapeuta', component: ModificarTerapeutaComponent},
-  { path: 'inicio-admin-t/:id', component: InicioAdminTComponent},
-  { path: 'registro-terapeuta/:id', component: RegistroDComponent},
-  { path: 'editar-terapeuta/:id/:idUM',component: RegistroDComponent},
-  // SPRINT 2:
-  { path: 'modificar-paciente-t', component: ModificarPacienteTComponent},
+  // Principal:
+  { path: 'principal', component: PrincipalComponent },
+  { path: 'conocenos', component: AboutUsComponent },
+  { path: 'transparencia', component: TransparenciaComponent },
 
-  { path: 'principal', component: PrincipalComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'loginD', component: LoginDComponent},
-  { path: 'registro', component: RegistroComponent},
-  { path: 'conocenos', component: AboutUsComponent},
-  { path: 'transparencia', component: TransparenciaComponent},
-  // { path: 'registroP', component: RegistroPComponent},
-  { path: 'registroD', component: RegistroDComponent},
-
-  { path: 'terapeuta-inicio/:id',component:TerapeutaComponent},
-  { path: 'terapeuta-inicio-pacientes/:id', component: TInicioComponent},
-  { path: 'paciente-inicio/:id', component: PInicioComponent},
- // { path: 'chatBot', component: ChatBotComponent},
-  { path: 'nuevo-expediente', component: NuevoExpedienteComponent},
-  { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
-
-  { path: 'dashboard-doctor', component: DashboardDoctorComponent},
-
-  { path: 'admin-inicio/:id', component:InicioAdminComponent},
- 
-  { path: 'registro-paciente/:id',component:RegistroPacienteComponent},
-
-   //ZAMBRANO
-   { path: 'modificar-paciente/:id', component:ModificarPacienteComponent},
-   { path: 'editar-paciente/:id/:idUM', component:RegistroPacienteComponent},
-
-   //{path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
-
- 
+  // Paciente:
+  { path: 'paciente_login', component: LoginComponent },
+  { path: 'paciente_lista/:id', component: TInicioComponent },
+  { path: 'paciente_inicio/:id', component: PInicioComponent },
+  { path: 'paciente_registro/:id', component: RegistroPacienteComponent },
+  { path: 'paciente_editar/:id/:idUM', component: RegistroPacienteComponent },
   
+  // Terapeuta:
+  { path: 'terapeuta_lista/:id', component: InicioAdminTComponent },
+  { path: 'registro_terapeuta/:id', component: RegistroDComponent },
+  { path: 'editar_terapeuta/:id/:idUM', component: RegistroDComponent },
+  { path: 'terapeuta_login', component: LoginDComponent },
+  { path: 'terapeuta_inicio/:id', component: TerapeutaComponent },
+  // Administrador
+  { path: 'admin_inicio/:id', component: InicioAdminComponent },
 
-  {path: '**', redirectTo: 'loginD', pathMatch: 'full'}
-
+  //Ruta alterna
+  { path: '**', redirectTo: 'terapeuta_login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
