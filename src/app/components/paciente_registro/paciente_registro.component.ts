@@ -164,7 +164,7 @@ export class RegistroPacienteComponent implements OnInit {
       //editamos
       this._usuarioService.editarUsuario(this.idUM,USUARIO).subscribe(data=>{
         this.toastr.info('Paciente modificado con éxito!', 'Paciente Actualizada!');
-        this.router.navigate(['/terapeuta-inicio-pacientes/'+this.id]);
+        this.router.navigate(['/paciente_lista/'+this.id]);
       },error=>{
         console.log(error);
         this.pacienteForm.reset();
@@ -175,7 +175,7 @@ export class RegistroPacienteComponent implements OnInit {
     this.guardarPersona(PERSONA,DOMICILIO);
     this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
       this.toastr.success('Se ha guardado el paciente con éxito!', 'Paciente registrado!');
-      this.router.navigate(['/terapeuta-inicio-pacientes/'+this.id]);
+      this.router.navigate(['/paciente_lista/'+this.id]);
     })
   }
     
@@ -235,13 +235,13 @@ irInicio(){
   let rol = this.usuario?.usuario_rol.desRol;
   switch (rol) {
     case "Paciente":
-      this.router.navigate(['/paciente-inicio/' + this.id])
+      this.router.navigate(['/paciente_inicio/' + this.id])
       break;
       case "Administrador":
-      this.router.navigate(['/admin-inicio/' + this.id])
+      this.router.navigate(['/admin_inicio/' + this.id])
       break;
       case "Terapeuta":
-      this.router.navigate(['/terapeuta-inicio/' + this.id])
+      this.router.navigate(['/terapeuta_inicio/' + this.id])
       break;
   
     default:

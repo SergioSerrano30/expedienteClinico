@@ -156,7 +156,7 @@ export class RegistroDComponent implements OnInit {
       //editamos
       this._usuarioService.editarUsuario(this.idUM,USUARIO).subscribe(data=>{
         this.toastr.info('Terapeuta modificado con éxito!', 'Terapeuta Actualizada!');
-        this.router.navigate(['/inicio-admin-t/'+this.id]);
+        this.router.navigate(['/terapeuta_lista/'+this.id]);
       },error=>{
         console.log(error);
         this.usuarioForm.reset();
@@ -167,7 +167,7 @@ export class RegistroDComponent implements OnInit {
     this.guardarPersona(PERSONA,DOMICILIO);
     this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
       this.toastr.success('Se ha guardado el terapeuta con éxito!', 'Paciente registrado!');
-      this.router.navigate(['/inicio-admin-t/'+this.id]);
+      this.router.navigate(['/terapeuta_lista/'+this.id]);
     })
   }
   }
@@ -217,13 +217,13 @@ export class RegistroDComponent implements OnInit {
     let rol = this.usuario?.usuario_rol.desRol;
     switch (rol) {
       case "Paciente":
-        this.router.navigate(['/paciente-inicio/' + this.id])
+        this.router.navigate(['/paciente_inicio/' + this.id])
         break;
         case "Administrador":
-        this.router.navigate(['/admin-inicio/' + this.id])
+        this.router.navigate(['/admin_inicio/' + this.id])
         break;
         case "Terapeuta":
-        this.router.navigate(['/terapeuta-inicio/' + this.id])
+        this.router.navigate(['/terapeuta_inicio/' + this.id])
         break;
     
       default:
