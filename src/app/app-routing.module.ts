@@ -37,20 +37,19 @@ const routes: Routes = [
   // { path: 'registroP', component: RegistroPComponent},
   { path: 'registroD', component: RegistroDComponent},
 
-  { path: 'doctor-inicio', component: TInicioComponent},
-  { path: 'terapeuta',component:TerapeutaComponent},
-  { path: 'terapeuta-inicio', component: TInicioComponent},
-  { path: 'paciente-inicio', component: PInicioComponent},
+  { path: 'terapeuta-inicio/:id',component:TerapeutaComponent},
+  { path: 'terapeuta-inicio-pacientes/:id', component: TInicioComponent},
+  { path: 'paciente-inicio/:id', component: PInicioComponent},
  // { path: 'chatBot', component: ChatBotComponent},
   { path: 'nuevo-expediente', component: NuevoExpedienteComponent},
   { path: 'editar-expediente/:id', component: EditarExpedienteComponent},
 
   { path: 'dashboard-doctor', component: DashboardDoctorComponent},
-  { path: 'admin-inicio', component:InicioAdminComponent},
+  { path: 'admin-inicio/:id', component:InicioAdminComponent},
   { path: 'modificar-paciente', component:ModificarPacienteComponent},
   { path: 'registro-paciente',component:RegistroPacienteComponent},
   
-  {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'}
+  {path: '**', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({
