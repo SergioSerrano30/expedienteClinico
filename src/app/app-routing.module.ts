@@ -48,18 +48,18 @@ const routes: Routes = [
 
   { path: 'admin-inicio/:id', component:InicioAdminComponent},
  
-  { path: 'registro-paciente',component:RegistroPacienteComponent},
+  { path: 'registro-paciente/:id',component:RegistroPacienteComponent},
 
    //ZAMBRANO
    { path: 'modificar-paciente/:id', component:ModificarPacienteComponent},
-   { path: 'editar-paciente/:id', component:RegistroPacienteComponent},
+   { path: 'editar-paciente/:id/:idUM', component:RegistroPacienteComponent},
 
    {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
 
  
   
 
-  {path: '**', redirectTo: 'login', pathMatch: 'full'}
+  {path: '**', redirectTo: 'loginD', pathMatch: 'full'}
 
 ];
 
