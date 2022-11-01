@@ -59,10 +59,15 @@ export class RegistroPacienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.esEditar()
-    // console.log(this.id);
-    // console.log(this.idUM);
     this.obtenerUsuario();
+    if(this.idUM.length>5){
+      this.esEditar()
+    }
+    
+    
+    //console.log(this.id);
+    //console.log(this.idUM);
+    
   }
   obtenerUsuario() {
     if (this.id !== '') {
@@ -155,10 +160,10 @@ export class RegistroPacienteComponent implements OnInit {
     };
     
     //console.log(USUARIO);
-    if(this.idUM!==null){
+    if(this.idUM.length>5){
       //editamos
       this._usuarioService.editarUsuario(this.idUM,USUARIO).subscribe(data=>{
-        this.toastr.info('Usuario modificado con éxito!', 'Usuario Actualizada!');
+        this.toastr.info('Paciente modificado con éxito!', 'Paciente Actualizada!');
         this.router.navigate(['/terapeuta-inicio-pacientes/'+this.id]);
       },error=>{
         console.log(error);
@@ -178,7 +183,7 @@ export class RegistroPacienteComponent implements OnInit {
 
   guardarPersona(per:Persona,dom:Domicilio) {
 
-    console.log(per);
+    //console.log(per);
     this.guardarDomicilio(dom);
     this._personaService.guardarPersona(per).subscribe(data =>{
       this.toastr.success('Se ha guardado la persona con éxito!', 'Persona registrado!');
@@ -186,7 +191,7 @@ export class RegistroPacienteComponent implements OnInit {
     })
   }
   guardarDomicilio(dom:Domicilio) {
-    console.log(dom);
+    //console.log(dom);
     this._domicilioService.guardarDomicilio(dom).subscribe(data =>{
       this.toastr.success('Se ha guardado el domicilio con éxito!', 'Domicilio registrado!');
       //this.router.navigate(['/terapeuta-inicio']);
@@ -197,9 +202,9 @@ export class RegistroPacienteComponent implements OnInit {
 
    //ZAM
  esEditar(){
-  if(this.id!==null){
-    this.titulo = 'Editar Paciente Reciclado';
-    console.log("Bandera 1");
+  if(this.idUM!==null){
+    this.titulo = 'Editar Paciente';
+    //console.log("Bandera 1");
     this._usuarioService.obtenerUsuario(this.idUM).subscribe(data=>{
       this.pacienteForm.setValue({
         nombre:data.usuario_persona.nombre,
