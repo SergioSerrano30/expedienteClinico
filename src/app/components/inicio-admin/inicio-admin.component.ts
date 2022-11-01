@@ -63,5 +63,8 @@ export class InicioAdminComponent implements OnInit {
         break;
     }
   }
+  irLoginD(){
+    this.router.navigate(['/loginD'])
+  }
 
 }

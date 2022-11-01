@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
@@ -16,6 +16,7 @@ export class PInicioComponent implements OnInit {
   constructor(
     private _usuarioService: UsuarioService,
     private fb: FormBuilder,
+    private router: Router,
     private aRouter: ActivatedRoute
   ) {
     this.usuarioForm = this.fb.group({
@@ -40,5 +41,8 @@ export class PInicioComponent implements OnInit {
         this.nombre = this.usuario?.usuario_persona.nombre + '';
       });
     }
+  }
+  irLogin(){
+    this.router.navigate(['/login'])
   }
 }
