@@ -160,6 +160,7 @@ export class RegistroPacienteComponent implements OnInit {
     let pais = 'pais'; //this.pacienteForm.get('sexo')?.value
     let estado = 'estado'; //this.pacienteForm.get('sexo')?.value
     let municipio = 'municipio'; //this.pacienteForm.get('sexo')?.value
+
     const PERSONA: Persona = {
       nombre: nombre,
       apPaterno: apPaterno,
@@ -179,8 +180,25 @@ export class RegistroPacienteComponent implements OnInit {
         municipio: municipio,
       },
     };
+
+    //Zambrano
+    if(this.id!==null){
+        //editamos
+        this._personaService.editarPersona(this.id,PERSONA).subscribe(data=>{
+          this.toastr.info('usuario modificado con éxito!', 'Usuario Actualizada!');
+          this.router.navigate(['/terapeuta-inicio']);
+        },error=>{
+          console.log(error);
+          this.pacienteForm.reset();
+        }
+        )
+    }else{
+      //guardamos
+      this.guardarDomicilio();
+    }
+
     console.log(PERSONA);
-    this.guardarDomicilio();
+   
     // this._personaService.guardarPersona(PERSONA).subscribe(data =>{
     //   this.toastr.success('Se ha guardado la persona con éxito!', 'Persona registrado!');
     //   //this.router.navigate(['/terapeuta-inicio']);
@@ -213,19 +231,39 @@ export class RegistroPacienteComponent implements OnInit {
     console.log(DOMICILIO);
   }
 
-  //ZAM
-  esEditar(){
-    if(this.id!==null){
-      this.titulo = 'Editar Paciente';
-      console.log("Bandera 1");
-      this._usuarioService.obtenerUsuario(this.id).subscribe(data=>{
-        this.pacienteForm.setValue({
-          usuario: data.usuario,
-          password: data.password
-        })
-        console.log("Bandera 2");
+
+   //ZAM
+ esEditar(){
+  if(this.id!==null){
+    this.titulo = 'Editar Paciente Reciclado';
+    console.log("Bandera 1");
+    this._usuarioService.obtenerUsuario(this.id).subscribe(data=>{
+      this.pacienteForm.setValue({
+        nombre:data.usuario_persona.nombre,
+        apPaterno:data.usuario_persona.apMaterno,
+        apMaterno:data.usuario_persona.apPaterno,
+        fechaNac: data.usuario_persona.fechaNac,
+        sexo: "M",
+        usuario:  data.usuario,
+        password:  data.password,
+        calle: data.usuario_persona.persona_domicilio.calle,
+        numero_EXT: data.usuario_persona.persona_domicilio.numero_EXT,
+        numero_INT: data.usuario_persona.persona_domicilio.numero_INT,
+        colonia: data.usuario_persona.persona_domicilio.colonia,
+        entrecalle1: data.usuario_persona.persona_domicilio.entrecalle1,
+        entrecalle2: data.usuario_persona.persona_domicilio.entrecalle2,
+        referencia: data.usuario_persona.persona_domicilio.referencia,
+        municipio: data.usuario_persona.persona_domicilio.municipio,
+        estado: data.usuario_persona.persona_domicilio.estado,
+        pais: data.usuario_persona.persona_domicilio.pais
+
       })
-      console.log("Bandera 3");
-    }
+   
+    })
+ 
   }
 }
+
+}
+
+

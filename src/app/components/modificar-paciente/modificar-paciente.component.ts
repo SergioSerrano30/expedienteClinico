@@ -36,7 +36,7 @@ export class ModificarPacienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.esEditar();
   }
 
   guardarPaciente() {

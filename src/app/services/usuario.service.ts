@@ -19,9 +19,6 @@ export class UsuarioService {
     return this.http.post(this.url,usuario);
   }
 
-  eliminarUsuario(id: string): Observable<any>{
-    return this.http.delete(this.url+id);
-  }
 
   obtenerUsuario(id: string): Observable<any>{
     return this.http.get(this.url+id);

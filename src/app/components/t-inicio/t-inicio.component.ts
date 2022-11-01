@@ -47,14 +47,7 @@ export class TInicioComponent implements OnInit {
           });
   }
 
-  eliminarUsuario(id:any){
-    this._usuarioService.eliminarUsuario(id).subscribe(data=>{
-      this.toastr.error('El usuario fue Eliminado Exitosamente','usuario eliminado');
-      this.obtenerUsuarios
-    },error=>{
-      console.log(error);
-    })
-  }
+
   
 
 }

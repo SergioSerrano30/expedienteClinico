@@ -23,24 +23,10 @@
         </div>
     </nav>
 
-<<<<<<< HEAD
         <h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>
         <!--
             <div class="text-center" style="display: block; margin: auto; margin-top: 20px;">
             <img src="assets/img/sneeze%20(1).png" width="100rem">
-=======
-    <!--<header class="p-3 bg-dark text-white">
-        <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
-              <li><a href="#" class="nav-link px-2 text-white" style="font-size:medium;">Expediente Clínico</a></li>
-            </ul>
-    
-            <div class="text-end">
-              <button type="button" class="btn btn-warning">Cerrar Sesión</button>
-            </div>
-          </div>
->>>>>>> c4dfac80e2053bde9c426d944ae784f912a15b25
         </div>
     </header>-->
 
@@ -48,7 +34,7 @@
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;">Registro Paciente</h2>
+            <h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>
             <br>
             <!--
                 <div class="text-center" style="display: block; margin: auto; margin-top: 20px;">
@@ -108,10 +94,10 @@
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <select class="form-select" formControlName="sexo"  id="floatingSelectGrid" >
-                                <option value="Masculino">Masculino</option>
+                            <select  class="form-select" formControlName="sexo"  id="floatingSelectGrid" >
+                                <option selected value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
-                                <option value="Otro">Otro</option>
+                                <option selected>Otro</option>
                             </select>
                             <label for="floatingSelectGrid">Sexo</label>
                         </div>

@@ -49,7 +49,7 @@ const routes: Routes = [
    { path: 'modificar-paciente/:id', component:ModificarPacienteComponent},
    { path: 'editar-paciente/:id', component:RegistroPacienteComponent},
 
-  {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
+   {path: '**', redirectTo: 'terapeuta-inicio', pathMatch: 'full'},
 
  
   
