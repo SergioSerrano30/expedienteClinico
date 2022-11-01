@@ -206,7 +206,7 @@ export class RegistroPacienteComponent implements OnInit {
         apPaterno:data.usuario_persona.apMaterno,
         apMaterno:data.usuario_persona.apPaterno,
         fechaNac: data.usuario_persona.fechaNac,
-        sexo: "M",
+        sexo: data.usuario_persona.sexo,
         usuario:  data.usuario,
         password:  data.password,
         calle: data.usuario_persona.persona_domicilio.calle,
