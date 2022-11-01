@@ -45,8 +45,8 @@
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-xl-8 col-lg-10 text-center">
-                        <img class="mb-4" src="assets/img/avatarDoctor.jpg" style="width: 15rem">
-                        <h1 class="page-header-ui-title">Bienvenido Terapeuta</h1>
+                        <img class="mb-4" src="../../../assets/img/fisioterapeuta_avatar.png" style="width: 15rem">
+                        <h1 class="page-header-ui-title">Bienvenido(a) {{nombre}}</h1>
                         <p class="page-header-ui-text">La verdadera reforma de salud no puede suceder en Washington. Debe suceder en nuestras cocinas, en nuestras casas, y en nuestras comunidades. El cuidado de la salud es personal.  Mehmet Oz. </p>
                     </div>
                 </div>
@@ -64,10 +64,10 @@
                 <img class="mb-4" src="assets/img/buscar.jpg" style="width: 15rem">
                 <h3>MIS CONSULTAS</h3>
             </div>
-            
+             
             <div class="col-lg-6 mb-9 mb-lg-2">    
-                <img class="mb-10" src="assets/img/PACIENTE.jpg" style="width: 15rem">
-                <h3>PACIENTES</h3>
+                <img class="mb-10" (click)="irPacientes()" src="assets/img/PACIENTE.jpg" style="width: 15rem; cursor: pointer;">
+                <h3 style="cursor: pointer;" routerLink="/terapeuta-inicio-pacientes">PACIENTES</h3>
             </div>
           
              
