@@ -41,26 +41,26 @@ export class TerapeutaComponent implements OnInit {
     }
   }
   irPacientes(){
-    this.router.navigate(['/terapeuta-inicio-pacientes/'+this.id]);
+    this.router.navigate(['/paciente_lista/'+this.id]);
   }
   irInicio(){
     let rol = this.usuario?.usuario_rol.desRol;
     switch (rol) {
       case "Paciente":
-        this.router.navigate(['/paciente-inicio/' + this.id])
+        this.router.navigate(['/paciente_inicio/' + this.id])
         break;
         case "Administrador":
-        this.router.navigate(['/admin-inicio/' + this.id])
+        this.router.navigate(['/admin_inicio/' + this.id])
         break;
         case "Terapeuta":
-        this.router.navigate(['/terapeuta-inicio/' + this.id])
+        this.router.navigate(['/terapeuta_inicio/' + this.id])
         break;
     
       default:
         break;
     }
   }
-  irLoginD(){
-    this.router.navigate(['/loginD'])
+  irLogin(){
+    this.router.navigate(['/terapeuta_login'])
   }
 }

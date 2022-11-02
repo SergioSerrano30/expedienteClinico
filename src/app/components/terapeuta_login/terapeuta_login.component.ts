@@ -57,7 +57,7 @@ export class LoginDComponent implements OnInit {
               'Bienvenido(a): ' + usuarios[key].usuario_persona.nombre,
               'Acceso concedido'
             );
-            this.router.navigate(['/terapeuta-inicio/' + usuarios[key]._id]);
+            this.router.navigate(['/terapeuta_inicio/' + usuarios[key]._id]);
             //console.log(usuarios[key]._id);
           } 
           else if(usuarios[key].usuario_rol.desRol === 'Administrador'){
@@ -65,7 +65,7 @@ export class LoginDComponent implements OnInit {
               'Bienvenido(a): ' + usuarios[key].usuario_persona.nombre,
               'Acceso concedido'
             );
-            this.router.navigate(['/admin-inicio/' + usuarios[key]._id]);
+            this.router.navigate(['/admin_inicio/' + usuarios[key]._id]);
           }
         } else {
           this.toastr.warning(
