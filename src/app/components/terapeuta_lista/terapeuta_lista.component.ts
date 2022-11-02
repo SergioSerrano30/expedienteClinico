@@ -38,12 +38,6 @@ export class InicioAdminTComponent implements OnInit {
     this.obtenerUsuario();
     //this.fnchola();
   }
-  fnchola(){
-    //console.log("Hola");
-    // let dom = this.listUsuarios[0].usuario_persona[0].persona_domicilio[0].calle;
-    // console.log(dom);
-     
-  }
  
   obtenerUsuarios() {
     this._terapeutaService.getTerapeutas().subscribe(data => {
@@ -69,31 +63,31 @@ export class InicioAdminTComponent implements OnInit {
   }
 
   irTerapeutaNuevo(){
-    this.router.navigate(['/registro-terapeuta/'+this.id]);
+    this.router.navigate(['/terapeuta_registro/'+this.id]);
   } 
   irModificarTerapeuta(idUM:string|undefined){
-    this.router.navigate(['/editar-terapeuta/'+this.id+'/'+idUM]);
+    this.router.navigate(['/terapeuta_editar/'+this.id+'/'+idUM]);
   }
   irInicio(){
     let rol = this.usuario?.usuario_rol.desRol;
     console.log(rol)
     switch (rol) {
       case "Paciente":
-        this.router.navigate(['/paciente-inicio/' + this.id])
+        this.router.navigate(['/paciente_inicio/' + this.id])
         break;
         case "Administrador":
-        this.router.navigate(['/admin-inicio/' + this.id])
+        this.router.navigate(['/admin_inicio/' + this.id])
         break;
         case "Terapeuta":
-        this.router.navigate(['/terapeuta-inicio/' + this.id])
+        this.router.navigate(['/terapeuta_inicio/' + this.id])
         break;
     
       default:
         break;
     }
   }
-  irLoginD(){
-    this.router.navigate(['/loginD'])
+  irLogin(){
+    this.router.navigate(['/terapeuta_login'])
   }
   
 

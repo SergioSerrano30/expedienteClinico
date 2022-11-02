@@ -23,20 +23,26 @@ const routes: Routes = [
 
   // Paciente:
   { path: 'paciente_login', component: LoginComponent },
-  { path: 'paciente_lista/:id', component: TInicioComponent },
   { path: 'paciente_inicio/:id', component: PInicioComponent },
+  { path: 'paciente_lista/:id', component: TInicioComponent },
   { path: 'paciente_registro/:id', component: RegistroPacienteComponent },
   { path: 'paciente_editar/:id/:idUM', component: RegistroPacienteComponent },
-  
+
   // Terapeuta:
-  { path: 'terapeuta_lista/:id', component: InicioAdminTComponent },
-  { path: 'registro_terapeuta/:id', component: RegistroDComponent },
-  { path: 'editar_terapeuta/:id/:idUM', component: RegistroDComponent },
   { path: 'terapeuta_login', component: LoginDComponent },
   { path: 'terapeuta_inicio/:id', component: TerapeutaComponent },
-  { path: 'nueva_historia', component:NuevaHistoriaComponent},
+  { path: 'terapeuta_lista/:id', component: InicioAdminTComponent },
+  { path: 'terapeuta_registro/:id', component: RegistroDComponent },
+  { path: 'terapeuta_editar/:id/:idUM', component: RegistroDComponent },
+
+
   // Administrador
   { path: 'admin_inicio/:id', component: InicioAdminComponent },
+
+  //Historia paciente
+  { path: 'historia_registro', component:NuevaHistoriaComponent},
+
+  //Consulta paciente
 
   //Ruta alterna
   { path: '**', redirectTo: 'terapeuta_login', pathMatch: 'full' },
