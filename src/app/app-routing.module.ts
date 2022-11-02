@@ -13,6 +13,7 @@ import { TerapeutaComponent } from './components/terapeuta_inicio/terapeuta_inic
 import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_lista.component';
 import { RegistroDComponent } from './components/terapeuta_registro/terapeuta_registro.component';
 import { InicioAdminComponent } from './components/admin_inicio/admin_inicio.component';
+import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-historia.component';
 
 const routes: Routes = [
   // Principal:
@@ -34,11 +35,12 @@ const routes: Routes = [
   { path: 'terapeuta_registro/:id', component: RegistroDComponent },
   { path: 'terapeuta_editar/:id/:idUM', component: RegistroDComponent },
 
+
   // Administrador
   { path: 'admin_inicio/:id', component: InicioAdminComponent },
 
   //Historia paciente
-
+  { path: 'historia_registro', component:NuevaHistoriaComponent},
 
   //Consulta paciente
 
