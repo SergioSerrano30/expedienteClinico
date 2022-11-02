@@ -12,7 +12,7 @@ import { DomicilioService } from 'src/app/services/domicilio.service';
 @Component({
   selector: 'app-registro-d',
   templateUrl: './terapeuta_registro.component.html',
-  styleUrls: ['./terapeuta_registro.component.css']
+  styleUrls: ['./terapeuta_registro.component.css'],
 })
 export class RegistroDComponent implements OnInit {
   usuarioForm: FormGroup;
@@ -28,8 +28,8 @@ export class RegistroDComponent implements OnInit {
     private _usuarioService: UsuarioService,
     private _personaService: PersonaService,
     private _domicilioService: DomicilioService,
-    private aRouter:ActivatedRoute
-  ) { 
+    private aRouter: ActivatedRoute
+  ) {
     this.usuarioForm = this.fb.group({
       nombre: ['', Validators.required],
       apPaterno: ['', Validators.required],
@@ -49,16 +49,29 @@ export class RegistroDComponent implements OnInit {
       estado: ['', Validators.required],
       pais: ['', Validators.required],
     });
-    this.id=this.aRouter.snapshot.paramMap.get('id')+'';
-    this.idUM=this.aRouter.snapshot.paramMap.get('idUM')+'';
+    this.id = this.aRouter.snapshot.paramMap.get('id') + '';
+    this.idUM = this.aRouter.snapshot.paramMap.get('idUM') + '';
     this.usuario = null;
     this.nombre = '';
   }
- 
+
   ngOnInit(): void {
     this.obtenerUsuario();
-    if(this.idUM.length>5){
+    if (this.idUM.length > 5) {
       this.esEditar();
+    }
+  }
+  passFormatoCorrecto(password: string) {
+    //6 a 45 caracteres
+    //Una mayuscula al menos
+    //Una minuscula al menos
+    //Un numero al menos
+    var regularExpression =
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,45}$/;
+    if (password.match(regularExpression)) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -69,8 +82,7 @@ export class RegistroDComponent implements OnInit {
         //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
-        
-      }); 
+      });
     }
   }
   guardarTerapeuta() {
@@ -84,16 +96,16 @@ export class RegistroDComponent implements OnInit {
     let apMaterno = this.usuarioForm.get('apMaterno')?.value;
     let fechaNac = this.usuarioForm.get('fechaNac')?.value;
     let sexo = this.usuarioForm.get('sexo')?.value;
-    let calle =this.usuarioForm.get('calle')?.value
-    let numero_EXT = this.usuarioForm.get('numero_EXT')?.value
-    let numero_INT = this.usuarioForm.get('numero_INT')?.value
-    let colonia = this.usuarioForm.get('colonia')?.value
-    let entrecalle1 = this.usuarioForm.get('entrecalle1')?.value
-    let entrecalle2 = this.usuarioForm.get('entrecalle2')?.value
-    let referencia = this.usuarioForm.get('referencia')?.value
-    let pais = this.usuarioForm.get('pais')?.value
-    let estado = this.usuarioForm.get('estado')?.value
-    let municipio = this.usuarioForm.get('municipio')?.value
+    let calle = this.usuarioForm.get('calle')?.value;
+    let numero_EXT = this.usuarioForm.get('numero_EXT')?.value;
+    let numero_INT = this.usuarioForm.get('numero_INT')?.value;
+    let colonia = this.usuarioForm.get('colonia')?.value;
+    let entrecalle1 = this.usuarioForm.get('entrecalle1')?.value;
+    let entrecalle2 = this.usuarioForm.get('entrecalle2')?.value;
+    let referencia = this.usuarioForm.get('referencia')?.value;
+    let pais = this.usuarioForm.get('pais')?.value;
+    let estado = this.usuarioForm.get('estado')?.value;
+    let municipio = this.usuarioForm.get('municipio')?.value;
     const DOMICILIO: Domicilio = {
       calle: calle,
       numero_EXT: numero_EXT,
@@ -125,7 +137,7 @@ export class RegistroDComponent implements OnInit {
         municipio: municipio,
       },
     };
-     
+
     const USUARIO: Usuario = {
       usuario: usuario,
       password: password,
@@ -151,84 +163,107 @@ export class RegistroDComponent implements OnInit {
         },
       },
     };
-    
-    if(this.idUM.length>5){
-      //editamos
-      this._usuarioService.editarUsuario(this.idUM,USUARIO).subscribe(data=>{
-        this.toastr.info('Terapeuta modificado con éxito!', 'Terapeuta Actualizada!');
-        this.router.navigate(['/terapeuta_lista/'+this.id]);
-      },error=>{
-        console.log(error);
-        this.usuarioForm.reset();
+    if (this.passFormatoCorrecto(password)) {
+      if (this.idUM.length > 5) {
+        //editamos
+        this._usuarioService.editarUsuario(this.idUM, USUARIO).subscribe(
+          (data) => {
+            this.toastr.info(
+              'Terapeuta modificado con éxito!',
+              'Terapeuta Actualizada!'
+            );
+            this.router.navigate(['/terapeuta_lista/' + this.id]);
+          },
+          (error) => {
+            console.log(error);
+            this.usuarioForm.reset();
+          }
+        );
+      } else {
+        //guardamos
+        this.guardarPersona(PERSONA, DOMICILIO);
+        this._usuarioService.guardarUsuario(USUARIO).subscribe((data) => {
+          this.toastr.success(
+            'Se ha guardado el terapeuta con éxito!',
+            'Paciente registrado!'
+          );
+          this.router.navigate(['/terapeuta_lista/' + this.id]);
+        });
       }
-      )
-  }else{
-    //guardamos
-    this.guardarPersona(PERSONA,DOMICILIO);
-    this._usuarioService.guardarUsuario(USUARIO).subscribe(data =>{
-      this.toastr.success('Se ha guardado el terapeuta con éxito!', 'Paciente registrado!');
-      this.router.navigate(['/terapeuta_lista/'+this.id]);
-    })
+    }
+    else{
+      this.toastr.warning(
+      '-6 a 45 caracteres   '+
+      '-Al menos una mayuscula   '+
+      '-Al menos una minuscula   '+
+      '-Al menos un número   ',
+        'Formato incorrecto en contraseña!',{
+          timeOut: 8000,
+          progressBar:true
+        });
+      
+    }
   }
+  esEditar() {
+    this.titulo = 'Editar Terapeuta';
+    this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
+      this.usuarioForm.setValue({
+        nombre: data.usuario_persona.nombre,
+        apPaterno: data.usuario_persona.apMaterno,
+        apMaterno: data.usuario_persona.apPaterno,
+        fechaNac: data.usuario_persona.fechaNac,
+        sexo: data.usuario_persona.sexo,
+        usuario: data.usuario,
+        password: data.password,
+        calle: data.usuario_persona.persona_domicilio.calle,
+        numero_EXT: data.usuario_persona.persona_domicilio.numero_EXT,
+        numero_INT: data.usuario_persona.persona_domicilio.numero_INT,
+        colonia: data.usuario_persona.persona_domicilio.colonia,
+        entrecalle1: data.usuario_persona.persona_domicilio.entrecalle1,
+        entrecalle2: data.usuario_persona.persona_domicilio.entrecalle2,
+        referencia: data.usuario_persona.persona_domicilio.referencia,
+        municipio: data.usuario_persona.persona_domicilio.municipio,
+        estado: data.usuario_persona.persona_domicilio.estado,
+        pais: data.usuario_persona.persona_domicilio.pais,
+      });
+    });
   }
-  esEditar(){
-      this.titulo = 'Editar Terapeuta';
-      this._usuarioService.obtenerUsuario(this.idUM).subscribe(data=>{
-        this.usuarioForm.setValue({
-          nombre:data.usuario_persona.nombre,
-          apPaterno:data.usuario_persona.apMaterno,
-          apMaterno:data.usuario_persona.apPaterno,
-          fechaNac: data.usuario_persona.fechaNac,
-          sexo: data.usuario_persona.sexo,
-          usuario:  data.usuario,
-          password:  data.password,
-          calle: data.usuario_persona.persona_domicilio.calle,
-          numero_EXT: data.usuario_persona.persona_domicilio.numero_EXT,
-          numero_INT: data.usuario_persona.persona_domicilio.numero_INT,
-          colonia: data.usuario_persona.persona_domicilio.colonia,
-          entrecalle1: data.usuario_persona.persona_domicilio.entrecalle1,
-          entrecalle2: data.usuario_persona.persona_domicilio.entrecalle2,
-          referencia: data.usuario_persona.persona_domicilio.referencia,
-          municipio: data.usuario_persona.persona_domicilio.municipio,
-          estado: data.usuario_persona.persona_domicilio.estado,
-          pais: data.usuario_persona.persona_domicilio.pais
-        })
-     
-      })
-  }
-  guardarPersona(per:Persona,dom:Domicilio) {
-
+  guardarPersona(per: Persona, dom: Domicilio) {
     //console.log(per);
     this.guardarDomicilio(dom);
-    this._personaService.guardarPersona(per).subscribe(data =>{
-      this.toastr.success('Se ha guardado la persona con éxito!', 'Persona registrado!');
+    this._personaService.guardarPersona(per).subscribe((data) => {
+      this.toastr.success(
+        'Se ha guardado la persona con éxito!',
+        'Persona registrado!'
+      );
       //this.router.navigate(['/terapeuta-inicio']);
-    })
+    });
   }
-  guardarDomicilio(dom:Domicilio) {
+  guardarDomicilio(dom: Domicilio) {
     //console.log(dom);
-    this._domicilioService.guardarDomicilio(dom).subscribe(data =>{
-      this.toastr.success('Se ha guardado el domicilio con éxito!', 'Domicilio registrado!');
+    this._domicilioService.guardarDomicilio(dom).subscribe((data) => {
+      this.toastr.success(
+        'Se ha guardado el domicilio con éxito!',
+        'Domicilio registrado!'
+      );
       //this.router.navigate(['/terapeuta-inicio']);
-    })
-    
+    });
   }
-  irInicio(){
+  irInicio() {
     let rol = this.usuario?.usuario_rol.desRol;
     switch (rol) {
-      case "Paciente":
-        this.router.navigate(['/paciente_inicio/' + this.id])
+      case 'Paciente':
+        this.router.navigate(['/paciente_inicio/' + this.id]);
         break;
-        case "Administrador":
-        this.router.navigate(['/admin_inicio/' + this.id])
+      case 'Administrador':
+        this.router.navigate(['/admin_inicio/' + this.id]);
         break;
-        case "Terapeuta":
-        this.router.navigate(['/terapeuta_inicio/' + this.id])
+      case 'Terapeuta':
+        this.router.navigate(['/terapeuta_inicio/' + this.id]);
         break;
-    
+
       default:
         break;
     }
   }
-  
 }
