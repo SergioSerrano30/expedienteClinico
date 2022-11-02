@@ -31,10 +31,12 @@ const routes: Routes = [
   // Terapeuta:
   { path: 'terapeuta_login', component: LoginDComponent },
   { path: 'terapeuta_inicio/:id', component: TerapeutaComponent },
+
+  { path: 'nueva_historia', component:NuevaHistoriaComponent},
+
   { path: 'terapeuta_lista/:id', component: InicioAdminTComponent },
   { path: 'terapeuta_registro/:id', component: RegistroDComponent },
   { path: 'terapeuta_editar/:id/:idUM', component: RegistroDComponent },
-
 
   // Administrador
   { path: 'admin_inicio/:id', component: InicioAdminComponent },
