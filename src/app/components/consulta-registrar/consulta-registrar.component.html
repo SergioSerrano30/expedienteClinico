@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+    <style>
+        body {
+          background: #b9de5d; /* fallback for old browsers */
+     
+        }
+      </style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Consulta</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+        <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()">Expediente Clínico
+                Digital - </a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-end" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Mis consultas</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
+                </ul>
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="assets/img/image-doctor.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
+              </a>
+            </div>
+        </div> 
+    </nav>
+
+   
+    <!--Formulario de abajo-->
+    <div class="principal">
+        <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
+            <br>
+            <h2 class="text-center" style="margin-top: 20px;">Registrar Cosulta</h2>
+            <br>
+
+            <!--datos personales-->
+            <div class="etiquetas">
+                <b>Datos de la consulta:</b>
+            </div>
+        
+
+            <form action="mt-3" [formGroup]="consultaForm" (ngSubmit)="agregarConsulta()">
+           
+                 
+
+                <div class="row g-4">
+                    <div class="col-md">
+                       <div class="form-floating my-2">
+                           <input formControlName="descripcion" type="text" class="form-control" id="descripcion"
+                               placeholder="descripcion" required>
+                           <label for="descripcion">Descripcion</label>
+                       </div>
+                   </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md">
+                       <div class="form-floating my-2">
+                           <input formControlName="ejercicios" type="text" class="form-control" id="ejercicios"
+                               placeholder="ejercicios" required>
+                           <label for="ejercicios">Ejercicios</label>
+                       </div>
+                   </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md">
+                       <div class="form-floating my-2">
+                           <input formControlName="fecha_registro" type="date" class="form-control" id="fecha_registro"
+                               placeholder="fecha_registro" required>
+                           <label for="fecha_registro">Fecha de Registro</label>
+                       </div>
+                   </div>
+                </div>
+              
+
+
+                
+                <div class="row g-4">
+                    <div class="col-md">
+                       <div class="form-floating my-2">
+                           <input formControlName="hora_registro" type="time" class="form-control" id="hora_registro"
+                               placeholder="hora_registro" required>
+                           <label for="hora_registro">Hora de Registro</label>
+                       </div>
+                   </div>
+                </div>
+
+
+                <br>
+                <div class="d-grid col-12 mx-auto">
+                    <button (onClick)="agregarConsulta()" class="btn btn-primary btn-lg" type="submit" style="background-color:rgb(33, 37, 41)">Guardar</button>
+                </div>
+                <br>
+                
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>
