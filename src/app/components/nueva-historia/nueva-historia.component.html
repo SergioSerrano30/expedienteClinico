@@ -38,7 +38,7 @@
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;"></h2>
+            <h2 class="text-center" style="margin-top: 20px;">Registrar Historia</h2>
             <br>
 
             <!--datos personales-->
@@ -119,9 +119,9 @@
 
                 <br>
 
-                <!--datos de emergencia-->
+                <!--Contacto de emergencia -->
                 <div class="etiquetas">
-                    <b>Datos de Emergencia del paciente:</b>
+                    <b>Contacto de emergencia:</b>
                 </div>
 
 
@@ -138,18 +138,12 @@
                    <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="eme_Paterno" type="text" class="form-control" id="eme_Paterno"
-                                placeholder="eme_Paterno" required>
-                            <label for="eme_Paterno">Apellido paterno</label>
+                            <input formControlName="parentesco" type="text" class="form-control" id="parentesco"
+                                placeholder="parentesco" required>
+                            <label for="parentesco">Parentesco</label>
                         </div>
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating my-2">
-                            <input formControlName="eme_Materno" type="text" class="form-control" id="eme_Materno"
-                                placeholder="eme_Materno" required>
-                            <label for="eme_Materno">Apellido materno</label>
-                        </div>
-                    </div>
+                    
                     </div>
                     <div class="row g-4">
                         <div class="col-md">
@@ -169,16 +163,27 @@
                 <div class="etiquetas">
                     <b>Datos de inicio al tratamiento:</b>
                 </div>
+              
+
 
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="alergia" type="text" class="form-control" id="alergia"
-                               placeholder="alergia" required>
+                           <input formControlName="alergia" type="text" class="form-control" id="alergia_d"
+                               placeholder="alergia" required ng-disable="alergia">
                            <label for="alergia">Alergia(s)</label>
                        </div>
                    </div>
                 </div>
+              
+                  <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="exampleRadios2" value="option2" checked ng-model="alergia_d">
+                    <label class="form-check-label" for="exampleRadios2">
+                      si
+                    </label>
+                </div>
+
+
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
@@ -188,6 +193,15 @@
                        </div>
                    </div>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="exampleRadios1" value="option1" >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Si
+                    </label>
+                  </div>
+                 
+
+
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
@@ -197,6 +211,15 @@
                        </div>
                    </div>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="exampleRadios1" value="option1" >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Si
+                    </label>
+                  </div>
+                 
+
+                
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
@@ -206,6 +229,16 @@
                        </div>
                    </div>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="exampleRadios1" value="option1" >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Si
+                    </label>
+                  </div>
+                
+
+
+                
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
@@ -215,6 +248,14 @@
                        </div>
                    </div>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="exampleRadios1" value="option1" >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Si
+                    </label>
+                  </div>
+                 
+
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">

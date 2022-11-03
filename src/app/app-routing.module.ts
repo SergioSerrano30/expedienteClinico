@@ -14,7 +14,9 @@ import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_li
 import { RegistroDComponent } from './components/terapeuta_registro/terapeuta_registro.component';
 import { InicioAdminComponent } from './components/admin_inicio/admin_inicio.component';
 import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-historia.component';
+import { ConsultaRegistrarComponent } from './components/consulta-registrar/consulta-registrar.component';
 import { AdminOperacionesComponent } from './components/admin-operaciones/admin-operaciones.component';
+
 
 const routes: Routes = [
   // Principal:
@@ -47,6 +49,7 @@ const routes: Routes = [
   { path: 'historia_registro', component:NuevaHistoriaComponent},
 
   //Consulta paciente
+  { path: 'consulta_registro', component:ConsultaRegistrarComponent},
 
   //Ruta alterna
   { path: '**', redirectTo: 'terapeuta_login', pathMatch: 'full' },
