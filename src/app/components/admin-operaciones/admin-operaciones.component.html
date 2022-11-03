@@ -11,7 +11,7 @@
 <body>
   <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
     <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
-        Digital [Administrador] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
+        Digital [Administrador] - </a><button data-bs-toggle="collapse" class="navbar-toggler"
         data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
           class="navbar-toggler-icon"></span></button>
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="text-end">
-          <button type="button" class="btn btn-danger" (click)="irLogin()">Cerrar sesión</button>
+          <button type="button" class="btn btn-danger">Cerrar sesión</button>
         </div>
       </div>
     </div>
@@ -33,24 +33,24 @@
     <div class="col-lg-12">
       <div class="container-fluid mb-2" style="text-align: center;">
         <br>
-        <span class="col titulo"><b>Lista de Terapeutas</b></span>
+        <span class="col titulo"><b>Consulta de operaciones</b></span>
         <div class=" col container-fluid my-3">
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar terapeuta" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Buscar operación" aria-label="Search">
             <button class="btn btn-outline-success me-5" type="submit">Buscar<i class="fa-solid fa-magnifying-glass"></i></button>
-            <button (click)="irTerapeutaNuevo()" type="submit" class="btn btn-success btn-sg me-2">Nuevo<i class="fa-solid fa-plus"></i></button>
-            <button (click)="irInicio()" class="btn btn-secondary btn-sg">Volver<i class="fa-solid fa-arrow-left"></i></button>
+            <button class="btn btn-secondary btn-sg">Volver<i class="fa-solid fa-arrow-left"></i></button>
           </form>
         </div> 
       </div>
       
-      <table class="table" style="text-align:center" *ngIf="listUsuarios.length > 0">
+      <table class="table" style="text-align:center">
         <thead>
           <tr>
-            <th scope="col">Nombre/s</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Sexo</th>
-            <th scope="col">¿Activo?</th>
+            <th scope="col">ID</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Usuario</th>
           </tr>
         </thead>
         <tbody>
@@ -58,25 +58,11 @@
           <div>
  
           </div>
-          <tr *ngFor="let usuario of listUsuarios" >
-            <td>{{usuario.usuario_persona.nombre}}</td>
-
-            <td>{{usuario.usuario_persona.apPaterno + " " + usuario.usuario_persona.apMaterno}}</td>
-            <td>{{usuario.usuario_persona.sexo}}</td>
-            <td>{{usuario.activo}}</td>
-            <i (click)="irModificarTerapeuta(usuario._id)"  class="fas fa-edit text-primary"></i>
-            <i class="fas fa-lock text-danger"></i>
-          </tr>
         </tbody>
       </table>
-      <h5 style="text-align: center; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay terapeutas para mostrar.</h5>
+      <h5 style="text-align: center; margin-top:10px">No hay operaciones para mostrar.</h5>
 
     </div>
   </div>
-
-
 </body>
-
-
-
 </html>
