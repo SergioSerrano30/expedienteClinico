@@ -24,6 +24,7 @@ import { RegistroPacienteComponent } from './components/paciente_registro/pacien
 import { TerapeutaComponent } from './components/terapeuta_inicio/terapeuta_inicio.component';
 import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_lista.component';
 import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-historia.component';
+import { AdminOperacionesComponent } from './components/admin-operaciones/admin-operaciones.component';
 
 
 
@@ -43,6 +44,7 @@ import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-histor
     TerapeutaComponent,
     InicioAdminTComponent,
     NuevaHistoriaComponent,
+    AdminOperacionesComponent,
 
   
   ],

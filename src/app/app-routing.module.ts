@@ -14,6 +14,7 @@ import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_li
 import { RegistroDComponent } from './components/terapeuta_registro/terapeuta_registro.component';
 import { InicioAdminComponent } from './components/admin_inicio/admin_inicio.component';
 import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-historia.component';
+import { AdminOperacionesComponent } from './components/admin-operaciones/admin-operaciones.component';
 
 const routes: Routes = [
   // Principal:
@@ -40,6 +41,7 @@ const routes: Routes = [
 
   // Administrador
   { path: 'admin_inicio/:id', component: InicioAdminComponent },
+  { path: 'admin_operaciones/:id', component: AdminOperacionesComponent },
 
   //Historia paciente
   { path: 'historia_registro', component:NuevaHistoriaComponent},
