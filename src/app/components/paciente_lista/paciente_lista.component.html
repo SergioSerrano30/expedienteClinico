@@ -7,108 +7,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio Doctor</title>
 </head>
- 
+
 <body>
-
-  <header class="p-3 bg-dark text-white">
-    <div class="container">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+    <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+        Digital [Terapeuta / Administrador] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
+        data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+          class="navbar-toggler-icon"></span></button>
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
-          <li><a (click)="irInicio()" class="nav-link px-2 text-white" style="font-size:medium;">Bienvenido(a): {{nombre}} </a></li>
-        </ul> 
-
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="assets/img/image-doctor.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
+            <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
           </a>
         </div>
 
         <div class="text-end">
-          <button type="button" class="btn btn-warning" (click)="irLogin()">Cerrar Sesión</button>
+          <button type="button" class="btn btn-danger" (click)="irLogin()">Cerrar sesión</button>
         </div>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- HASTA AQUI ES EL PURO DASHBOARD (BARRA de ARRIBA)-->
-
-
-
-
-  <div class="container mt-5 float-start">
-
-    <div class="col-lg-12 offset-lg-1">
-      <div class="container-fluid row mb-2">
-        <span class="col titulo">Lista de Pacientes</span>
-        <div class=" col container-fluid">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar usuario" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
-        </div> 
-      </div>
-      
-      <table class="table" *ngIf="listUsuarios.length > 0">
-        <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Sexo</th>
-            <th scope="col">¿Activo?</th>
-            
-            <!-- <th scope="col">Calle</th> -->
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <div>
-
+    <div class="container mt-5 rounded shadow" style="background-color: rgba(162, 173, 184, 0.342);">
+      <div class="col-lg-12">
+        <div class="container-fluid mb-2" style="text-align: center;">
+          <br>
+          <span class="col titulo"><b>Lista de Pacientes</b></span>
+          <div class="col container-fluid my-3">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Buscar paciente" aria-label="Search">
+              <button class="btn btn-outline-success me-5" type="submit">Buscar<i class="fa-solid fa-magnifying-glass"></i></button>
+              <button (click)="irNuevoPaciente()" type="submit" class="btn btn-success btn-sg me-2">Nuevo<i class="fa-solid fa-plus"></i></button>
+              <button (click)="irInicio()" class="btn btn-secondary btn-sg">Volver<i class="fa-solid fa-arrow-left"></i></button>
+            </form>
           </div>
-          <tr *ngFor="let usuario of listUsuarios" >
-            <td>{{usuario.usuario_persona.nombre}}</td>
-
-            <td>{{usuario.usuario_persona.apPaterno + " " + usuario.usuario_persona.apMaterno}}</td>
-            <td>{{usuario.usuario_persona.sexo}}</td>
-            <td>{{usuario.activo}}</td>
-            <!-- [routerLink]="['/editar-paciente',usuario._id]" -->
-            <i (click)="irModificarPaciente(usuario._id)" class="fas fa-edit text-primary"></i>
-            <i class="fas fa-lock text-danger"></i>
-          </tr>
-        </tbody>
-      </table>
-      <h5 style="text-align: start; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay usuarios para mostrar</h5>
-
-    </div>
-    <button (click)="irInicio()" class="btn btn-secondary btn-lg float-start"><i class="fa-solid fa-arrow-left"></i> Volver</button>
-
-    <button (click)="irNuevoPaciente()" type="submit" class="btn btn-success btn-lg float-end">Nuevo <i class="fa-solid fa-plus"></i></button>
-
-
-
-
-    <!------------- F O O T E R   --------------->
-    <!-- <div class="container">
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-          </a>
-          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex text-center">
-              <img class="bordeImagenFooter" src="https://www.tepic.tecnm.mx/images/escudo_itt_grande.png"> 
-          </ul>
-          <span class="mb-3 mb-md-0 text-muted">Instituto Tecnológico de Tepic © (2022) </span>
+          
         </div>
 
-      </footer>
-    </div> -->
-    <!---------F I N ---- F O O T E R   --------------->
-  </div>
+        <table class="table" style="text-align:center" *ngIf="listUsuarios.length > 0">
+          <thead>
+            <tr>
+              <th scope="col">Nombre/s</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Sexo</th>
+              <th scope="col">¿Activo?</th>
+            </tr>
+          </thead>
+          <tbody>
 
+            <div>
 
+            </div>
+            <tr *ngFor="let usuario of listUsuarios">
+              <td>{{usuario.usuario_persona.nombre}}</td>
+
+              <td>{{usuario.usuario_persona.apPaterno + " " + usuario.usuario_persona.apMaterno}}</td>
+              <td>{{usuario.usuario_persona.sexo}}</td>
+              <td>{{usuario.activo}}</td>
+              <!-- [routerLink]="['/editar-paciente',usuario._id]" -->
+              <i (click)="irModificarPaciente(usuario._id)" class="fas fa-edit text-primary"></i>
+              <i class="fas fa-lock text-danger"></i>
+            </tr>
+          </tbody>
+        </table>
+        <h5 style="text-align: center; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay pacientes para mostrar.</h5>
+
+      </div>
+    </div>
 </body>
-
-
-
 </html>
