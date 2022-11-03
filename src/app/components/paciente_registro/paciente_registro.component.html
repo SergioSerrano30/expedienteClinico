@@ -87,9 +87,9 @@
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31" value="1999-12-30" class="form-control" id="txtFecha"
+                            <input formControlName="fechaNac" type="date" min={{fechaMin}} max={{fechaHoy}} value="2000-01-01" class="form-control" id="txtFecha"
                                 placeholder="Fecha de nacimiento" required>
-                            <label for="fechaNac">Fecha de nacimiento</label>
+                            <label for="fechaNac">Fecha de nacimiento </label>
                         </div>
                     </div>
                     <div class="col-md">
