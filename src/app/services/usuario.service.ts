@@ -30,4 +30,8 @@ export class UsuarioService {
     return this.http.put(this.url+id,usuario);
   }
 
+  obtenerPacientePorNombre(type: string, nombre: string):Observable<any>{
+    return this.http.get(this.url+type+"/"+nombre);
+  }
+
 }

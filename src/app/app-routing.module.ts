@@ -13,9 +13,9 @@ import { TerapeutaComponent } from './components/terapeuta_inicio/terapeuta_inic
 import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_lista.component';
 import { RegistroDComponent } from './components/terapeuta_registro/terapeuta_registro.component';
 import { InicioAdminComponent } from './components/admin_inicio/admin_inicio.component';
-import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-historia.component';
+import { NuevaHistoriaComponent } from './components/historia_registro/historia_registro.component';
 import { ConsultaRegistrarComponent } from './components/consulta-registrar/consulta-registrar.component';
-import { AdminOperacionesComponent } from './components/admin-operaciones/admin-operaciones.component';
+import { AdminOperacionesComponent } from './components/admin_operaciones/admin_operaciones.component';
 
 
 const routes: Routes = [
@@ -34,8 +34,6 @@ const routes: Routes = [
   // Terapeuta:
   { path: 'terapeuta_login', component: LoginDComponent },
   { path: 'terapeuta_inicio/:id', component: TerapeutaComponent },
-
-  { path: 'nueva_historia', component:NuevaHistoriaComponent},
 
   { path: 'terapeuta_lista/:id', component: InicioAdminTComponent },
   { path: 'terapeuta_registro/:id', component: RegistroDComponent },
