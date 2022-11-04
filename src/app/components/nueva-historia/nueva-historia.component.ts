@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NuevaHistoriaComponent implements OnInit {
   historiaForm: FormGroup;
 
+
+
   constructor(
     private fb: FormBuilder,
   ) { 
@@ -26,4 +28,7 @@ export class NuevaHistoriaComponent implements OnInit {
   irInicio(){
 
   }
+
+
+  
 }

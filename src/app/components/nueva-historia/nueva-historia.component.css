@@ -1,5 +1,5 @@
 .principal{
-    background-color: rgb(255, 255, 255);
+    background: #52b3cd; /* fallback for old browsers */
     padding-top: 2%;
     padding-bottom: 1%;
 }

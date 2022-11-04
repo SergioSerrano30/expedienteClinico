@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    <style>
-        body {
-          background: #b9de5d; /* fallback for old browsers */
-     
-        }
-      </style>
-
+  
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -170,19 +164,19 @@
                     <div class="col-md">
                        <div class="form-floating my-2">
                            <input formControlName="alergia" type="text" class="form-control" id="alergia_d"
-                               placeholder="alergia" required ng-disable="alergia">
+                               placeholder="alergia" readonly ng-disable="alergia">
                            <label for="alergia">Alergia(s)</label>
                        </div>
                    </div>
                 </div>
               
                   <div class="form-check form-check-inline ">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="exampleRadios2" value="option2" checked ng-model="alergia_d">
+                    <input class="form-check-input" formControlName="alergia" type="radio" name="inlineRadioOptions" id="exampleRadios1" value="option1" checked ng-model="alergia_d">
                     <label class="form-check-label" for="exampleRadios2">
                       si
                     </label>
-                </div>
-
+                 </div>
+        
 
                 <div class="row g-4">
                     <div class="col-md">
