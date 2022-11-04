@@ -8,6 +8,8 @@ import { Persona } from 'src/app/models/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Domicilio } from 'src/app/models/domicilio';
 import { DomicilioService } from 'src/app/services/domicilio.service';
+import { Operacion } from 'src/app/models/operacion';
+import { OperacionService } from 'src/app/services/operacion.service';
 
 @Component({
   selector: 'app-registro-d',
@@ -21,6 +23,22 @@ export class RegistroDComponent implements OnInit {
   idUM: string;
   usuario: Usuario | null;
   nombre: string;
+
+  today = new Date();
+  day = this.today.getDate();
+  month = this.today.getMonth() + 1;
+  año = this.today.getFullYear();
+  year = this.today.getFullYear() - 18;
+  year2 = this.year - 100;
+
+  hora = this.today.getHours();
+  minuto = this.today.getMinutes();
+
+  fechaHoy: String;
+  fechaMin: String;
+
+  fechaHoyCorrecta: String;
+  horaHoyCorrecta: String;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -28,6 +46,7 @@ export class RegistroDComponent implements OnInit {
     private _usuarioService: UsuarioService,
     private _personaService: PersonaService,
     private _domicilioService: DomicilioService,
+    private _operacionesService: OperacionService,
     private aRouter: ActivatedRoute
   ) {
     this.usuarioForm = this.fb.group({
@@ -53,6 +72,35 @@ export class RegistroDComponent implements OnInit {
     this.idUM = this.aRouter.snapshot.paramMap.get('idUM') + '';
     this.usuario = null;
     this.nombre = '';
+
+    //Bloquear Fecha---------
+    if (this.day < 9 && this.month < 9) {
+      this.fechaHoy = this.year + '-0' + this.month + '-0' + this.day;
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
+      this.fechaMin = this.year2 + '-0' + this.month + '-0' + this.day;
+    } else if (this.day < 9 && this.month > 9) {
+      this.fechaHoy = this.year + '-' + this.month + '-0' + this.day;
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-0' + this.day;
+      this.fechaMin = this.year2 + '-' + this.month + '-0' + this.day;
+    } else if (this.day > 9 && this.month < 9) {
+      this.fechaHoy = this.year + '-0' + this.month + '-' + this.day;
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-' + this.day;
+      this.fechaMin = this.year2 + '-0' + this.month + '-' + this.day;
+    } else {
+      this.fechaHoy = this.year + '-' + this.month + '-' + this.day;
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
+      this.fechaMin = this.year2 + '-' + this.month + '-' + this.day;
+    }
+
+    if (this.hora < 9 && this.minuto < 9) {
+      this.horaHoyCorrecta = '0' + this.hora + ':0' + this.minuto;
+    } else if (this.hora < 9 && this.minuto > 9) {
+      this.horaHoyCorrecta = '0' + this.hora + ':' + this.minuto;
+    } else if (this.hora > 9 && this.minuto < 9) {
+      this.horaHoyCorrecta = this.hora + ':0' + this.minuto;
+    } else {
+      this.horaHoyCorrecta = this.hora + ':' + this.minuto;
+    }
   }
 
   ngOnInit(): void {
@@ -106,6 +154,15 @@ export class RegistroDComponent implements OnInit {
     let pais = this.usuarioForm.get('pais')?.value;
     let estado = this.usuarioForm.get('estado')?.value;
     let municipio = this.usuarioForm.get('municipio')?.value;
+
+    let tipoOperacion = 'Registrar Terapeuta';
+    if (this.idUM.length > 5) {
+      tipoOperacion = 'Editar Terapeuta';
+    }
+    let fechaRegistro = this.fechaHoyCorrecta + '';
+    let hora = this.horaHoyCorrecta + '';
+    let usuario_idUsuario = this.id;
+
     const DOMICILIO: Domicilio = {
       calle: calle,
       numero_EXT: numero_EXT,
@@ -118,6 +175,14 @@ export class RegistroDComponent implements OnInit {
       estado: estado,
       municipio: municipio,
     };
+
+    const OPERACION: Operacion = {
+      fechaRegistro: fechaRegistro,
+      hora: hora,
+      tipoOperacion: tipoOperacion,
+      usuario_idUsuario: usuario_idUsuario,
+    };
+
     const PERSONA: Persona = {
       nombre: nombre,
       apPaterno: apPaterno,
@@ -164,46 +229,76 @@ export class RegistroDComponent implements OnInit {
       },
     };
     if (this.passFormatoCorrecto(password)) {
-      if (this.idUM.length > 5) {
-        //editamos
-        this._usuarioService.editarUsuario(this.idUM, USUARIO).subscribe(
-          (data) => {
-            this.toastr.info(
-              'Terapeuta modificado con éxito!',
-              'Terapeuta Actualizada!'
+      //Calcular edad
+      var fecha_nacimiento = fechaNac;
+      var hoy = new Date();
+      var cumpleanos = new Date(fecha_nacimiento);
+      var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+      if (edad >= 18) {
+        //guardamos operacion
+        this.guardarPersonaOperacion(OPERACION);
+        if (this.idUM.length > 5) {
+          //editamos
+          this._usuarioService.editarUsuario(this.idUM, USUARIO).subscribe(
+            (data) => {
+              this.toastr.info(
+                'Terapeuta modificado con éxito!',
+                'Terapeuta Actualizada!'
+              );
+              this.router.navigate(['/terapeuta_lista/' + this.id]);
+            },
+            (error) => {
+              console.log(error);
+              this.usuarioForm.reset();
+            }
+          );
+        } else {
+          //guardamos terapeuta
+          this.guardarPersona(PERSONA, DOMICILIO);
+          this._usuarioService.guardarUsuario(USUARIO).subscribe((data) => {
+            this.toastr.success(
+              'Se ha guardado el terapeuta con éxito!',
+              'Terapeuta registrado!'
             );
-            this.router.navigate(['/terapeuta_lista/' + this.id]);
-          },
-          (error) => {
-            console.log(error);
-            this.usuarioForm.reset();
+          });
+        }
+        this.router.navigate(['/terapeuta_lista/' + this.id]);
+      } else {
+        //else esMayorDeEdad
+        this.toastr.warning(
+          'Debe ser Mayor de edad',
+          'Mayoria de edad no cumplida!',
+          {
+            timeOut: 8000,
+            progressBar: true,
           }
         );
-      } else {
-        //guardamos
-        this.guardarPersona(PERSONA, DOMICILIO);
-        this._usuarioService.guardarUsuario(USUARIO).subscribe((data) => {
-          this.toastr.success(
-            'Se ha guardado el terapeuta con éxito!',
-            'Paciente registrado!'
-          );
-          this.router.navigate(['/terapeuta_lista/' + this.id]);
-        });
       }
-    }
-    else{
+    } else {
       this.toastr.warning(
-      '-6 a 45 caracteres   '+
-      '-Al menos una mayuscula   '+
-      '-Al menos una minuscula   '+
-      '-Al menos un número   ',
-        'Formato incorrecto en contraseña!',{
+        '*6 a 45 caracteres   ' +
+          '*Al menos una mayuscula   ' +
+          '*Al menos una minuscula   ' +
+          '*Al menos un número   ',
+        'Formato incorrecto en contraseña!',
+        {
           timeOut: 8000,
-          progressBar:true
-        });
-      
+          progressBar: true,
+        }
+      );
     }
   }
+
+  guardarPersonaOperacion(op: Operacion) {
+    this._operacionesService.guardarOperacion(op).subscribe((data) => {
+      this.toastr.success(
+        'Se ha guardado la Operacion con Exito!',
+        'Operacion Registrada!'
+      );
+      // this.router.navigate(['/paciente_lista/' + this.id]);
+    });
+  }
+
   esEditar() {
     this.titulo = 'Editar Terapeuta';
     this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {

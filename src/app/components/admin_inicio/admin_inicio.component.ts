@@ -46,6 +46,10 @@ export class InicioAdminComponent implements OnInit {
   irPacientes(){
     this.router.navigate(['/paciente_lista/' + this.id])
   }
+  irOperaciones(){
+    this.router.navigate(['/admin_operaciones/' + this.id])
+  }
+
   irInicio(){
     let rol = this.usuario?.usuario_rol.desRol;
     switch (rol) {
