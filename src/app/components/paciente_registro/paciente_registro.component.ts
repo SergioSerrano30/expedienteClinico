@@ -24,6 +24,7 @@ export class RegistroPacienteComponent implements OnInit {
   idUM: string;
   usuario: Usuario | null;
   nombre: string;
+  
   today = new Date();
   day = this.today.getDate();
   month = this.today.getMonth() + 1;
@@ -32,8 +33,6 @@ export class RegistroPacienteComponent implements OnInit {
   fechaHoy:String;
   fechaMin:String;
  
-
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -42,10 +41,9 @@ export class RegistroPacienteComponent implements OnInit {
     private _personaService: PersonaService,
     private _domicilioService: DomicilioService,
     private _operacionesService: OperacionService,
-    private aRouter: ActivatedRoute
-
-  ) {
-    this.pacienteForm = this.fb.group({
+    private aRouter: ActivatedRoute,
+  )   {
+      this.pacienteForm = this.fb.group({
       nombre: ['', Validators.required],
       apPaterno: ['', Validators.required],
       apMaterno: ['', Validators.required],
@@ -83,13 +81,7 @@ export class RegistroPacienteComponent implements OnInit {
       this.fechaHoy= this.year+'-'+this.month+'-'+this.day;
       this.fechaMin=this.year2+'-'+this.month+'-'+this.day;
     }
-
-  
-  
-    
-    
    //-----------bloquar fecha fin-----------------------
-
   }
 
   ngOnInit(): void {

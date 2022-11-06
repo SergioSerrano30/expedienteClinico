@@ -91,8 +91,8 @@
                 <div class="row g-4">
                  <div class="col-md">
                     <div class="form-floating my-2">
-                        <input formControlName="edad" type="number" class="form-control" id="edad"
-                            placeholder="edad" required>
+                        <input formControlName="edad" enable ="false" type="number" class="form-control" id="edad"
+                            placeholder="edad" >
                         <label for="numero_INT">Edad</label>
                     </div>
                 </div>
@@ -103,15 +103,15 @@
                         <label for="numero_INT">Peso(kg)</label>
                     </div>
                 </div>
+                <div class="col-md">
+                    <div class="form-floating my-2">
+                        <input formControlName="estatura" type="number" class="form-control" id="estatura"
+                            placeholder="estatura" required>
+                        <label for="numero_INT">Estatura(cm)</label>
+                    </div>
                 </div>
-                <div class="row g-4">
-                    <div class="col-md">
-                       <div class="form-floating my-2">
-                           <input formControlName="estatura" type="number" class="form-control" id="estatura"
-                               placeholder="estatura" required>
-                           <label for="numero_INT">Estatura(cm)</label>
-                       </div>
-                   </div>
+                </div>
+                <div class="col4"> 
                    <div class="col-md">
                        <!--vacio-->
                    </div>
@@ -128,7 +128,7 @@
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="eme_Nombre" type="number" class="form-control" id="eme_Nombre"
+                           <input formControlName="emeNombre" type="text" class="form-control" id="eme_Nombre"
                                placeholder="eme_Nombre" required>
                            <label for="eme_Nombre">Nombre(s)</label>
                        </div>
@@ -138,7 +138,7 @@
                    <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="parentesco" type="text" class="form-control" id="parentesco"
+                            <input formControlName="emeParentesco" type="text" class="form-control" id="parentesco"
                                 placeholder="parentesco" required>
                             <label for="parentesco">Parentesco</label>
                         </div>
@@ -148,7 +148,7 @@
                     <div class="row g-4">
                         <div class="col-md">
                             <div class="form-floating my-2">
-                                <input formControlName="celular" type="text" class="form-control" id="celular"
+                                <input formControlName="emeCelular" type="text" class="form-control" id="celular"
                                     placeholder="celular" required>
                                 <label for="celular">Celular</label>
                             </div>
@@ -169,7 +169,7 @@
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="alergia" type="text" class="form-control" id="alergia_d"
+                           <input formControlName="alergias" type="text" class="form-control" id="alergia_d"
                                placeholder="alergia" required ng-disable="alergia">
                            <label for="alergia">Alergia(s)</label>
                        </div>
@@ -187,7 +187,7 @@
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="cirugia" type="text" class="form-control" id="cirugia"
+                           <input formControlName="cirugias" type="text" class="form-control" id="cirugia"
                                placeholder="cirugia" required>
                            <label for="cirugia">Cirugia(s)</label>
                        </div>
@@ -205,7 +205,7 @@
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="traumas_fracturas" type="text" class="form-control" id="traumas_fracturas"
+                           <input formControlName="traumasFracturas" type="text" class="form-control" id="traumas_fracturas"
                                placeholder="traumas_fracturas" required>
                            <label for="traumas_fracturas">Traumas/Fracturas</label>
                        </div>
@@ -223,7 +223,7 @@
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="enf_Congenitas" type="text" class="form-control" id="enf_Congenitas"
+                           <input formControlName="enfCongenitas" type="text" class="form-control" id="enf_Congenitas"
                                placeholder="enf_Congenitas" required>
                            <label for="enf_Congenitas">Enfermedades Congenitas</label>
                        </div>
@@ -242,7 +242,7 @@
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="enf_Hereditarias" type="text" class="form-control" id="enf_Hereditarias"
+                           <input formControlName="enfHereditarias" type="text" class="form-control" id="enf_Hereditarias"
                                placeholder="enf_Hereditarias" required>
                            <label for="enf_Hereditarias">Enfermedades Hereditarias</label>
                        </div>
@@ -268,12 +268,30 @@
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="Observaciones" type="text" class="form-control" id="Observaciones"
+                           <input formControlName="observaciones" type="text" class="form-control" id="Observaciones"
                                placeholder="Observaciones" required>
                            <label for="observaciones">Observaciones</label>
                        </div>
                    </div>
                 </div>
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="numConsultasTotales" type="number" class="form-control" id="numConsultasTotales"
+                                placeholder="Consultas Totales" required>
+                            <label for="numero_INT">Consultas Totales</label>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                        </div>
+                    </div>
+                </div>
+                
 
                 <br>
                 <div class="d-grid col-12 mx-auto">

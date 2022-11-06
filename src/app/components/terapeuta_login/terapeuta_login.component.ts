@@ -14,6 +14,8 @@ export class LoginDComponent implements OnInit {
   loginForm: FormGroup;
   listUsuarios: Usuario[] = [];
   intentos: number = 0;
+  bloqueo="true";
+
   constructor(
     private fb: FormBuilder,
     private _usuarioService: UsuarioService,
@@ -26,7 +28,10 @@ export class LoginDComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    var bloquearBoton = document.getElementById('btnLogin');
+  }
+
   autenticar() {
     let usuario = this.loginForm.get('usuario')?.value;
     let password = this.loginForm.get('password')?.value;
@@ -73,10 +78,8 @@ export class LoginDComponent implements OnInit {
             'Credenciales incorrectas'
           );
           if (this.intentos === 3) {
-            this.toastr.error(
-              'Has superado el número de intentos',
-              'Acceso denegado'
-            );
+            this.toastr.error('Has superado el número de intentos', 'Acceso denegado');
+            setTimeout(this.reiniciarIntentos,5000);
           }
         }
       },
@@ -85,4 +88,8 @@ export class LoginDComponent implements OnInit {
       }
     );
   }
+  reiniciarIntentos(){
+    this.router.navigate(['/principal/']);
+  }
+     
 }
