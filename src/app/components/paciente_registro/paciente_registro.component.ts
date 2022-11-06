@@ -90,7 +90,6 @@ export class RegistroPacienteComponent implements OnInit {
     if (this.idUM.length > 5) {
       this.esEditar();
     }
-
     }
   
 
@@ -307,10 +306,9 @@ export class RegistroPacienteComponent implements OnInit {
     });
   }
 
-  esEditar() {
-    if (this.idUM !== null) {
+  esEditar() { 
+    if (this.idUM !== null) { //Recupera la informacion y la manda al formulario
       this.titulo = 'Editar Paciente';
-      //console.log("Bandera 1");
       this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
         this.pacienteForm.setValue({
           nombre: data.usuario_persona.nombre,

@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginDComponent implements OnInit {
   loginForm: FormGroup;
+  titulo = 'Registrar Paciente';
   listUsuarios: Usuario[] = [];
   intentos: number = 0;
   bloqueo="true";

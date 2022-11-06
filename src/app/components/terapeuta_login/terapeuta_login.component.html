@@ -42,8 +42,12 @@
             <label for="password" class="form-label">Contraseña:</label>
             <input type="password" class="form-control" formControlName="password" name="password" required>
           </div>
-          <div class="d-grid">
-            <button type="submit" class="btn btn-outline-primary" id="btnLogin" name="btnLogin"  >Iniciar sesión </button>
+          <div class="d-grid" *ngIf="intentos<3">
+            
+            <button type="submit" class="btn btn-outline-primary" id="login" name="btnLogin" >Iniciar sesión</button>
+          </div>
+          <div class="d-grid" *ngIf="intentos===3">
+            <button type="submit" class="btn btn-outline-primary" id="login" name="btnLogin"  disabled>Iniciar sesión</button>
           </div>
           <div class="my-3">
             <span>¿Eres un paciente? <a routerLink="/paciente_login">Inicia sesión aquí</a> </span><br>

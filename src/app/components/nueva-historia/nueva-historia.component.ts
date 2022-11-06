@@ -16,6 +16,8 @@ import { OperacionService } from 'src/app/services/operacion.service';
 })
 export class NuevaHistoriaComponent implements OnInit {
   historiaForm: FormGroup;
+
+  titulo = 'Registrar Nueva Historia';
   id: string;
   idUM: string;
   usuario: Usuario | null;
@@ -28,7 +30,6 @@ export class NuevaHistoriaComponent implements OnInit {
   fechaHoy:String;
   fechaMin:String;
 
-  
   
 
   constructor(
@@ -83,7 +84,9 @@ export class NuevaHistoriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario();
-    
+    if (this.idUM.length > 5) {
+      this.esEditar();
+    }
   }
 
   agregarHistoria(){
@@ -162,7 +165,34 @@ export class NuevaHistoriaComponent implements OnInit {
               'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
             );
           });
-      
+  }
+
+  esEditar() {
+    if (this.idUM !== null) {//Recupera la informacion y la manda al formulario
+      this.titulo = 'Editar Paciente';
+      this._historiaServices.obtenerHistoria(this.idUM).subscribe((data) => {
+        this.historiaForm.setValue({
+          fechaRegistro: data.fecharegistroString,
+          fechaNacimiento: data.fechaNacimiento,
+          edad: data.edad,
+          peso: data.peso,
+          estatura: data.estatura,
+          emeNombre: data.emeNombre,
+          emeParentesco: data.emeParentesco,
+          emeCelular: data.emeCelular,
+          alergias: data.alergias,
+          cirugias: data.cirugias,
+          traumasFracturas: data.traumasFracturas,
+          enfCongenitas: data.enfCongenitas,
+          enfHereditarias: data.enfHereditarias,
+          otros: data.otros,
+          observaciones: data.observaciones,
+          numConsultasTotales: data.numConsultasTotales,
+          usuario_idUsuario: data.usuario_idUsuario,
+          persona_idPersona: data.usuario_idUsuario,
+        });
+      });
+    }
   }
 
   irInicio(){
