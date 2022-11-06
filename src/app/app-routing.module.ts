@@ -16,6 +16,7 @@ import { InicioAdminComponent } from './components/admin_inicio/admin_inicio.com
 import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-historia.component';
 import { ConsultaRegistrarComponent } from './components/consulta-registrar/consulta-registrar.component';
 import { AdminOperacionesComponent } from './components/admin-operaciones/admin-operaciones.component';
+import { PacienteConsultasComponent } from './components/paciente-consultas/paciente-consultas.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'paciente_lista/:id', component: TInicioComponent },
   { path: 'paciente_registro/:id', component: RegistroPacienteComponent },
   { path: 'paciente_editar/:id/:idUM', component: RegistroPacienteComponent },
+  { path: 'paciente_consultas', component: PacienteConsultasComponent },
 
   // Terapeuta:
   { path: 'terapeuta_login', component: LoginDComponent },
