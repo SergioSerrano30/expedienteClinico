@@ -197,7 +197,6 @@ export class NuevaHistoriaComponent implements OnInit {
   irInicio(){
   }
 
-<<<<<<< HEAD:src/app/components/nueva-historia/nueva-historia.component.ts
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
@@ -211,9 +210,4 @@ export class NuevaHistoriaComponent implements OnInit {
 
 
 
-=======
-  irLogin(){
-    
-  }
->>>>>>> main:src/app/components/historia_registro/historia_registro.component.ts
 }
