@@ -104,7 +104,8 @@ export class RegistroPacienteComponent implements OnInit {
     }else{
       this.horaHoyCorrecta= this.hora+":"+this.minuto;
     }
-   //-----------bloquar fecha fin-----------------------
+
+    //-----------bloquar fecha fin-----------------------
   }
 
   ngOnInit(): void {
@@ -113,8 +114,7 @@ export class RegistroPacienteComponent implements OnInit {
       this.esEditar();
       
     }
-    }
-  
+  }
 
   passFormatoCorrecto(password: string) {
     //6 a 45 caracteres
