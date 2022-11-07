@@ -89,6 +89,5 @@ export class InicioAdminTComponent implements OnInit {
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
   }
-  
  
 }

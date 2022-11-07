@@ -70,5 +70,8 @@ export class InicioAdminComponent implements OnInit {
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
   }
+  irPrincipal(){
+    this.router.navigate(['/admin_inicio/'+this.id]);
+  }
 
 }

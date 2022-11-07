@@ -26,6 +26,8 @@ import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_li
 import { NuevaHistoriaComponent } from './components/historia_registro/historia_registro.component';
 import { ConsultaRegistrarComponent } from './components/consulta-registrar/consulta-registrar.component';
 import { AdminOperacionesComponent } from './components/admin_operaciones/admin_operaciones.component';
+import { PacienteConsultasComponent } from './components/paciente-consultas/paciente-consultas.component';
+import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/terapeuta-consultas.component';
 
 
 
@@ -47,6 +49,8 @@ import { AdminOperacionesComponent } from './components/admin_operaciones/admin_
     NuevaHistoriaComponent,
     ConsultaRegistrarComponent,
     AdminOperacionesComponent,
+    PacienteConsultasComponent,
+    TerapeutaConsultasComponent,
 
   
   ],

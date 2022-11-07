@@ -379,4 +379,12 @@ export class RegistroPacienteComponent implements OnInit {
         break;
     }
   }
+  
+  irLogin(){
+    this.router.navigate(['/terapeuta_login'])
+  }
+
+  irAtras(){
+    this.router.navigate(['/paciente_lista/'+this.id]);
+  }
 } //Class RegistroPacienteComponent

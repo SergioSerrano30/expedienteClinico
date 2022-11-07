@@ -16,23 +16,34 @@
 
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
-        <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()">Expediente Clínico
-                Digital - </a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
-                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-end" id="navcol-1">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Mis consultas</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Pacientes</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
-                </ul>
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="assets/img/image-doctor.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
-              </a>
-            </div>
-        </div> 
-    </nav>
 
+        <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()" style="cursor: pointer;">Expediente Clínico
+                Digital [Terapeuta / Administrador] - </a><button data-bs-toggle="collapse" class="navbar-toggler"
+                data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse text-end" id="navcol-1">
+                        <ul class="navbar-nav ms-auto">
+                          <li class="nav-item"><a class="nav-link" style="cursor: pointer;" routerLink="/principal">Principal</a></li>
+                          <li class="nav-item"><a class="nav-link" style="cursor: pointer;" routerLink="/conocenos">Conócenos</a></li>
+                          <li class="nav-item"><a class="nav-link" style="cursor: pointer;" routerLink="/transparencia">Transparencia</a></li>
+                          <li class="nav-item"><a class="nav-link" style="cursor: pointer;">Regresar</a></li>
+                        </ul>
+                      </div>
+            
+                  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 1%">
+                    <div class="dropdown text-end">
+                      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
+                      </a>
+                    </div>
+            
+                    <div class="text-end">
+                      <button type="button" class="btn btn-danger" (click)="irLogin()">Cerrar sesión</button>
+                    </div>
+                  </div>
+        </div>
+    </nav>
    
     <!--Formulario de abajo-->
     <div class="principal">
@@ -46,25 +57,21 @@
                 <b>Datos de la consulta:</b>
             </div>
         
-
             <form action="mt-3" [formGroup]="consultaForm" (ngSubmit)="agregarConsulta()">
-           
-                 
-
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="descripcion" type="text" class="form-control" id="descripcion"
-                               placeholder="descripcion" required>
-                           <label for="descripcion">Descripcion</label>
+                        <textarea class="form-control" formControlName="descripcion" placeholder="Descripción" id="descripcion"
+                        style="height: 100px"></textarea>
+                           <label for="descripcion">Descripción</label>
                        </div>
                    </div>
                 </div>
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="ejercicios" type="text" class="form-control" id="ejercicios"
-                               placeholder="ejercicios" required>
+                        <textarea class="form-control" formControlName="ejercicios" placeholder="Ejercicios" id="ejercicios"
+                        style="height: 100px"></textarea>
                            <label for="ejercicios">Ejercicios</label>
                        </div>
                    </div>
@@ -72,27 +79,20 @@
 
                 <div class="row g-4">
                     <div class="col-md">
-                       <div class="form-floating my-2">
-                           <input formControlName="fecha_registro" type="date" class="form-control" id="fecha_registro"
+                        <div class="form-floating my-2">
+                            <input formControlName="fecha_registro" type="date" class="form-control" id="fecha_registro"
                                placeholder="fecha_registro" required>
-                           <label for="fecha_registro">Fecha de Registro</label>
-                       </div>
-                   </div>
-                </div>
-              
-
-
-                
-                <div class="row g-4">
+                           <label for="fecha_registro">Fecha de registro</label>
+                        </div>
+                    </div>
                     <div class="col-md">
-                       <div class="form-floating my-2">
-                           <input formControlName="hora_registro" type="time" class="form-control" id="hora_registro"
+                        <div class="form-floating my-2">
+                            <input formControlName="hora_registro" type="time" class="form-control" id="hora_registro"
                                placeholder="hora_registro" required>
-                           <label for="hora_registro">Hora de Registro</label>
-                       </div>
-                   </div>
+                           <label for="hora_registro">Hora de registro</label>
+                        </div>
+                    </div>
                 </div>
-
 
                 <br>
                 <div class="d-grid col-12 mx-auto">

@@ -134,6 +134,4 @@ export class TInicioComponent implements OnInit {
     this.router.navigate(['/terapeuta_login'])
   }
 
-  
-
 }

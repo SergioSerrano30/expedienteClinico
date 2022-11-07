@@ -26,4 +26,8 @@ export class NuevaHistoriaComponent implements OnInit {
   irInicio(){
 
   }
+
+  irLogin(){
+    
+  }
 }

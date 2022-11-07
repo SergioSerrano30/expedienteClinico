@@ -11,18 +11,31 @@
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
 
-        <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()">Expediente Clínico
+        <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()" style="cursor: pointer;">Expediente Clínico
                 Digital [Administrador] - {{nombre}}</a><button data-bs-toggle="collapse" class="navbar-toggler"
                 data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-end" id="navcol-1">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Terapeutas</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Pacientes</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Consultar operaciones</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/principal">Regresar</a></li>
-                </ul>
-            </div>
+                    <div class="collapse navbar-collapse text-end" id="navcol-1">
+                        <ul class="navbar-nav ms-auto">
+                          <li class="nav-item"><a class="nav-link" routerLink="/principal">Principal</a></li>
+                          <li class="nav-item"><a class="nav-link" routerLink="/conocenos">Conócenos</a></li>
+                          <li class="nav-item"><a class="nav-link" routerLink="/transparencia">Transparencia</a></li>
+                          <li class="nav-item"><a class="nav-link" (click)="irAtras()" style="cursor: pointer;">Regresar</a></li>
+                        </ul>
+                      </div>
+            
+                  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 1%">
+                    <div class="dropdown text-end">
+                      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
+                      </a>
+                    </div>
+            
+                    <div class="text-end">
+                      <button type="button" class="btn btn-danger" (click)="irLogin()">Cerrar sesión</button>
+                    </div>
+                  </div>
         </div>
     </nav>
 
@@ -73,7 +86,7 @@
                             <select class="form-select" formControlName="sexo" id="floatingSelectGrid">
                                 <option selected value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
-                                <option selected>Otro</option>
+                                <option value="Otro">Otro</option>
                             </select>
                             <label for="floatingSelectGrid">Sexo</label>
                         </div>

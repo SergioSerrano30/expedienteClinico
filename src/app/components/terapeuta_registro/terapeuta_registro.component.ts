@@ -361,4 +361,12 @@ export class RegistroDComponent implements OnInit {
         break;
     }
   }
+
+  irLogin(){
+    this.router.navigate(['/terapeuta_login'])
+  }
+
+  irAtras(){
+    this.router.navigate(['/terapeuta_lista/'+this.id]);
+  }
 }

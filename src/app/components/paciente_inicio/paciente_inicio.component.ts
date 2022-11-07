@@ -45,4 +45,10 @@ export class PInicioComponent implements OnInit {
   irLogin(){
     this.router.navigate(['/paciente_login'])
   }
+  irPrincipal(){
+    this.router.navigate(['/paciente_inicio/'+this.id]);
+  }
+  irConsultas(){
+    this.router.navigate(['/paciente_consultas/:id/']);
+  }
 }
