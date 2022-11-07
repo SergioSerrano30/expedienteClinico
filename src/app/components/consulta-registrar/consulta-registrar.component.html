@@ -38,7 +38,7 @@
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;">Registrar Cosulta</h2>
+            <h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>
             <br>
 
             <!--datos personales-->
@@ -49,7 +49,15 @@
 
             <form action="mt-3" [formGroup]="consultaForm" (ngSubmit)="agregarConsulta()">
            
-                 
+                <div class="row g-4">
+                    <div class="col-md">
+                       <div class="form-floating my-2">
+                           <input formControlName="numConsulta" type="number" class="form-control" id="hora_registro"
+                               placeholder="Numero de Consulta" required>
+                           <label for="Numero de Consulta">Numero de consulta</label>
+                       </div>
+                   </div>
+                </div>  
 
                 <div class="row g-4">
                     <div class="col-md">
@@ -60,12 +68,13 @@
                        </div>
                    </div>
                 </div>
+
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="ejercicios" type="text" class="form-control" id="ejercicios"
-                               placeholder="ejercicios" required>
-                           <label for="ejercicios">Ejercicios</label>
+                           <input formControlName="ejerciciosCasa" type="text" class="form-control" id="ejercicios"
+                               placeholder="ejercicios en casa" required>
+                           <label for="ejercicios en casa">Ejercicios</label>
                        </div>
                    </div>
                 </div>
@@ -79,16 +88,13 @@
                        </div>
                    </div>
                 </div>
-              
-
-
                 
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
-                           <input formControlName="hora_registro" type="time" class="form-control" id="hora_registro"
-                               placeholder="hora_registro" required>
-                           <label for="hora_registro">Hora de Registro</label>
+                           <input formControlName="horaRegistro" type="time" class="form-control" id="hora_registro"
+                               placeholder="horaRegistro" required>
+                           <label for="horaRegistro">Hora de Registro</label>
                        </div>
                    </div>
                 </div>

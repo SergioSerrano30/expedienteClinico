@@ -121,7 +121,7 @@ export class NuevaHistoriaComponent implements OnInit {
       var cumpleanos = new Date(fecha_nacimiento);
       var edad = hoy.getFullYear() - cumpleanos.getFullYear();
 
-      //Crar Objetos
+      //Crear Objetos
       const HISTORIA: Historia = {
         fechaRegistro: fecharegistroString,
         fechaNacimiento: fechaNacimiento,
@@ -151,7 +151,6 @@ export class NuevaHistoriaComponent implements OnInit {
       };
 
      var guardado=false;
-
       //Guardar
             this._historiaServices.guardarHistoria(HISTORIA).subscribe((data) => {
             this.toastr.success(
