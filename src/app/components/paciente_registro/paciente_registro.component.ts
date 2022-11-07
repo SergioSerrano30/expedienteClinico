@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
 import { Usuario } from 'src/app/models/usuario';
 import { Persona } from 'src/app/models/persona';
 import { PersonaService } from 'src/app/services/persona.service';
@@ -24,6 +25,17 @@ export class RegistroPacienteComponent implements OnInit {
   idUM: string;
   usuario: Usuario | null;
   nombre: string;
+<<<<<<< HEAD
+  
+  today = new Date();
+  day = this.today.getDate();
+  month = this.today.getMonth() + 1;
+  year = this.today.getFullYear()-18;
+  year2=this.year-100;
+  fechaHoy:String;
+  fechaMin:String;
+ 
+=======
 
   today = new Date();
   day = this.today.getDate();
@@ -41,6 +53,7 @@ export class RegistroPacienteComponent implements OnInit {
   fechaHoyCorrecta: String;
   horaHoyCorrecta: String;
 
+>>>>>>> main
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -49,9 +62,15 @@ export class RegistroPacienteComponent implements OnInit {
     private _personaService: PersonaService,
     private _domicilioService: DomicilioService,
     private _operacionesService: OperacionService,
+<<<<<<< HEAD
+    private aRouter: ActivatedRoute,
+  )   {
+      this.pacienteForm = this.fb.group({
+=======
     private aRouter: ActivatedRoute
   ) {
     this.pacienteForm = this.fb.group({
+>>>>>>> main
       nombre: ['', Validators.required],
       apPaterno: ['', Validators.required],
       apMaterno: ['', Validators.required],
@@ -93,6 +112,9 @@ export class RegistroPacienteComponent implements OnInit {
       this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
       this.fechaMin = this.year2 + '-' + this.month + '-' + this.day;
     }
+<<<<<<< HEAD
+   //-----------bloquar fecha fin-----------------------
+=======
 
     if(this.hora<9 && this.minuto<9){
       this.horaHoyCorrecta= "0"+this.hora+":0"+this.minuto;
@@ -105,6 +127,7 @@ export class RegistroPacienteComponent implements OnInit {
     }
 
     //-----------bloquar fecha fin-----------------------
+>>>>>>> main
   }
 
   ngOnInit(): void {
@@ -113,7 +136,12 @@ export class RegistroPacienteComponent implements OnInit {
       this.esEditar();
       
     }
+<<<<<<< HEAD
+    }
+  
+=======
   }
+>>>>>>> main
 
   passFormatoCorrecto(password: string) {
     //6 a 45 caracteres
@@ -333,11 +361,14 @@ export class RegistroPacienteComponent implements OnInit {
     });
   }
 
-  esEditar() {
-    if (this.idUM !== null) {
+  esEditar() { 
+    if (this.idUM !== null) { //Recupera la informacion y la manda al formulario
       this.titulo = 'Editar Paciente';
+<<<<<<< HEAD
+=======
       
       //console.log("Bandera 1");
+>>>>>>> main
       this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
         this.pacienteForm.setValue({
           nombre: data.usuario_persona.nombre,

@@ -31,6 +31,7 @@ import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/te
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/te
     NuevaHistoriaComponent,
     ConsultaRegistrarComponent,
     AdminOperacionesComponent,
+
     PacienteConsultasComponent,
     TerapeutaConsultasComponent,
 
@@ -69,4 +71,4 @@ import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/te
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 
