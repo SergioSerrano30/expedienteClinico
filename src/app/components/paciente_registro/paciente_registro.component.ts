@@ -40,7 +40,7 @@ export class RegistroPacienteComponent implements OnInit {
   fechaMin: String;
 
   fechaHoyCorrecta: String;
-  //horaHoyCorrecta: String;
+  horaHoyCorrecta: String;
 
   constructor(
     private fb: FormBuilder,
@@ -93,6 +93,16 @@ export class RegistroPacienteComponent implements OnInit {
       this.fechaHoy = this.year + '-' + this.month + '-' + this.day;
       this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
       this.fechaMin = this.year2 + '-' + this.month + '-' + this.day;
+    }
+
+    if(this.hora<9 && this.minuto<9){
+      this.horaHoyCorrecta= "0"+this.hora+":0"+this.minuto;
+    }else if(this.hora<9 && this.minuto>9){
+      this.horaHoyCorrecta= "0"+this.hora+":"+this.minuto;
+    }else if(this.hora>9 && this.minuto<9){
+      this.horaHoyCorrecta= this.hora+":0"+this.minuto;
+    }else{
+      this.horaHoyCorrecta= this.hora+":"+this.minuto;
     }
    //-----------bloquar fecha fin-----------------------
   }
