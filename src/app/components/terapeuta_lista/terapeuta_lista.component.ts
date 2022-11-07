@@ -62,7 +62,7 @@ export class InicioAdminTComponent implements OnInit {
     }
   }
 
-  irTerapeutaNuevo(){
+  irNuevoTerapeuta(){
     this.router.navigate(['/terapeuta_registro/'+this.id]);
   } 
   irModificarTerapeuta(idUM:string|undefined){
@@ -89,6 +89,5 @@ export class InicioAdminTComponent implements OnInit {
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
   }
-  
-
+ 
 }

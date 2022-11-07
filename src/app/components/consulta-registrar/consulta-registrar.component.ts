@@ -23,4 +23,8 @@ export class ConsultaRegistrarComponent implements OnInit {
   irInicio(){
 
   }
+
+  irLogin(){
+    
+  }
 }

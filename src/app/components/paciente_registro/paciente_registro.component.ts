@@ -24,15 +24,22 @@ export class RegistroPacienteComponent implements OnInit {
   idUM: string;
   usuario: Usuario | null;
   nombre: string;
+
   today = new Date();
   day = this.today.getDate();
   month = this.today.getMonth() + 1;
-  year = this.today.getFullYear()-18;
-  year2=this.year-100;
-  fechaHoy:String;
-  fechaMin:String;
- 
+  año = this.today.getFullYear();
+  year = this.today.getFullYear() - 18;
+  year2 = this.year - 100;
 
+  hora = this.today.getHours();
+  minuto = this.today.getMinutes();
+
+  fechaHoy: String;
+  fechaMin: String;
+
+  fechaHoyCorrecta: String;
+  horaHoyCorrecta: String;
 
   constructor(
     private fb: FormBuilder,
@@ -43,7 +50,6 @@ export class RegistroPacienteComponent implements OnInit {
     private _domicilioService: DomicilioService,
     private _operacionesService: OperacionService,
     private aRouter: ActivatedRoute
-
   ) {
     this.pacienteForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -70,37 +76,44 @@ export class RegistroPacienteComponent implements OnInit {
     this.nombre = '';
 
     //Bloquear Fecha---------
-    if(this.day<9 && this.month<9){
-      this.fechaHoy= this.year+'-0'+this.month+'-0'+this.day;
-      this.fechaMin=this.year2+'-0'+this.month+'-0'+this.day;
-    }else if(this.day<9 && this.month>9){
-      this.fechaHoy= this.year+'-'+this.month+'-0'+this.day;
-      this.fechaMin=this.year2+'-'+this.month+'-0'+this.day;
-    }else if (this.day>9 && this.month<9){
-      this.fechaHoy= this.year+'-0'+this.month+'-'+this.day;
-      this.fechaMin=this.year2+'-0'+this.month+'-'+this.day;
-    }else{
-      this.fechaHoy= this.year+'-'+this.month+'-'+this.day;
-      this.fechaMin=this.year2+'-'+this.month+'-'+this.day;
+    if (this.day < 9 && this.month < 9) {
+      this.fechaHoy = this.year + '-0' + this.month + '-0' + this.day;
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
+      this.fechaMin = this.year2 + '-0' + this.month + '-0' + this.day;
+    } else if (this.day < 9 && this.month > 9) {
+      this.fechaHoy = this.year + '-' + this.month + '-0' + this.day;
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-0' + this.day;
+      this.fechaMin = this.year2 + '-' + this.month + '-0' + this.day;
+    } else if (this.day > 9 && this.month < 9) {
+      this.fechaHoy = this.year + '-0' + this.month + '-' + this.day;
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-' + this.day;
+      this.fechaMin = this.year2 + '-0' + this.month + '-' + this.day;
+    } else {
+      this.fechaHoy = this.year + '-' + this.month + '-' + this.day;
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
+      this.fechaMin = this.year2 + '-' + this.month + '-' + this.day;
     }
 
-  
-  
-    
-    
-   //-----------bloquar fecha fin-----------------------
+    if(this.hora<9 && this.minuto<9){
+      this.horaHoyCorrecta= "0"+this.hora+":0"+this.minuto;
+    }else if(this.hora<9 && this.minuto>9){
+      this.horaHoyCorrecta= "0"+this.hora+":"+this.minuto;
+    }else if(this.hora>9 && this.minuto<9){
+      this.horaHoyCorrecta= this.hora+":0"+this.minuto;
+    }else{
+      this.horaHoyCorrecta= this.hora+":"+this.minuto;
+    }
 
+    //-----------bloquar fecha fin-----------------------
   }
 
   ngOnInit(): void {
- 
     this.obtenerUsuario();
     if (this.idUM.length > 5) {
       this.esEditar();
+      
     }
-
-    }
-  
+  }
 
   passFormatoCorrecto(password: string) {
     //6 a 45 caracteres
@@ -150,12 +163,12 @@ export class RegistroPacienteComponent implements OnInit {
     let municipio = this.pacienteForm.get('municipio')?.value;
 
     let tipoOperacion = 'Registrar Paciente';
-    let fechaRegistro = '02-04-2012';
-    let hora = '12:12;'
-    let usuario_idUsuario = this.idUM;
-   
-    
-
+    if(this.idUM.length>5){
+      tipoOperacion = "Editar Paciente";
+    }
+    let fechaRegistro = this.fechaHoyCorrecta+"";
+    let hora = this.horaHoyCorrecta+"";
+    let usuario_idUsuario = this.id;
 
     const DOMICILIO: Domicilio = {
       calle: calle,
@@ -225,11 +238,13 @@ export class RegistroPacienteComponent implements OnInit {
 
     if (this.passFormatoCorrecto(password)) {
       //Calcular edad
-      var fecha_nacimiento=fechaNac;
+      var fecha_nacimiento = fechaNac;
       var hoy = new Date();
       var cumpleanos = new Date(fecha_nacimiento);
       var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-      if(edad>=18){
+      if (edad >= 18) {
+        //guardamos operacion
+        this.guardarPersonaOperacion(OPERACION);
         if (this.idUM.length > 5) {
           //editamos
           this._usuarioService.editarUsuario(this.idUM, USUARIO).subscribe(
@@ -254,30 +269,32 @@ export class RegistroPacienteComponent implements OnInit {
               'Paciente registrado!'
             );
           });
-          //guardamos operacion
-          this.guardarPersonaOperacion(OPERACION);
+          
         }
         this.router.navigate(['/paciente_lista/' + this.id]);
-      }else{ //else esMayorDeEdad
+      } else {
+        //else esMayorDeEdad
         this.toastr.warning(
           'Debe ser Mayor de edad',
-            'Mayoria de edad no cumplida!',{
-              timeOut: 8000,
-              progressBar:true
-            });
+          'Mayoria de edad no cumplida!',
+          {
+            timeOut: 8000,
+            progressBar: true,
+          }
+        );
       }
-    
-    }else{
+    } else {
       this.toastr.warning(
-      '*6 a 45 caracteres   '+
-      '*Al menos una mayuscula   '+
-      '*Al menos una minuscula   '+
-      '*Al menos un número   ',
-        'Formato incorrecto en contraseña!',{
+        '*6 a 45 caracteres   ' +
+          '*Al menos una mayuscula   ' +
+          '*Al menos una minuscula   ' +
+          '*Al menos un número   ',
+        'Formato incorrecto en contraseña!',
+        {
           timeOut: 8000,
-          progressBar:true
-        });
-      
+          progressBar: true,
+        }
+      );
     }
 
     //console.log(USUARIO);
@@ -295,12 +312,13 @@ export class RegistroPacienteComponent implements OnInit {
     });
   }
 
-  guardarPersonaOperacion(op:Operacion) {
+  guardarPersonaOperacion(op: Operacion) {
     this._operacionesService.guardarOperacion(op).subscribe((data) => {
       this.toastr.success(
-        'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
+        'Se ha guardado la Operacion con Exito!',
+        'Operacion Registrada!'
       );
-     // this.router.navigate(['/paciente_lista/' + this.id]);
+      // this.router.navigate(['/paciente_lista/' + this.id]);
     });
   }
 
@@ -318,6 +336,7 @@ export class RegistroPacienteComponent implements OnInit {
   esEditar() {
     if (this.idUM !== null) {
       this.titulo = 'Editar Paciente';
+      
       //console.log("Bandera 1");
       this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
         this.pacienteForm.setValue({
@@ -360,8 +379,12 @@ export class RegistroPacienteComponent implements OnInit {
         break;
     }
   }
+  
+  irLogin(){
+    this.router.navigate(['/terapeuta_login'])
+  }
 
-
-}//Class RegistroPacienteComponent
-
-
+  irAtras(){
+    this.router.navigate(['/paciente_lista/'+this.id]);
+  }
+} //Class RegistroPacienteComponent

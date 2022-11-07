@@ -10,11 +10,21 @@
 
 <body>
   <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
-    <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
-        Digital [Administrador] - </a><button data-bs-toggle="collapse" class="navbar-toggler"
+    <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()" style="cursor: pointer;">Expediente Clínico
+        Digital [Administrador] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
         data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
           class="navbar-toggler-icon"></span></button>
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+          <div class="collapse navbar-collapse text-end" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" routerLink="/principal">Principal</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/conocenos">Conócenos</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/transparencia">Transparencia</a></li>
+              <li class="nav-item"><a class="nav-link" (click)="irInicio()" style="cursor: pointer;">Regresar</a></li>
+            </ul>
+          </div>
+
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 1%">
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,7 +33,7 @@
         </div>
 
         <div class="text-end">
-          <button type="button" class="btn btn-danger">Cerrar sesión</button>
+          <button type="button" class="btn btn-danger" (click)="irLogin()">Cerrar sesión</button>
         </div>
       </div>
     </div>
@@ -38,29 +48,31 @@
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Buscar operación" aria-label="Search">
             <button class="btn btn-outline-success me-5" type="submit">Buscar<i class="fa-solid fa-magnifying-glass"></i></button>
-            <button class="btn btn-secondary btn-sg">Volver<i class="fa-solid fa-arrow-left"></i></button>
+            <button (click)="irInicio()" class="btn btn-secondary btn-sg"  >Volver<i class="fa-solid fa-arrow-left"></i></button>
           </form>
         </div> 
       </div>
       
-      <table class="table" style="text-align:center">
+      <table class="table" style="text-align:center" *ngIf="listOperacionesNombreU.length > 0">
         <thead>
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col">Echo por</th>
+            <th scope="col">Tipo</th>
             <th scope="col">Fecha</th>
             <th scope="col">Hora</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Usuario</th>
           </tr>
         </thead>
         <tbody>
-
-          <div>
- 
-          </div>
+          <tr *ngFor="let operacion of listOperacionesNombreU" >
+            <td>{{operacion.usuario_idUsuario}}</td>
+            <td>{{operacion.tipoOperacion}}</td>
+            <td>{{operacion.fechaRegistro}}</td>
+            <td>{{operacion.hora}}</td>
+          </tr>
         </tbody>
       </table>
-      <h5 style="text-align: center; margin-top:10px">No hay operaciones para mostrar.</h5>
+      <h5 style="text-align: center; margin-top:10px" *ngIf="listOperaciones.length == 0">No hay operaciones para mostrar.</h5>
+
 
     </div>
   </div>
