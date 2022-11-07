@@ -16,11 +16,21 @@
 
 <body>
   <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
-    <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+    <div class="container-fluid"><a class="navbar-brand" (click)="irPrincipal()" style="cursor: pointer;">Expediente
+        Clínico
         Digital [Paciente] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
         data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
           class="navbar-toggler-icon"></span></button>
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+      <div class="collapse navbar-collapse text-end" id="navcol-1">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" routerLink="/principal">Principal</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/conocenos">Conócenos</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/transparencia">Transparencia</a></li>
+        </ul>
+      </div>
+
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 1%">
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,7 +84,7 @@
       <div class="col-lg-6 mb-9 mb-lg-2" style="background-color: rgb(255, 255, 255);">
         <h3>Mis Consultas</h3>
         <br>
-        <img class="mb-10" src="assets/img/cuaderno.png" style="width: 12rem">
+        <img class="mb-10" src="assets/img/cuaderno.png" style="width: 12rem; cursor:pointer" (click)="irConsultas()">
       </div>
     </div>
   </div>

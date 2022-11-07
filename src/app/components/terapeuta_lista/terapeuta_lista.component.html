@@ -10,11 +10,21 @@
 
 <body>
   <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
-    <div class="container-fluid"><a class="navbar-brand" routerLink="/principal">Expediente Clínico
+    <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()" style="cursor: pointer;">Expediente Clínico
         Digital [Administrador] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
         data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
           class="navbar-toggler-icon"></span></button>
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+          <div class="collapse navbar-collapse text-end" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" routerLink="/principal">Principal</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/conocenos">Conócenos</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="/transparencia">Transparencia</a></li>
+              <li class="nav-item"><a class="nav-link" (click)="irInicio()" style="cursor: pointer;">Regresar</a></li>
+            </ul>
+          </div>
+
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 1%">
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,7 +48,7 @@
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Buscar terapeuta" aria-label="Search">
             <button class="btn btn-outline-success me-5" type="submit">Buscar<i class="fa-solid fa-magnifying-glass"></i></button>
-            <button (click)="irTerapeutaNuevo()" type="submit" class="btn btn-success btn-sg me-2">Nuevo<i class="fa-solid fa-plus"></i></button>
+            <button (click)="irNuevoTerapeuta()" type="submit" class="btn btn-success btn-sg me-2">Nuevo<i class="fa-solid fa-plus"></i></button>
             <button (click)="irInicio()" class="btn btn-secondary btn-sg">Volver<i class="fa-solid fa-arrow-left"></i></button>
           </form>
         </div> 
@@ -66,6 +76,7 @@
             <td>{{usuario.activo}}</td>
             <i (click)="irModificarTerapeuta(usuario._id)"  class="fas fa-edit text-primary"></i>
             <i class="fas fa-lock text-danger"></i>
+            <i class="fas fa-solid fa-eye"></i>
           </tr>
         </tbody>
       </table>

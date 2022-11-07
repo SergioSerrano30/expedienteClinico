@@ -13,10 +13,11 @@ import { TerapeutaComponent } from './components/terapeuta_inicio/terapeuta_inic
 import { InicioAdminTComponent } from './components/terapeuta_lista/terapeuta_lista.component';
 import { RegistroDComponent } from './components/terapeuta_registro/terapeuta_registro.component';
 import { InicioAdminComponent } from './components/admin_inicio/admin_inicio.component';
-import { NuevaHistoriaComponent } from './components/nueva-historia/nueva-historia.component';
+import { NuevaHistoriaComponent } from './components/historia_registro/historia_registro.component';
 import { ConsultaRegistrarComponent } from './components/consulta-registrar/consulta-registrar.component';
-import { AdminOperacionesComponent } from './components/admin-operaciones/admin-operaciones.component';
-
+import { AdminOperacionesComponent } from './components/admin_operaciones/admin_operaciones.component';
+import { PacienteConsultasComponent } from './components/paciente-consultas/paciente-consultas.component';
+import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/terapeuta-consultas.component';
 
 const routes: Routes = [
   // Principal:
@@ -30,12 +31,12 @@ const routes: Routes = [
   { path: 'paciente_lista/:id', component: TInicioComponent },
   { path: 'paciente_registro/:id', component: RegistroPacienteComponent },
   { path: 'paciente_editar/:id/:idUM', component: RegistroPacienteComponent },
+  { path: 'paciente_consultas/:id', component: PacienteConsultasComponent },
 
   // Terapeuta:
   { path: 'terapeuta_login', component: LoginDComponent },
   { path: 'terapeuta_inicio/:id', component: TerapeutaComponent },
-
-  { path: 'nueva_historia', component:NuevaHistoriaComponent},
+  { path: 'terapeuta_consultas', component: TerapeutaConsultasComponent },
 
   { path: 'terapeuta_lista/:id', component: InicioAdminTComponent },
   { path: 'terapeuta_registro/:id', component: RegistroDComponent },
@@ -47,9 +48,11 @@ const routes: Routes = [
 
   //Historia paciente
   { path: 'historia_registro', component:NuevaHistoriaComponent},
+  { path: 'historia_editar', component:NuevaHistoriaComponent},
 
   //Consulta paciente
   { path: 'consulta_registro', component:ConsultaRegistrarComponent},
+  { path: 'consulta_editar', component:ConsultaRegistrarComponent},
 
   //Ruta alterna
   { path: '**', redirectTo: 'terapeuta_login', pathMatch: 'full' },

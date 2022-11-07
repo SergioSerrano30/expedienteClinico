@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NuevaHistoriaComponent } from './nueva-historia.component';
+import { NuevaHistoriaComponent } from './historia_registro.component';
 
 describe('NuevaHistoriaComponent', () => {
   let component: NuevaHistoriaComponent;
