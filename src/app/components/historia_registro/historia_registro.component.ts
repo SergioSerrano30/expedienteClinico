@@ -194,10 +194,24 @@ export class NuevaHistoriaComponent implements OnInit {
     }
   }
 
-  irInicio(){
+  irInicio() {
+    let rol = this.usuario?.usuario_rol.desRol;
+    switch (rol) {
+      case 'Paciente':
+        this.router.navigate(['/paciente_inicio/' + this.id]);
+        break;
+      case 'Administrador':
+        this.router.navigate(['/admin_inicio/' + this.id]);
+        break;
+      case 'Terapeuta':
+        this.router.navigate(['/terapeuta_inicio/' + this.id]);
+        break;
+
+      default:
+        break;
+    }
   }
 
-<<<<<<< HEAD:src/app/components/nueva-historia/nueva-historia.component.ts
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
@@ -208,12 +222,10 @@ export class NuevaHistoriaComponent implements OnInit {
       });
     }
   }
-
-
-
-=======
   irLogin(){
-    
+    this.router.navigate(['/terapeuta_login'])
   }
->>>>>>> main:src/app/components/historia_registro/historia_registro.component.ts
+
+
+
 }
