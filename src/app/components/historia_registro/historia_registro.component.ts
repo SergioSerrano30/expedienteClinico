@@ -93,7 +93,7 @@ export class NuevaHistoriaComponent implements OnInit {
       let act = 'S';
       let idRol_PK = 3;
       let desRol = 'Paciente';
-
+      let problema = "problema X"
       let fechaNacimiento = this.historiaForm.get('fechaNacimiento')?.value;
       let peso = this.historiaForm.get('peso')?.value;
       let estatura = this.historiaForm.get('estatura')?.value;
@@ -123,6 +123,7 @@ export class NuevaHistoriaComponent implements OnInit {
 
       //Crear Objetos
       const HISTORIA: Historia = {
+        problema: problema,
         fechaRegistro: fecharegistroString,
         fechaNacimiento: fechaNacimiento,
         edad: edad.toString(),
@@ -169,7 +170,7 @@ export class NuevaHistoriaComponent implements OnInit {
   esEditar() {
     if (this.idUM !== null) {//Recupera la informacion y la manda al formulario
       this.titulo = 'Editar Paciente';
-      this._historiaServices.obtenerHistoria(this.idUM).subscribe((data) => {
+      this._historiaServices.obtenerHistoria("Historia",this.idUM).subscribe((data) => {
         this.historiaForm.setValue({
           fechaRegistro: data.fecharegistroString,
           fechaNacimiento: data.fechaNacimiento,

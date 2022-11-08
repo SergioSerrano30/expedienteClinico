@@ -19,7 +19,7 @@ import { OperacionService } from 'src/app/services/operacion.service';
 })
 export class RegistroPacienteComponent implements OnInit {
   pacienteForm: FormGroup;
-
+ 
   titulo = 'Registrar Paciente';
   id: string;
   idUM: string;

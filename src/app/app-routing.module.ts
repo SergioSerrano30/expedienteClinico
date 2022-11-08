@@ -50,7 +50,7 @@ const routes: Routes = [
   //Historia paciente
   { path: 'historia_registro', component:NuevaHistoriaComponent},
   { path: 'historia_editar', component:NuevaHistoriaComponent},
-  { path: 'historia_lista', component:HistoriaListaComponent},
+  { path: 'historia_lista/:id/:idPAC', component:HistoriaListaComponent},
 
   //Consulta paciente
   { path: 'consulta_registro', component:ConsultaRegistrarComponent},
