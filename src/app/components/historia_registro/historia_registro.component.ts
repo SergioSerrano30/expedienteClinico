@@ -114,6 +114,7 @@ export class NuevaHistoriaComponent implements OnInit {
       let fecharegistroString= fechaRegistro.toString();
       let hora = '12:12';
       let usuario_idUsuario = this.idUM;
+      let usuarios_idPaciente = "xxx"
 
        //Calcular Edad con cumpleaños
       var fecha_nacimiento='2000-11-11';
@@ -141,7 +142,7 @@ export class NuevaHistoriaComponent implements OnInit {
         observaciones: observaciones,
         numConsultasTotales: numConsultasTotales,
         usuario_idUsuario: usuario_idUsuario,
-        persona_idPersona: usuario_idUsuario,
+        usuarios_idPaciente: usuarios_idPaciente,
       }
 
       const OPERACION: Operacion = {

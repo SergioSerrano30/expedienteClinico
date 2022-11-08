@@ -11,7 +11,7 @@
 <body style="padding-bottom:2%;">
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
         <div class="container-fluid"><a class="navbar-brand" style="cursor: pointer;">Expediente Clínico
-                Digital [] - </a><button data-bs-toggle="collapse" class="navbar-toggler"
+                Digital [{{rol}}] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
                 data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
 
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-danger">Cerrar sesión</button>
+                    <button type="button" class="btn btn-danger" (click)="irLogin()" >Cerrar sesión</button>
                 </div>
             </div>
         </div>
@@ -53,8 +53,8 @@
                             aria-label="Search" formControlName="nombre">
                         <button class="btn btn-outline-success me-5" type="submit">Buscar<i
                                 class="fa-solid fa-magnifying-glass"></i></button>
-                        <button class="btn btn-success btn-sg me-2">Añadir<i class="fa-solid fa-plus"></i></button>
-                        <button class="btn btn-secondary btn-sg">Volver<i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="btn btn-success btn-sg me-2" (click)="irNuevaHistoria()" >Añadir<i class="fa-solid fa-plus"></i></button>
+                        <button class="btn btn-secondary btn-sg" (click)="irPacienteLista()" >Volver<i class="fa-solid fa-arrow-left"></i></button>
                     </form>
                 </div>
 
@@ -88,10 +88,11 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">Peso: {{historia.peso}}</li>
                                     <li class="list-group-item">Estatura: {{historia.estatura}}</li>
-                                    <li class="list-group-item">Observaciones:</li>
                                 </ul>
                                 <br>
-                                <a href="#" class="btn btn-primary">Consultas</a>
+                                <a class="btn btn-primary" (click)="irConsultas(historia._id)" >Consultas</a>
+                                <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)" ><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                
                             </div>
                         </div>
                       </div>
@@ -130,7 +131,7 @@
             </div>-->
 
             </div>
-<!--  -->
+
         </div>
     </div>
 </div>
