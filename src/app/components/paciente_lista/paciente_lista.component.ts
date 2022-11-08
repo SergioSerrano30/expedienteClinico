@@ -91,7 +91,7 @@ export class TInicioComponent implements OnInit {
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
       }); 
-    }
+    } 
   }
   obtenerPacientePorNombre(){
     let nombre = this.busquedaForm.get('nombre')?.value
@@ -112,6 +112,9 @@ export class TInicioComponent implements OnInit {
   }
   irModificarPaciente(idUM:string|undefined){
     this.router.navigate(['/paciente_editar/'+this.id+'/'+idUM]);
+  }
+  irHistoriaPaciente(idUM:string|undefined){
+    this.router.navigate(['/historia_lista/'+this.id+'/'+idUM]);
   }
   irInicio(){
     let rol = this.usuario?.usuario_rol.desRol;

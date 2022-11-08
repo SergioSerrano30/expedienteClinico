@@ -48,7 +48,7 @@
                 <br>
                 <span class="col titulo"><b>Historias</b></span>
                 <div class="col container-fluid my-3">
-                    <form class="d-flex">
+                    <form class="d-flex" [formGroup]="busquedaGroup">
                         <input #word class="form-control me-2" type="search" placeholder="Buscar historia"
                             aria-label="Search" formControlName="nombre">
                         <button class="btn btn-outline-success me-5" type="submit">Buscar<i
@@ -79,17 +79,15 @@
 
                 <div class="container">
                     <div class="row">
-                      <div class="col-md-5 mx-auto">
+                      <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria">
                         <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;">
-                            <div class="card-header">Fecha:</div>
+                            <div class="card-header">Fecha: {{historia.fechaRegistro}}</div>
                             <div class="card-body text-primary">
-                                <h5 class="card-title">Problemática</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                    of the card's
-                                    content.</p>
+                                <h5 class="card-title">{{historia.problema}}</h5>
+                                <p class="card-text">{{historia.observaciones}}</p>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Peso:</li>
-                                    <li class="list-group-item">Estatura:</li>
+                                    <li class="list-group-item">Peso: {{historia.peso}}</li>
+                                    <li class="list-group-item">Estatura: {{historia.estatura}}</li>
                                     <li class="list-group-item">Observaciones:</li>
                                 </ul>
                                 <br>
@@ -99,7 +97,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="container">
+                  <!-- <div class="container">
                     <div class="row">
                       <div class="col-md-5 mx-auto">
                         <div class="card col border-success mb-3 my-3" style="max-width: 30rem;">
@@ -119,7 +117,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                 <!--<div class="card border-success mb-3" style="max-width: 18rem;">
                 <div class="card-header">Header</div>
@@ -132,7 +130,7 @@
             </div>-->
 
             </div>
-
+<!--  -->
         </div>
     </div>
 </div>
