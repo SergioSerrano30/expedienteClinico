@@ -64,13 +64,13 @@ export class AdminOperacionesComponent implements OnInit {
             this.listOperaciones =data;
             this.listOperacionesNombreU= [];
             this.listOperaciones.forEach(ops =>{
-              this._usuarioService.obtenerUsuario(ops.usuario_idUsuario).subscribe((data) => {
+              this._usuarioService.obtenerUsuario(ops.usuarios_idUsuario).subscribe((data) => {
                 //console.log(data);
                 const OPERACION:Operacion={
                   fechaRegistro: ops.fechaRegistro,
                   hora: ops.hora,
                   tipoOperacion: ops.tipoOperacion,
-                  usuario_idUsuario: data.usuario_persona.nombre
+                  usuarios_idUsuario: data.usuario_persona.nombre
                 }
                 this.listOperacionesNombreU.push(OPERACION)
                 console.log(OPERACION)

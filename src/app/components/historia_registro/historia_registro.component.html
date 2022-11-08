@@ -51,7 +51,7 @@
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;">Registrar Historia</h2>
+            <h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>
             <br>
 
             <div class="etiquetas">
@@ -99,10 +99,11 @@
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="fechaNac" type="date" min="1900-04-01" max="2021-12-31"
-                                value="aaaa-mm-dd" class="form-control" id="txtFecha" placeholder="Fecha de nacimiento"
-                                required>
-                            <label for="fechaNac">Fecha de nacimiento</label>
+
+                            <input formControlName="fechaNacimiento" type="date" min="1900-04-01" max="2021-12-31" value="aaaa-mm-dd" class="form-control" id="txtFecha"
+                                placeholder="Fecha de nacimiento"  required>
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
+
                         </div>
                     </div>
                     <div class="col-md">
@@ -140,28 +141,33 @@
                     <b>Contacto de emergencia:</b>
                 </div>
 
-                <div class="form-floating my-2">
-                    <input formControlName="emenombre" type="text" class="form-control" id="txtemeNombre"
-                        placeholder="EmergenciaNombre(s)" required>
-                    <label for="nombre">Nombre(s)</label>
-                </div>
+                   <div class="form-floating my-2">
+                    <input formControlName="emeNombre" type="text" class="form-control" id="emeNombre" placeholder="emeNombre"
+                        required>
+                    <label for="emeNombre">Nombre(s)</label>
+                    </div>
+
 
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="parentesco" type="text" class="form-control" id="parentesco"
+                            <input formControlName="emeParentesco" type="text" class="form-control" id="parentesco"
                                 placeholder="parentesco" required>
                             <label for="parentesco">Parentesco</label>
                         </div>
                     </div>
 
-                </div>
-                <div class="row g-4">
-                    <div class="col-md">
-                        <div class="form-floating my-2">
-                            <input formControlName="celular" type="text" class="form-control" id="celular"
-                                placeholder="celular" required>
-                            <label for="celular">Número de celular</label>
+                    
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md">
+                            <div class="form-floating my-2">
+                                <input formControlName="emeCelular" type="text" class="form-control" id="celular"
+                                    placeholder="celular" required>
+                                <label for="celular">Número de celular</label>
+                            </div>
+                        </div>
+
                         </div>
                     </div>
                 </div>
@@ -191,11 +197,13 @@
                     </div>
                 </div>
 
+
                 <div class="row g-4" style="align-items:center">
                     <div class="col-3">
                         <div class="form-check form-switch text-center">
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Cirugias?</label>
+
                         </div>
                     </div>
                     <div class="col-9">
@@ -206,6 +214,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <div class="row g-4" style="align-items:center">
                     <div class="col-3">
@@ -223,12 +232,14 @@
                     </div>
                 </div>
 
+
                 <div class="row g-4" style="align-items:center">
                     <div class="col-3">
                         <div class="form-check form-switch text-center">
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Enfermedades
                                 congenitas?</label>
+
                         </div>
                     </div>
                     <div class="col-9">
@@ -238,6 +249,7 @@
                             <label for="enf_Congenitas">Enfermedades congenitas</label>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row g-4" style="align-items:center">
@@ -266,6 +278,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
@@ -275,6 +288,7 @@
                             <label for="observaciones">Observaciones</label>
                         </div>
                     </div>
+
                 </div>
 
                 <br>

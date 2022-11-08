@@ -20,16 +20,24 @@ export class NuevaHistoriaComponent implements OnInit {
   titulo = 'Registrar Nueva Historia';
   id: string;
   idUM: string;
+  idHM:string;
   usuario: Usuario | null;
   nombre: string;
+
   today = new Date();
   day = this.today.getDate();
   month = this.today.getMonth() + 1;
-  year = this.today.getFullYear()-18;
-  year2=this.year-100;
+  año = this.today.getFullYear();
+  year = this.today.getFullYear() - 18;
+  year2 = this.year - 100;
   fechaHoy:String;
   fechaMin:String;
 
+  hora = this.today.getHours();
+  minuto = this.today.getMinutes();
+
+  fechaHoyCorrecta: String;
+  horaHoyCorrecta: String;
   
 
   constructor(
@@ -39,18 +47,17 @@ export class NuevaHistoriaComponent implements OnInit {
     private _historiaServices: HistoriaService,
     private _usuarioService: UsuarioService,
     private _operacionesService: OperacionService,
-    private aRouter: ActivatedRoute,
+    private aRouter: ActivatedRoute
   ) { 
     this.historiaForm = this.fb.group({
       nombre: ['', Validators.required],
       apPaterno: ['', Validators.required],
       apMaterno: ['', Validators.required],
-      fechaNac: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
       sexo: ['', Validators.required],
-      edad: ['', Validators.required],
       peso: ['', Validators.required],
       estatura: ['', Validators.required],
-      eme_Nombre: ['', Validators.required],
+      emeNombre: ['', Validators.required],
       emeParentesco: ['', Validators.required],
       emeCelular: ['', Validators.required],
       alergias: ['', Validators.required],
@@ -61,30 +68,48 @@ export class NuevaHistoriaComponent implements OnInit {
       observaciones: ['', Validators.required],
       otros: ['', Validators.required],
       numConsultasTotales: ['', Validators.required],
-     })
+      problema: ['', Validators.required],
+     });
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idUM = this.aRouter.snapshot.paramMap.get('idUM') + '';
+    this.idHM = this.aRouter.snapshot.paramMap.get('idHM') + '';
     this.usuario = null;
     this.nombre = '';
 
-    if(this.day<9 && this.month<9){
-      this.fechaHoy= this.year+'-0'+this.month+'-0'+this.day;
-      this.fechaMin=this.year2+'-0'+this.month+'-0'+this.day;
-    }else if(this.day<9 && this.month>9){
-      this.fechaHoy= this.year+'-'+this.month+'-0'+this.day;
-      this.fechaMin=this.year2+'-'+this.month+'-0'+this.day;
-    }else if (this.day>9 && this.month<9){
-      this.fechaHoy= this.year+'-0'+this.month+'-'+this.day;
-      this.fechaMin=this.year2+'-0'+this.month+'-'+this.day;
-    }else{
-      this.fechaHoy= this.year+'-'+this.month+'-'+this.day;
-      this.fechaMin=this.year2+'-'+this.month+'-'+this.day;
+    //Bloquear Fecha---------
+    if (this.day < 9 && this.month < 9) {
+      this.fechaHoy = this.year + '-0' + this.month + '-0' + this.day;
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
+      this.fechaMin = this.year2 + '-0' + this.month + '-0' + this.day;
+    } else if (this.day < 9 && this.month > 9) {
+      this.fechaHoy = this.year + '-' + this.month + '-0' + this.day;
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-0' + this.day;
+      this.fechaMin = this.year2 + '-' + this.month + '-0' + this.day;
+    } else if (this.day > 9 && this.month < 9) {
+      this.fechaHoy = this.year + '-0' + this.month + '-' + this.day;
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-' + this.day;
+      this.fechaMin = this.year2 + '-0' + this.month + '-' + this.day;
+    } else {
+      this.fechaHoy = this.year + '-' + this.month + '-' + this.day;
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
+      this.fechaMin = this.year2 + '-' + this.month + '-' + this.day;
     }
+
+    if(this.hora<9 && this.minuto<9){
+      this.horaHoyCorrecta= "0"+this.hora+":0"+this.minuto;
+    }else if(this.hora<9 && this.minuto>9){
+      this.horaHoyCorrecta= "0"+this.hora+":"+this.minuto;
+    }else if(this.hora>9 && this.minuto<9){
+      this.horaHoyCorrecta= this.hora+":0"+this.minuto;
+    }else{
+      this.horaHoyCorrecta= this.hora+":"+this.minuto;
+    }
+    //-----------bloquar fecha fin-----------------------
   }
 
   ngOnInit(): void {
     this.obtenerUsuario();
-    if (this.idUM.length > 5) {
+    if (this.idHM.length > 5) {
       this.esEditar();
     }
   }
@@ -108,26 +133,34 @@ export class NuevaHistoriaComponent implements OnInit {
       let otros = this.historiaForm.get('otros')?.value;
       let observaciones = this.historiaForm.get('observaciones')?.value;
       let numConsultasTotales = this.historiaForm.get('numConsultasTotales')?.value;
+      let problema = this.historiaForm.get('problema')?.value;
   
       let tipoOperacion = 'Registrar Nueva Historia';
       let fechaRegistro = this.today;
       let fecharegistroString= fechaRegistro.toString();
       let hora = '12:12';
-      let usuario_idUsuario = this.idUM;
-      let usuarios_idPaciente = "xxx"
+
+      let usuarios_idTerapeuta = this.id;
+      
+      // alert("id :"+this.id);
+      // alert("idUM :"+this.idUM);
+      let usuarios_idPaciente=this.idUM;
+      let estatus="este es el status";
+
 
        //Calcular Edad con cumpleaños
-      var fecha_nacimiento='2000-11-11';
-      var hoy = new Date();
-      var cumpleanos = new Date(fecha_nacimiento);
-      var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+      // var fecha_nacimiento='2000-11-11';
+      // var hoy = new Date();
+      // var cumpleanos = new Date(fecha_nacimiento);
+      // var edad = hoy.getFullYear() - cumpleanos.getFullYear();
 
       //Crear Objetos
       const HISTORIA: Historia = {
-        problema: problema,
+        problema:problema,
+
         fechaRegistro: fecharegistroString,
         fechaNacimiento: fechaNacimiento,
-        edad: edad.toString(),
+        //edad: edad.toString(),
         peso: peso,
         estatura: estatura,
         emeNombre: emeNombre,
@@ -141,7 +174,9 @@ export class NuevaHistoriaComponent implements OnInit {
         otros: otros,
         observaciones: observaciones,
         numConsultasTotales: numConsultasTotales,
-        usuario_idUsuario: usuario_idUsuario,
+        estatus:estatus,
+        usuarios_idTerapeuta: usuarios_idTerapeuta,
+
         usuarios_idPaciente: usuarios_idPaciente,
       }
 
@@ -149,26 +184,80 @@ export class NuevaHistoriaComponent implements OnInit {
         fechaRegistro: fecharegistroString,
         hora: hora,
         tipoOperacion: tipoOperacion,
-        usuario_idUsuario: usuario_idUsuario,
+        usuarios_idUsuario: usuarios_idTerapeuta,
       };
 
      var guardado=false;
-      //Guardar
-            this._historiaServices.guardarHistoria(HISTORIA).subscribe((data) => {
-            this.toastr.success(
-              'Se ha guardado La historia  con éxito!',
-              'Historia registrada!');
-              guardado=true;
-            });
-        //Guardar Operacion
-          this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
-            this.toastr.success(
-              'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
-            );
+     if (this.idHM.length > 5) {
+        //editamos
+       this._historiaServices.editarHistoria(this.idHM, HISTORIA).subscribe(
+        (data) => {
+          this.toastr.info(
+            'Historia modificado con éxito!',
+            'Historia Actualizada!'
+          );
+          //this.router.navigate(['/paciente_lista/' + this.id]);
+        },
+        (error) => {
+          console.log(error);
+          this.historiaForm.reset();
+        }
+      );
+     }else{
+        //Guardar
+        this._historiaServices.guardarHistoria(HISTORIA).subscribe((data) => {
+          this.toastr.success(
+            'Se ha guardado La historia  con éxito!',
+            'Historia registrada!');
+            guardado=true;
           });
+      //Guardar Operacion
+        this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
+          this.toastr.success(
+            'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
+          );
+        });
+     }
+      
   }
 
   esEditar() {
+
+    //alert("id->"+this.id+"  idUM->"+this.idUM+"  idHM->"+this.idHM); 
+         if (this.idHM !== null) {//Recupera la informacion y la manda al formulario
+          this.titulo = 'Editar Historia';
+
+          this._historiaServices.obtenerHistoria(this.idHM).subscribe((data) => {
+            // alert(data.emeCelular);
+            
+            // console.log(data.apPaterno);
+            // console.log(data.apMaterno);
+            // console.log(data.fechaNac);
+            // console.log(data.sexo);
+            console.log(data);
+            this.historiaForm.setValue({
+              nombre:"nombre",
+              apPaterno:"apPaterno",
+              apMaterno:"amaterno",
+              sexo:"sexo",
+              problema: data.problema,
+              //fechaRegistro: "2020-02-02",
+              fechaNacimiento:"2020-02-02",
+              peso: data.peso,
+              estatura: data.estatura,
+              emeNombre: data.emeNombre,
+              emeParentesco: data.emeParentesco,
+              emeCelular: data.emeCelular,
+              alergias: data.alergias,
+              cirugias: data.cirugias,
+              traumasFracturas: data.traumasFracturas,
+              enfCongenitas: data.enfCongenitas,
+              enfHereditarias: data.enfHereditarias,
+              otros: data.otros,
+              observaciones: data.observaciones,
+              numConsultasTotales: data.numConsultasTotales           
+
+/*
     if (this.idUM !== null) {//Recupera la informacion y la manda al formulario
       this.titulo = 'Editar Paciente';
       this._historiaServices.obtenerHistoria("Historia",this.idUM).subscribe((data) => {
@@ -191,9 +280,11 @@ export class NuevaHistoriaComponent implements OnInit {
           numConsultasTotales: data.numConsultasTotales,
           usuario_idUsuario: data.usuario_idUsuario,
           persona_idPersona: data.usuario_idUsuario,
+          
+
         });
       });
-    }
+     }*/
   }
 
   irInicio() {
@@ -224,10 +315,46 @@ export class NuevaHistoriaComponent implements OnInit {
       });
     }
   }
+
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
   }
 
+obtenerDatos(){
+  // this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
+  //   this.historiaForm.setValue({
+  //     nombre: data.usuario_persona.nombre,
+  //     apPaterno: data.usuario_persona.apMaterno
+  //   });
+  // });
 
+  this._historiaServices.obtenerHistoria(this.idHM).subscribe((data) => {
+    this.historiaForm.setValue({
+      problema:data.problema,
+      //edad: data.edad,
+      nombre:"nombre",
+
+      peso: data.peso,
+      estatura: data.estatura,
+      emeNombre: data.emeNombre,
+      emeParentesco: data.emeParentesco,
+      emeCelular: data.emeCelular,
+      alergias: data.alergias,
+      cirugias: data.cirugias,
+      traumasFracturas: data.traumasFracturas,
+      enfCongenitas: data.enfCongenitas,
+      enfHereditarias: data.enfHereditarias,
+      otros: data.otros,
+      observaciones: data.observaciones,
+      numConsultasTotales: data.numConsultasTotales,
+      // status:data.status,
+      // usuario_idUsuario: data.usuario_idUsuario,
+      // persona_idPersona: data.usuario_idUsuario,
+    });
+  });
+
+
+
+}
 
 }

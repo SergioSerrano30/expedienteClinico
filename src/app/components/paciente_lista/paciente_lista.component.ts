@@ -110,9 +110,11 @@ export class TInicioComponent implements OnInit {
   irNuevoPaciente(){
     this.router.navigate(['/paciente_registro/'+this.id+'/']);
   }
+
   irModificarPaciente(idUM:string|undefined){
     this.router.navigate(['/paciente_editar/'+this.id+'/'+idUM]);
   }
+
   irHistoriaPaciente(idUM:string|undefined){
     this.router.navigate(['/historia_lista/'+this.id+'/'+idUM]);
   }
@@ -133,8 +135,17 @@ export class TInicioComponent implements OnInit {
         break;
     } 
   }
+
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
+  }
+
+  // irHistoriaRegistro(){
+  //   this.router.navigate(['/historia_registro/'+this.id+'/'+idUM]);
+  //   //this.router.navigate(['/historia_registro/' + this.id])
+  // }
+  irHistoriaRegistro(idUM:string|undefined){
+    this.router.navigate(['/historia_registro/'+this.id+'/'+idUM]);
   }
 
 }

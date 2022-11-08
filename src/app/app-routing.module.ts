@@ -37,7 +37,7 @@ const routes: Routes = [
   // Terapeuta:
   { path: 'terapeuta_login', component: LoginDComponent },
   { path: 'terapeuta_inicio/:id', component: TerapeutaComponent },
-  { path: 'terapeuta_consultas', component: TerapeutaConsultasComponent },
+  { path: 'terapeuta_consultas/:id', component: TerapeutaConsultasComponent },
 
   { path: 'terapeuta_lista/:id', component: InicioAdminTComponent },
   { path: 'terapeuta_registro/:id', component: RegistroDComponent },
@@ -48,6 +48,7 @@ const routes: Routes = [
   { path: 'admin_operaciones/:id', component: AdminOperacionesComponent },
 
   //Historia paciente
+
   { path: 'historia_registro/:id/:idPAC', component:NuevaHistoriaComponent},
   { path: 'historia_editar/:id/:idPAC/:idHM', component:NuevaHistoriaComponent},
   { path: 'historia_lista/:id/:idPAC', component:HistoriaListaComponent},
