@@ -28,6 +28,7 @@ import { ConsultaRegistrarComponent } from './components/consulta-registrar/cons
 import { AdminOperacionesComponent } from './components/admin_operaciones/admin_operaciones.component';
 import { PacienteConsultasComponent } from './components/paciente-consultas/paciente-consultas.component';
 import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/terapeuta-consultas.component';
+import { HistoriaListaComponent } from './components/historia-lista/historia-lista.component';
 
 
 
@@ -53,6 +54,7 @@ import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/te
 
     PacienteConsultasComponent,
     TerapeutaConsultasComponent,
+    HistoriaListaComponent,
 
   
   ],

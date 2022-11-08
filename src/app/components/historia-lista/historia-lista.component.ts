@@ -1,26 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Consulta } from 'src/app/models/consulta';
 import { Historia } from 'src/app/models/historia';
 import { Usuario } from 'src/app/models/usuario';
-import { ConsultaService } from 'src/app/services/consulta.service';
 import { HistoriaService } from 'src/app/services/historia.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-paciente-consultas',
-  templateUrl: './paciente-consultas.component.html',
-  styleUrls: ['./paciente-consultas.component.css']
+  selector: 'app-historia-lista',
+  templateUrl: './historia-lista.component.html',
+  styleUrls: ['./historia-lista.component.css'],
 })
-export class PacienteConsultasComponent implements OnInit {
-  consultaGroup: FormGroup;
+export class HistoriaListaComponent implements OnInit {
+  historiaGroup: FormGroup;
   busquedaGroup: FormGroup;
-  listConsulta: Consulta[] = [];
+  listHistoria: Historia[] = [];
   id: string;
-  idH: string;
+  idPAC: string;
   usuario: Usuario | null;
-  historia: Historia | null;
   nombre: string;
   rol: string;
 
@@ -33,24 +30,21 @@ export class PacienteConsultasComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private _consultaService: ConsultaService,
-    private _usuarioService: UsuarioService,
     private _historiaService: HistoriaService,
+    private _usuarioService: UsuarioService,
     private aRouter: ActivatedRoute
-  ) { 
-    this.id = this.aRouter.snapshot.paramMap.get('id') + '';
-    this.idH = this.aRouter.snapshot.paramMap.get('idH') + '';
-    this.usuario = null;
-    this.historia = null;
-    this.nombre = '';
-    this.rol = ''
-
+  ) {
     this.busquedaGroup = fb.group({
       nombre: [''],
     });
-    this.consultaGroup = fb.group({
+    this.historiaGroup = fb.group({
       problema: [''],
     });
+    this.id = this.aRouter.snapshot.paramMap.get('id') + '';
+    this.idPAC = this.aRouter.snapshot.paramMap.get('idPAC') + '';
+    this.usuario = null;
+    this.nombre = '';
+    this.rol = ''
 
     if (this.day < 9 && this.month < 9) {
       this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
@@ -65,16 +59,15 @@ export class PacienteConsultasComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario()
-    this.obtenerHistoria()
-    this.obtenerConsultas()
+    this.obtenerHistoriasPaciente()
   }
 
-  obtenerConsultas() {
-    this._consultaService
-      .obtenerConsulta('Historia', this.idH)
+  obtenerHistoriasPaciente() {
+    this._historiaService
+      .obtenerHistoria('Paciente', this.idPAC)
       .subscribe((data) => {
-        this.listConsulta = data;
-        console.log(this.listConsulta)
+        this.listHistoria = data;
+        console.log(this.listHistoria)
       });
   }
   obtenerUsuario() {
@@ -88,26 +81,24 @@ export class PacienteConsultasComponent implements OnInit {
       }); 
     } 
   }
-  obtenerHistoria(){
-    this._historiaService.obtenerHistoria("Historia",this.idH).subscribe((data) => {
-      this.historia = data;
-      console.log(this.historia);
-      console.log("->"+this.historia?.usuarios_idPaciente);
-    })
+
+  irNuevaHistoria(){
+    this.router.navigate(['/historia_registro/'+this.id+'/'+this.idPAC]);
+  }
+  irModificarHistoria(idHM: string| undefined){
+    this.router.navigate(['/historia_editar/'+this.id+'/'+this.idPAC+"/"+idHM]);
+  }
+
+  irConsultas(idH: string| undefined){
+    this.router.navigate(['/paciente_consultas/'+this.id+'/'+idH]);
   }
  
-  irNuevaConsulta(){
-    this.router.navigate(['/consulta_registro/'+this.id+'/'+this.idH]);
-  }
-  irModificarConsulta(idCM: string| undefined){
-    this.router.navigate(['/historia_editar/'+this.id+'/'+this.idH+"/"+idCM]);
-  }
- 
-  irHistoriaLista(){
-    this.router.navigate(['/historia_lista/'+this.id+"/"+this.historia?.usuarios_idPaciente]);
+  irPacienteLista(){
+    this.router.navigate(['/paciente_lista/'+this.id]);
   }
 
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
   }
+
 }

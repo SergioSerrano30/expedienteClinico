@@ -118,7 +118,7 @@ export class NuevaHistoriaComponent implements OnInit {
       let act = 'S';
       let idRol_PK = 3;
       let desRol = 'Paciente';
-
+      let problema = "problema X"
       let fechaNacimiento = this.historiaForm.get('fechaNacimiento')?.value;
       let peso = this.historiaForm.get('peso')?.value;
       let estatura = this.historiaForm.get('estatura')?.value;
@@ -139,12 +139,14 @@ export class NuevaHistoriaComponent implements OnInit {
       let fechaRegistro = this.today;
       let fecharegistroString= fechaRegistro.toString();
       let hora = '12:12';
+
       let usuarios_idTerapeuta = this.id;
       
       // alert("id :"+this.id);
       // alert("idUM :"+this.idUM);
       let usuarios_idPaciente=this.idUM;
       let estatus="este es el status";
+
 
        //Calcular Edad con cumpleaños
       // var fecha_nacimiento='2000-11-11';
@@ -155,6 +157,7 @@ export class NuevaHistoriaComponent implements OnInit {
       //Crear Objetos
       const HISTORIA: Historia = {
         problema:problema,
+
         fechaRegistro: fecharegistroString,
         fechaNacimiento: fechaNacimiento,
         //edad: edad.toString(),
@@ -173,6 +176,7 @@ export class NuevaHistoriaComponent implements OnInit {
         numConsultasTotales: numConsultasTotales,
         estatus:estatus,
         usuarios_idTerapeuta: usuarios_idTerapeuta,
+
         usuarios_idPaciente: usuarios_idPaciente,
       }
 
@@ -218,6 +222,7 @@ export class NuevaHistoriaComponent implements OnInit {
   }
 
   esEditar() {
+
     //alert("id->"+this.id+"  idUM->"+this.idUM+"  idHM->"+this.idHM); 
          if (this.idHM !== null) {//Recupera la informacion y la manda al formulario
           this.titulo = 'Editar Historia';
@@ -251,9 +256,35 @@ export class NuevaHistoriaComponent implements OnInit {
               otros: data.otros,
               observaciones: data.observaciones,
               numConsultasTotales: data.numConsultasTotales           
+
+/*
+    if (this.idUM !== null) {//Recupera la informacion y la manda al formulario
+      this.titulo = 'Editar Paciente';
+      this._historiaServices.obtenerHistoria("Historia",this.idUM).subscribe((data) => {
+        this.historiaForm.setValue({
+          fechaRegistro: data.fecharegistroString,
+          fechaNacimiento: data.fechaNacimiento,
+          edad: data.edad,
+          peso: data.peso,
+          estatura: data.estatura,
+          emeNombre: data.emeNombre,
+          emeParentesco: data.emeParentesco,
+          emeCelular: data.emeCelular,
+          alergias: data.alergias,
+          cirugias: data.cirugias,
+          traumasFracturas: data.traumasFracturas,
+          enfCongenitas: data.enfCongenitas,
+          enfHereditarias: data.enfHereditarias,
+          otros: data.otros,
+          observaciones: data.observaciones,
+          numConsultasTotales: data.numConsultasTotales,
+          usuario_idUsuario: data.usuario_idUsuario,
+          persona_idPersona: data.usuario_idUsuario,
+          
+
         });
       });
-     }
+     }*/
   }
 
   irInicio() {

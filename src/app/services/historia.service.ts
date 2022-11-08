@@ -21,9 +21,9 @@ export class HistoriaService {
     return this.http.post(this.url,operacion);
   }
 
-  obtenerHistoria(id: string): Observable<any>{
-    //alert("obtener historia services: "+this.url+id);
-    return this.http.get(this.url+id);
+
+  obtenerHistoria(type:string,id: string): Observable<any>{
+    return this.http.get(this.url+type+"/"+id);
   }
 
   editarHistoria(id: string,historia:Historia): Observable<any>{

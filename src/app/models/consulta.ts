@@ -7,12 +7,12 @@ export class Consulta{
   ejerciciosCasa: string;
   fechaRegistro:string;
   horaRegistro: string;
-  historias_Pacientes_idHistoria_PacientePK: string;
+  idHistoria: string;
   usuarios_idUsuario: string;
 
   
   constructor(idConsulta_Paciente: string,idConsulta_PacientePK: string,numConsulta: string,descripcion: string, ejerciciosCasa: string,
-    fechaRegistro:string,horaRegistro: string,  historias_Pacientes_idHistoria_PacientePK: string,usuarios_idUsuario: string){
+    fechaRegistro:string,horaRegistro: string,  idHistoria: string,usuarios_idUsuario: string){
       this.idConsulta_Paciente = idConsulta_Paciente;
       this.idConsulta_PacientePK=idConsulta_PacientePK;
       this.numConsulta=numConsulta;
@@ -20,7 +20,7 @@ export class Consulta{
       this.ejerciciosCasa=ejerciciosCasa;
       this.fechaRegistro=fechaRegistro;
       this.horaRegistro=horaRegistro;
-      this.historias_Pacientes_idHistoria_PacientePK=historias_Pacientes_idHistoria_PacientePK;
+      this.idHistoria=idHistoria;
       this.usuarios_idUsuario=usuarios_idUsuario;
   }
 }

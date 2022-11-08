@@ -1,7 +1,9 @@
 export class Historia{
   _id?: string;
   idHistoria_PK?: string;
+
   problema:string;
+
   fechaRegistro: string;
   fechaNacimiento:String;
   peso: string;
@@ -41,8 +43,10 @@ export class Historia{
       this.otros=otros;
       this.observaciones=observaciones;
       this.numConsultasTotales=numConsultasTotales;
+
       this.estatus=estatus;
       this.usuarios_idTerapeuta=usuarios_idTerapeuta;
+
       this.usuarios_idPaciente=usuarios_idPaciente;
       
   }

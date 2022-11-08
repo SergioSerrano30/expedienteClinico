@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis consultas</title>
+</head>
+
+<body style="padding-bottom:2%;">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+        <div class="container-fluid"><a class="navbar-brand" style="cursor: pointer;">Expediente Clínico
+                Digital [{{rol}}] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
+                data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+                style="margin-left: 1%">
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40"
+                            class="rounded-circle ml-5">
+                    </a>
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-danger" (click)="irLogin()" >Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="principal">
+    <div class="container mt-4 rounded shadow" style="background-color: rgba(162, 173, 184, 0.342);">
+        <div class="col-lg-12">
+            <div class="container-fluid mb-2" style="text-align: center;">
+                <br>
+                <span class="col titulo"><b>Historias</b></span>
+                <div class="col container-fluid my-3">
+                    <form class="d-flex" [formGroup]="busquedaGroup">
+                        <input #word class="form-control me-2" type="search" placeholder="Buscar historia"
+                            aria-label="Search" formControlName="nombre">
+                        <button class="btn btn-outline-success me-5" type="submit">Buscar<i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-success btn-sg me-2" (click)="irNuevaHistoria()" >Añadir<i class="fa-solid fa-plus"></i></button>
+                        <button class="btn btn-secondary btn-sg" (click)="irPacienteLista()" >Volver<i class="fa-solid fa-arrow-left"></i></button>
+                    </form>
+                </div>
+
+                <!--<div class="container-fluid mb-2" style="text-align: center;">
+                    <div class="card col border-primary mb-3" style="max-width: 30rem;">
+                        <div class="card-header">Fecha:</div>
+                        <div class="card-body text-primary">
+                            <h5 class="card-title">Problematica</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's
+                                content.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Peso:</li>
+                                <li class="list-group-item">Estatura:</li>
+                                <li class="list-group-item">Observaciones:</li>
+                            </ul>
+                            <br>
+                            <a href="#" class="btn btn-primary">Consultas</a>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="container">
+                    <div class="row">
+                      <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria">
+                        <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;">
+                            <div class="card-header">Fecha: {{historia.fechaRegistro}}</div>
+                            <div class="card-body text-primary">
+                                <h5 class="card-title">{{historia.problema}}</h5>
+                                <p class="card-text">{{historia.observaciones}}</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Peso: {{historia.peso}}</li>
+                                    <li class="list-group-item">Estatura: {{historia.estatura}}</li>
+                                </ul>
+                                <br>
+                                <a class="btn btn-primary" (click)="irConsultas(historia._id)" >Consultas</a>
+                                <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)" ><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="container">
+                    <div class="row">
+                      <div class="col-md-5 mx-auto">
+                        <div class="card col border-success mb-3 my-3" style="max-width: 30rem;">
+                            <div class="card-header">Fecha:</div>
+                            <div class="card-body text-success">
+                                <h5 class="card-title">Problemática</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                    of the card's content.</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Peso:</li>
+                                    <li class="list-group-item">Estatura:</li>
+                                    <li class="list-group-item">Observaciones:</li>
+                                </ul>
+                                <br>
+                                <a href="#" class="btn btn-success">Consultas</a>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+                <!--<div class="card border-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body text-success">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                        content.</p>
+                    <a href="#" class="btn btn-success">Go somewhere</a>
+                </div>
+            </div>-->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
