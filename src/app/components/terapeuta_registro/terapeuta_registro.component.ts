@@ -109,6 +109,7 @@ export class RegistroDComponent implements OnInit {
       this.esEditar();
     }
   }
+
   passFormatoCorrecto(password: string) {
     //6 a 45 caracteres
     //Una mayuscula al menos
@@ -161,7 +162,7 @@ export class RegistroDComponent implements OnInit {
     }
     let fechaRegistro = this.fechaHoyCorrecta + '';
     let hora = this.horaHoyCorrecta + '';
-    let usuario_idUsuario = this.id;
+    let usuarios_idUsuario = this.id;
 
     const DOMICILIO: Domicilio = {
       calle: calle,
@@ -180,7 +181,7 @@ export class RegistroDComponent implements OnInit {
       fechaRegistro: fechaRegistro,
       hora: hora,
       tipoOperacion: tipoOperacion,
-      usuario_idUsuario: usuario_idUsuario,
+      usuarios_idUsuario: usuarios_idUsuario,
     };
 
     const PERSONA: Persona = {

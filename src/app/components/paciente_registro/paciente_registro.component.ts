@@ -111,8 +111,7 @@ export class RegistroPacienteComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsuario();
     if (this.idUM.length > 5) {
-      this.esEditar();
-      
+      this.esEditar(); 
     }
   }
 
@@ -169,7 +168,7 @@ export class RegistroPacienteComponent implements OnInit {
     }
     let fechaRegistro = this.fechaHoyCorrecta+"";
     let hora = this.horaHoyCorrecta+"";
-    let usuario_idUsuario = this.id;
+    let usuarios_idUsuario = this.id;
 
     const DOMICILIO: Domicilio = {
       calle: calle,
@@ -188,7 +187,7 @@ export class RegistroPacienteComponent implements OnInit {
       fechaRegistro: fechaRegistro,
       hora: hora,
       tipoOperacion: tipoOperacion,
-      usuario_idUsuario: usuario_idUsuario,
+      usuarios_idUsuario: usuarios_idUsuario,
     };
 
     const PERSONA: Persona = {
@@ -337,8 +336,7 @@ export class RegistroPacienteComponent implements OnInit {
   esEditar() { 
     if (this.idUM !== null) { //Recupera la informacion y la manda al formulario
       this.titulo = 'Editar Paciente';
-      
-      //console.log("Bandera 1");
+
       this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
         this.pacienteForm.setValue({
           nombre: data.usuario_persona.nombre,
