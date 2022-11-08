@@ -184,19 +184,37 @@ export class NuevaHistoriaComponent implements OnInit {
       };
 
      var guardado=false;
-      //Guardar
-            this._historiaServices.guardarHistoria(HISTORIA).subscribe((data) => {
-            this.toastr.success(
-              'Se ha guardado La historia  con éxito!',
-              'Historia registrada!');
-              guardado=true;
-            });
-        //Guardar Operacion
-          this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
-            this.toastr.success(
-              'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
-            );
+     if (this.idHM.length > 5) {
+        //editamos
+       this._historiaServices.editarHistoria(this.idHM, HISTORIA).subscribe(
+        (data) => {
+          this.toastr.info(
+            'Historia modificado con éxito!',
+            'Historia Actualizada!'
+          );
+          //this.router.navigate(['/paciente_lista/' + this.id]);
+        },
+        (error) => {
+          console.log(error);
+          this.historiaForm.reset();
+        }
+      );
+     }else{
+        //Guardar
+        this._historiaServices.guardarHistoria(HISTORIA).subscribe((data) => {
+          this.toastr.success(
+            'Se ha guardado La historia  con éxito!',
+            'Historia registrada!');
+            guardado=true;
           });
+      //Guardar Operacion
+        this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
+          this.toastr.success(
+            'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
+          );
+        });
+     }
+      
   }
 
   esEditar() {

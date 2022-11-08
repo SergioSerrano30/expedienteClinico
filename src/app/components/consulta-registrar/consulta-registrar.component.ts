@@ -89,7 +89,7 @@ export class ConsultaRegistrarComponent implements OnInit {
     let usuarios_idUsuario = this.id;
    
 
-    let historias_Pacientes_idHistoria_PacientePK="historias_Pacientes_idHistoria_PacientePK"
+    let historias_Pacientes_idHistoria_PacientePK="historias_Pacientes_idHistoria_PacientePK";
 
        //Crear Objetos
        const CONSULTA: Consulta = {
@@ -110,20 +110,40 @@ export class ConsultaRegistrarComponent implements OnInit {
       };
 
      var guardado=false;
-       //Guardar
-       this._consultasService.guardarConsulta(CONSULTA).subscribe((data) => {
-        this.toastr.success(
-          'Se ha guardado La Consulta  con éxito!',
-          'Consulta registrada!');
-          guardado=true;
-        });
-    //Guardar Operacion
-      this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
-        this.toastr.success(
-          'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
-        );
-        //this.router.navigate(['/paciente_lista/' + this.id]);
-      });
+
+     if (this.idCM.length > 5) {
+       //editamos
+       this._consultasService.editarConsulta(this.idCM, CONSULTA).subscribe(
+        (data) => {
+          this.toastr.info(
+            'Consulta modificado con éxito!',
+            'Consulta Actualizada!'
+          );
+          //this.router.navigate(['/paciente_lista/' + this.id]);
+        },
+        (error) => {
+          console.log(error);
+          this.consultaForm.reset();
+        }
+      );
+     }else{
+            //Guardar
+            this._consultasService.guardarConsulta(CONSULTA).subscribe((data) => {
+              this.toastr.success(
+                'Se ha guardado La Consulta  con éxito!',
+                'Consulta registrada!');
+                guardado=true;
+              });
+          //Guardar Operacion
+            this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
+              this.toastr.success(
+                'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
+              );
+              //this.router.navigate(['/paciente_lista/' + this.id]);
+            });
+     }
+     
+ 
   }
 
   esEditar(){

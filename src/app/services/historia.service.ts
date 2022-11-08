@@ -22,7 +22,7 @@ export class HistoriaService {
   }
 
   obtenerHistoria(id: string): Observable<any>{
-    alert("obtener historia services: "+this.url+id);
+    //alert("obtener historia services: "+this.url+id);
     return this.http.get(this.url+id);
   }
 
