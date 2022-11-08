@@ -1,11 +1,23 @@
 .body{
     text-align: justify;
-    
+   
 }
-
+ 
 .bordeImagenFooter{
 border-radius:30%;
  width:70px;
  height: 60px;
  margin-right: 1rem;
 }
+.imagelogo{
+    width:500px;
+    height:350x;
+    border-radius:10%;
+    }
+ 
+    .textoblanco{
+        color: rgb(206, 210, 213);
+        text-align: center;
+   }
+ 
+    .imagen{ align-items: center; height: 250px;margin-top: 1rem;}
