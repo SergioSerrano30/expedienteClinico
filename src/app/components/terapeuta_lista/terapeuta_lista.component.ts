@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { TerapeutaService } from 'src/app/services/terapeuta.service';
 import {Usuario} from 'src/app/models/usuario'
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
  
 @Component({
   selector: 'app-inicio-admin-t',
@@ -13,12 +14,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class InicioAdminTComponent implements OnInit {
   listUsuarios: Usuario[] = [];
-
+  busquedaForm: FormGroup;
   id: string;
   usuario: Usuario | null;
   nombre: string;
  
   constructor(
+    private fb: FormBuilder,
     private _usuarioService: UsuarioService,
     private _terapeutaService: TerapeutaService,
     private aRouter: ActivatedRoute,
@@ -26,6 +28,9 @@ export class InicioAdminTComponent implements OnInit {
     private toastr: ToastrService
   ) 
   {
+    this.busquedaForm = this.fb.group({
+      nombre: ['']
+    })
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.usuario = null;
     this.nombre = '';
@@ -61,6 +66,17 @@ export class InicioAdminTComponent implements OnInit {
       }); 
     }
   }
+  obtenerTerapeutaPorNombre(){
+    let nombre = this.busquedaForm.get('nombre')?.value
+    if(nombre==""){
+      this.obtenerUsuarios()
+    }else{
+      this._usuarioService.obtenerUsuarioPorNombre("Terapeuta",nombre).subscribe((data)=>{
+        this.listUsuarios = data
+      }) 
+    }
+    
+  }
 
   irNuevoTerapeuta(){
     this.router.navigate(['/terapeuta_registro/'+this.id]);
@@ -81,7 +97,7 @@ export class InicioAdminTComponent implements OnInit {
         case "Terapeuta":
         this.router.navigate(['/terapeuta_inicio/' + this.id])
         break;
-    
+     
       default:
         break;
     }

@@ -75,7 +75,7 @@ export class ConsultaRegistrarComponent implements OnInit {
     let usuario_idUsuario = this.idUM;
 
     let usuarios_idUsuario='usuarios_idUsuarios';
-    let historias_Pacientes_idHistoria_PacientePK="historias_Pacientes_idHistoria_PacientePK"
+    let idHistoria="xxx"
 
        //Crear Objetos
        const CONSULTA: Consulta = {
@@ -84,7 +84,7 @@ export class ConsultaRegistrarComponent implements OnInit {
         ejerciciosCasa:ejerciciosCasa,
         fechaRegistro:fecharegistroString,
         horaRegistro:horaRegistro,
-        historias_Pacientes_idHistoria_PacientePK:historias_Pacientes_idHistoria_PacientePK,
+        idHistoria:idHistoria,
         usuarios_idUsuario:usuarios_idUsuario
 
       }
@@ -114,7 +114,7 @@ export class ConsultaRegistrarComponent implements OnInit {
   esEditar(){
       if (this.idUM !== null) { //Recupera la informacion y la manda al formulario
         this.titulo = 'FORMULARIO: Editar Consulta';
-        this._consultasService.obtenerConsulta(this.idUM).subscribe((data) => {
+        this._consultasService.obtenerConsulta("Consulta",this.idUM).subscribe((data) => {
           this.consultaForm.setValue({
             numConsulta: data.numConsulta,
             descripcion: data.descripcion,

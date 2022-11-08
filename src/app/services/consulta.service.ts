@@ -20,8 +20,8 @@ export class ConsultaService {
     return this.http.post(this.url,operacion);
   }
 
-  obtenerConsulta(id: string): Observable<any>{
-    return this.http.get(this.url+id);
+  obtenerConsulta(type: string,id: string): Observable<any>{
+    return this.http.get(this.url+type+"/"+id);
   }
 
   editarConsulta(id: string,consulta:Consulta): Observable<any>{

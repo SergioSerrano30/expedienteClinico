@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Operacion } from 'src/app/models/operacion';
@@ -14,13 +15,14 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class AdminOperacionesComponent implements OnInit {
   listOperaciones: Operacion[] = [];
   listOperacionesNombreU: Operacion[] = [];
-
+  busquedaForm: FormGroup;
   id: string;
   usuario: Usuario | null;
   nombre: string;
 
 
   constructor(
+    private fb: FormBuilder,
     private _opercionService: OperacionService,
     private _usuarioService: UsuarioService,
     private aRouter: ActivatedRoute,
@@ -30,6 +32,9 @@ export class AdminOperacionesComponent implements OnInit {
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.usuario = null;
     this.nombre = '';
+    this.busquedaForm = this.fb.group({
+      operacion: ['']
+    })
   }
 
   ngOnInit(): void {
@@ -57,6 +62,7 @@ export class AdminOperacionesComponent implements OnInit {
             
             
             this.listOperaciones =data;
+            this.listOperacionesNombreU= [];
             this.listOperaciones.forEach(ops =>{
               this._usuarioService.obtenerUsuario(ops.usuario_idUsuario).subscribe((data) => {
                 //console.log(data);
@@ -70,20 +76,44 @@ export class AdminOperacionesComponent implements OnInit {
                 console.log(OPERACION)
               });
             })
-            this.obtenerOperacionesNombre();
             //console.log(data[0].usuario)
           },error => {
             console.log(error);
           });
           
-  }  
-  
+  }   
 
-  obtenerOperacionesNombre(){
-    
+  obtenerOperacionesPorTipo(){
+    let operacion = this.busquedaForm.get('operacion')?.value
+    if(operacion==""){
+      this.obtenerOperaciones()
+    }else{
+      this._opercionService.obtenerOperacionesPorTipo("operacion",operacion).subscribe(data => {
 
+        this.listOperaciones =data;
+        this.listOperacionesNombreU= [];
+        this.listOperaciones.forEach(ops =>{
+          this._usuarioService.obtenerUsuario(ops.usuario_idUsuario).subscribe((data) => {
+            //console.log(data);
+            const OPERACION:Operacion={
+              fechaRegistro: ops.fechaRegistro,
+              hora: ops.hora,
+              tipoOperacion: ops.tipoOperacion,
+              usuario_idUsuario: data.usuario_persona.nombre
+            }
+            this.listOperacionesNombreU.push(OPERACION)
+            console.log(OPERACION)
+          });
+        })
+        //console.log(data[0].usuario)
+      },error => {
+        console.log(error);
+      });
+    }
 
   }
+  
+
 
   irInicio(){
     let rol = this.usuario?.usuario_rol.desRol;
