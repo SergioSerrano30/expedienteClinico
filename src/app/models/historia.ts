@@ -19,11 +19,11 @@ export class Historia{
   observaciones: string;
   numConsultasTotales: string;
   usuario_idUsuario: string;
-  persona_idPersona: string;
+  usuarios_idPaciente: string;
   
   constructor(idHistoria_PK: string,problema:string,fechaRegistro: string,fechaNacimiento: string,estatura: string, edad: string,peso: string,  emeNombre: string,
     emeParentesco: string,emeCelular: string,alergias: string,cirugias: string,traumasFracturas: string, enfCongenitas: string,enfHereditarias: string,otros: string
-    ,observaciones: string,numConsultasTotales: string,usuario_idUsuario: string,persona_idPersona: string){
+    ,observaciones: string,numConsultasTotales: string,usuario_idUsuario: string,usuarios_idPaciente: string){
       this.idHistoria_PK = idHistoria_PK;
       this.problema = problema;
       this.fechaRegistro=fechaRegistro;
@@ -43,7 +43,7 @@ export class Historia{
       this.observaciones=observaciones;
       this.numConsultasTotales=numConsultasTotales;
       this.usuario_idUsuario=usuario_idUsuario;
-      this.persona_idPersona=persona_idPersona;
+      this.usuarios_idPaciente=usuarios_idPaciente;
       
   }
 }
