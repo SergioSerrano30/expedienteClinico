@@ -111,3 +111,5 @@ export class PacienteConsultasComponent implements OnInit {
     this.router.navigate(['/terapeuta_login'])
   }
 }
+
+

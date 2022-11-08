@@ -89,8 +89,6 @@ export class ConsultaRegistrarComponent implements OnInit {
     let usuarios_idUsuario = this.id;
    
 
-
-    let usuarios_idUsuario='usuarios_idUsuarios';
     let idHistoria="xxx"
 
        //Crear Objetos

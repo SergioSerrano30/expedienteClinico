@@ -118,7 +118,6 @@ export class NuevaHistoriaComponent implements OnInit {
       let act = 'S';
       let idRol_PK = 3;
       let desRol = 'Paciente';
-      let problema = "problema X"
       let fechaNacimiento = this.historiaForm.get('fechaNacimiento')?.value;
       let peso = this.historiaForm.get('peso')?.value;
       let estatura = this.historiaForm.get('estatura')?.value;
@@ -224,10 +223,12 @@ export class NuevaHistoriaComponent implements OnInit {
   esEditar() {
 
     //alert("id->"+this.id+"  idUM->"+this.idUM+"  idHM->"+this.idHM); 
-         if (this.idHM !== null) {//Recupera la informacion y la manda al formulario
+         if (this.idHM !== null) {
           this.titulo = 'Editar Historia';
 
-          this._historiaServices.obtenerHistoria(this.idHM).subscribe((data) => {
+          this._historiaServices.obtenerHistoria("Historia",this.idHM).subscribe((data) => {
+          
+          
             // alert(data.emeCelular);
             
             // console.log(data.apPaterno);
@@ -255,7 +256,13 @@ export class NuevaHistoriaComponent implements OnInit {
               enfHereditarias: data.enfHereditarias,
               otros: data.otros,
               observaciones: data.observaciones,
-              numConsultasTotales: data.numConsultasTotales           
+              numConsultasTotales: data.numConsultasTotales  
+            })
+          }) 
+         }
+         //Recupera la informacion y la manda al formulario
+          
+        }        
 
 /*
     if (this.idUM !== null) {//Recupera la informacion y la manda al formulario
@@ -285,7 +292,10 @@ export class NuevaHistoriaComponent implements OnInit {
         });
       });
      }*/
-  }
+     
+  
+
+  
 
   irInicio() {
     let rol = this.usuario?.usuario_rol.desRol;
@@ -320,41 +330,41 @@ export class NuevaHistoriaComponent implements OnInit {
     this.router.navigate(['/terapeuta_login'])
   }
 
-obtenerDatos(){
-  // this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
-  //   this.historiaForm.setValue({
-  //     nombre: data.usuario_persona.nombre,
-  //     apPaterno: data.usuario_persona.apMaterno
-  //   });
-  // });
+// obtenerDatos(){
+//   // this._usuarioService.obtenerUsuario(this.idUM).subscribe((data) => {
+//   //   this.historiaForm.setValue({
+//   //     nombre: data.usuario_persona.nombre,
+//   //     apPaterno: data.usuario_persona.apMaterno
+//   //   });
+//   // });
 
-  this._historiaServices.obtenerHistoria(this.idHM).subscribe((data) => {
-    this.historiaForm.setValue({
-      problema:data.problema,
-      //edad: data.edad,
-      nombre:"nombre",
+//   this._historiaServices.obtenerHistoria(this.idHM).subscribe((data) => {
+//     this.historiaForm.setValue({
+//       problema:data.problema,
+//       //edad: data.edad,
+//       nombre:"nombre",
 
-      peso: data.peso,
-      estatura: data.estatura,
-      emeNombre: data.emeNombre,
-      emeParentesco: data.emeParentesco,
-      emeCelular: data.emeCelular,
-      alergias: data.alergias,
-      cirugias: data.cirugias,
-      traumasFracturas: data.traumasFracturas,
-      enfCongenitas: data.enfCongenitas,
-      enfHereditarias: data.enfHereditarias,
-      otros: data.otros,
-      observaciones: data.observaciones,
-      numConsultasTotales: data.numConsultasTotales,
-      // status:data.status,
-      // usuario_idUsuario: data.usuario_idUsuario,
-      // persona_idPersona: data.usuario_idUsuario,
-    });
-  });
+//       peso: data.peso,
+//       estatura: data.estatura,
+//       emeNombre: data.emeNombre,
+//       emeParentesco: data.emeParentesco,
+//       emeCelular: data.emeCelular,
+//       alergias: data.alergias,
+//       cirugias: data.cirugias,
+//       traumasFracturas: data.traumasFracturas,
+//       enfCongenitas: data.enfCongenitas,
+//       enfHereditarias: data.enfHereditarias,
+//       otros: data.otros,
+//       observaciones: data.observaciones,
+//       numConsultasTotales: data.numConsultasTotales,
+//       // status:data.status,
+//       // usuario_idUsuario: data.usuario_idUsuario,
+//       // persona_idPersona: data.usuario_idUsuario,
+//     });
+//   });
 
 
 
-}
+// }
 
 }
