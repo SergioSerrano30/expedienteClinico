@@ -28,5 +28,9 @@ export class OperacionService {
     return this.http.put(this.url+id,operacion);
   }
 
+  obtenerOperacionesPorTipo(type: string, nombre: string):Observable<any>{
+    return this.http.get(this.url+type+"/"+nombre);
+  }
+
 }
 

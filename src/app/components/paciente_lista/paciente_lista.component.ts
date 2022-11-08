@@ -98,9 +98,9 @@ export class TInicioComponent implements OnInit {
     if(nombre==""){
       this.obtenerUsuarios()
     }else{
-      this._usuarioService.obtenerPacientePorNombre("nombre",nombre).subscribe((data)=>{
+      this._usuarioService.obtenerUsuarioPorNombre("Paciente",nombre).subscribe((data)=>{
         this.listUsuarios = data
-      })
+      }) 
     }
     
   }

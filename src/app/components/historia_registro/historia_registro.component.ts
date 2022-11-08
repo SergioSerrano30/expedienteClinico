@@ -194,7 +194,22 @@ export class NuevaHistoriaComponent implements OnInit {
     }
   }
 
-  irInicio(){
+  irInicio() {
+    let rol = this.usuario?.usuario_rol.desRol;
+    switch (rol) {
+      case 'Paciente':
+        this.router.navigate(['/paciente_inicio/' + this.id]);
+        break;
+      case 'Administrador':
+        this.router.navigate(['/admin_inicio/' + this.id]);
+        break;
+      case 'Terapeuta':
+        this.router.navigate(['/terapeuta_inicio/' + this.id]);
+        break;
+
+      default:
+        break;
+    }
   }
 
   obtenerUsuario() {
@@ -206,6 +221,9 @@ export class NuevaHistoriaComponent implements OnInit {
         this.nombre = this.usuario?.usuario_persona.nombre + '';
       });
     }
+  }
+  irLogin(){
+    this.router.navigate(['/terapeuta_login'])
   }
 
 

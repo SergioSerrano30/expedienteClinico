@@ -45,8 +45,8 @@
         <br>
         <span class="col titulo"><b>Consulta de operaciones</b></span>
         <div class=" col container-fluid my-3">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar operación" aria-label="Search">
+          <form class="d-flex" [formGroup]="busquedaForm" (ngSubmit)="obtenerOperacionesPorTipo()">
+            <input class="form-control me-2" type="search" placeholder="Buscar operación" aria-label="Search" formControlName="operacion">
             <button class="btn btn-outline-success me-5" type="submit">Buscar<i class="fa-solid fa-magnifying-glass"></i></button>
             <button (click)="irInicio()" class="btn btn-secondary btn-sg"  >Volver<i class="fa-solid fa-arrow-left"></i></button>
           </form>
