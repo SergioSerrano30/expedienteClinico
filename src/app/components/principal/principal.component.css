@@ -12,11 +12,17 @@ div{
     text-align:center;
 }
 
-img{border-radius:20%; width:800px; height: 250px;margin-top: 1rem;} 
+.imagen{border-radius:20%; width:800px; height: 250px;margin-top: 1rem;} 
+img{border-radius:20%; width:800px; height: 450px;margin-top: 1rem;} 
 
 .body{
     text-align: justify;
     
+}
+
+.textoblanco{
+     color: rgb(206, 210, 213);
+     text-align: center;
 }
 
 .bordeImagenFooter{
