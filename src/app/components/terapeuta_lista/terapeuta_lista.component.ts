@@ -37,7 +37,7 @@ export class InicioAdminTComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.obtenerPacientes();
+    // this.obtenerTERAPEUTAs();
     // this.obtenerExpedientes();
     this.obtenerUsuarios();
     this.obtenerUsuario();
@@ -78,6 +78,48 @@ export class InicioAdminTComponent implements OnInit {
     
   }
 
+  denegarAcceso(idTER: string | undefined) {
+    this._usuarioService.obtenerUsuario(idTER + '').subscribe((data) => {
+      const TERAPEUTA: Usuario = data;
+      console.log(TERAPEUTA);
+      TERAPEUTA.activo = "N"
+      this._usuarioService.editarUsuario(idTER+'', TERAPEUTA).subscribe(
+        (data) => {
+          this.obtenerUsuarios();
+          this.toastr.info(
+            'Se le ha denegado el acceso al sistema',
+            'Acceso Denegado!'
+          );
+          this.router.navigate(['/terapeuta_lista/' + this.id]);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+  }
+
+  concederAcceso(idTER: string | undefined) {
+    this._usuarioService.obtenerUsuario(idTER + '').subscribe((data) => {
+      const TERAPEUTA: Usuario = data;
+      console.log(TERAPEUTA);
+      TERAPEUTA.activo = "S"
+      this._usuarioService.editarUsuario(idTER+'', TERAPEUTA).subscribe(
+        (data) => {
+          this.obtenerUsuarios();
+          this.toastr.info(
+            'Se le ha denegado el acceso al sistema',
+            'Acceso Denegado!'
+          );
+          this.router.navigate(['/terapeuta_lista/' + this.id]);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+  }
+
   irNuevoTerapeuta(){
     this.router.navigate(['/terapeuta_registro/'+this.id]);
   } 
@@ -88,7 +130,7 @@ export class InicioAdminTComponent implements OnInit {
     let rol = this.usuario?.usuario_rol.desRol;
     console.log(rol)
     switch (rol) {
-      case "Paciente":
+      case "TERAPEUTA":
         this.router.navigate(['/paciente_inicio/' + this.id])
         break;
         case "Administrador":

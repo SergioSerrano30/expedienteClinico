@@ -4,7 +4,7 @@ export class Historia{
 
   problema:string;
 
-  fechaRegistro: string;
+  fecRegistro: string;
   fechaNacimiento:String;
   peso: string;
   estatura: string;
@@ -23,12 +23,12 @@ export class Historia{
   usuarios_idTerapeuta: string;
   usuarios_idPaciente: string;
   
-  constructor(idHistoria_PK: string,problema: string,fechaRegistro: string,fechaNacimiento: string,estatura: string,peso: string,  emeNombre: string,
+  constructor(idHistoria_PK: string,problema: string,fecRegistro: string,fechaNacimiento: string,estatura: string,peso: string,  emeNombre: string,
     emeParentesco: string,emeCelular: string,alergias: string,cirugias: string,traumasFracturas: string, enfCongenitas: string,enfHereditarias: string,otros: string
     ,observaciones: string,numConsultasTotales: string,estatus:string, usuarios_idTerapeuta: string,usuarios_idPaciente: string){
       this.idHistoria_PK = idHistoria_PK;
       this.problema=problema;
-      this.fechaRegistro=fechaRegistro;
+      this.fecRegistro=fecRegistro;
       this.fechaNacimiento=fechaNacimiento;
       this.peso=peso;
       this.emeNombre=emeNombre;

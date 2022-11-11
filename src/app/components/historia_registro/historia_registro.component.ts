@@ -157,7 +157,7 @@ export class NuevaHistoriaComponent implements OnInit {
       const HISTORIA: Historia = {
         problema:problema,
 
-        fechaRegistro: fecharegistroString,
+        fecRegistro: fecharegistroString,
         fechaNacimiento: fechaNacimiento,
         //edad: edad.toString(),
         peso: peso,
