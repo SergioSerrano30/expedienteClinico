@@ -46,7 +46,7 @@
       </div>
       
       <table class="table" style="text-align:center" *ngIf="listUsuarios.length > 0">
-        <thead>
+        <thead> 
           <tr>
             <th scope="col">Nombre/s</th>
             <th scope="col">Apellidos</th>
@@ -66,7 +66,8 @@
             <td>{{usuario.usuario_persona.sexo}}</td>
             <td>{{usuario.activo}}</td>
             <i (click)="irModificarTerapeuta(usuario._id)"  class="fas fa-edit text-primary"></i>
-            <i class="fas fa-lock text-danger"></i>
+            <i (click)="denegarAcceso(usuario._id)" class="fas fa-lock text-danger" *ngIf="usuario.activo=='S'"></i>
+              <i (click)="concederAcceso(usuario._id)" class="fas fa-unlock text-success" *ngIf="usuario.activo=='N'"></i>
             <i class="fas fa-solid fa-eye"></i>
           </tr>
         </tbody>
