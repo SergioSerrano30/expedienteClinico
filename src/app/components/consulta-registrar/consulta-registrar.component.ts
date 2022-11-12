@@ -39,6 +39,8 @@ export class ConsultaRegistrarComponent implements OnInit {
   hora = this.today.getHours();
   minuto = this.today.getMinutes();
 
+  fechaHoyCorrecta: String;
+  horaHoyCorrecta: String;
   // fechaHoy: String;
   // fechaMin: String;
   // fechaHoyCorrecta: String;
@@ -69,7 +71,33 @@ export class ConsultaRegistrarComponent implements OnInit {
     this.usuario = null;
     this.nombre = '';
     this.zz="selected";
-   
+    if (this.day < 9 && this.month < 9) {
+      
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
+      
+    } else if (this.day < 9 && this.month > 9) {
+      
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-0' + this.day;
+    
+    } else if (this.day > 9 && this.month < 9) {
+      
+      this.fechaHoyCorrecta = this.año + '-0' + this.month + '-' + this.day;
+      
+    } else {
+      
+      this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
+      
+    }
+
+    if(this.hora<9 && this.minuto<9){
+      this.horaHoyCorrecta= "0"+this.hora+":0"+this.minuto;
+    }else if(this.hora<9 && this.minuto>9){
+      this.horaHoyCorrecta= "0"+this.hora+":"+this.minuto;
+    }else if(this.hora>9 && this.minuto<9){
+      this.horaHoyCorrecta= this.hora+":0"+this.minuto;
+    }else{
+      this.horaHoyCorrecta= this.hora+":"+this.minuto;
+    }
 
   }
 
@@ -88,8 +116,7 @@ export class ConsultaRegistrarComponent implements OnInit {
     let fechaRegistro =this.consultaForm.get('fechaRegistro')?.value;
 
     let tipoOperacion = 'Registrar Nueva Consulta';
-    let fecharegistroString= fechaRegistro.toString();
-    let hora = horaRegistro;
+
     let usuarios_idUsuario = this.id;
     let idHistoria=this.idH;
 
@@ -98,15 +125,15 @@ export class ConsultaRegistrarComponent implements OnInit {
         numConsulta: numConsulta,
         descripcion: descripcion,
         ejerciciosCasa:ejerciciosCasa,
-        fechaRegistro:"2020-12-12",
-        horaRegistro:horaRegistro,
+        fechaRegistro:this.fechaHoyCorrecta+'',
+        horaRegistro:this.horaHoyCorrecta+'',
         idHistoria:idHistoria,
         usuarios_idUsuario:usuarios_idUsuario
 
       }
       const OPERACION: Operacion = {
-        fechaRegistro: fecharegistroString,
-        hora: hora,
+        fechaRegistro:this.fechaHoyCorrecta+'',
+        hora:this.horaHoyCorrecta+'',
         tipoOperacion: tipoOperacion,
         usuarios_idUsuario: usuarios_idUsuario,
       };
