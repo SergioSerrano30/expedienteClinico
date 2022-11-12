@@ -45,7 +45,7 @@ export class NuevaHistoriaComponent implements OnInit {
   varTraFracturas=false;
   varEnfCongenitas=false;
   varEnfHereditarias=false;
-  
+
 
   constructor(
     private fb: FormBuilder,
@@ -159,12 +159,7 @@ export class NuevaHistoriaComponent implements OnInit {
         });
       });
     }
-    this.varCirugias=true;
-    this.varAlergias=true;
-    this.varTraFracturas=true;
-    this.varEnfCongenitas=true;
-    this.varEnfHereditarias=true;
-    
+
   }
 
   
@@ -188,11 +183,10 @@ export class NuevaHistoriaComponent implements OnInit {
       let observaciones = this.historiaForm.get('observaciones')?.value;
       let numConsultasTotales = this.historiaForm.get('numConsultasTotales')?.value;
       let problematica = this.historiaForm.get('problematica')?.value;
-      let fechaRegistro = this.today;
 
       let tipoOperacion = 'Registrar Nueva Historia';
-      let fecharegistroString= fechaRegistro.toString();
-      let hora = '12:12';
+      let fecharegistroString= this.fechaHoyCorrecta;
+      let hora = this.horaHoyCorrecta;
       let usuarios_idTerapeuta = this.id;
       // alert("id :"+this.id);
       // alert("idUM :"+this.idUM);
@@ -209,7 +203,7 @@ export class NuevaHistoriaComponent implements OnInit {
       //Crear Objetos
       const HISTORIA: Historia = {
         problematica:problematica,
-        fecRegistro: fecharegistroString,
+        fecRegistro: fecharegistroString+'',
         fecNacimiento: fecNacimiento,
         peso: peso,
         estatura: estatura,
@@ -230,8 +224,8 @@ export class NuevaHistoriaComponent implements OnInit {
       }
 
       const OPERACION: Operacion = {
-        fechaRegistro: fecharegistroString,
-        hora: hora,
+        fechaRegistro: this.fechaHoyCorrecta+'',
+        hora: this.horaHoyCorrecta+'',
         tipoOperacion: tipoOperacion,
         usuarios_idUsuario: usuarios_idTerapeuta,
       };
@@ -271,47 +265,79 @@ export class NuevaHistoriaComponent implements OnInit {
   }
 
   esEditar() {
-    //alert("id->"+this.id+"  idUM->"+this.idUM+"  idHM->"+this.idHM); 
-         if (this.idHM !== null) {
-          this.titulo = 'Editar Historia';
+    if (this.idHM !== null) {
+     this.titulo = 'Editar Historia';
 
-          this._historiaServices.obtenerHistoria("Historia",this.idHM).subscribe((data) => {
-          
-          
-            // alert(data.emeCelular);
-            
-            // console.log(data.apPaterno);
-            // console.log(data.apMaterno);
-            // console.log(data.fechaNac);
-            // console.log(data.sexo);
-            console.log(data);
-            this.historiaForm.setValue({
-              nombre:"nombre",
-              apPaterno:"apPaterno",
-              apMaterno:"amaterno",
-              sexo:"sexo",
-              problematica: data.problematica,
-              //fechaRegistro: "2020-02-02",
-              fecNacimiento:"2020-02-02",
-              peso: data.peso,
-              estatura: data.estatura,
-              emeNombre: data.emeNombre,
-              emeParentesco: data.emeParentesco,
-              emeCelular: data.emeCelular,
-              alergias: data.alergias,
-              cirugias: data.cirugias,
-              traFracturas: data.traFracturas,
-              enfCongenitas: data.enfCongenitas,
-              enfHereditarias: data.enfHereditarias,
-              otros: data.otros,
-              observaciones: data.observaciones,
-              numConsultasTotales: data.numConsultasTotales  
-            })
-          }) 
-         }
-         //Recupera la informacion y la manda al formulario
-          
-        }        
+     this._usuarioService.obtenerUsuario(this.idPAC).subscribe((dataPaciente) => {
+     this._historiaServices.obtenerHistoria("Historia",this.idHM).subscribe((data) => {
+       this.varCirugias=true;
+       this.varAlergias=true;
+       this.varTraFracturas=true;
+       this.varEnfCongenitas=true;
+       this.varEnfHereditarias=true;
+
+         if(data.cirugias=="")
+           this.varCirugias=false;
+         if(data.alergias=="")
+           this.varAlergias=false;
+         if(data.traFracturas=="")
+           this.varTraFracturas=false;
+         if(data.enfCongenitas=="")
+           this.varEnfCongenitas=false;
+         if(data.enfHereditarias=="")
+           this.varEnfHereditarias=false;
+       
+      
+
+
+     //saber que switch habilitar
+     //--------No funciono-------------------
+     // if(data.alergias==="")
+     //   this.varAlergias=false;
+     //   else
+     //   this.varAlergias=true;
+     // if(data.cirugias="")
+     //   this.varCirugias=false;
+     //   else
+     //   this.varCirugias=true;
+
+     // if(data.traFracturas==!"")
+     //   this.varTraFracturas=true;
+     // if(data.enfCongenitas==!"")
+     //   this.varEnfCongenitas=true;
+     // if(data.enfHereditarias==!"")
+     //   this.varEnfHereditarias=true;
+
+
+       console.log(data);
+       this.historiaForm.setValue({
+         nombre: dataPaciente.usuario_persona.nombre,
+         apPaterno: dataPaciente.usuario_persona.apPaterno,
+         apMaterno: dataPaciente.usuario_persona.apMaterno,
+         fecNacimiento: dataPaciente.usuario_persona.fechaNac,
+         sexo: dataPaciente.usuario_persona.sexo,
+
+         problematica: data.problematica,
+         peso: data.peso,
+         estatura: data.estatura,
+         emeNombre: data.emeNombre,
+         emeParentesco: data.emeParentesco,
+         emeCelular: data.emeCelular,
+         alergias: data.alergias,
+         cirugias: data.cirugias,
+         traFracturas: data.traFracturas,
+         enfCongenitas: data.enfCongenitas,
+         enfHereditarias: data.enfHereditarias,
+         otros: data.otros,
+         observaciones: data.observaciones,
+         numConsultasTotales: data.numConsultasTotales  
+       })
+     }) 
+   }) 
+    }
+    //Recupera la informacion y la manda al formulario
+     
+   }              
   
 
   irInicio() {
@@ -347,9 +373,36 @@ export class NuevaHistoriaComponent implements OnInit {
     this.router.navigate(['/terapeuta_login'])
   }
 
-  clicAlergias(){
-    this.varAlergias=this.varAlergias!;
-    alert(this.varAlergias);
+  cambiarEstado1(){
+    if(this.varAlergias)
+    this.varAlergias=false;
+    else
+    this.varAlergias=true;
   }
+  cambiarEstado2(){
+    if(this.varCirugias)
+    this.varCirugias=false;
+    else
+    this.varCirugias=true;
+  }
+  cambiarEstado3(){
+    if(this.varTraFracturas)
+    this.varTraFracturas=false;
+    else
+    this.varTraFracturas=true;
+  }
+  cambiarEstado4(){
+    if(this.varEnfCongenitas)
+    this.varEnfCongenitas=false;
+    else
+    this.varEnfCongenitas=true;
+  }
+  cambiarEstado5(){
+    if(this.varEnfHereditarias)
+    this.varEnfHereditarias=false;
+    else
+    this.varEnfHereditarias=true;
+  }
+
 
 }

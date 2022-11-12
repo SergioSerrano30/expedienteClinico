@@ -58,16 +58,17 @@
                                 <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;">
                                     <div class="card-header">Fecha: {{historia.fecRegistro}}</div>
                                     <div class="card-body text-primary">
-                                        <h5 class="card-title">{{historia.problema}}</h5>
+                                        <h5 class="card-title">{{historia.problematica}}</h5>
                                         <p class="card-text">{{historia.observaciones}}</p>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Peso: {{historia.peso}}</li>
                                             <li class="list-group-item">Estatura: {{historia.estatura}}</li>
                                         </ul>
                                         <br>
-                                        <a class="btn btn-primary" (click)="irConsultas(historia._id)">Consultas</a>
+                                        <a class="btn btn-success" (click)="irConsultas(historia._id)"><i class="fa-solid fa-user-doctor"></i> Consultas</a>
                                         <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)"><i
                                                 class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                        <a class="btn btn-danger"><i class="fa-solid fa-trash"></i> Eliminar</a>
 
                                     </div>
                                 </div>
