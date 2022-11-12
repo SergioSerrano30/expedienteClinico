@@ -48,7 +48,6 @@ const routes: Routes = [
   { path: 'admin_operaciones/:id', component: AdminOperacionesComponent },
 
   //Historia paciente
-
   { path: 'historia_registro/:id/:idPAC', component:NuevaHistoriaComponent},
   { path: 'historia_editar/:id/:idPAC/:idHM', component:NuevaHistoriaComponent},
   { path: 'historia_lista/:id/:idPAC', component:HistoriaListaComponent},

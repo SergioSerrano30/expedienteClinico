@@ -38,7 +38,7 @@ export class HistoriaListaComponent implements OnInit {
       nombre: [''],
     });
     this.historiaGroup = fb.group({
-      problema: [''],
+      problematica: [''],
     });
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idPAC = this.aRouter.snapshot.paramMap.get('idPAC') + '';

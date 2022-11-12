@@ -23,8 +23,11 @@ export class ConsultaRegistrarComponent implements OnInit {
   id: string;
   idUM: string;
   idCM:string;
+  idH:string;
   usuario: Usuario | null;
   nombre: string;
+  zz='selected'
+  
 
   today = new Date();
   day = this.today.getDate();
@@ -50,6 +53,7 @@ export class ConsultaRegistrarComponent implements OnInit {
     private _operacionesService: OperacionService,
     private _consultasService: ConsultaService,
     private aRouter: ActivatedRoute,
+    
     ) { 
     this.consultaForm = this.fb.group({
       numConsulta: ['', Validators.required],
@@ -61,9 +65,10 @@ export class ConsultaRegistrarComponent implements OnInit {
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idUM = this.aRouter.snapshot.paramMap.get('idUM') + '';
     this.idCM = this.aRouter.snapshot.paramMap.get('idCM') + '';
+    this.idH = this.aRouter.snapshot.paramMap.get('idH') + '';
     this.usuario = null;
     this.nombre = '';
-    //alert("constructor this.id:" +this.id);
+    this.zz="selected";
    
 
   }
@@ -80,16 +85,13 @@ export class ConsultaRegistrarComponent implements OnInit {
     let descripcion = this.consultaForm.get('descripcion')?.value;
     let ejerciciosCasa = this.consultaForm.get('ejerciciosCasa')?.value;
     let horaRegistro = this.consultaForm.get('horaRegistro')?.value;
-  
+    let fechaRegistro =this.consultaForm.get('fechaRegistro')?.value;
+
     let tipoOperacion = 'Registrar Nueva Consulta';
-    //let fechaRegistro = this.today;
-    let fechaRegistro = "2000-12-12";
     let fecharegistroString= fechaRegistro.toString();
     let hora = horaRegistro;
     let usuarios_idUsuario = this.id;
-   
-
-    let idHistoria="xxx"
+    let idHistoria=this.idH;
 
        //Crear Objetos
        const CONSULTA: Consulta = {
@@ -150,13 +152,12 @@ export class ConsultaRegistrarComponent implements OnInit {
       if (this.idCM !== null) { //Recupera la informacion y la manda al formulario
         this.titulo = 'FORMULARIO: Editar Consulta';
 
-        this._consultasService.obtenerConsulta("Consulta",this.idUM).subscribe((data) => {
+        this._consultasService.obtenerConsulta("Consulta",this.idCM).subscribe((data) => {
           this.consultaForm.setValue({
             numConsulta: data.numConsulta,
             descripcion: data.descripcion,
             ejerciciosCasa: data.ejerciciosCasa,
-           //fechaRegistro: data.fechaRegistro,
-            fechaRegistro: "2000-12-12",
+            fechaRegistro: data.fechaRegistro,
             horaRegistro: data.horaRegistro
           });
         });

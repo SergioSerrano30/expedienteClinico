@@ -2,10 +2,11 @@ export class Historia{
   _id?: string;
   idHistoria_PK?: string;
 
-  problema:string;
+  problematica:string;
 
   fecRegistro: string;
-  fechaNacimiento:String;
+  fecNacimiento:String;
+
   peso: string;
   estatura: string;
   emeNombre: string;
@@ -13,7 +14,7 @@ export class Historia{
   emeCelular: string;
   alergias: string;
   cirugias: string;
-  traumasFracturas: string;
+  traFracturas: string;
   enfCongenitas: string;
   enfHereditarias: string;
   otros: string;
@@ -22,14 +23,15 @@ export class Historia{
   estatus:string;
   usuarios_idTerapeuta: string;
   usuarios_idPaciente: string;
-  
-  constructor(idHistoria_PK: string,problema: string,fecRegistro: string,fechaNacimiento: string,estatura: string,peso: string,  emeNombre: string,
-    emeParentesco: string,emeCelular: string,alergias: string,cirugias: string,traumasFracturas: string, enfCongenitas: string,enfHereditarias: string,otros: string
+
+  constructor(idHistoria_PK: string,problematica: string,fecRegistro: string,fecNacimiento: string,estatura: string,peso: string,  emeNombre: string,
+    emeParentesco: string,emeCelular: string,alergias: string,cirugias: string,traFracturas: string, enfCongenitas: string,enfHereditarias: string,otros: string
     ,observaciones: string,numConsultasTotales: string,estatus:string, usuarios_idTerapeuta: string,usuarios_idPaciente: string){
       this.idHistoria_PK = idHistoria_PK;
-      this.problema=problema;
+      this.problematica=problematica;
       this.fecRegistro=fecRegistro;
-      this.fechaNacimiento=fechaNacimiento;
+      this.fecNacimiento=fecNacimiento;
+
       this.peso=peso;
       this.emeNombre=emeNombre;
       this.estatura=estatura;
@@ -37,7 +39,7 @@ export class Historia{
       this.emeCelular=emeCelular;
       this.alergias=alergias;
       this.cirugias=cirugias;
-      this.traumasFracturas=traumasFracturas;
+      this.traFracturas=traFracturas;
       this.enfCongenitas=enfCongenitas;
       this.enfHereditarias=enfHereditarias;
       this.otros=otros;
@@ -46,7 +48,6 @@ export class Historia{
 
       this.estatus=estatus;
       this.usuarios_idTerapeuta=usuarios_idTerapeuta;
-
       this.usuarios_idPaciente=usuarios_idPaciente;
       
   }

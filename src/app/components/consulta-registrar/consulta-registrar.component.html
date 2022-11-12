@@ -46,12 +46,13 @@
     <div class="principal">
         <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
             <br>
-            <h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>
+            <h1 class="text-center" style="margin-top: 20px;">{{titulo}}</h1>
+            <hr>
             <br>
 
             <!--datos personales-->
             <div class="etiquetas">
-                <b>Datos de la consulta:</b>
+                <h4>Datos de la consulta:</h4>
             </div>
         
             <form action="mt-3" [formGroup]="consultaForm" (ngSubmit)="agregarConsulta()">
@@ -61,7 +62,7 @@
                        <div class="form-floating my-2">
                            <input formControlName="numConsulta" type="number" class="form-control" id="hora_registro"
                                placeholder="Numero de Consulta" required>
-                           <label for="Numero de Consulta">Numero de consulta</label>
+                           <label style="color:rgba(0, 0, 0, 0.5)" for="Numero de Consulta">Numero de consulta</label>
                        </div>
                    </div>
                 </div>  
@@ -71,7 +72,7 @@
                        <div class="form-floating my-2">
                         <textarea class="form-control" formControlName="descripcion" placeholder="Descripción" id="descripcion"
                         style="height: 100px"></textarea>
-                           <label for="descripcion">Descripción</label>
+                           <label style="color:rgba(0, 0, 0, 0.5)" for="descripcion">Descripción</label>
                        </div>
                    </div>
                 </div>
@@ -81,7 +82,7 @@
                        <div class="form-floating my-2">
                            <input formControlName="ejerciciosCasa" type="text" class="form-control" id="ejercicios"
                                placeholder="ejercicios en casa" required>
-                           <label for="ejercicios en casa">Ejercicios</label>
+                           <label style="color:rgba(0, 0, 0, 0.5)" for="ejercicios en casa">Ejercicios</label>
                        </div>
                    </div>
                 </div>
@@ -91,7 +92,7 @@
                         <div class="form-floating my-2">
                             <input formControlName="fechaRegistro" type="date" class="form-control" id="fecha_registro"
                                placeholder="fecha_registro" required>
-                           <label for="fecha_registro">Fecha de Registro</label>
+                           <label style="color:rgba(0, 0, 0, 0.5)" for="fecha_registro">Fecha de Registro</label>
                        </div>
                    </div>
                 </div>
@@ -101,7 +102,7 @@
                        <div class="form-floating my-2">
                            <input formControlName="horaRegistro" type="time" class="form-control" id="hora_registro"
                                placeholder="horaRegistro" required>
-                           <label for="horaRegistro">Hora de Registro</label>
+                           <label style="color:rgba(0, 0, 0, 0.5)" for="horaRegistro">Hora de Registro</label>
                        </div>
                    </div>
                 </div>
