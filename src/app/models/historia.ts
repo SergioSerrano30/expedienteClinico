@@ -6,6 +6,7 @@ export class Historia{
 
   fecRegistro: string;
   fecNacimiento:String;
+
   peso: string;
   estatura: string;
   emeNombre: string;
@@ -22,7 +23,7 @@ export class Historia{
   estatus:string;
   usuarios_idTerapeuta: string;
   usuarios_idPaciente: string;
-  
+
   constructor(idHistoria_PK: string,problematica: string,fecRegistro: string,fecNacimiento: string,estatura: string,peso: string,  emeNombre: string,
     emeParentesco: string,emeCelular: string,alergias: string,cirugias: string,traFracturas: string, enfCongenitas: string,enfHereditarias: string,otros: string
     ,observaciones: string,numConsultasTotales: string,estatus:string, usuarios_idTerapeuta: string,usuarios_idPaciente: string){
@@ -30,6 +31,7 @@ export class Historia{
       this.problematica=problematica;
       this.fecRegistro=fecRegistro;
       this.fecNacimiento=fecNacimiento;
+
       this.peso=peso;
       this.emeNombre=emeNombre;
       this.estatura=estatura;

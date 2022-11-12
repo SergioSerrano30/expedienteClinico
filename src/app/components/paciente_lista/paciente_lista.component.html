@@ -68,9 +68,10 @@
               <td>{{usuario.activo}}</td>
               <!-- [routerLink]="['/editar-paciente',usuario._id]" -->
               <i (click)="irModificarPaciente(usuario._id)" class="fas fa-edit text-primary"></i>
-              <i class="fas fa-lock text-danger"></i>
+              <i (click)="denegarAcceso(usuario._id)" class="fas fa-lock text-danger" *ngIf="usuario.activo=='S'"></i>
+              <i (click)="concederAcceso(usuario._id)" class="fas fa-unlock text-success" *ngIf="usuario.activo=='N'"></i>
               <i (click)="irHistoriaPaciente(usuario._id)"  class="fas fa-solid fa-eye"></i>
-            </tr>
+            </tr> 
           </tbody>
         </table>
         <h5 style="text-align: center; margin-top:10px" *ngIf="listUsuarios.length == 0">No hay pacientes para mostrar.</h5>

@@ -237,7 +237,7 @@ export class RegistroPacienteComponent implements OnInit {
     };
 
     if (this.passFormatoCorrecto(password)) {
-      //Calcular edad
+      //Calcular edad 
       var fecha_nacimiento = fechaNac;
       var hoy = new Date();
       var cumpleanos = new Date(fecha_nacimiento);
