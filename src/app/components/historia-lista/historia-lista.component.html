@@ -21,7 +21,7 @@
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40"
-                            class="rounded-circle ml-5">
+                            class="rounded-circle ml-5" (click)="irLogin()">
                     </a>
                 </div>
 
@@ -38,7 +38,7 @@
                 <div class="container-fluid mb-2" style="text-align: center;">
                     <br>
                     <span class="col titulo"><b>Historias</b></span>
-                    <div class="col container-fluid my-3">
+                    <div class="col container-fluid my-5">
                         <form class="d-flex" [formGroup]="busquedaGroup">
                             <input #word class="form-control me-2" type="search" placeholder="Buscar historia"
                                 aria-label="Search" formControlName="nombre">
@@ -48,6 +48,8 @@
                                     class="fa-solid fa-plus"></i></button>
                             <button class="btn btn-secondary btn-sg" (click)="irPacienteLista()">Volver<i
                                     class="fa-solid fa-arrow-left"></i></button>
+                            <button class="btn btn-secondary btn-sg m-2" (click)="mostrarOcultas()"> Historias Ocultas<i
+                                    class="fa-solid fa-arrow-left"></i></button>
                         </form>
                     </div>
 
@@ -55,7 +57,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria" >
-                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;" *ngIf="historia.estatus=='A'">
+                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;" *ngIf="historia.estatus=='A' || historia.estatus=='{{aux}}'">
                                     <div class="card-header">Fecha: {{historia.fecRegistro}}</div>
                                     <div class="card-body text-primary">
                                         <h5 class="card-title">{{historia.problematica}}</h5>

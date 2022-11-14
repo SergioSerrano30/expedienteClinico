@@ -20,6 +20,8 @@ export class HistoriaListaComponent implements OnInit {
   usuario: Usuario | null;
   nombre: string;
   rol: string;
+  palabra:string;
+  aux:string;
 
   today = new Date();
   day = this.today.getDate();
@@ -40,12 +42,20 @@ export class HistoriaListaComponent implements OnInit {
     this.historiaGroup = fb.group({
       problematica: [''],
     });
-    
+
+    this.palabra=this.aRouter.snapshot.paramMap.get('todas') + '';
+    if(this.palabra=="null"){
+      this.aux='A';
+    }else{
+      this.aux="N";
+    }
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idPAC = this.aRouter.snapshot.paramMap.get('idPAC') + '';
     this.usuario = null;
     this.nombre = '';
     this.rol = ''
+  
+    alert(this.palabra);
 
     if (this.day < 9 && this.month < 9) {
       this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
@@ -71,6 +81,7 @@ export class HistoriaListaComponent implements OnInit {
         console.log(this.listHistoria)
       });
   }
+  
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
@@ -101,6 +112,11 @@ export class HistoriaListaComponent implements OnInit {
 
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
+  }
+
+  mostrarOcultas(){
+    this.palabra="todas";
+    this.router.navigate(['/historia_lista/'+this.id+'/'+this.idPAC+"/"+this.palabra+""]);
   }
 
 
