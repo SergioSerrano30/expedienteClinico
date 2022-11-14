@@ -34,4 +34,12 @@ export class TerapeutaConsultasComponent implements OnInit {
     alert(this.id);
     this.router.navigate(['/consulta_registro/'+this.id]);
   }
+
+  irLogin(){
+    this.router.navigate(['/terapeuta_login'])
+  }
+
+  irPrincipal(){
+    this.router.navigate(['/terapeuta_inicio/'+this.id]);
+  }
 }

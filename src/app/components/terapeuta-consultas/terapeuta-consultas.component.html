@@ -1,2 +1,83 @@
-<p>terapeuta-consultas works!</p>
-<button (onClick)="irConsultaRegistrar()">Nueva Consulta</button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis consultas</title>
+</head>
+
+<body style="padding-bottom:2%;">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+        <div class="container-fluid"><a class="navbar-brand" style="cursor: pointer;">Expediente Clínico
+                Digital - </a><button data-bs-toggle="collapse" class="navbar-toggler"
+                data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+                style="margin-left: 1%">
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40"
+                            class="rounded-circle ml-5">
+                    </a>
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-danger" (click)="irLogin()">Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="principal">
+
+        <div class="container mt-4 rounded shadow" style="background-color: rgba(162, 173, 184, 0.342);">
+            <div class="col-lg-12">
+                <div class="container-fluid mb-2" style="text-align: center;">
+                    <br>
+                    <span class="col titulo"><b>Consultas</b></span>
+                    <div class="col container-fluid my-3">
+                        <form class="d-flex">
+                            <input #word class="form-control me-2" type="search" placeholder="Buscar consulta"
+                                aria-label="Search" formControlName="nombre">
+                            <button class="btn btn-outline-success me-5" type="submit">Buscar<i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="btn btn-success btn-sg me-2">Añadir<i
+                                    class="fa-solid fa-plus"></i></button>
+                            <button class="btn btn-secondary btn-sg" (click)="irPrincipal()">Volver<i
+                                    class="fa-solid fa-arrow-left"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 mx-auto">
+                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;">
+                                    <div class="card-header">Número de consulta:</div>
+                                    <div class="card-body text-primary">
+                                        <h5 class="card-title">Título</h5>
+                                        <p class="card-text">Descripción</p>
+
+                                        <br>
+                                        <a class="btn btn-primary mx-3"><i class="fa-solid fa-pen-to-square"></i>
+                                            Editar</a>
+                                        <a class="btn btn-danger"><i class="fa-solid fa-trash"></i> Eliminar</a>
+
+                                    </div>
+                                    <div class="card-footer text-muted">Fecha y hora</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

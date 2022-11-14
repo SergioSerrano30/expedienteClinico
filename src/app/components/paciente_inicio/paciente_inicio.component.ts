@@ -49,6 +49,6 @@ export class PInicioComponent implements OnInit {
     this.router.navigate(['/paciente_inicio/'+this.id]);
   }
   irConsultas(){
-    this.router.navigate(['/paciente_consultas/:id/']);
+    this.router.navigate(['/paciente_consultas/:id/:idH/']);
   }
 }

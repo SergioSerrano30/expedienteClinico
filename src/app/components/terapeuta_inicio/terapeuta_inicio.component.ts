@@ -66,4 +66,7 @@ export class TerapeutaComponent implements OnInit {
   irPrincipal(){
     this.router.navigate(['/terapeuta_inicio/'+this.id]);
   }
+  irConsultas(){
+    this.router.navigate(['/terapeuta_consultas/'+this.id]);
+  }
 }
