@@ -188,8 +188,6 @@ export class NuevaHistoriaComponent implements OnInit {
       let fecharegistroString= this.fechaHoyCorrecta;
       let hora = this.horaHoyCorrecta;
       let usuarios_idTerapeuta = this.id;
-      // alert("id :"+this.id);
-      // alert("idUM :"+this.idUM);
       let usuarios_idPaciente=this.idPAC;
   
       //Crear Objetos

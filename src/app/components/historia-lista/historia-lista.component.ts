@@ -55,7 +55,7 @@ export class HistoriaListaComponent implements OnInit {
     this.nombre = '';
     this.rol = ''
   
-    alert(this.palabra);
+    //alert(this.palabra);
 
     if (this.day < 9 && this.month < 9) {
       this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
@@ -145,7 +145,7 @@ export class HistoriaListaComponent implements OnInit {
             usuarios_idPaciente: data.usuarios_idPaciente,
           };
      
-          alert(HISTORIA.estatus);
+          //alert(HISTORIA.estatus);
           console.log(data);
 
      this._historiaService.editarHistoria(idH+'',HISTORIA).subscribe((data) => {

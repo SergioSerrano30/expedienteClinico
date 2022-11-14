@@ -44,8 +44,7 @@ export class ConsultaRegistrarComponent implements OnInit {
       numConsulta: ['', Validators.required],
       descripcion: ['', Validators.required],
       ejerciciosCasa: ['', Validators.required],
-      horaRegistro: ['', Validators.required],
-      fechaRegistro: ['', Validators.required],
+     
     })
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idUM = this.aRouter.snapshot.paramMap.get('idUM') + '';
@@ -122,6 +121,7 @@ export class ConsultaRegistrarComponent implements OnInit {
           this.consultaForm.reset();
         }
       );
+      this.regresar();
      }else{
             //Guardar
             this._consultasService.guardarConsulta(CONSULTA).subscribe((data) => {
@@ -135,8 +135,8 @@ export class ConsultaRegistrarComponent implements OnInit {
               this.toastr.success(
                 'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
               );
-              //this.router.navigate(['/paciente_lista/' + this.id]);
             });
+            this.regresar();
      }
      
  
@@ -152,8 +152,7 @@ export class ConsultaRegistrarComponent implements OnInit {
             numConsulta: data.numConsulta,
             descripcion: data.descripcion,
             ejerciciosCasa: data.ejerciciosCasa,
-            fechaRegistro: data.fechaRegistro,
-            horaRegistro: data.horaRegistro
+  
           });
         });
       }
@@ -176,7 +175,6 @@ export class ConsultaRegistrarComponent implements OnInit {
     }
 
     regresar(){
-      alert("clic regresar");
       this.router.navigate(["paciente_consultas/"+this.id+"/"+this.idH])
     }
   
