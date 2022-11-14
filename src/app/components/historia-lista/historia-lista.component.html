@@ -54,8 +54,8 @@
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria">
-                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;">
+                            <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria" >
+                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;" *ngIf="historia.estatus=='A'">
                                     <div class="card-header">Fecha: {{historia.fecRegistro}}</div>
                                     <div class="card-body text-primary">
                                         <h5 class="card-title">{{historia.problematica}}</h5>
@@ -68,7 +68,7 @@
                                         <a class="btn btn-success" (click)="irConsultas(historia._id)"><i class="fa-solid fa-user-doctor"></i> Consultas</a>
                                         <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)"><i
                                                 class="fa-solid fa-pen-to-square"></i> Editar</a>
-                                        <a class="btn btn-danger"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                                        <a class="btn btn-danger" (click)="ocultarHistoria(historia._id)"><i class="fa-solid fa-trash"></i> Eliminar</a>
 
                                     </div>
                                 </div>

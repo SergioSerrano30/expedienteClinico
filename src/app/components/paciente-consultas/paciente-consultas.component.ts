@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Consulta } from 'src/app/models/consulta';
@@ -19,6 +20,7 @@ export class PacienteConsultasComponent implements OnInit {
   listConsulta: Consulta[] = [];
   id: string;
   idH: string;
+  idCE:string;
   usuario: Usuario | null;
   historia: Historia | null;
   nombre: string;
@@ -40,6 +42,7 @@ export class PacienteConsultasComponent implements OnInit {
   ) { 
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idH = this.aRouter.snapshot.paramMap.get('idH') + '';
+    this.idCE='';
     this.usuario = null;
     this.historia = null;
     this.nombre = '';
@@ -61,6 +64,8 @@ export class PacienteConsultasComponent implements OnInit {
     } else {
       this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
     }
+
+    this.id = this.aRouter.snapshot.paramMap.get('id') + '';
   }
 
   ngOnInit(): void {
@@ -99,8 +104,10 @@ export class PacienteConsultasComponent implements OnInit {
   irNuevaConsulta(){
     this.router.navigate(['/consulta_registro/'+this.id+'/'+this.idH]);
   }
+
   irModificarConsulta(idCM: string| undefined){
-    this.router.navigate(['/historia_editar/'+this.id+'/'+this.idH+"/"+idCM]);
+    alert(idCM);
+    this.router.navigate(['/consulta_editar/'+this.id+'/'+this.idH+"/"+idCM]);
   }
  
   irHistoriaLista(){
@@ -110,6 +117,20 @@ export class PacienteConsultasComponent implements OnInit {
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
   }
+
+  eliminarConsulta(id:string | undefined){
+    alert("diste clic");
+    this._consultaService.eliminarConsulta(id+'').subscribe((data) => {
+      // this.toastr.success(
+      //   'Se Elimino Correctamente la Consulta!',
+      //   'Consulta Eliminada!'
+      // );
+      alert("Consulta Eliminada");
+      
+    });
+  }
+
+ 
 }
 
 

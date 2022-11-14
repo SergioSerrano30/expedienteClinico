@@ -40,6 +40,7 @@ export class HistoriaListaComponent implements OnInit {
     this.historiaGroup = fb.group({
       problematica: [''],
     });
+    
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idPAC = this.aRouter.snapshot.paramMap.get('idPAC') + '';
     this.usuario = null;
@@ -82,6 +83,7 @@ export class HistoriaListaComponent implements OnInit {
     } 
   }
 
+
   irNuevaHistoria(){
     this.router.navigate(['/historia_registro/'+this.id+'/'+this.idPAC]);
   }
@@ -101,4 +103,44 @@ export class HistoriaListaComponent implements OnInit {
     this.router.navigate(['/terapeuta_login'])
   }
 
+
+
+  ocultarHistoria(idH:string | undefined){
+    this._historiaService.obtenerHistoria("Historia",idH+'').subscribe((data) => {
+          const HISTORIA: Historia = {
+            problematica:data.problematica,
+            fecRegistro: data.fecharegistroString+'',
+            fecNacimiento: data.fecNacimiento,
+            peso: data.peso,
+            estatura: data.estatura,
+            emeNombre: data.emeNombre,
+            emeParentesco: data.emeParentesco,
+            emeCelular: data.emeCelular,
+            alergias: data.alergias,
+            cirugias: data.cirugias,
+            traFracturas: data.traFracturas,
+            enfCongenitas: data.enfCongenitas,
+            enfHereditarias: data.enfHereditarias,
+            otros: data.otros,
+            observaciones: data.observaciones,
+            numConsultasTotales: data.numConsultasTotales,
+            estatus:"N",
+            usuarios_idTerapeuta: data.usuarios_idTerapeuta,
+            usuarios_idPaciente: data.usuarios_idPaciente,
+          };
+     
+          alert(HISTORIA.estatus);
+          console.log(data);
+
+     this._historiaService.editarHistoria(idH+'',HISTORIA).subscribe((data) => {
+          // this.toastr.success(
+          //   'Se Oculto Correctamente la Historia!',
+          //   'historia Eliminada!'
+          // );
+          alert("Historia Ocultada Correctamente");
+          
+        });
+      });
+  }
 }
+  

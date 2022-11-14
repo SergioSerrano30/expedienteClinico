@@ -44,7 +44,7 @@
                             <input #word class="form-control me-2" type="search" placeholder="Buscar historia"
                                 aria-label="Search" formControlName="nombre">
                             <button class="btn btn-outline-success me-5" type="submit">Buscar<i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                                    class="fa-solid fa-magnifying-glass" ></i></button>
                             <button class="btn btn-success btn-sg me-2" (click)="irNuevaConsulta()">Añadir<i
                                     class="fa-solid fa-plus"></i></button>
                             <button class="btn btn-secondary btn-sg" (click)="irHistoriaLista()">Volver<i
@@ -81,9 +81,9 @@
                                         <p class="card-text">{{consulta.ejerciciosCasa}}</p>
 
                                         <br>
-                                        <a class="btn btn-primary mx-3" ><i
-                                                class="fa-solid fa-pen-to-square"></i> Editar</a>
-                                        <a class="btn btn-danger"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                                        <a class="btn btn-primary mx-3" (click)="irModificarConsulta(consulta._id)"><i class="fa-solid fa-pen-to-square" ></i> Editar</a> 
+                                 
+                                        <a class="btn btn-danger" (click)="eliminarConsulta(consulta._id)"><i class="fa-solid fa-trash"></i> Eliminar</a>
 
                                     </div>
                                     <div class="card-footer text-muted">Fecha: {{consulta.fechaRegistro}} Hora:

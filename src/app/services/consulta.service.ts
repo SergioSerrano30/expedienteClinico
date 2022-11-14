@@ -27,4 +27,8 @@ export class ConsultaService {
   editarConsulta(id: string,consulta:Consulta): Observable<any>{
     return this.http.put(this.url+id,consulta);
   }
+
+  eliminarConsulta(id: string): Observable<any>{
+    return this.http.delete(this.url+id);
+  }
 }

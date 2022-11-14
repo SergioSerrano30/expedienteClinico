@@ -1,12 +1,9 @@
 export class Historia{
   _id?: string;
   idHistoria_PK?: string;
-
   problematica:string;
-
   fecRegistro: string;
   fecNacimiento:String;
-
   peso: string;
   estatura: string;
   emeNombre: string;
@@ -45,7 +42,6 @@ export class Historia{
       this.otros=otros;
       this.observaciones=observaciones;
       this.numConsultasTotales=numConsultasTotales;
-
       this.estatus=estatus;
       this.usuarios_idTerapeuta=usuarios_idTerapeuta;
       this.usuarios_idPaciente=usuarios_idPaciente;
