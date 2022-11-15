@@ -84,6 +84,7 @@ export class ConsultaRegistrarComponent implements OnInit {
         ejerciciosCasa:ejerciciosCasa,
         fechaRegistro:fechaRegistro+"",
         horaRegistro:horaRegistro+'',
+        estatus: "A",
         idHistoria:idHistoria,
         usuarios_idUsuario:usuarios_idUsuario
 

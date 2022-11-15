@@ -8,7 +8,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Operacion } from 'src/app/models/operacion';
 import { OperacionService } from 'src/app/services/operacion.service';
-
+ 
 @Component({
   selector: 'app-nueva-historia',
   templateUrl: './historia_registro.component.html',
@@ -17,14 +17,15 @@ import { OperacionService } from 'src/app/services/operacion.service';
 export class NuevaHistoriaComponent implements OnInit {
   historiaForm: FormGroup;
 
-  titulo = 'Registrar Nueva Historia';
+  titulo = 'Registrar Historia';
   id: string;
   idUM: string;
   idHM:string;
   idPAC:string;
   usuario: Usuario | null;
   nombre: string;
-  tipoOperacion='Registrar Nueva Historia';
+  rol: string;
+  tipoOperacion='Registrar Historia';
 
   today = new Date();
   day = this.today.getDate();
@@ -84,6 +85,7 @@ export class NuevaHistoriaComponent implements OnInit {
     this.idHM = this.aRouter.snapshot.paramMap.get('idHM') + '';
     this.usuario = null;
     this.nombre = '';
+    this.rol = '';
 
 
     //Bloquear Fecha---------
@@ -225,11 +227,12 @@ export class NuevaHistoriaComponent implements OnInit {
         //editamos
        this._historiaServices.editarHistoria(this.idHM, HISTORIA).subscribe(
         (data) => {
+          OPERACION.tipoOperacion = "Editar Historia"
           this.toastr.info(
             'Historia modificado con éxito!',
             'Historia Actualizada!'
           );
-          //this.router.navigate(['/paciente_lista/' + this.id]);
+          
         },
         (error) => {
           console.log(error);
@@ -244,13 +247,15 @@ export class NuevaHistoriaComponent implements OnInit {
             'Historia registrada!');
             guardado=true;
           });
-      //Guardar Operacion
-        this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
-          this.toastr.success(
-            'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
-          );
-        });
+      
      }
+     //Guardar Operacion
+     this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
+      this.toastr.success(
+        'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
+      );
+    });
+    this.irHistorias()
       
   }
 
@@ -258,10 +263,10 @@ export class NuevaHistoriaComponent implements OnInit {
     if (this.idHM !== null) {
       
      this.titulo = 'Editar Historia';
-     this.tipoOperacion='Editar Historia ya registrada';
+     this.tipoOperacion='Editar Historia';
 
      this._usuarioService.obtenerUsuario(this.idPAC).subscribe((dataPaciente) => {
-     this._historiaServices.obtenerHistoria("Historia",this.idHM).subscribe((data) => {
+     this._historiaServices.obtenerHistoria("Historia",this.idHM,"-").subscribe((data) => {
        this.varCirugias=true;
        this.varAlergias=true;
        this.varTraFracturas=true;
@@ -357,12 +362,17 @@ export class NuevaHistoriaComponent implements OnInit {
         //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+        this.rol = this.usuario?.usuario_rol.desRol + '';
       });
     }
   }
 
   irLogin(){
     this.router.navigate(['/terapeuta_login'])
+  }
+
+  irHistorias(){
+    this.router.navigate(['/historia_lista/'+this.id+'/'+this.idPAC])
   }
 
   cambiarEstado1(){

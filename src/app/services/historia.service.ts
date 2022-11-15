@@ -22,8 +22,8 @@ export class HistoriaService {
   }
 
 
-  obtenerHistoria(type:string,id: string): Observable<any>{
-    return this.http.get(this.url+type+"/"+id);
+  obtenerHistoria(type:string,id: string,nombre: string): Observable<any>{
+    return this.http.get(this.url+type+"/"+id+"/"+nombre);
   }
 
   editarHistoria(id: string,historia:Historia): Observable<any>{

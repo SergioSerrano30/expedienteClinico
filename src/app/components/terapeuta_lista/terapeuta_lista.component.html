@@ -68,7 +68,7 @@
             <i (click)="irModificarTerapeuta(usuario._id)"  class="fas fa-edit text-primary"></i>
             <i (click)="denegarAcceso(usuario._id)" class="fas fa-lock text-danger" *ngIf="usuario.activo=='S'"></i>
               <i (click)="concederAcceso(usuario._id)" class="fas fa-unlock text-success" *ngIf="usuario.activo=='N'"></i>
-            <i class="fas fa-solid fa-eye"></i>
+            <!-- <i class="fas fa-solid fa-eye"></i> -->
           </tr>
         </tbody>
       </table>

@@ -20,12 +20,13 @@
 
         <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()" style="cursor: pointer;">Expediente
                 Clínico
-                Digital [Terapeuta / Administrador] - </a><button data-bs-toggle="collapse" class="navbar-toggler"
+                Digital [{{rol}}] - {{nombre}}</a><button data-bs-toggle="collapse" class="navbar-toggler"
                 data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-end" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" style="cursor: pointer;">Regresar</a></li>
+                    <li class="nav-item"><a class="nav-link" style="cursor: pointer;"
+                            (click)="irHistorias()">Regresar</a></li>
                 </ul>
             </div>
 
@@ -187,6 +188,8 @@
                         <div class="form-check form-switch text-center ">
                             <input (change)="cambiarEstado1()" class="form-check-input" type="checkbox" role="switch"
                                 id="switchAlergias">
+                            <input *ngIf="varAlergias==true" (change)="cambiarEstado1()" class="form-check-input"
+                                type="checkbox" role="switch" id="switchAlergias" checked>
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Alergias?</label>
                         </div>
                     </div>
@@ -205,6 +208,8 @@
                         <div class="form-check form-switch text-center">
                             <input (change)="cambiarEstado2()" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault">
+                            <input (change)="cambiarEstado2()" class="form-check-input" type="checkbox" role="switch"
+                                id="flexSwitchCheckDefault" *ngIf="varCirugias==true" checked>
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Cirugias?</label>
 
                         </div>
@@ -224,6 +229,9 @@
                         <div class="form-check form-switch text-center">
                             <input (change)="cambiarEstado3()" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault">
+                            <input (change)="cambiarEstado3()" class="form-check-input" type="checkbox" role="switch"
+                                id="flexSwitchCheckDefault" *ngIf="varTraFracturas==true" checked>
+
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Traumas / Fracturas?</label>
                         </div>
                     </div>
@@ -242,6 +250,9 @@
                         <div class="form-check form-switch text-center">
                             <input (change)="cambiarEstado4()" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault">
+                            <input (change)="cambiarEstado4()" class="form-check-input" type="checkbox" role="switch"
+                                id="flexSwitchCheckDefault" *ngIf="varEnfCongenitas==true" checked>
+
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Enfermedades
                                 congenitas?</label>
                         </div>
@@ -262,6 +273,9 @@
                         <div class="form-check form-switch text-center">
                             <input (change)="cambiarEstado5()" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault">
+                            <input (change)="cambiarEstado5()" class="form-check-input" type="checkbox" role="switch"
+                                id="flexSwitchCheckDefault" *ngIf="varEnfHereditarias==true" checked>
+                            
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Enfermedades
                                 hereditarias?</label>
                         </div>
