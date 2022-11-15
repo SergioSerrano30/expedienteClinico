@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Consulta } from 'src/app/models/consulta';
@@ -23,6 +24,7 @@ export class PacienteConsultasComponent implements OnInit {
   id: string;
   idH: string;
   idCE:string;
+  idPAC:string;
   usuario: Usuario | null;
   historia: Historia | null;
   nombre: string;
@@ -45,12 +47,13 @@ export class PacienteConsultasComponent implements OnInit {
     private _operacionesService: OperacionService,
     private _usuarioService: UsuarioService,
     private _historiaService: HistoriaService,
+    private location: Location,
     private aRouter: ActivatedRoute
   ) { 
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idH = this.aRouter.snapshot.paramMap.get('idH') + '';
-    this.idCE = this.aRouter.snapshot.paramMap.get('idCDE') + '';
-    this.idCE='';
+    this.idCE = this.aRouter.snapshot.paramMap.get('idCE') + '';
+    this.idPAC = ''
     this.usuario = null;
     this.historia = null;
     this.nombre = '';
@@ -88,7 +91,7 @@ export class PacienteConsultasComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario()
-    this.obtenerHistoria()
+    // this.obtenerHistoria()
     this.obtenerConsultas()
   }
 
@@ -97,6 +100,7 @@ export class PacienteConsultasComponent implements OnInit {
       .obtenerConsulta('Historia_Activas', this.idH)
       .subscribe((data) => {
         this.listConsulta = data;
+        // this.idPAC = data.usuarios_idPaciente;
         console.log(this.listConsulta)
         console.log("----->"+this.listConsulta.length)
       });
@@ -112,13 +116,13 @@ export class PacienteConsultasComponent implements OnInit {
       }); 
     } 
   } 
-  obtenerHistoria(){
-    this._historiaService.obtenerHistoria("Historia",this.idH,"-").subscribe((data) => {
-      this.historia = data;
-      console.log(this.historia);
-      console.log("->"+this.historia?.usuarios_idPaciente);
-    })
-  }
+  // obtenerHistoria(){
+  //   this._historiaService.obtenerHistoria("Historia_Activa",this.idH,"-").subscribe((data) => {
+  //     this.historia = data;
+  //     console.log(this.historia);
+  //     console.log("->"+this.historia?.usuarios_idPaciente);
+  //   })
+  // }
  
   irNuevaConsulta(){
     this.router.navigate(['/consulta_registro/'+this.id+'/'+this.idH]);
@@ -127,10 +131,13 @@ export class PacienteConsultasComponent implements OnInit {
   irModificarConsulta(idCM: string| undefined){
     //alert(idCM);
     this.router.navigate(['/consulta_editar/'+this.id+'/'+this.idH+"/"+idCM]);
+    
   }
  
   irHistoriaLista(){
-    this.router.navigate(['/historia_lista/'+this.id+"/"+this.historia?.usuarios_idPaciente]);
+    //console.log(this.idPAC);
+    this.location.back();
+    //this.router.navigate(['/historia_lista/'+this.id+"/"+this.idPAC]);
   }
 
   irLogin(){

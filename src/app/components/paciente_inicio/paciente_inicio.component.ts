@@ -13,6 +13,7 @@ export class PInicioComponent implements OnInit {
   usuarioForm: FormGroup;
   usuario: Usuario | null;
   nombre: string;
+  rol: string;
   constructor(
     private _usuarioService: UsuarioService,
     private fb: FormBuilder,
@@ -25,6 +26,7 @@ export class PInicioComponent implements OnInit {
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.usuario = null;
     this.nombre = '';
+    this.rol = ''
   }
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class PInicioComponent implements OnInit {
         console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+        this.rol = this.usuario?.usuario_rol.desRol+"";
       });
     }
   }
@@ -49,6 +52,6 @@ export class PInicioComponent implements OnInit {
     this.router.navigate(['/paciente_inicio/'+this.id]);
   }
   irConsultas(){
-    this.router.navigate(['/paciente_consultas/:id/:idH/']);
+    this.router.navigate(['/paciente_historias/'+this.id]);
   }
 }
