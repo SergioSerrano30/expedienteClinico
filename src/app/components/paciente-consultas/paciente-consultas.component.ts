@@ -29,6 +29,7 @@ export class PacienteConsultasComponent implements OnInit {
   historia: Historia | null;
   nombre: string;
   rol: string;
+  numConsultas = this.obtenerConsultas();
 
   today = new Date();
   day = this.today.getDate();
@@ -100,9 +101,8 @@ export class PacienteConsultasComponent implements OnInit {
       .obtenerConsulta('Historia_Activas', this.idH)
       .subscribe((data) => {
         this.listConsulta = data;
-        // this.idPAC = data.usuarios_idPaciente;
-        console.log(this.listConsulta)
-        console.log("----->"+this.listConsulta.length)
+        return this.listConsulta.length;
+
       });
   }
 

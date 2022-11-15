@@ -236,5 +236,7 @@ export class ConsultaRegistrarComponent implements OnInit {
         this.listConsulta = data;
         this.varNumconsulta =this.listConsulta.length + 1;
       });
+
+  }
   }
   }
