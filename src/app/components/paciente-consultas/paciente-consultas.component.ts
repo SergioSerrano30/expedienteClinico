@@ -105,6 +105,15 @@ export class PacienteConsultasComponent implements OnInit {
         console.log("----->"+this.listConsulta.length)
       });
   }
+
+  obtenerConsultasOcultas() {
+    this._consultaService
+      .obtenerConsulta('Historia_Ocultas', this.idH)
+      .subscribe((data) => {
+        this.listConsulta = data;
+      });
+  }
+
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
@@ -160,7 +169,7 @@ export class PacienteConsultasComponent implements OnInit {
       const OPERACION: Operacion = {
         fechaRegistro: this.fechaHoyCorrecta + '',
         hora: this.horaHoyCorrecta + '',
-        tipoOperacion: 'Ocultar Operacion',
+        tipoOperacion: 'Ocultar Consulta',
         usuarios_idUsuario: this.id,
       };
       console.log(CONSULTA)
@@ -179,6 +188,49 @@ export class PacienteConsultasComponent implements OnInit {
         this.toastr.success(
           'Se Elimino Correctamente la Consulta!',
           'Consulta Eliminada!'
+        );
+        window.location.reload()
+      });
+      
+    })
+    
+
+  }
+  activarConsulta(ident:string | undefined){
+    this._consultaService.obtenerConsulta("Consulta",ident+'').subscribe((data) => {
+      const CONSULTA: Consulta = {
+        numConsulta: data.numConsulta,
+        descripcion: data.descripcion,
+        ejerciciosCasa: data.ejerciciosCasa,
+        fechaRegistro: data.fechaRegistro,
+        horaRegistro: data.horaRegistro,
+        estatus: "A",
+        idHistoria: data.idHistoria,
+        usuarios_idUsuario: data.usuarios_idUsuario
+      }
+
+      const OPERACION: Operacion = {
+        fechaRegistro: this.fechaHoyCorrecta + '',
+        hora: this.horaHoyCorrecta + '',
+        tipoOperacion: 'Activar Consulta',
+        usuarios_idUsuario: this.id,
+      };
+      console.log(CONSULTA)
+      console.log(OPERACION)
+      
+        //Guardar Operacion
+        this._operacionesService
+          .guardarOperacion(OPERACION)
+          .subscribe((data) => {
+            this.toastr.success(
+              'Se ha guardado la Operacion con Exito!',
+              'Operacion Registrada!'
+            );
+          });
+      this._consultaService.editarConsulta(ident+'',CONSULTA).subscribe((data) => {
+        this.toastr.success(
+          'Se Activó Correctamente la Consulta!',
+          'Consulta Activada!'
         );
         window.location.reload()
       });
