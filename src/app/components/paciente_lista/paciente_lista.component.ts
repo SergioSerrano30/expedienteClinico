@@ -96,9 +96,7 @@ export class TInicioComponent implements OnInit {
   obtenerUsuarios() {
     this._pacienteService.getPacientes().subscribe(
       (data) => {
-        //console.log(data);
-        //console.log(data.length)
-        //this.toastr.success('Usuarios cargados con éxito','Usuarios cargados');
+ 
         this.listUsuarios = data;
         //console.log(data[0].usuario)
       },

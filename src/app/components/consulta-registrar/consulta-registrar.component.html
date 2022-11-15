@@ -17,13 +17,13 @@
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
 
-        <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()" style="cursor: pointer;">Expediente Clínico
-                Digital [Terapeuta / Administrador] - </a><button data-bs-toggle="collapse" class="navbar-toggler"
+        <div class="container-fluid"><a class="navbar-brand"  style="cursor: pointer;">Expediente Clínico
+                Digital  [{{rol}}] - {{nombre}}  </a><button data-bs-toggle="collapse" class="navbar-toggler"
                 data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse text-end" id="navcol-1">
                         <ul class="navbar-nav ms-auto">
-                          <li class="nav-item"><a class="nav-link" style="cursor: pointer;">Regresar</a></li>
+                          <li class="nav-item"><a class="nav-link" style="cursor: pointer;" (click)="regresar()">Regresar</a></li>
                         </ul>
                       </div>
             
@@ -31,7 +31,7 @@
                     <div class="dropdown text-end">
                       <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5">
+                        <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40" class="rounded-circle ml-5" (click)="irLogin()">
                       </a>
                     </div>
             
@@ -83,26 +83,6 @@
                            <input formControlName="ejerciciosCasa" type="text" class="form-control" id="ejercicios"
                                placeholder="ejercicios en casa" required>
                            <label style="color:rgba(0, 0, 0, 0.5)" for="ejercicios en casa">Ejercicios</label>
-                       </div>
-                   </div>
-                </div>
-
-                <div class="row g-4">
-                    <div class="col-md">
-                        <div class="form-floating my-2">
-                            <input formControlName="fechaRegistro" type="date" class="form-control" id="fecha_registro"
-                               placeholder="fecha_registro" required>
-                           <label style="color:rgba(0, 0, 0, 0.5)" for="fecha_registro">Fecha de Registro</label>
-                       </div>
-                   </div>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-md">
-                       <div class="form-floating my-2">
-                           <input formControlName="horaRegistro" type="time" class="form-control" id="hora_registro"
-                               placeholder="horaRegistro" required>
-                           <label style="color:rgba(0, 0, 0, 0.5)" for="horaRegistro">Hora de Registro</label>
                        </div>
                    </div>
                 </div>

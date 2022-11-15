@@ -24,6 +24,7 @@ export class NuevaHistoriaComponent implements OnInit {
   idPAC:string;
   usuario: Usuario | null;
   nombre: string;
+  tipoOperacion='Registrar Nueva Historia';
 
   today = new Date();
   day = this.today.getDate();
@@ -122,7 +123,7 @@ export class NuevaHistoriaComponent implements OnInit {
       this.esEditar();
     }else{
       this._usuarioService.obtenerUsuario(this.idPAC).subscribe((data) => {
-       console.log(data);
+       //console.log(data);
         this.historiaForm.setValue({
           nombre: data.usuario_persona.nombre,
           apPaterno: data.usuario_persona.apPaterno,
@@ -184,22 +185,11 @@ export class NuevaHistoriaComponent implements OnInit {
       let numConsultasTotales = this.historiaForm.get('numConsultasTotales')?.value;
       let problematica = this.historiaForm.get('problematica')?.value;
 
-      let tipoOperacion = 'Registrar Nueva Historia';
       let fecharegistroString= this.fechaHoyCorrecta;
       let hora = this.horaHoyCorrecta;
       let usuarios_idTerapeuta = this.id;
-      // alert("id :"+this.id);
-      // alert("idUM :"+this.idUM);
       let usuarios_idPaciente=this.idPAC;
-      let estatus="A";
-
-
-       //Calcular Edad con cumpleaños
-      // var fecha_nacimiento='2000-11-11';
-      // var hoy = new Date();
-      // var cumpleanos = new Date(fecha_nacimiento);
-      // var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-
+  
       //Crear Objetos
       const HISTORIA: Historia = {
         problematica:problematica,
@@ -218,7 +208,7 @@ export class NuevaHistoriaComponent implements OnInit {
         otros: otros,
         observaciones: observaciones,
         numConsultasTotales: numConsultasTotales,
-        estatus:estatus,
+        estatus:'A',
         usuarios_idTerapeuta: usuarios_idTerapeuta,
         usuarios_idPaciente: usuarios_idPaciente,
       }
@@ -226,7 +216,7 @@ export class NuevaHistoriaComponent implements OnInit {
       const OPERACION: Operacion = {
         fechaRegistro: this.fechaHoyCorrecta+'',
         hora: this.horaHoyCorrecta+'',
-        tipoOperacion: tipoOperacion,
+        tipoOperacion: this.tipoOperacion,
         usuarios_idUsuario: usuarios_idTerapeuta,
       };
 
@@ -266,7 +256,9 @@ export class NuevaHistoriaComponent implements OnInit {
 
   esEditar() {
     if (this.idHM !== null) {
+      
      this.titulo = 'Editar Historia';
+     this.tipoOperacion='Editar Historia ya registrada';
 
      this._usuarioService.obtenerUsuario(this.idPAC).subscribe((dataPaciente) => {
      this._historiaServices.obtenerHistoria("Historia",this.idHM).subscribe((data) => {
@@ -309,7 +301,7 @@ export class NuevaHistoriaComponent implements OnInit {
      //   this.varEnfHereditarias=true;
 
 
-       console.log(data);
+       //console.log(data);
        this.historiaForm.setValue({
          nombre: dataPaciente.usuario_persona.nombre,
          apPaterno: dataPaciente.usuario_persona.apPaterno,
