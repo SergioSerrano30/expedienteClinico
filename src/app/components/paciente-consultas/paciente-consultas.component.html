@@ -80,10 +80,10 @@
                                     <div class="card-footer text-muted">Fecha: {{consulta.fechaRegistro}} Hora:
                                         {{consulta.horaRegistro}}</div>
                                 </div>
-                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;"
+                                <div class="card col border-danger mb-3 my-3" style="max-width: 30rem;"
                                     *ngIf="consulta.estatus=='N'">
                                     <div class="card-header">Número de consulta: {{consulta.numConsulta}}</div>
-                                    <div class="card-body text-primary">
+                                    <div class="card-body text-danger">
                                         <h5 class="card-title">{{consulta.descripcion}}</h5>
                                         <p class="card-text">{{consulta.ejerciciosCasa}}</p>
 
