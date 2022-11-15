@@ -38,7 +38,7 @@
             <div class="col-lg-12">
                 <div class="container-fluid mb-2" style="text-align: center;">
                     <br>
-                    <span class="col titulo"><b>Consultas Atendidas: {{numConsultas}} </b></span>
+                    <span class="col titulo"><b>Mis historias</b></span>
                     <div class="col container-fluid my-3">
                         <form class="d-flex" [formGroup]="busquedaGroup">
                             <!-- <input #word class="form-control me-2" type="search" placeholder="Buscar historia"
@@ -46,64 +46,41 @@
                             <button class="btn btn-outline-success me-5" type="submit">Buscar<i
                                     class="fa-solid fa-magnifying-glass" ></i></button> -->
                             <div class="card-body d-flex justify-content-between align-items-center">
-                                <button class="btn btn-secondary btn-sg" (click)="irHistoriaLista()">Volver <i
+                                <button class="btn btn-secondary btn-sg" (click)="irInicio()">Volver <i
                                         class="fa-solid fa-arrow-left"></i></button>
-                                <button class="btn btn-success btn-sg me-2" (click)="irNuevaConsulta()"
-                                    *ngIf="rol == 'Terapeuta'">Añadir <i class="fa-solid fa-plus"></i></button>
-                                <button class="btn btn-warning btn-sg me-2 mx-2" (click)="obtenerConsultasOcultas()"
-                                    *ngIf="rol == 'Terapeuta'"> Ocultas <i
-                                        class="fa-solid fa-clock-rotate-left"></i></button>
+
                             </div>
 
                         </form>
                     </div>
 
                     <div class="container">
-                        <div class="row" *ngIf="listConsulta.length > 0">
-                            <div class="col-md-5 mx-auto" *ngFor="let consulta of listConsulta">
+                        <div class="row">
+                            <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria">
                                 <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;"
-                                    *ngIf="consulta.estatus=='A'">
-                                    <div class="card-header">Número de consulta: {{consulta.numConsulta}}</div>
+                                    *ngIf="historia.estatus=='A'">
+                                    <div class="card-header">Fecha: {{historia.fecRegistro}}</div>
                                     <div class="card-body text-primary">
-                                        <h5 class="card-title">{{consulta.descripcion}}</h5>
-                                        <p class="card-text">{{consulta.ejerciciosCasa}}</p>
-
+                                        <h5 class="card-title">{{historia.problematica}}</h5>
+                                        <p class="card-text">{{historia.observaciones}}</p>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Peso: {{historia.peso}}</li>
+                                            <li class="list-group-item">Estatura: {{historia.estatura}}</li>
+                                        </ul>
                                         <br>
-                                        <a class="btn btn-primary mx-3" (click)="irModificarConsulta(consulta._id)"
-                                            *ngIf="rol == 'Terapeuta'"><i class="fa-solid fa-pen-to-square"></i>
-                                            Editar</a>
-
-                                        <a class="btn btn-danger" (click)="eliminarConsulta(consulta._id)"
-                                            *ngIf="rol == 'Terapeuta'"><i class="fa-solid fa-trash"></i> Ocultar</a>
-
+                                        <a class="btn btn-success" (click)="irConsultas(historia._id)"><i
+                                                class="fa-solid fa-user-doctor"></i> Consultas</a>
                                     </div>
-                                    <div class="card-footer text-muted">Fecha: {{consulta.fechaRegistro}} Hora:
-                                        {{consulta.horaRegistro}}</div>
-                                </div>
-                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;"
-                                    *ngIf="consulta.estatus=='N'">
-                                    <div class="card-header">Número de consulta: {{consulta.numConsulta}}</div>
-                                    <div class="card-body text-primary">
-                                        <h5 class="card-title">{{consulta.descripcion}}</h5>
-                                        <p class="card-text">{{consulta.ejerciciosCasa}}</p>
 
-                                        <br>
-                                        <!-- <a class="btn btn-success" (click)="irConsultas(historia._id)"><i class="fa-solid fa-user-doctor"></i> Consultas</a>
-                                        <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)"><i
-                                                class="fa-solid fa-pen-to-square"></i> Editar</a> -->
-                                                <a class="btn btn-warning" (click)="activarConsulta(consulta._id)"><i
-                                                    class="fa-sharp fa-solid fa-rotate-left"></i> Activar</a>
-                                    </div>
-                                    <div class="card-footer text-muted">Fecha: {{consulta.fechaRegistro}} Hora:
-                                        {{consulta.horaRegistro}}</div>
                                 </div>
+
                             </div>
-
                         </div>
+                        <h5 style="text-align: center; margin-top:10px" *ngIf="listHistoria.length == 0">No hay
+                            historias para mostrar.</h5>
+                        <br>
 
                     </div>
-                    <h5 style="text-align: center; margin-top:10px" *ngIf="listConsulta.length == 0">No hay consultas
-                        para mostrar.</h5>
                     <!-- <div class="container">
                         <div class="row">
                             <div class="col-md-5 mx-auto">
