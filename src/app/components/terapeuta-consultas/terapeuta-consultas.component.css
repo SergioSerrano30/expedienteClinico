@@ -1,0 +1,70 @@
+.consultas{
+    height: 150px;
+    width: 150px;
+}
+
+.fas{
+    cursor: pointer;
+    margin-left: 5px;
+}
+.titulo{
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+.fotoPerfil{
+    width: 50px;
+    height: 50px; 
+}
+
+.bordeImagen {
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    border-radius: 30%;
+    background-size: 100% auto;
+}
+  
+.body{
+    text-align: justify;
+    
+}
+  
+.bordeImagenFooter{
+  border-radius:30%;
+  width:70px;
+  height: 60px;
+  margin-right: 1rem;
+}
+  
+.imageban{
+  width:1200px;
+  height:400x;
+  border-radius:10%;
+}
+  
+.imagelogo{
+    width:500px;
+    height:350x;
+    border-radius:10%;
+}
+
+.principal{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.etiquetas{
+    text-align: center;
+}
+
+.container-fluid{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.mb-4{
+    padding-top: 3%;
+}
+
+.progress { margin-left: auto; margin-right:auto; }
