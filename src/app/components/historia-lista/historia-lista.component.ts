@@ -8,6 +8,8 @@ import { Usuario } from 'src/app/models/usuario';
 import { HistoriaService } from 'src/app/services/historia.service';
 import { OperacionService } from 'src/app/services/operacion.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Consulta } from 'src/app/models/consulta';
+import { ConsultaService } from 'src/app/services/consulta.service';
 
 @Component({
   selector: 'app-historia-lista',
@@ -18,6 +20,7 @@ export class HistoriaListaComponent implements OnInit {
   historiaGroup: FormGroup;
   busquedaGroup: FormGroup;
   listHistoria: Historia[] = [];
+  listConsulta: Consulta[] = [];
   id: string;
   idPAC: string;
   usuario: Usuario | null;
@@ -26,6 +29,8 @@ export class HistoriaListaComponent implements OnInit {
   rol: string;
   palabra: string;
   aux: string;
+  varNumconsultas:number;
+  consultasActuales:number;
 
   today = new Date();
   day = this.today.getDate();
@@ -43,6 +48,7 @@ export class HistoriaListaComponent implements OnInit {
     private _historiaService: HistoriaService,
     private _usuarioService: UsuarioService,
     private _operacionesService: OperacionService,
+    private _consultasService: ConsultaService,
     private aRouter: ActivatedRoute
   ) {
     this.busquedaGroup = fb.group({
@@ -64,9 +70,10 @@ export class HistoriaListaComponent implements OnInit {
     this.nombre = '';
     this.nombrePAC = '';
     this.rol = '';
+    this.varNumconsultas=0;
+    this.consultasActuales=0;
 
-    //alert(this.palabra);
-
+  
     if (this.day < 9 && this.month < 9) {
       this.fechaHoyCorrecta = this.año + '-0' + this.month + '-0' + this.day;
     } else if (this.day < 9 && this.month > 9) {
@@ -88,6 +95,7 @@ export class HistoriaListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   // this.obtenerConsultas();
     this.obtenerUsuario();
     this.obtenerPaciente();
     this.obtenerHistoriasPaciente();
@@ -112,8 +120,6 @@ export class HistoriaListaComponent implements OnInit {
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
-        // console.log(data);
-        //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
@@ -123,8 +129,6 @@ export class HistoriaListaComponent implements OnInit {
   obtenerPaciente() {
     if (this.idPAC !== '') {
       this._usuarioService.obtenerUsuario(this.idPAC).subscribe((data) => {
-        // console.log(data);
-        //console.log(data.usuario_persona.nombre);
         this.nombrePAC = data.usuario_persona.nombre + '';
       });
     }
@@ -254,7 +258,7 @@ export class HistoriaListaComponent implements OnInit {
           usuarios_idPaciente: data.usuarios_idPaciente,
         };
 
-        //alert(HISTORIA.estatus);
+   
         const OPERACION: Operacion = {
           fechaRegistro: this.fechaHoyCorrecta + '',
           hora: this.horaHoyCorrecta + '',
@@ -284,4 +288,8 @@ export class HistoriaListaComponent implements OnInit {
       });
       
   }
+
+  
 }
+
+
