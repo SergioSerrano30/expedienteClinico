@@ -29,6 +29,7 @@ import { AdminOperacionesComponent } from './components/admin_operaciones/admin_
 import { PacienteConsultasComponent } from './components/paciente-consultas/paciente-consultas.component';
 import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/terapeuta-consultas.component';
 import { HistoriaListaComponent } from './components/historia-lista/historia-lista.component';
+import { PacienteHistoriasComponent } from './components/paciente-historias/paciente-historias.component';
 
 
 
@@ -55,6 +56,7 @@ import { HistoriaListaComponent } from './components/historia-lista/historia-lis
     PacienteConsultasComponent,
     TerapeutaConsultasComponent,
     HistoriaListaComponent,
+    PacienteHistoriasComponent,
 
   
   ],

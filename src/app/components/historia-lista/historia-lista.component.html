@@ -42,21 +42,25 @@
                         <form class="d-flex" [formGroup]="busquedaGroup">
                             <input #word class="form-control me-2" type="search" placeholder="Buscar historia"
                                 aria-label="Search" formControlName="nombre">
-                            <button class="btn btn-outline-success me-5" type="submit" (click)="obtenerHistoriasPorProblematica()">Buscar<i
+                            <button class="btn btn-outline-success me-5" type="submit"
+                                (click)="obtenerHistoriasPorProblematica()">Buscar<i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                             <button class="btn btn-success btn-sg me-2" (click)="irNuevaHistoria()">Añadir<i
                                     class="fa-solid fa-plus"></i></button>
                             <button class="btn btn-secondary btn-sg" (click)="irPacienteLista()">Volver<i
                                     class="fa-solid fa-arrow-left"></i></button>
-                            <button class="btn btn-warning btn-sg me-2 mx-2" (click)="obtenerHistoriasPacienteOcultas()"> Ocultas <i class="fa-solid fa-clock-rotate-left"></i></button>
+                            <button class="btn btn-warning btn-sg me-2 mx-2"
+                                (click)="obtenerHistoriasPacienteOcultas()"> Ocultas <i
+                                    class="fa-solid fa-clock-rotate-left"></i></button>
                         </form>
                     </div>
 
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria" >
-                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;" *ngIf="historia.estatus=='A'">
+                            <div class="col-md-5 mx-auto" *ngFor="let historia of listHistoria">
+                                <div class="card col border-primary mb-3 my-3" style="max-width: 30rem;"
+                                    *ngIf="historia.estatus=='A'">
                                     <div class="card-header">Fecha: {{historia.fecRegistro}}</div>
                                     <div class="card-body text-primary">
                                         <h5 class="card-title">{{historia.problematica}}</h5>
@@ -66,15 +70,18 @@
                                             <li class="list-group-item">Estatura: {{historia.estatura}}</li>
                                         </ul>
                                         <br>
-                                        <a class="btn btn-success" (click)="irConsultas(historia._id)"><i class="fa-solid fa-user-doctor"></i> Consultas</a>
+                                        <a class="btn btn-success" (click)="irConsultas(historia._id)"><i
+                                                class="fa-solid fa-user-doctor"></i> Consultas</a>
                                         <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)"><i
                                                 class="fa-solid fa-pen-to-square"></i> Editar</a>
-                                        <a class="btn btn-danger" (click)="ocultarHistoria(historia._id)"><i class="fa-solid fa-trash"></i> Ocultar</a>
+                                        <a class="btn btn-danger" (click)="ocultarHistoria(historia._id)"><i
+                                                class="fa-solid fa-trash"></i> Ocultar</a>
 
                                     </div>
-                                    
+
                                 </div>
-                                <div class="card col border-danger mb-3 my-3" style="max-width: 30rem;" *ngIf="historia.estatus=='N'">
+                                <div class="card col border-danger mb-3 my-3" style="max-width: 30rem;"
+                                    *ngIf="historia.estatus=='N'">
                                     <div class="card-header">Fecha: {{historia.fecRegistro}}</div>
                                     <div class="card-body text-danger">
                                         <h5 class="card-title">{{historia.problematica}}</h5>
@@ -87,17 +94,19 @@
                                         <!-- <a class="btn btn-success" (click)="irConsultas(historia._id)"><i class="fa-solid fa-user-doctor"></i> Consultas</a>
                                         <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)"><i
                                                 class="fa-solid fa-pen-to-square"></i> Editar</a> -->
-                                        <a class="btn btn-warning" (click)="activarHistoria(historia._id)"><i class="fa-sharp fa-solid fa-rotate-left"></i> Activar</a>
+                                        <a class="btn btn-warning" (click)="activarHistoria(historia._id)"><i
+                                                class="fa-sharp fa-solid fa-rotate-left"></i> Activar</a>
 
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
                         </div>
-                        <h5 style="text-align: center; margin-top:10px" *ngIf="listHistoria.length == 0">No hay historias para mostrar.</h5>
+                        <h5 style="text-align: center; margin-top:10px" *ngIf="listHistoria.length == 0">No hay
+                            historias para mostrar.</h5>
                         <br>
-                        
+
                     </div>
                     <!-- <div class="container">
                     <div class="row">
