@@ -8,6 +8,8 @@ import { Usuario } from 'src/app/models/usuario';
 import { ConsultaService } from 'src/app/services/consulta.service';
 import { HistoriaService } from 'src/app/services/historia.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Operacion } from 'src/app/models/operacion';
+import { OperacionService } from 'src/app/services/operacion.service';
 
 @Component({
   selector: 'app-paciente-consultas',
@@ -30,18 +32,24 @@ export class PacienteConsultasComponent implements OnInit {
   day = this.today.getDate();
   month = this.today.getMonth() + 1;
   año = this.today.getFullYear();
-
+  hora = this.today.getHours();
+  minuto = this.today.getMinutes();
+  
   fechaHoyCorrecta: String;
+  horaHoyCorrecta: String;
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private toastr: ToastrService,
     private _consultaService: ConsultaService,
+    private _operacionesService: OperacionService,
     private _usuarioService: UsuarioService,
     private _historiaService: HistoriaService,
     private aRouter: ActivatedRoute
   ) { 
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idH = this.aRouter.snapshot.paramMap.get('idH') + '';
+    this.idCE = this.aRouter.snapshot.paramMap.get('idCDE') + '';
     this.idCE='';
     this.usuario = null;
     this.historia = null;
@@ -64,8 +72,18 @@ export class PacienteConsultasComponent implements OnInit {
     } else {
       this.fechaHoyCorrecta = this.año + '-' + this.month + '-' + this.day;
     }
+    if (this.hora < 9 && this.minuto < 9) {
+      this.horaHoyCorrecta = '0' + this.hora + ':0' + this.minuto;
+    } else if (this.hora < 9 && this.minuto > 9) {
+      this.horaHoyCorrecta = '0' + this.hora + ':' + this.minuto;
+    } else if (this.hora > 9 && this.minuto < 9) {
+      this.horaHoyCorrecta = this.hora + ':0' + this.minuto;
+    } else {
+      this.horaHoyCorrecta = this.hora + ':' + this.minuto;
+    }
 
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
+    this.idH = this.aRouter.snapshot.paramMap.get('idH') + '';
   }
 
   ngOnInit(): void {
@@ -76,10 +94,11 @@ export class PacienteConsultasComponent implements OnInit {
 
   obtenerConsultas() {
     this._consultaService
-      .obtenerConsulta('Historia', this.idH)
+      .obtenerConsulta('Historia_Activas', this.idH)
       .subscribe((data) => {
         this.listConsulta = data;
         console.log(this.listConsulta)
+        console.log("----->"+this.listConsulta.length)
       });
   }
   obtenerUsuario() {
@@ -92,9 +111,9 @@ export class PacienteConsultasComponent implements OnInit {
         this.rol = this.usuario?.usuario_rol.desRol + '';
       }); 
     } 
-  }
+  } 
   obtenerHistoria(){
-    this._historiaService.obtenerHistoria("Historia",this.idH).subscribe((data) => {
+    this._historiaService.obtenerHistoria("Historia",this.idH,"-").subscribe((data) => {
       this.historia = data;
       console.log(this.historia);
       console.log("->"+this.historia?.usuarios_idPaciente);
@@ -106,7 +125,7 @@ export class PacienteConsultasComponent implements OnInit {
   }
 
   irModificarConsulta(idCM: string| undefined){
-    alert(idCM);
+    //alert(idCM);
     this.router.navigate(['/consulta_editar/'+this.id+'/'+this.idH+"/"+idCM]);
   }
  
@@ -118,16 +137,48 @@ export class PacienteConsultasComponent implements OnInit {
     this.router.navigate(['/terapeuta_login'])
   }
 
-  eliminarConsulta(id:string | undefined){
-    alert("diste clic");
-    this._consultaService.eliminarConsulta(id+'').subscribe((data) => {
-      // this.toastr.success(
-      //   'Se Elimino Correctamente la Consulta!',
-      //   'Consulta Eliminada!'
-      // );
-      alert("Consulta Eliminada");
+  eliminarConsulta(ident:string | undefined){
+    this._consultaService.obtenerConsulta("Consulta",ident+'').subscribe((data) => {
+      const CONSULTA: Consulta = {
+        numConsulta: data.numConsulta,
+        descripcion: data.descripcion,
+        ejerciciosCasa: data.ejerciciosCasa,
+        fechaRegistro: data.fechaRegistro,
+        horaRegistro: data.horaRegistro,
+        estatus: "N",
+        idHistoria: data.idHistoria,
+        usuarios_idUsuario: data.usuarios_idUsuario
+      }
+
+      const OPERACION: Operacion = {
+        fechaRegistro: this.fechaHoyCorrecta + '',
+        hora: this.horaHoyCorrecta + '',
+        tipoOperacion: 'Ocultar Operacion',
+        usuarios_idUsuario: this.id,
+      };
+      console.log(CONSULTA)
+      console.log(OPERACION)
       
-    });
+        //Guardar Operacion
+        this._operacionesService
+          .guardarOperacion(OPERACION)
+          .subscribe((data) => {
+            this.toastr.success(
+              'Se ha guardado la Operacion con Exito!',
+              'Operacion Registrada!'
+            );
+          });
+      this._consultaService.editarConsulta(ident+'',CONSULTA).subscribe((data) => {
+        this.toastr.success(
+          'Se Elimino Correctamente la Consulta!',
+          'Consulta Eliminada!'
+        );
+        window.location.reload()
+      });
+      
+    })
+    
+
   }
 
  

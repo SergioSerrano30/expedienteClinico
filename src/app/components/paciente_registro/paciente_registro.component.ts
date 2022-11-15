@@ -121,7 +121,7 @@ export class RegistroPacienteComponent implements OnInit {
     //Una minuscula al menos
     //Un numero al menos
     var regularExpression =
-      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,45}$/;
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9#$%&/()=.-_]{6,45}$/;
     if (password.match(regularExpression)) {
       return true;
     } else {
