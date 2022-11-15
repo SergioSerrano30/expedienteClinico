@@ -29,6 +29,10 @@ export class ConsultaRegistrarComponent implements OnInit {
   nombre: string;
   rol:string;
   varEspacio:string;
+  listConsulta: Consulta[] = [];
+  varNumconsulta: number;
+  
+
 
 
   constructor( 
@@ -39,9 +43,9 @@ export class ConsultaRegistrarComponent implements OnInit {
     private _operacionesService: OperacionService,
     private _consultasService: ConsultaService,
     private aRouter: ActivatedRoute,
+   
     ) { 
     this.consultaForm = this.fb.group({
-      numConsulta: ['', Validators.required],
       descripcion: ['', Validators.required],
       ejerciciosCasa: ['', Validators.required],
      
@@ -53,21 +57,25 @@ export class ConsultaRegistrarComponent implements OnInit {
     this.usuario = null;
     this.nombre = '';
     this.rol='';
-    this.varEspacio='   '
+    this.varEspacio=''
+    this.varNumconsulta=0;
+   
 
    
 
   }
 
   ngOnInit(): void {
+    
     this.obtenerUsuario();
     if (this.idCM.length > 5) {
         this.esEditar();
+    }else{
+      this.obtenerConsultas();
     }
   }
 
   agregarConsulta(){
-    let numConsulta = this.consultaForm.get('numConsulta')?.value;
     let descripcion = this.consultaForm.get('descripcion')?.value;
     let ejerciciosCasa = this.consultaForm.get('ejerciciosCasa')?.value;
     let horaRegistro = this.obtenerHora();
@@ -79,7 +87,7 @@ export class ConsultaRegistrarComponent implements OnInit {
 
        //Crear Objetos
        const CONSULTA: Consulta = {
-        numConsulta: numConsulta,
+        numConsulta: this.varNumconsulta+"",
         descripcion: descripcion,
         ejerciciosCasa:ejerciciosCasa,
         fechaRegistro:fechaRegistro+"",
@@ -149,8 +157,8 @@ export class ConsultaRegistrarComponent implements OnInit {
         this.tipoOperacion='Editar Consulta ya Registrada';
 
         this._consultasService.obtenerConsulta("Consulta",this.idCM).subscribe((data) => {
+          this.varNumconsulta=data.numConsulta;
           this.consultaForm.setValue({
-            numConsulta: data.numConsulta,
             descripcion: data.descripcion,
             ejerciciosCasa: data.ejerciciosCasa,
   
@@ -221,6 +229,13 @@ export class ConsultaRegistrarComponent implements OnInit {
   }
 
 
-  
+  obtenerConsultas() {
+    this._consultasService
+      .obtenerConsulta('Historia_Activas', this.idH)
+      .subscribe((data) => {
+        this.listConsulta = data;
+        this.varNumconsulta =this.listConsulta.length + 1;
+      });
+  }
   }
 

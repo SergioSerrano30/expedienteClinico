@@ -51,22 +51,18 @@
             <br>
 
             <!--datos personales-->
-            <div class="etiquetas">
-                <h4>Datos de la consulta:</h4>
-            </div>
-        
-            <form action="mt-3" [formGroup]="consultaForm" (ngSubmit)="agregarConsulta()">
-           
-                <div class="row g-4">
-                    <div class="col-md">
-                       <div class="form-floating my-2">
-                           <input formControlName="numConsulta" type="number" class="form-control" id="hora_registro"
-                               placeholder="Numero de Consulta" required>
-                           <label style="color:rgba(0, 0, 0, 0.5)" for="Numero de Consulta">Numero de consulta</label>
-                       </div>
+   
+            <div class="row g-4">
+                <div class="col-md">
+                   <div class="form-floating my-2"><hr>
+                       <h4 class="text-center"> Número de consulta: </h4> 
+                       <h1 class="text-center">{{varNumconsulta}}</h1>
                    </div>
-                </div>  
+               </div>
+            </div>  
 
+            <form action="mt-3" [formGroup]="consultaForm" (ngSubmit)="agregarConsulta()">
+  
                 <div class="row g-4">
                     <div class="col-md">
                        <div class="form-floating my-2">
