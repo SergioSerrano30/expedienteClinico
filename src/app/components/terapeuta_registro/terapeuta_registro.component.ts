@@ -131,6 +131,8 @@ export class RegistroDComponent implements OnInit {
         //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }
@@ -297,6 +299,8 @@ export class RegistroDComponent implements OnInit {
         'Operacion Registrada!'
       );
       // this.router.navigate(['/paciente_lista/' + this.id]);
+    },(err) => {
+      this.router.navigate(['/error']);
     });
   }
 
@@ -322,6 +326,8 @@ export class RegistroDComponent implements OnInit {
         estado: data.usuario_persona.persona_domicilio.estado,
         pais: data.usuario_persona.persona_domicilio.pais,
       });
+    },(err) => {
+      this.router.navigate(['/error']);
     });
   }
   guardarPersona(per: Persona, dom: Domicilio) {

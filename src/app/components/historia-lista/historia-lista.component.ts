@@ -27,6 +27,9 @@ export class HistoriaListaComponent implements OnInit {
   nombre: string;
   nombrePAC: string;
   rol: string;
+  errorHis = ""
+  errorPAC = ""
+  ocultas = false;
   palabra: string;
   aux: string;
   varNumconsultas:number;
@@ -106,6 +109,10 @@ export class HistoriaListaComponent implements OnInit {
       .obtenerHistoria('Paciente_Activas', this.idPAC,"-")
       .subscribe((data) => {
         this.listHistoria = data;
+        this.errorHis = "---"
+        this.ocultas = false;
+      },(err) => {
+        this.router.navigate(['/error']);
       });
   }
   obtenerHistoriasPacienteOcultas() {
@@ -113,6 +120,10 @@ export class HistoriaListaComponent implements OnInit {
       .obtenerHistoria('Paciente_Ocultas', this.idPAC,"-")
       .subscribe((data) => {
         this.listHistoria = data;
+        this.errorHis = "---"
+        this.ocultas = true;
+      },(err) => {
+        this.router.navigate(['/error']);
       });
   }
 
@@ -123,6 +134,11 @@ export class HistoriaListaComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol == "Administrador"){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }
@@ -130,6 +146,9 @@ export class HistoriaListaComponent implements OnInit {
     if (this.idPAC !== '') {
       this._usuarioService.obtenerUsuario(this.idPAC).subscribe((data) => {
         this.nombrePAC = data.usuario_persona.nombre + '';
+        this.errorPAC = "---"
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }
@@ -152,6 +171,9 @@ export class HistoriaListaComponent implements OnInit {
       .obtenerHistoria('Paciente_Activas_Nombre', this.idPAC,nombre)
       .subscribe((data) => {
         this.listHistoria = data;
+        this.errorHis = "---"
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }
@@ -168,12 +190,6 @@ export class HistoriaListaComponent implements OnInit {
     this.router.navigate(['/terapeuta_login']);
   }
 
-  mostrarOcultas() {
-    this.palabra = 'todas';
-    this.router.navigate([
-      '/historia_lista/' + this.id + '/' + this.idPAC + '/' + this.palabra + '',
-    ]);
-  }
 
   ocultarHistoria(idH: string | undefined) {
     this._historiaService 

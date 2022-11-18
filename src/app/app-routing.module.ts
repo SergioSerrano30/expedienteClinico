@@ -20,6 +20,7 @@ import { PacienteConsultasComponent } from './components/paciente-consultas/paci
 import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/terapeuta-consultas.component';
 import { HistoriaListaComponent } from './components/historia-lista/historia-lista.component';
 import { PacienteHistoriasComponent } from './components/paciente-historias/paciente-historias.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 const routes: Routes = [
@@ -60,6 +61,9 @@ const routes: Routes = [
   //Consulta paciente
   { path: 'consulta_registro/:id/:idH', component:ConsultaRegistrarComponent},
   { path: 'consulta_editar/:id/:idH/:idCM', component:ConsultaRegistrarComponent},
+
+  //Error
+  { path: 'error',component:ErrorComponent},
 
   //Ruta alterna
   { path: '**', redirectTo: 'terapeuta_login', pathMatch: 'full' },

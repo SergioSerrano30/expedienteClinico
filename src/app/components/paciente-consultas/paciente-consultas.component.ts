@@ -15,7 +15,7 @@ import { OperacionService } from 'src/app/services/operacion.service';
 @Component({
   selector: 'app-paciente-consultas',
   templateUrl: './paciente-consultas.component.html',
-  styleUrls: ['./paciente-consultas.component.css']
+  styleUrls: ['./paciente-consultas.component.css'],
 })
 export class PacienteConsultasComponent implements OnInit {
   consultaGroup: FormGroup;
@@ -23,13 +23,15 @@ export class PacienteConsultasComponent implements OnInit {
   listConsulta: Consulta[] = [];
   id: string;
   idH: string;
-  idCE:string;
-  idPAC:string;
+  idCE: string;
+  idPAC: string;
   usuario: Usuario | null;
   historia: Historia | null;
   nombre: string;
   rol: string;
-  numConsultas = this.obtenerConsultas();
+  error: string = '';
+  numConsultas = 0;
+  numConsultasTotales = 0;
 
   today = new Date();
   day = this.today.getDate();
@@ -37,7 +39,7 @@ export class PacienteConsultasComponent implements OnInit {
   año = this.today.getFullYear();
   hora = this.today.getHours();
   minuto = this.today.getMinutes();
-  
+
   fechaHoyCorrecta: String;
   horaHoyCorrecta: String;
   constructor(
@@ -50,15 +52,15 @@ export class PacienteConsultasComponent implements OnInit {
     private _historiaService: HistoriaService,
     private location: Location,
     private aRouter: ActivatedRoute
-  ) { 
+  ) {
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idH = this.aRouter.snapshot.paramMap.get('idH') + '';
     this.idCE = this.aRouter.snapshot.paramMap.get('idCE') + '';
-    this.idPAC = ''
+    this.idPAC = '';
     this.usuario = null;
     this.historia = null;
     this.nombre = '';
-    this.rol = ''
+    this.rol = '';
 
     this.busquedaGroup = fb.group({
       nombre: [''],
@@ -91,19 +93,63 @@ export class PacienteConsultasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerUsuario()
-    // this.obtenerHistoria()
-    this.obtenerConsultas()
+    this.obtenerUsuario();
+    this.obtenerConsultas();
+    this.obtenerConsultasTotales();
+  }
+  irInicio() {
+    let rol = this.usuario?.usuario_rol.desRol;
+    switch (rol) {
+      case 'Paciente':
+        this.router.navigate(['/paciente_inicio/' + this.id]);
+        break;
+      case 'Administrador':
+        this.router.navigate(['/admin_inicio/' + this.id]);
+        break;
+      case 'Terapeuta':
+        this.router.navigate(['/terapeuta_inicio/' + this.id]);
+        break;
+
+      default:
+        break;
+    }
+  }
+  irLogin() {
+    switch (this.rol) {
+      case 'Paciente':
+        this.router.navigate(['/paciente_login']);
+        break;
+      case 'Terapeuta':
+        this.router.navigate(['/terapeuta_login']);
+        break;
+      default:
+        break;
+    }
   }
 
   obtenerConsultas() {
     this._consultaService
       .obtenerConsulta('Historia_Activas', this.idH)
-      .subscribe((data) => {
-        this.listConsulta = data;
-        return this.listConsulta.length;
+      .subscribe(
+        (data) => {
+          this.listConsulta = data;
+          this.numConsultas = this.listConsulta.length;
+        },
+        (err) => {
+          console.log('Sin consultas');
+        }
+      );
+  }
 
-      });
+  obtenerConsultasTotales() {
+    this._historiaService.obtenerHistoria('Historia', this.idH, '-').subscribe(
+      (data) => {
+        this.numConsultasTotales = data.numConsultasTotales;
+      },
+      (err) => {
+        this.router.navigate(['/error']);
+      }
+    );
   }
 
   obtenerConsultasOcultas() {
@@ -111,70 +157,70 @@ export class PacienteConsultasComponent implements OnInit {
       .obtenerConsulta('Historia_Ocultas', this.idH)
       .subscribe((data) => {
         this.listConsulta = data;
+        this.error = '-zzz';
+        console.log(this.error);
       });
   }
 
   obtenerUsuario() {
     if (this.id !== '') {
-      this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
-        console.log(data);
-        //console.log(data.usuario_persona.nombre);
-        this.usuario = data;
-        this.nombre = this.usuario?.usuario_persona.nombre + '';
-        this.rol = this.usuario?.usuario_rol.desRol + '';
-      }); 
-    } 
-  } 
-  // obtenerHistoria(){
-  //   this._historiaService.obtenerHistoria("Historia_Activa",this.idH,"-").subscribe((data) => {
-  //     this.historia = data;
-  //     console.log(this.historia);
-  //     console.log("->"+this.historia?.usuarios_idPaciente);
-  //   })
-  // }
- 
-  irNuevaConsulta(){
-    this.router.navigate(['/consulta_registro/'+this.id+'/'+this.idH]);
+      this._usuarioService.obtenerUsuario(this.id).subscribe(
+        (data) => {
+          console.log(data);
+          //console.log(data.usuario_persona.nombre);
+          this.usuario = data;
+          this.nombre = this.usuario?.usuario_persona.nombre + '';
+          this.rol = this.usuario?.usuario_rol.desRol + '';
+          // if(this.rol == "Administrador"){
+          //   this.router.navigate(['/error']);
+          // }
+        },
+        (err) => {
+          this.router.navigate(['/error']);
+        }
+      );
+    }
   }
 
-  irModificarConsulta(idCM: string| undefined){
+  irNuevaConsulta() {
+    this.router.navigate(['/consulta_registro/' + this.id + '/' + this.idH]);
+  }
+
+  irModificarConsulta(idCM: string | undefined) {
     //alert(idCM);
-    this.router.navigate(['/consulta_editar/'+this.id+'/'+this.idH+"/"+idCM]);
-    
+    this.router.navigate([
+      '/consulta_editar/' + this.id + '/' + this.idH + '/' + idCM,
+    ]);
   }
- 
-  irHistoriaLista(){
-    //console.log(this.idPAC);
+
+  irHistoriaLista() {
     this.location.back();
-    //this.router.navigate(['/historia_lista/'+this.id+"/"+this.idPAC]);
   }
 
-  irLogin(){
-    this.router.navigate(['/terapeuta_login'])
-  }
+  eliminarConsulta(ident: string | undefined) {
+    this._consultaService
+      .obtenerConsulta('Consulta', ident + '')
+      .subscribe((data) => {
+        const CONSULTA: Consulta = {
+          numConsulta: data.numConsulta,
+          descripcion: data.descripcion,
+          ejerciciosCasa: data.ejerciciosCasa,
+          fechaRegistro: data.fechaRegistro,
+          horaRegistro: data.horaRegistro,
+          estatus: 'N',
+          idHistoria: data.idHistoria,
+          usuarios_idUsuario: data.usuarios_idUsuario,
+        };
 
-  eliminarConsulta(ident:string | undefined){
-    this._consultaService.obtenerConsulta("Consulta",ident+'').subscribe((data) => {
-      const CONSULTA: Consulta = {
-        numConsulta: data.numConsulta,
-        descripcion: data.descripcion,
-        ejerciciosCasa: data.ejerciciosCasa,
-        fechaRegistro: data.fechaRegistro,
-        horaRegistro: data.horaRegistro,
-        estatus: "N",
-        idHistoria: data.idHistoria,
-        usuarios_idUsuario: data.usuarios_idUsuario
-      }
+        const OPERACION: Operacion = {
+          fechaRegistro: this.fechaHoyCorrecta + '',
+          hora: this.horaHoyCorrecta + '',
+          tipoOperacion: 'Ocultar Consulta',
+          usuarios_idUsuario: this.id,
+        };
+        console.log(CONSULTA);
+        console.log(OPERACION);
 
-      const OPERACION: Operacion = {
-        fechaRegistro: this.fechaHoyCorrecta + '',
-        hora: this.horaHoyCorrecta + '',
-        tipoOperacion: 'Ocultar Consulta',
-        usuarios_idUsuario: this.id,
-      };
-      console.log(CONSULTA)
-      console.log(OPERACION)
-      
         //Guardar Operacion
         this._operacionesService
           .guardarOperacion(OPERACION)
@@ -184,40 +230,41 @@ export class PacienteConsultasComponent implements OnInit {
               'Operacion Registrada!'
             );
           });
-      this._consultaService.editarConsulta(ident+'',CONSULTA).subscribe((data) => {
-        this.toastr.success(
-          'Se Elimino Correctamente la Consulta!',
-          'Consulta Eliminada!'
-        );
-        window.location.reload()
+        this._consultaService
+          .editarConsulta(ident + '', CONSULTA)
+          .subscribe((data) => {
+            this.toastr.success(
+              'Se Elimino Correctamente la Consulta!',
+              'Consulta Eliminada!'
+            );
+            window.location.reload();
+          });
       });
-      
-    })
-    
-
   }
-  activarConsulta(ident:string | undefined){
-    this._consultaService.obtenerConsulta("Consulta",ident+'').subscribe((data) => {
-      const CONSULTA: Consulta = {
-        numConsulta: data.numConsulta,
-        descripcion: data.descripcion,
-        ejerciciosCasa: data.ejerciciosCasa,
-        fechaRegistro: data.fechaRegistro,
-        horaRegistro: data.horaRegistro,
-        estatus: "A",
-        idHistoria: data.idHistoria,
-        usuarios_idUsuario: data.usuarios_idUsuario
-      }
+  activarConsulta(ident: string | undefined) {
+    this._consultaService
+      .obtenerConsulta('Consulta', ident + '')
+      .subscribe((data) => {
+        const CONSULTA: Consulta = {
+          numConsulta: data.numConsulta,
+          descripcion: data.descripcion,
+          ejerciciosCasa: data.ejerciciosCasa,
+          fechaRegistro: data.fechaRegistro,
+          horaRegistro: data.horaRegistro,
+          estatus: 'A',
+          idHistoria: data.idHistoria,
+          usuarios_idUsuario: data.usuarios_idUsuario,
+        };
 
-      const OPERACION: Operacion = {
-        fechaRegistro: this.fechaHoyCorrecta + '',
-        hora: this.horaHoyCorrecta + '',
-        tipoOperacion: 'Activar Consulta',
-        usuarios_idUsuario: this.id,
-      };
-      console.log(CONSULTA)
-      console.log(OPERACION)
-      
+        const OPERACION: Operacion = {
+          fechaRegistro: this.fechaHoyCorrecta + '',
+          hora: this.horaHoyCorrecta + '',
+          tipoOperacion: 'Activar Consulta',
+          usuarios_idUsuario: this.id,
+        };
+        console.log(CONSULTA);
+        console.log(OPERACION);
+
         //Guardar Operacion
         this._operacionesService
           .guardarOperacion(OPERACION)
@@ -227,20 +274,15 @@ export class PacienteConsultasComponent implements OnInit {
               'Operacion Registrada!'
             );
           });
-      this._consultaService.editarConsulta(ident+'',CONSULTA).subscribe((data) => {
-        this.toastr.success(
-          'Se Activó Correctamente la Consulta!',
-          'Consulta Activada!'
-        );
-        window.location.reload()
+        this._consultaService
+          .editarConsulta(ident + '', CONSULTA)
+          .subscribe((data) => {
+            this.toastr.success(
+              'Se Activó Correctamente la Consulta!',
+              'Consulta Activada!'
+            );
+            window.location.reload();
+          });
       });
-      
-    })
-    
-
   }
-
- 
 }
-
-

@@ -30,7 +30,6 @@ export class PInicioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Desde inicio: ' + this.id);
     this.obtenerUsuario();
   }
 
@@ -42,6 +41,11 @@ export class PInicioComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol+"";
+        if(this.rol != "Paciente"){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }

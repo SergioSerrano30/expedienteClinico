@@ -55,6 +55,9 @@ export class TerapeutaConsultasComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
+        
+      },(err) => {
+        this.router.navigate(['/error']);
       }); 
     } 
   }

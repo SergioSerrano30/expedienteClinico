@@ -13,6 +13,7 @@ export class TerapeutaComponent implements OnInit {
   usuarioForm: FormGroup;
   usuario: Usuario | null;
   nombre: string;
+  rol: string;
   constructor(
     private _usuarioService: UsuarioService,
     private fb: FormBuilder,
@@ -25,6 +26,7 @@ export class TerapeutaComponent implements OnInit {
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.usuario = null;
     this.nombre = '';
+    this.rol = '';
   }
 
   ngOnInit(): void {
@@ -33,10 +35,14 @@ export class TerapeutaComponent implements OnInit {
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
-        //console.log(data);
-        //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+        this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol != "Terapeuta"){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       }); 
     }
   }
