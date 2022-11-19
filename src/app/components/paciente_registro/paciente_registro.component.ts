@@ -32,7 +32,7 @@ export class RegistroPacienteComponent implements OnInit {
   day = this.today.getDate();
   month = this.today.getMonth() + 1;
   año = this.today.getFullYear();
-  year = this.today.getFullYear() - 18;
+  year = this.today.getFullYear();
   year2 = this.year - 100;
 
   hora = this.today.getHours();
