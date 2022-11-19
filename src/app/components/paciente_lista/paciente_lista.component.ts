@@ -44,12 +44,8 @@ export class TInicioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.obtenerPacientes();
-    // this.obtenerExpedientes();
-    //this.obtenerUsuarios();
     this.obtenerUsuario();
     this.obtenerUsuarios();
-    //this.fnchola();
   }
   denegarAcceso(idPAC: string | undefined) {
     this._usuarioService.obtenerUsuario(idPAC + '').subscribe((data) => {
@@ -81,8 +77,8 @@ export class TInicioComponent implements OnInit {
         (data) => {
           this.obtenerUsuarios();
           this.toastr.info(
-            'Se le ha denegado el acceso al sistema',
-            'Acceso Denegado!'
+            'Se le ha concedido el acceso al sistema',
+            'Acceso Concedido!'
           );
           this.router.navigate(['/paciente_lista/' + this.id]);
         },
@@ -98,24 +94,13 @@ export class TInicioComponent implements OnInit {
       (data) => {
  
         this.listUsuarios = data;
-        //console.log(data[0].usuario)
-      },
-      (error) => {
-        console.log(error);
+      }
+      ,(err) => {
+        this.router.navigate(['/error']);
       }
     );
   }
 
-  // obtenerPacientesActivos(){
-  //   this._pacienteService.getPacientesActivos().subscribe(data => {
-  //     console.log(data);
-  //     //console.log(data.length)
-  //     //this.toastr.success('Usuarios cargados con éxito','Usuarios cargados');
-  //     this.listUsuarios =data;
-  //   },error => {
-  //     console.log(error);
-  //   });
-  // }
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
@@ -124,6 +109,11 @@ export class TInicioComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol == "Paciente"){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }
@@ -136,6 +126,8 @@ export class TInicioComponent implements OnInit {
         .obtenerUsuarioPorNombre('Paciente', nombre)
         .subscribe((data) => {
           this.listUsuarios = data;
+        },(err) => {
+          this.router.navigate(['/error']);
         });
     }
   }
@@ -175,10 +167,6 @@ export class TInicioComponent implements OnInit {
     this.router.navigate(['/terapeuta_login']);
   }
 
-  // irHistoriaRegistro(){
-  //   this.router.navigate(['/historia_registro/'+this.id+'/'+idUM]);
-  //   //this.router.navigate(['/historia_registro/' + this.id])
-  // }
   irHistoriaRegistro(idUM: string | undefined) {
     this.router.navigate(['/historia_registro/' + this.id + '/' + idUM]);
   }

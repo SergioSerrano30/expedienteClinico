@@ -8,7 +8,8 @@
     <title>Mis consultas</title>
 </head>
 
-<body style="padding-bottom:2%;">
+<body style="padding-bottom:2%; background-color: rgb(255, 255, 255);">
+
     <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
         <div class="container-fluid"><a class="navbar-brand" style="cursor: pointer;">Expediente Clínico
                 Digital [{{rol}}] - {{nombre}} </a><button data-bs-toggle="collapse" class="navbar-toggler"
@@ -49,9 +50,12 @@
                                     class="fa-solid fa-plus"></i></button>
                             <button class="btn btn-secondary btn-sg" (click)="irPacienteLista()">Volver<i
                                     class="fa-solid fa-arrow-left"></i></button>
-                            <button class="btn btn-warning btn-sg me-2 mx-2"
+                            <button class="btn btn-warning btn-sg me-2 mx-2" *ngIf="!ocultas"
                                 (click)="obtenerHistoriasPacienteOcultas()"> Ocultas <i
                                     class="fa-solid fa-clock-rotate-left"></i></button>
+                            <button class="btn btn-primary btn-sg me-2 mx-2" *ngIf="ocultas"
+                                (click)="obtenerHistoriasPaciente()"> Activas <i
+                                    class="fa-solid fa-calendar-check"></i></button>
                         </form>
                     </div>
 
@@ -69,7 +73,8 @@
 
                                             <li class="list-group-item">Peso: {{historia.peso}}</li>
                                             <li class="list-group-item">Estatura: {{historia.estatura}}</li>
-                                            <li class="list-group-item">Numero de consultas: {{historia.numConsultasTotales}}</li>
+                                            <li class="list-group-item">Numero de consultas:
+                                                {{historia.numConsultasTotales}}</li>
 
                                         </ul>
                                         <br>
@@ -92,14 +97,12 @@
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Peso: {{historia.peso}}</li>
                                             <li class="list-group-item">Estatura: {{historia.estatura}}</li>
-                                            <li class="list-group-item">Numero de consultas: {{historia.numConsultasTotales}}</li>
-                                            
+                                            <li class="list-group-item">Numero de consultas:
+                                                {{historia.numConsultasTotales}}</li>
+
 
                                         </ul>
                                         <br>
-                                        <!-- <a class="btn btn-success" (click)="irConsultas(historia._id)"><i class="fa-solid fa-user-doctor"></i> Consultas</a>
-                                        <a class="btn btn-primary mx-3" (click)="irModificarHistoria(historia._id)"><i
-                                                class="fa-solid fa-pen-to-square"></i> Editar</a> -->
                                         <a class="btn btn-warning" (click)="activarHistoria(historia._id)"><i
                                                 class="fa-sharp fa-solid fa-rotate-left"></i> Activar</a>
 
@@ -109,48 +112,18 @@
 
                             </div>
                         </div>
-                        <h5 style="text-align: center; margin-top:10px" *ngIf="listHistoria.length == 0">No hay
+                        <h5 style="text-align: center; margin-top:10px" *ngIf="listHistoria.length == 0">No
+                            hay
                             historias para mostrar.</h5>
                         <br>
 
                     </div>
-                    <!-- <div class="container">
-                    <div class="row">
-                      <div class="col-md-5 mx-auto">
-                        <div class="card col border-success mb-3 my-3" style="max-width: 30rem;">
-                            <div class="card-header">Fecha:</div>
-                            <div class="card-body text-success">
-                                <h5 class="card-title">Problemática</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                    of the card's content.</p>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Peso:</li>
-                                    <li class="list-group-item">Estatura:</li>
-                                    <li class="list-group-item">Observaciones:</li>
-                                </ul>
-                                <br>
-                                <a href="#" class="btn btn-success">Consultas</a>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
-
-                    <!--<div class="card border-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body text-success">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                        content.</p>
-                    <a href="#" class="btn btn-success">Go somewhere</a>
                 </div>
-            </div>-->
-
-                </div>
-
             </div>
         </div>
     </div>
+
+
 </body>
 
 </html>

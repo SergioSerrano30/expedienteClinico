@@ -19,7 +19,7 @@ export class AdminOperacionesComponent implements OnInit {
   id: string;
   usuario: Usuario | null;
   nombre: string;
-
+  rol = '';
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +50,12 @@ export class AdminOperacionesComponent implements OnInit {
         //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+        this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol != "Administrador"){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }

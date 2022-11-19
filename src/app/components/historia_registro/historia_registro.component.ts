@@ -26,7 +26,8 @@ export class NuevaHistoriaComponent implements OnInit {
   nombre: string;
   rol: string;
   tipoOperacion='Registrar Historia';
-
+  errorPAC = ''
+  errorHIS = '-'
   today = new Date();
   day = this.today.getDate();
   month = this.today.getMonth() + 1;
@@ -122,10 +123,12 @@ export class NuevaHistoriaComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsuario();
     if (this.idHM.length > 5) {
+      this.errorHIS = ""
       this.esEditar();
     }else{
       this._usuarioService.obtenerUsuario(this.idPAC).subscribe((data) => {
        //console.log(data);
+       this.errorPAC = "---"
         this.historiaForm.setValue({
           nombre: data.usuario_persona.nombre,
           apPaterno: data.usuario_persona.apPaterno,
@@ -147,18 +150,6 @@ export class NuevaHistoriaComponent implements OnInit {
           observaciones :"",
           numConsultasTotales:"",
           problematica :"",
-          // usuario: data.usuario,
-          // password: data.password,
-          // calle: data.usuario_persona.persona_domicilio.calle,
-          // numero_EXT: data.usuario_persona.persona_domicilio.numero_EXT,
-          // numero_INT: data.usuario_persona.persona_domicilio.numero_INT,
-          // colonia: data.usuario_persona.persona_domicilio.colonia,
-          // entrecalle1: data.usuario_persona.persona_domicilio.entrecalle1,
-          // entrecalle2: data.usuario_persona.persona_domicilio.entrecalle2,
-          // referencia: data.usuario_persona.persona_domicilio.referencia,
-          // municipio: data.usuario_persona.persona_domicilio.municipio,
-          // estado: data.usuario_persona.persona_domicilio.estado,
-          // pais: data.usuario_persona.persona_domicilio.pais,
         });
       });
     }
@@ -233,9 +224,8 @@ export class NuevaHistoriaComponent implements OnInit {
             'Historia Actualizada!'
           );
           
-        },
-        (error) => {
-          console.log(error);
+        },(err) => {
+          this.router.navigate(['/error']);
           this.historiaForm.reset();
         }
       );
@@ -266,7 +256,9 @@ export class NuevaHistoriaComponent implements OnInit {
      this.tipoOperacion='Editar Historia';
 
      this._usuarioService.obtenerUsuario(this.idPAC).subscribe((dataPaciente) => {
+      this.errorPAC = "---"
      this._historiaServices.obtenerHistoria("Historia",this.idHM,"-").subscribe((data) => {
+      this.errorHIS = "---"
        this.varCirugias=true;
        this.varAlergias=true;
        this.varTraFracturas=true;
@@ -283,30 +275,7 @@ export class NuevaHistoriaComponent implements OnInit {
            this.varEnfCongenitas=false;
          if(data.enfHereditarias=="")
            this.varEnfHereditarias=false;
-       
-      
 
-
-     //saber que switch habilitar
-     //--------No funciono-------------------
-     // if(data.alergias==="")
-     //   this.varAlergias=false;
-     //   else
-     //   this.varAlergias=true;
-     // if(data.cirugias="")
-     //   this.varCirugias=false;
-     //   else
-     //   this.varCirugias=true;
-
-     // if(data.traFracturas==!"")
-     //   this.varTraFracturas=true;
-     // if(data.enfCongenitas==!"")
-     //   this.varEnfCongenitas=true;
-     // if(data.enfHereditarias==!"")
-     //   this.varEnfHereditarias=true;
-
-
-       //console.log(data);
        this.historiaForm.setValue({
          nombre: dataPaciente.usuario_persona.nombre,
          apPaterno: dataPaciente.usuario_persona.apPaterno,
@@ -329,11 +298,15 @@ export class NuevaHistoriaComponent implements OnInit {
          observaciones: data.observaciones,
          numConsultasTotales: data.numConsultasTotales  
        })
-     }) 
-   }) 
+     },(err) => {
+      this.router.navigate(['/error']);
+    }) 
+   },(err) => {
+    this.router.navigate(['/error']);
+  }) 
     }
     //Recupera la informacion y la manda al formulario
-     
+     console.log("------------>"+this.errorHIS)
    }              
   
 
@@ -363,6 +336,11 @@ export class NuevaHistoriaComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol != "Terapeuta"){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }

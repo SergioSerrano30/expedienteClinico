@@ -25,6 +25,8 @@ export class RegistroPacienteComponent implements OnInit {
   idUM: string;
   usuario: Usuario | null;
   nombre: string;
+  rol = ''
+  error = '-'
 
   today = new Date();
   day = this.today.getDate();
@@ -111,7 +113,9 @@ export class RegistroPacienteComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsuario();
     if (this.idUM.length > 5) {
-      this.esEditar(); 
+      this.error = ""
+      this.esEditar();
+      
     }
   }
 
@@ -132,10 +136,14 @@ export class RegistroPacienteComponent implements OnInit {
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
-        //console.log(data);
-        //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+        this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol == 'Paciente'){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }
@@ -357,6 +365,9 @@ export class RegistroPacienteComponent implements OnInit {
           estado: data.usuario_persona.persona_domicilio.estado,
           pais: data.usuario_persona.persona_domicilio.pais,
         });
+        this.error = "---"
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }

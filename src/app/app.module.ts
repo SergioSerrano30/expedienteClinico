@@ -30,6 +30,7 @@ import { PacienteConsultasComponent } from './components/paciente-consultas/paci
 import { TerapeutaConsultasComponent } from './components/terapeuta-consultas/terapeuta-consultas.component';
 import { HistoriaListaComponent } from './components/historia-lista/historia-lista.component';
 import { PacienteHistoriasComponent } from './components/paciente-historias/paciente-historias.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 
@@ -57,6 +58,7 @@ import { PacienteHistoriasComponent } from './components/paciente-historias/paci
     TerapeutaConsultasComponent,
     HistoriaListaComponent,
     PacienteHistoriasComponent,
+    ErrorComponent,
 
   
   ],

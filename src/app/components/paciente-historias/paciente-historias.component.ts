@@ -90,6 +90,8 @@ export class PacienteHistoriasComponent implements OnInit {
       .subscribe((data) => {
         this.listHistoria = data;
         console.log(data)
+      },(err) => {
+        this.router.navigate(['/error']);
       });
   }
 
@@ -103,6 +105,11 @@ export class PacienteHistoriasComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol != "Paciente"){
+          this.router.navigate(['/error']);
+        }
+      },(err) => {
+        this.router.navigate(['/error']);
       });
     }
   }

@@ -18,6 +18,7 @@ export class InicioAdminTComponent implements OnInit {
   id: string;
   usuario: Usuario | null;
   nombre: string;
+  rol = '---'
  
   constructor(
     private fb: FormBuilder,
@@ -39,8 +40,8 @@ export class InicioAdminTComponent implements OnInit {
   ngOnInit(): void {
     // this.obtenerTERAPEUTAs();
     // this.obtenerExpedientes();
-    this.obtenerUsuarios();
     this.obtenerUsuario();
+    this.obtenerUsuarios();
     //this.fnchola();
   }
  
@@ -58,12 +59,25 @@ export class InicioAdminTComponent implements OnInit {
 
   obtenerUsuario() {
     if (this.id !== '') {
-      this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
-        //console.log(data);
-        //console.log(data.usuario_persona.nombre);
-        this.usuario = data;
-        this.nombre = this.usuario?.usuario_persona.nombre + '';
-      }); 
+      
+        this._usuarioService.obtenerUsuario(this.id).subscribe(
+          (data) => {
+          //console.log(data);
+          //console.log(data.usuario_persona.nombre);
+          this.usuario = data;
+          this.nombre = this.usuario?.usuario_persona.nombre + '';
+          this.rol = this.usuario?.usuario_rol.desRol + '';
+          if(this.rol != "Administrador"){
+            this.router.navigate(['/error']);
+          }
+        }
+        ,(err) => {
+          this.router.navigate(['/error']);
+        });
+
+
+      
+      
     }
   }
   obtenerTerapeutaPorNombre(){
