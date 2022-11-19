@@ -56,7 +56,9 @@
                                         <div class="card-body text-primary">
                                             <h5 class="card-title">{{consulta.descripcion}}</h5>
                                             <p class="card-text">{{consulta.ejerciciosCasa}}</p>
-    
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Paciente: {{consulta.estatus}}</li>
+                                              </ul>
                                             <br>
                                             <!-- <a class="btn btn-primary mx-3" (click)="irModificarConsulta(consulta._id)"><i
                                                     class="fa-solid fa-pen-to-square"></i> Editar</a>

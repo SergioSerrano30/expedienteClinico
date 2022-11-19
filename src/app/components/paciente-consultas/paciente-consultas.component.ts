@@ -145,6 +145,7 @@ export class PacienteConsultasComponent implements OnInit {
     this._historiaService.obtenerHistoria('Historia', this.idH, '-').subscribe(
       (data) => {
         this.numConsultasTotales = data.numConsultasTotales;
+        this.idPAC = data.usuarios_idPaciente;
       },
       (err) => {
         this.router.navigate(['/error']);
@@ -171,9 +172,9 @@ export class PacienteConsultasComponent implements OnInit {
           this.usuario = data;
           this.nombre = this.usuario?.usuario_persona.nombre + '';
           this.rol = this.usuario?.usuario_rol.desRol + '';
-          // if(this.rol == "Administrador"){
-          //   this.router.navigate(['/error']);
-          // }
+          if(this.rol == "Administrador"){
+            this.router.navigate(['/error']);
+          }
         },
         (err) => {
           this.router.navigate(['/error']);
@@ -194,7 +195,12 @@ export class PacienteConsultasComponent implements OnInit {
   }
 
   irHistoriaLista() {
-    this.location.back();
+    if(this.rol == "Terapeuta"){
+      this.router.navigate(['/historia_lista/' + this.id + '/' + this.idPAC]);
+    }
+    else{
+      this.location.back();
+    }
   }
 
   eliminarConsulta(ident: string | undefined) {

@@ -6,6 +6,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { ConsultaService } from 'src/app/services/consulta.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Location } from '@angular/common';
+import { HistoriaService } from 'src/app/services/historia.service';
 
 @Component({
   selector: 'app-terapeuta-consultas',
@@ -26,6 +27,7 @@ export class TerapeutaConsultasComponent implements OnInit {
     private fb: FormBuilder,
     private aRouter: ActivatedRoute,
     private _consultaService: ConsultaService,
+    private _historiaService: HistoriaService,
     private router:Router,
     private location: Location
     
@@ -50,12 +52,14 @@ export class TerapeutaConsultasComponent implements OnInit {
   obtenerUsuario() {
     if (this.id !== '') {
       this._usuarioService.obtenerUsuario(this.id).subscribe((data) => {
-        console.log(data);
+        //console.log(data);
         //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
-        
+        if(this.rol != "Terapeuta"){
+          this.router.navigate(['/error']);
+        }
       },(err) => {
         this.router.navigate(['/error']);
       }); 
@@ -69,13 +73,30 @@ export class TerapeutaConsultasComponent implements OnInit {
   }
 
   obtenerConsultas() {
+    let listHistorias = []
     this._consultaService
       .obtenerConsulta('Terapeuta', this.id)
-      .subscribe((data) => {
+      .subscribe(data => {
         this.listConsulta = data;
+        
+        
         // this.idPAC = data.usuarios_idPaciente;
-        console.log(this.listConsulta)
-        console.log("----->"+this.listConsulta.length)
+        // console.log(this.listConsulta)
+        // console.log("----->"+this.listConsulta.length)
+      },error =>{
+        console.log("ERROR ------>");
+      },() =>{
+        this.listConsulta.forEach(consulta => {
+          this._historiaService.obtenerHistoria("Historia",consulta.idHistoria,"-").subscribe((historia)=>{
+            //listHistorias.push(historia);
+
+            console.log(historia);
+            this._usuarioService.obtenerUsuario(historia.usuarios_idPaciente).subscribe(paciente =>{
+              consulta.estatus = paciente.usuario_persona.nombre
+              console.log(consulta.estatus)
+            })
+          })          
+        })
       });
   }
   irConsultaRegistrar(){

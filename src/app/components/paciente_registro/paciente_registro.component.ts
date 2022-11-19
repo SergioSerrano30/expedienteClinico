@@ -139,6 +139,9 @@ export class RegistroPacienteComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol == 'Paciente'){
+          this.router.navigate(['/error']);
+        }
       },(err) => {
         this.router.navigate(['/error']);
       });

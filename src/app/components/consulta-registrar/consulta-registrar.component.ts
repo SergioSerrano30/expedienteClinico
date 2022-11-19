@@ -177,6 +177,7 @@ export class ConsultaRegistrarComponent implements OnInit {
         this.rol = this.usuario?.usuario_rol.desRol + '';
         if(this.rol != "Terapeuta"){
           this.router.navigate(['/error']);
+
         }
       },(err) => {
         this.router.navigate(['/error']);
@@ -240,9 +241,11 @@ export class ConsultaRegistrarComponent implements OnInit {
       .subscribe((data) => {
         this.listConsulta = data;
         this.varNumconsulta =this.listConsulta.length + 1;
-      },(err) => {
-        this.router.navigate(['/error']);
-      });
+      }
+      ,(err) => {
+        this.varNumconsulta = 1;
+      }
+      );
 
   }
   }

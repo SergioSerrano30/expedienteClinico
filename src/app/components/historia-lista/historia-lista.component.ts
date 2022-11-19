@@ -98,7 +98,6 @@ export class HistoriaListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // this.obtenerConsultas();
     this.obtenerUsuario();
     this.obtenerPaciente();
     this.obtenerHistoriasPaciente();
@@ -109,7 +108,6 @@ export class HistoriaListaComponent implements OnInit {
       .obtenerHistoria('Paciente_Activas', this.idPAC,"-")
       .subscribe((data) => {
         this.listHistoria = data;
-        this.errorHis = "---"
         this.ocultas = false;
       },(err) => {
         this.router.navigate(['/error']);
@@ -120,7 +118,6 @@ export class HistoriaListaComponent implements OnInit {
       .obtenerHistoria('Paciente_Ocultas', this.idPAC,"-")
       .subscribe((data) => {
         this.listHistoria = data;
-        this.errorHis = "---"
         this.ocultas = true;
       },(err) => {
         this.router.navigate(['/error']);
@@ -134,7 +131,7 @@ export class HistoriaListaComponent implements OnInit {
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
         this.rol = this.usuario?.usuario_rol.desRol + '';
-        if(this.rol == "Administrador"){
+        if(this.rol != "Terapeuta"){
           this.router.navigate(['/error']);
         }
       },(err) => {

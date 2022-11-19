@@ -23,6 +23,7 @@ export class RegistroDComponent implements OnInit {
   idUM: string;
   usuario: Usuario | null;
   nombre: string;
+  rol = ''
 
   today = new Date();
   day = this.today.getDate();
@@ -131,6 +132,10 @@ export class RegistroDComponent implements OnInit {
         //console.log(data.usuario_persona.nombre);
         this.usuario = data;
         this.nombre = this.usuario?.usuario_persona.nombre + '';
+        this.rol = this.usuario?.usuario_rol.desRol + '';
+        if(this.rol != "Administrador"){
+          this.router.navigate(['/error']);
+        }
       },(err) => {
         this.router.navigate(['/error']);
       });
