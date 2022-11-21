@@ -178,7 +178,7 @@
                         <div class="form-floating my-2">
                             <input formControlName="colonia" type="text" class="form-control" id="colonia"
                                 placeholder="Colonia" required>
-                            <label for="colonia">Colonia</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="colonia">Colonia</label>
                             <div class="text-danger" *ngIf="pacienteForm.get('colonia')?.hasError('required') && pacienteForm.get('colonia')?.touched">
                                 <span> <strong>*Colonia Obligatoria</strong> </span>
                             </div>
@@ -211,9 +211,10 @@
                             
                             <div class="col-md">
                                 <div class="form-floating my-2">
-                                    <input formControlName="pais" type="text" class="form-control" id="pais"
-                                        placeholder="País" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="password">País</label>
+                                    <select class="form-select" formControlName="pais" id="pais">
+                                        <option selected value="Mexico">México</option>    
+                                    </select>
+                                    <label for="floatingSelectGrid">País</label>
                                     <div class="text-danger" *ngIf="pacienteForm.get('pais')?.hasError('required') && pacienteForm.get('pais')?.touched">
                                         <span> <strong>*Pais Obligatorio</strong> </span>
                                     </div>
@@ -223,9 +224,10 @@
 
                         <div class="col-md">
                             <div class="form-floating my-2">
-                                <input formControlName="estado" type="text" class="form-control" id="estado"
-                                    placeholder="Estado" required>
-                                <label style="color: rgba(0, 0, 0, 0.5)" for="password">Estado</label>
+                                <select class="form-select" formControlName="estado" id="estado">
+                                    <option selected value="Nayarit">Nayarit</option>                                
+                                </select>
+                                <label for="floatingSelectGrid">Estado</label>
                                 <div class="text-danger" *ngIf="pacienteForm.get('estado')?.hasError('required') && pacienteForm.get('estado')?.touched">
                                     <span> <strong>*Estado Obligatorio</strong> </span>
                                 </div>
@@ -234,11 +236,30 @@
 
                         <div class="col-md">
                             <div class="form-floating my-2">
-                                <input formControlName="municipio" type="text" class="form-control" id="municipio"
-                                    placeholder="Municipio" required>
-                                <label style="color: rgba(0, 0, 0, 0.5)" for="municipio">Municipio</label>
-                                <div class="text-danger" *ngIf="pacienteForm.get('municipio')?.hasError('required') && pacienteForm.get('minicipio')?.touched">
-                                    <span> <strong>*Minicipio Obligatorio</strong> </span>
+                                <select class="form-select" formControlName="municipio" id="estado">
+                                    <option selected value="Tepic">Tepic</option>
+                                    <option value="Otro">Huajicori</option>
+                                    <option value="Otro">Acaponeta</option>
+                                    <option value="Otro">Tecuala</option>
+                                    <option value="Otro">Rosamorada</option>
+                                    <option value="Otro">Tuxpan</option>
+                                    <option value="Otro">Ruiz</option>
+                                    <option value="Otro">Santiago</option>
+                                    <option value="Otro">San Blas</option>
+                                    <option value="Otro">Xalisco</option>
+                                    <option value="Otro">El nayar</option>
+                                    <option value="Otro">San Pedro</option>
+                                    <option value="Otro">Jala</option>
+                                    <option value="Otro">Ixtlan</option>
+                                    <option value="Otro">Amatlan</option>
+                                    <option value="Otro">Ahuacatlán</option>
+                                    <option value="Otro">Compostela</option>
+                                    <option value="Otro">Santa Maria</option>
+                                    <option value="Otro">La Yesca</option>
+                                </select>
+                                <label for="floatingSelectGrid">Municipio</label>
+                                <div class="text-danger" *ngIf="pacienteForm.get('municipio')?.hasError('required') && pacienteForm.get('municipio')?.touched">
+                                    <span> <strong>*Municipio Obligatorio</strong> </span>
                                 </div>
                             </div>
                         </div>
