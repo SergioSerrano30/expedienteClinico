@@ -111,6 +111,7 @@ export class RegistroPacienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pacienteForm.disabled;
     this.obtenerUsuario();
     if (this.idUM.length > 5) {
       this.error = ""

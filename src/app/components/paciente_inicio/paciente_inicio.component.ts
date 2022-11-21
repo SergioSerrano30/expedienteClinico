@@ -14,6 +14,8 @@ export class PInicioComponent implements OnInit {
   usuario: Usuario | null;
   nombre: string;
   rol: string;
+  porcentaje:number;
+
   constructor(
     private _usuarioService: UsuarioService,
     private fb: FormBuilder,
@@ -27,6 +29,7 @@ export class PInicioComponent implements OnInit {
     this.usuario = null;
     this.nombre = '';
     this.rol = ''
+    this.porcentaje=0;
   }
 
   ngOnInit(): void {
