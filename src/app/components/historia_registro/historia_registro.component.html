@@ -162,9 +162,8 @@
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="emeCelular" type="text" class="form-control" id="celular"
-                                placeholder="celular" required />
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="celular">Número de celular</label>
+                            <input formControlName="emeCelular" type="number" class="form-control" id="celular"  minlength="4" maxlength="8" placeholder="celular" required />
+                                 <label style="color: rgba(0, 0, 0, 0.5)" for="celular">Número de celular</label>
                         </div>
                     </div>
                 </div>

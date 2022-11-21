@@ -33,6 +33,8 @@ export class PacienteConsultasComponent implements OnInit {
   numConsultas = 0;
   numConsultasTotales = 0;
 
+  puedeAgregarConsulta=1;
+
   today = new Date();
   day = this.today.getDate();
   month = this.today.getMonth() + 1;
@@ -97,6 +99,7 @@ export class PacienteConsultasComponent implements OnInit {
     this.obtenerConsultas();
     this.obtenerConsultasTotales();
   }
+
   irInicio() {
     let rol = this.usuario?.usuario_rol.desRol;
     switch (rol) {
@@ -146,11 +149,18 @@ export class PacienteConsultasComponent implements OnInit {
       (data) => {
         this.numConsultasTotales = data.numConsultasTotales;
         this.idPAC = data.usuarios_idPaciente;
+        if(this.numConsultas>=this.numConsultasTotales){
+          this.puedeAgregarConsulta=0
+        }else{
+          this.puedeAgregarConsulta=1
+        }
       },
       (err) => {
         this.router.navigate(['/error']);
       }
     );
+
+    
   }
 
   obtenerConsultasOcultas() {

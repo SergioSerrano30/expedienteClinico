@@ -171,66 +171,35 @@ export class RegistroPacienteComponent implements OnInit {
     let estado = this.pacienteForm.get('estado')?.value;
     let municipio = this.pacienteForm.get('municipio')?.value;
 
-    let tipoOperacion = 'Registrar Paciente';
-    if(this.idUM.length>5){
-      tipoOperacion = "Editar Paciente";
-    }
-    let fechaRegistro = this.fechaHoyCorrecta+"";
-    let hora = this.horaHoyCorrecta+"";
-    let usuarios_idUsuario = this.id;
+    //Comprobar Disponibilidad Usuario
+    this._usuarioService.getUsuarios().subscribe((data) => {
+      console.log("comprobarUsuarioLibre:",data)
 
-    const DOMICILIO: Domicilio = {
-      calle: calle,
-      numero_EXT: numero_EXT,
-      numero_INT: numero_INT,
-      colonia: colonia,
-      entrecalle1: entrecalle1,
-      entrecalle2: entrecalle2,
-      referencia: referencia,
-      pais: pais,
-      estado: estado,
-      municipio: municipio,
-    };
-
-    const OPERACION: Operacion = {
-      fechaRegistro: fechaRegistro,
-      hora: hora,
-      tipoOperacion: tipoOperacion,
-      usuarios_idUsuario: usuarios_idUsuario,
-    };
-
-    const PERSONA: Persona = {
-      nombre: nombre,
-      apPaterno: apPaterno,
-      apMaterno: apMaterno,
-      fechaNac: fechaNac,
-      sexo: sexo,
-      persona_domicilio: {
-        calle: calle,
-        numero_EXT: numero_EXT,
-        numero_INT: numero_INT,
-        colonia: colonia,
-        entrecalle1: entrecalle1,
-        entrecalle2: entrecalle2,
-        referencia: referencia,
-        pais: pais,
-        estado: estado,
-        municipio: municipio,
-      },
-    };
-
-    const USUARIO: Usuario = {
-      usuario: usuario,
-      password: password,
-      activo: act,
-      usuario_rol: { idRol_PK, desRol },
-      usuario_persona: {
-        nombre,
-        apPaterno,
-        apMaterno,
-        fechaNac,
-        sexo,
-        persona_domicilio: {
+      //buscar uno con el nombre
+      var bandera=0;
+      for(let i = 0;i<data.length;i++){
+        if(data[i].usuario ==this.pacienteForm.get('usuario')?.value && this.titulo=="Registrar Paciente"){
+          bandera=1;
+          this.toastr.warning(
+            'Nombre de Usuario Ya Existe',
+            'Escoja otro Nombre de Usuario!',
+            {
+              timeOut: 8000,
+              progressBar: true,
+            }
+          );
+        }
+      }
+      if(bandera==0){
+        let tipoOperacion = 'Registrar Paciente';
+        if(this.idUM.length>5){
+          tipoOperacion = "Editar Paciente";
+        }
+        let fechaRegistro = this.fechaHoyCorrecta+"";
+        let hora = this.horaHoyCorrecta+"";
+        let usuarios_idUsuario = this.id;
+    
+        const DOMICILIO: Domicilio = {
           calle: calle,
           numero_EXT: numero_EXT,
           numero_INT: numero_INT,
@@ -241,70 +210,126 @@ export class RegistroPacienteComponent implements OnInit {
           pais: pais,
           estado: estado,
           municipio: municipio,
-        },
-      },
-    };
-
-    if (this.passFormatoCorrecto(password)) {
-      //Calcular edad 
-      var fecha_nacimiento = fechaNac;
-      var hoy = new Date();
-      var cumpleanos = new Date(fecha_nacimiento);
-      var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-      if (edad >= 18) {
-        //guardamos operacion
-        this.guardarPersonaOperacion(OPERACION);
-        if (this.idUM.length > 5) {
-          //editamos
-          this._usuarioService.editarUsuario(this.idUM, USUARIO).subscribe(
-            (data) => {
-              this.toastr.info(
-                'Paciente modificado con éxito!',
-                'Paciente Actualizada!'
-              );
-              this.router.navigate(['/paciente_lista/' + this.id]);
+        };
+    
+        const OPERACION: Operacion = {
+          fechaRegistro: fechaRegistro,
+          hora: hora,
+          tipoOperacion: tipoOperacion,
+          usuarios_idUsuario: usuarios_idUsuario,
+        };
+    
+        const PERSONA: Persona = {
+          nombre: nombre,
+          apPaterno: apPaterno,
+          apMaterno: apMaterno,
+          fechaNac: fechaNac,
+          sexo: sexo,
+          persona_domicilio: {
+            calle: calle,
+            numero_EXT: numero_EXT,
+            numero_INT: numero_INT,
+            colonia: colonia,
+            entrecalle1: entrecalle1,
+            entrecalle2: entrecalle2,
+            referencia: referencia,
+            pais: pais,
+            estado: estado,
+            municipio: municipio,
+          },
+        };
+    
+        const USUARIO: Usuario = {
+          usuario: usuario,
+          password: password,
+          activo: act,
+          usuario_rol: { idRol_PK, desRol },
+          usuario_persona: {
+            nombre,
+            apPaterno,
+            apMaterno,
+            fechaNac,
+            sexo,
+            persona_domicilio: {
+              calle: calle,
+              numero_EXT: numero_EXT,
+              numero_INT: numero_INT,
+              colonia: colonia,
+              entrecalle1: entrecalle1,
+              entrecalle2: entrecalle2,
+              referencia: referencia,
+              pais: pais,
+              estado: estado,
+              municipio: municipio,
             },
-            (error) => {
-              console.log(error);
-              this.pacienteForm.reset();
+          },
+        };
+    
+        if (this.passFormatoCorrecto(password)) {
+          //Calcular edad 
+          var fecha_nacimiento = fechaNac;
+          var hoy = new Date();
+          var cumpleanos = new Date(fecha_nacimiento);
+          var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+          if (edad >= 18) {
+            //guardamos operacion
+            this.guardarPersonaOperacion(OPERACION);
+            if (this.idUM.length > 5) {
+              //editamos
+              this._usuarioService.editarUsuario(this.idUM, USUARIO).subscribe(
+                (data) => {
+                  this.toastr.info(
+                    'Paciente modificado con éxito!',
+                    'Paciente Actualizada!'
+                  );
+                  this.router.navigate(['/paciente_lista/' + this.id]);
+                },
+                (error) => {
+                  console.log(error);
+                  this.pacienteForm.reset();
+                }
+              );
+            } else {
+              //guardamos paciente
+              this.guardarPersona(PERSONA, DOMICILIO);
+              this._usuarioService.guardarUsuario(USUARIO).subscribe((data) => {
+                this.toastr.success(
+                  'Se ha guardado el paciente con éxito!',
+                  'Paciente registrado!'
+                );
+              });
+              
+            }
+            this.router.navigate(['/paciente_lista/' + this.id]);
+          } else {
+            //else esMayorDeEdad
+            this.toastr.warning(
+              'Debe ser Mayor de edad',
+              'Mayoria de edad no cumplida!',
+              {
+                timeOut: 8000,
+                progressBar: true,
+              }
+            );
+          }
+        } else {
+          this.toastr.warning(
+            '*6 a 45 caracteres   ' +
+              '*Al menos una mayuscula   ' +
+              '*Al menos una minuscula   ' +
+              '*Al menos un número   ',
+            'Formato incorrecto en contraseña!',
+            {
+              timeOut: 8000,
+              progressBar: true,
             }
           );
-        } else {
-          //guardamos paciente
-          this.guardarPersona(PERSONA, DOMICILIO);
-          this._usuarioService.guardarUsuario(USUARIO).subscribe((data) => {
-            this.toastr.success(
-              'Se ha guardado el paciente con éxito!',
-              'Paciente registrado!'
-            );
-          });
-          
         }
-        this.router.navigate(['/paciente_lista/' + this.id]);
-      } else {
-        //else esMayorDeEdad
-        this.toastr.warning(
-          'Debe ser Mayor de edad',
-          'Mayoria de edad no cumplida!',
-          {
-            timeOut: 8000,
-            progressBar: true,
-          }
-        );
+
       }
-    } else {
-      this.toastr.warning(
-        '*6 a 45 caracteres   ' +
-          '*Al menos una mayuscula   ' +
-          '*Al menos una minuscula   ' +
-          '*Al menos un número   ',
-        'Formato incorrecto en contraseña!',
-        {
-          timeOut: 8000,
-          progressBar: true,
-        }
-      );
-    }
+    })
+
+   
 
     //console.log(USUARIO);
   }
@@ -397,5 +422,24 @@ export class RegistroPacienteComponent implements OnInit {
 
   irAtras(){
     this.router.navigate(['/paciente_lista/'+this.id]);
+  }
+
+
+    comprobarUsuarioLibre(){
+      this._usuarioService.getUsuarios().subscribe((data) => {
+        console.log("comprobarUsuarioLibre:",data)
+
+        //buscar uno con el nombre
+        var bandera=0;
+        for(let i = 0;i<data.length;i++){
+          if(data[i].usuario ==this.pacienteForm.get('usuario')?.value){
+            alert("El usuario ya Existe")
+            bandera=1;
+          }
+        }
+        if(bandera==0){
+          return
+        }
+      })
   }
 } //Class RegistroPacienteComponent

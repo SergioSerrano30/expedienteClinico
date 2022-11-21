@@ -64,21 +64,22 @@
       <div class="row text-center">
         <div class="col-lg-6 mb-9 mb-lg-2" style="background-color: rgb(255, 255, 255);">
           <div class="card-body">
-            <h3>Mi Avance</h3>
+            <h3>Tratamiento Actual</h3>
+            <h5>[{{problematica}}]</h5>
             <br>
-            <img class="mb-3" src="assets/img/terapia-fisica.png" style="width: 12rem">
+            <img class="mb-3" src="assets/img/terapia-fisica.png" style="width: 8rem">
             <br>
             <!-- Regular progress bar-->
-            <div style="height: 15px; width: 50%;" class="progress">
-              <div role="progressbar" aria-valuenow="10" aria-valuemin="50" aria-valuemax="100" style="width: 50%"
-              class="progress-bar">Completado: {{porcentaje}}%</div>
-            </div>
+              <b>{{porcentaje}}%</b><br>
+              <progress id="file" max="100" value={{porcentaje}}>  </progress>
+         
+           
           </div>
         </div>
         <div class="col-lg-6 mb-9 mb-lg-2" style="background-color: rgb(255, 255, 255);">
           <h3>Ver mi historial</h3>
           <br>
-          <img class="mb-10" src="assets/img/cuaderno.png" style="width: 12rem; cursor:pointer" (click)="irConsultas()">
+          <img class="mb-10 m-3" src="assets/img/cuaderno.png" style="width: 10rem; cursor:pointer" (click)="irConsultas()">
         </div>
       </div>
     </div>
