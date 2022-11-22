@@ -223,7 +223,7 @@ export class NuevaHistoriaComponent implements OnInit {
             'Historia modificado con éxito!',
             'Historia Actualizada!'
           );
-          
+          this.irHistorias()
         },(err) => {
           this.router.navigate(['/error']);
           this.historiaForm.reset();
@@ -236,6 +236,7 @@ export class NuevaHistoriaComponent implements OnInit {
             'Se ha guardado La historia  con éxito!',
             'Historia registrada!');
             guardado=true;
+            this.irHistorias()
           });
       
      }
@@ -245,7 +246,7 @@ export class NuevaHistoriaComponent implements OnInit {
         'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
       );
     });
-    this.irHistorias()
+   
       
   }
 

@@ -70,6 +70,9 @@
                         <textarea class="form-control" formControlName="descripcion" placeholder="Descripción" id="descripcion"
                         style="height: 100px"></textarea>
                            <label style="color:rgba(0, 0, 0, 0.5)" for="descripcion">Descripción</label>
+                           <div class="text-danger" *ngIf="consultaForm.get('descripcion')?.hasError('required') && consultaForm.get('descripcion')?.touched">
+                            <span> <strong>*Descripcion Obligatoria</strong> </span>
+                        </div>
                        </div>
                    </div>
                 </div>
@@ -80,13 +83,19 @@
                            <input formControlName="ejerciciosCasa" type="text" class="form-control" id="ejercicios"
                                placeholder="ejercicios en casa" required>
                            <label style="color:rgba(0, 0, 0, 0.5)" for="ejercicios en casa">Ejercicios</label>
-                       </div>
+                           <div class="text-danger" *ngIf="consultaForm.get('ejerciciosCasa')?.hasError('required') && consultaForm.get('ejerciciosCasa')?.touched">
+                            <span> <strong>*Ejercicios Obligatorios</strong> </span>
+                        </div>
+                        </div>
                    </div>
                 </div>
 
                 <br>
                 <div class="d-grid col-12 mx-auto">
-                    <button (onClick)="agregarConsulta()" class="btn btn-primary btn-lg" type="submit" style="background-color:rgb(33, 37, 41)">Guardar</button>
+                    <button [disabled]="
+                    consultaForm.get('descripcion')?.hasError('required') ||
+                    consultaForm.get('ejerciciosCasa')?.hasError('required')"
+                    (onClick)="agregarConsulta()" class="btn btn-primary btn-lg" type="submit" style="background-color:rgb(33, 37, 41)">Guardar</button>
                 </div>
                 <br>
                 

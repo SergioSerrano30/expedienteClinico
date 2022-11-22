@@ -123,14 +123,14 @@ export class ConsultaRegistrarComponent implements OnInit {
             );
             //this.router.navigate(['/paciente_lista/' + this.id]);
           });
-          //this.router.navigate(['/paciente_lista/' + this.id]);
+          this.regresar();
         },
         (error) => {
           console.log(error);
           this.consultaForm.reset();
         }
       );
-      this.regresar();
+      // this.regresar();
      }else{
             //Guardar
             this._consultasService.guardarConsulta(CONSULTA).subscribe((data) => {
@@ -138,6 +138,7 @@ export class ConsultaRegistrarComponent implements OnInit {
                 'Se ha guardado La Consulta  con éxito!',
                 'Consulta registrada!');
                 guardado=true;
+                this.regresar();
               });
           //Guardar Operacion
             this._operacionesService.guardarOperacion(OPERACION).subscribe((data) => {
@@ -145,7 +146,7 @@ export class ConsultaRegistrarComponent implements OnInit {
                 'Se ha guardado la Operacion con Exito!','Operacion Registrada!'
               );
             });
-            this.regresar();
+            // this.regresar();
      }
      
  

@@ -51,8 +51,12 @@
                                         <button class="btn btn-secondary btn-sg" (click)="irHistoriaLista()">Volver <i
                                                 class="fa-solid fa-arrow-left"></i></button>
                                         <button class="btn btn-success btn-sg me-2" (click)="irNuevaConsulta()"
-                                            *ngIf="rol == 'Terapeuta'">Añadir <i class="fa-solid fa-plus"></i></button>
-                                        <button class="btn btn-warning btn-sg me-2 mx-2"
+                                            *ngIf="rol == 'Terapeuta' && puedeAgregarConsulta==1">Añadir <i class="fa-solid fa-plus"></i></button>
+                                            
+                                            <button class="btn btn-danger btn-sg me-2" (click)="irNuevaConsulta()" [attr.disabled]="true"
+                                            *ngIf="rol == 'Terapeuta' && puedeAgregarConsulta==0">Consultas Completadas <i class="fa-solid fa-plus"></i></button>
+                                           
+                                            <button class="btn btn-warning btn-sg me-2 mx-2"
                                             (click)="obtenerConsultasOcultas()" *ngIf="rol == 'Terapeuta'"> Ocultas <i
                                                 class="fa-solid fa-clock-rotate-left"></i></button>
                                     </div>
