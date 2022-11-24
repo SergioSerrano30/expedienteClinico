@@ -6,8 +6,8 @@ import { Usuario } from '../models/usuario';
   providedIn: 'root'
 })
 export class PacienteService {
-  url = 'http://localhost:4000/api/pacientes/';
-  urlActivos = 'http://localhost:4000/api/pacientes/activos';
+  url = 'https://servidorexpedienteclinico.herokuapp.com/api/pacientes/';
+  urlActivos = 'https://servidorexpedienteclinico.herokuapp.com/api/pacientes/activos';
   constructor(private http: HttpClient) { }
 
   getPacientes():Observable<any>{

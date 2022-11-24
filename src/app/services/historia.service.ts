@@ -9,7 +9,7 @@ import { Historia } from '../models/historia';
 })
 export class HistoriaService {
 
-  url = 'http://localhost:4000/api/historias/'
+  url = 'https://servidorexpedienteclinico.herokuapp.com/api/historias/'
 
   constructor(private http: HttpClient) { }
 

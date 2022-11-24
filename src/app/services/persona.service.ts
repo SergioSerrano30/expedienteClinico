@@ -7,7 +7,7 @@ import { Persona } from '../models/persona';
   providedIn: 'root'
 })
 export class PersonaService {
-  url = 'http://localhost:4000/api/personas/'
+  url = 'https://servidorexpedienteclinico.herokuapp.com/api/personas/'
   constructor(private http: HttpClient) { }
 
   getPersonas(): Observable<any>{

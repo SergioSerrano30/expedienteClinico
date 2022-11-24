@@ -7,7 +7,7 @@ import { Domicilio } from '../models/domicilio';
   providedIn: 'root'
 })
 export class DomicilioService {
-  url = 'http://localhost:4000/api/domicilios/'
+  url = 'https://servidorexpedienteclinico.herokuapp.com/api/domicilios/'
   constructor(private http: HttpClient) { }
 
   getDomicilios(): Observable<any>{
