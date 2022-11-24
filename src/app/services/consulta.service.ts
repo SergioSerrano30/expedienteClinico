@@ -8,7 +8,7 @@ import { Consulta } from '../models/consulta';
 })
 export class ConsultaService {
 
-  url = 'http://localhost:4000/api/consultas/'
+  url = 'https://servidorexpedienteclinico.herokuapp.com/api/consultas/'
 
   constructor(private http: HttpClient) { }
 

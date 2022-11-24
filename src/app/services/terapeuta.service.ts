@@ -7,8 +7,8 @@ import { Usuario } from '../models/usuario';
   providedIn: 'root'
 })
 export class TerapeutaService {
-  url = 'http://localhost:4000/api/terapeutas/';
-  urlActivos = 'http://localhost:4000/api/terapeutas/activos';
+  url = 'https://servidorexpedienteclinico.herokuapp.com/api/terapeutas/';
+  urlActivos = 'https://servidorexpedienteclinico.herokuapp.com/api/terapeutas/activos';
   
   constructor(private http: HttpClient) { }
   getTerapeutas():Observable<any>{

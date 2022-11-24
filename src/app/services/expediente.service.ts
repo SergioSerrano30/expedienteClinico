@@ -8,7 +8,7 @@ import { Expediente } from '../models/expediente';
 })
 export class ExpedienteService {
 
-  url = 'http://localhost:4000/api/expedientes/';
+  url = 'https://servidorexpedienteclinico.herokuapp.com/api/expedientes/';
 
   constructor(private http: HttpClient) { }
 
