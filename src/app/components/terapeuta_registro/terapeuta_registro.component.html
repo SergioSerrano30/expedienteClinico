@@ -49,8 +49,8 @@
             <form action="mt-3" [formGroup]="usuarioForm" (ngSubmit)="guardarTerapeuta()">
                 <div class="form-floating my-2">
                     <input formControlName="nombre" type="text" class="form-control" id="txtNombre"
-                        placeholder="Nombre(s)" required>
-                    <label for="nombre">Nombre(s)</label>
+                        placeholder="Nombre(s)" onkeydown="return /[a-z,., ]/i.test(event.key)" required>
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="nombre">*Nombre(s)</label>
                     <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
                         <span> <strong>*Nombre Obligatorio</strong> </span>
                     </div>
@@ -60,8 +60,8 @@
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                                placeholder="Apellido paterno" required>
-                            <label for="apPaterno">Apellido paterno</label>
+                                placeholder="Apellido paterno" onkeydown="return /[a-z,., ]/i.test(event.key)" required>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="apPaterno">*Apellido paterno</label>
                             <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
                                 <span> <strong>*Nombre Obligatorio</strong> </span>
                             </div>
@@ -70,8 +70,8 @@
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                                placeholder="Apellido materno" required>
-                            <label for="password">Apellido materno</label>
+                                placeholder="Apellido materno" onkeydown="return /[a-z,., ]/i.test(event.key)" required>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Apellido materno</label>
                             <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
                                 <span> <strong>*Nombre Obligatorio</strong> </span>
                             </div>
@@ -108,17 +108,27 @@
                         <div class="form-floating my-2">
                             <input formControlName="usuario" type="text" class="form-control" id="txtUsuario"
                                 placeholder="Usuario" required>
-                            <label for="password">Usuario</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Usuario</label>
                             <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
                                 <span> <strong>*Nombre Obligatorio</strong> </span>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <button *ngIf="!usuarioForm.get('usuario')?.hasError('required')" 
+                            type="button" class="btn btn-danger  justify-content-center" (click)="comprobarDisponibilidad()">
+                                Comprobar Disponibilidad de Usuario
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="password" type="password" class="form-control" id="txtPass"
                                 placeholder="Contraseña" required>
-                            <label for="password">Contraseña</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Contraseña</label>
                             <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
                                 <span> <strong>*Nombre Obligatorio</strong> </span>
                             </div>
@@ -134,7 +144,7 @@
                 <div class="form-floating my-2">
                     <input formControlName="calle" type="text" class="form-control" id="calle" placeholder="Calle"
                         required>
-                    <label for="calle">Calle</label>
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="calle">*Calle</label>
                     <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
                         <span> <strong>*Nombre Obligatorio</strong> </span>
                     </div>
@@ -145,7 +155,7 @@
                         <div class="form-floating my-2">
                             <input formControlName="numero_EXT" type="text" class="form-control" id="numero_EXT"
                                 placeholder="Número externo" required>
-                            <label for="numero_EXT">Número externo</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_EXT">*Número externo</label>
                             <div class="text-danger" *ngIf="usuarioForm.get('numero_EXT')?.hasError('required') && usuarioForm.get('numero_EXT')?.touched">
                                 <span> <strong>*Numero Obligatorio</strong> </span>
                             </div>
@@ -155,7 +165,7 @@
                         <div class="form-floating my-2">
                             <input formControlName="numero_INT" type="text" class="form-control" id="numero_INT"
                                 placeholder="Número interno" required>
-                            <label for="numero_INT">Número interno</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_INT">Número interno</label>
                         </div>
                     </div>
                 </div>
@@ -163,9 +173,9 @@
                 <div class="form-floating my-2">
                     <input formControlName="colonia" type="text" class="form-control" id="colonia" placeholder="Colonia"
                         required>
-                    <label for="colonia">Colonia</label>
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="colonia">*Colonia</label>
                     <div class="text-danger" *ngIf="usuarioForm.get('colonia')?.hasError('required') && usuarioForm.get('colonia')?.touched">
-                        <span> <strong>*Colonia Obligatoris</strong> </span>
+                        <span> <strong>*Colonia Obligatoria</strong> </span>
                     </div>
                 </div>
 
@@ -174,14 +184,14 @@
                         <div class="form-floating my-2">
                             <input formControlName="entrecalle1" type="text" class="form-control" id="entrecalle1"
                                 placeholder="Entre calle" required>
-                            <label for="entrecalle1">Entre calle</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="entrecalle1">Entre calle</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="entrecalle2" type="text" class="form-control" id="entrecalle2"
                                 placeholder="Y calle" required>
-                            <label for="entrecalle2">Y calle</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="entrecalle2">Y calle</label>
                         </div>
                     </div>
                 </div>
@@ -189,40 +199,65 @@
                 <div class="form-floating my-2">
                     <textarea class="form-control" formControlName="referencia" placeholder="Referencias" id="referecia"
                         style="height: 100px"></textarea>
-                    <label for="referecias">Referencias</label>
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="referecias">Referencias</label>
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="municipio" type="text" class="form-control" id="municipio"
-                                placeholder="Municipio" required>
-                            <label for="municipio">Municipio</label>
-                            <div class="text-danger" *ngIf="usuarioForm.get('municipio')?.hasError('required') && usuarioForm.get('municipio')?.touched">
-                                <span> <strong>*municipio Obligatorio</strong> </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-floating my-2">
-                            <input formControlName="estado" type="text" class="form-control" id="estado"
-                                placeholder="Estado" required>
-                            <label for="password">Estado</label>
-                            <div class="text-danger" *ngIf="usuarioForm.get('estado')?.hasError('required') && usuarioForm.get('estado')?.touched">
-                                <span> <strong>*estado Obligatorio</strong> </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-floating my-2">
-                            <input formControlName="pais" type="text" class="form-control" id="pais" placeholder="País"
-                                required>
-                            <label for="password">País</label>
+                            <select class="form-select" formControlName="pais" id="pais">
+                                <option selected value="Mexico">México</option>    
+                            </select>
+                            <label for="floatingSelectGrid">*País</label>
                             <div class="text-danger" *ngIf="usuarioForm.get('pais')?.hasError('required') && usuarioForm.get('pais')?.touched">
-                                <span> <strong>*pais Obligatorio</strong> </span>
+                                <span> <strong>*Pais Obligatorio</strong> </span>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <select class="form-select" formControlName="estado" id="estado">
+                                <option selected value="Nayarit">Nayarit</option>                                
+                            </select>
+                            <label for="floatingSelectGrid">*Estado</label>
+                            <div class="text-danger" *ngIf="usuarioForm.get('estado')?.hasError('required') && usuarioForm.get('estado')?.touched">
+                                <span> <strong>*Estado Obligatorio</strong> </span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <select class="form-select" formControlName="municipio" id="estado">
+                                <option selected value="Tepic">Tepic</option>
+                                <option value="Otro">Huajicori</option>
+                                <option value="Otro">Acaponeta</option>
+                                <option value="Otro">Tecuala</option>
+                                <option value="Otro">Rosamorada</option>
+                                <option value="Otro">Tuxpan</option>
+                                <option value="Otro">Ruiz</option>
+                                <option value="Otro">Santiago</option>
+                                <option value="Otro">San Blas</option>
+                                <option value="Otro">Xalisco</option>
+                                <option value="Otro">El nayar</option>
+                                <option value="Otro">San Pedro</option>
+                                <option value="Otro">Jala</option>
+                                <option value="Otro">Ixtlan</option>
+                                <option value="Otro">Amatlan</option>
+                                <option value="Otro">Ahuacatlán</option>
+                                <option value="Otro">Compostela</option>
+                                <option value="Otro">Santa Maria</option>
+                                <option value="Otro">La Yesca</option>
+                            </select>
+                            <label for="floatingSelectGrid">*Municipio</label>
+                            <div class="text-danger" *ngIf="usuarioForm.get('municipio')?.hasError('required') && usuarioForm.get('municipio')?.touched">
+                                <span> <strong>*Municipio Obligatorio</strong> </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
                 </div>
 
                 <br><br>

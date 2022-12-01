@@ -2,295 +2,475 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro Paciente</title>
 </head>
 
 <body>
-            <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
-                <div class="container-fluid"><a class="navbar-brand" (click)="irInicio()"
-                        style="cursor: pointer;">Expediente Clínico
-                        Digital [{{rol}}] - {{nombre}}</a><button data-bs-toggle="collapse" class="navbar-toggler"
-                        data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
-                            class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse text-end" id="navcol-1">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" (click)="irAtras()"
-                                    style="cursor: pointer;">Regresar</a></li>
-                        </ul>
-                    </div>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md text-end">
+        <div class="container-fluid">
+            <a class="navbar-brand" (click)="irInicio()" style="cursor: pointer">Expediente Clínico Digital [{{ rol }}]
+                - {{ nombre }}</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-end" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="irAtras()" style="cursor: pointer">Regresar</a>
+                    </li>
+                </ul>
+            </div>
 
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
-                        style="margin-left: 1%">
-                        <div class="dropdown text-end">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
-                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40"
-                                    class="rounded-circle ml-5" (click)="irLogin()">
-                            </a>
-                        </div>
-
-                        <div class="text-end">
-                            <button type="button" class="btn btn-danger" (click)="irLogin()">Cerrar sesión</button>
-                        </div>
-                    </div>
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+                style="margin-left: 1%">
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="assets/img/imgterapeuta.png" alt="mdo" width="40" height="40"
+                            class="rounded-circle ml-5" (click)="irLogin()" />
+                    </a>
                 </div>
-            </nav>
 
-            <!--<h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>-->
-            <!--
+                <div class="text-end">
+                    <button type="button" class="btn btn-danger" (click)="irLogin()">
+                        Cerrar sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--<h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>-->
+    <!--
                     <div class="text-center" style="display: block; margin: auto; margin-top: 20px;">
                     <img src="assets/img/sneeze%20(1).png" width="100rem">
                 </div>
             </header>-->
 
-            <!--Formulario de abajo-->
-            <div class="principal">
-                <div class="container w-50 rounded shadow mb-3" style="background-color:rgba(92, 99, 106, 0.342)">
-                    <br>
-                    <h2 class="text-center" style="margin-top: 20px;">{{titulo}}</h2>
-                    <br>
-                    <!--
+    <!--Formulario de abajo-->
+    <div class="principal">
+        <div class="container w-50 rounded shadow mb-3" style="background-color: rgba(92, 99, 106, 0.342)">
+            <br />
+            <h2 class="text-center" style="margin-top: 20px">{{ titulo }}</h2>
+            <br />
+            <!--
                         <div class="text-center" style="display: block; margin: auto; margin-top: 20px;">
                         <img src="assets/img/sneeze%20(1).png" width="100rem">
                     </div>
                     -->
-                    <div class="etiquetas">
-                        <b>Datos personales:</b>
-                    </div>
-                    <form action="mt-3" [formGroup]="pacienteForm" (ngSubmit)="guardarPaciente()">
-                        <div class="form-floating my-2">
-                            <input formControlName="nombre" type="text" class="form-control" id="txtNombre"
-                                placeholder="Nombre(s)" required>
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="nombre">Nombre(s)</label>
-                            <div class="text-danger" *ngIf="pacienteForm.get('nombre')?.hasError('required') && pacienteForm.get('nombre')?.touched">
-                                <span> <strong>*El nombre del Paciente es Obligatorio</strong> </span>
-                            </div>
-                        </div>
-                        <div class="row g-4">
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                                        placeholder="Apellido paterno" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="apPaterno">Apellido paterno</label>
-                                    <div class="text-danger" *ngIf="pacienteForm.get('apPaterno')?.hasError('required') && pacienteForm.get('apPaterno')?.touched">
-                                        <span> <strong>*El Apellido Paterno del Paciente es Obligatorio</strong> </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                                        placeholder="Apellido materno" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="password">Apellido materno</label>
-                                    <div class="text-danger" *ngIf="pacienteForm.get('apMaterno')?.hasError('required') && pacienteForm.get('apMaterno')?.touched">
-                                        <span> <strong>*El Apellido Materno del Paciente es Obligatorio</strong> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                
-                        <div class="row g-4">
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="fechaNac" type="date" min={{fechaMin}} max={{fechaHoy}}
-                                        value="2000-01-01" class="form-control" id="txtFecha"
-                                        placeholder="Fecha de nacimiento" required>
-                                    <label for="fechaNac">Fecha de nacimiento </label>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <select class="form-select" formControlName="sexo" id="floatingSelectGrid">
-                                        <option selected value="Masculino">Masculino</option>
-                                        <option value="Femenino">Femenino</option>
-                                    </select>
-                                    <label for="floatingSelectGrid">Sexo</label>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="etiquetas">
-                            <b>Datos del usuario:</b>
-                        </div>
-
-                        <div class="row g-4">
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="usuario" type="text" class="form-control" id="txtUsuario"
-                                        placeholder="Usuario" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="password">Usuario</label>
-                                    <div class="text-danger" *ngIf="pacienteForm.get('usuario')?.hasError('required') && pacienteForm.get('usuario')?.touched">
-                                        <span> <strong>*El Usuario del Paciente es Obligatorio</strong> </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="password" type="password" class="form-control" id="txtPass"
-                                        placeholder="Contraseña" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="password">Contraseña</label>
-                                    <div class="text-danger" *ngIf="pacienteForm.get('password')?.hasError('required') && pacienteForm.get('password')?.touched">
-                                        <span> <strong>*La Contraseña del Paciente es Obligatoria</strong> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="etiquetas">
-                            <b>Datos del domicilio:</b>
-                        </div>
-
-                        <div class="form-floating my-2">
-                            <input formControlName="calle" type="text" class="form-control" id="calle"
-                                placeholder="Calle" required>
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="calle">Calle</label>
-                            <div class="text-danger" *ngIf="pacienteForm.get('calle')?.hasError('required') && pacienteForm.get('calle')?.touched">
-                                <span> <strong>*La calle del Domicilio es Obligatoria</strong> </span>
-                            </div>
-                        </div>
-
-                        <div class="row g-4">
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="numero_EXT" type="number" class="form-control" id="numero_EXT"
-                                        placeholder="Número externo" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="numero_EXT">Número externo</label>
-                                    <div class="text-danger" *ngIf="pacienteForm.get('numero_EXT')?.hasError('required') && pacienteForm.get('numero_EXT')?.touched">
-                                        <span> <strong>*Número Exterior Obligatorio</strong> </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="numero_INT" type="number" class="form-control" id="numero_INT"
-                                        placeholder="Número interno" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="numero_INT">Número interno</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-floating my-2">
-                            <input formControlName="colonia" type="text" class="form-control" id="colonia"
-                                placeholder="Colonia" required>
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="colonia">Colonia</label>
-                            <div class="text-danger" *ngIf="pacienteForm.get('colonia')?.hasError('required') && pacienteForm.get('colonia')?.touched">
-                                <span> <strong>*Colonia Obligatoria</strong> </span>
-                            </div>
-                        </div>
-
-                        <div class="row g-4">
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="entrecalle1" type="text" class="form-control"
-                                        id="entrecalle1" placeholder="Entre calle" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="entrecalle1">Entre calle</label>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <input formControlName="entrecalle2" type="text" class="form-control"
-                                        id="entrecalle2" placeholder="Y calle" required>
-                                    <label style="color: rgba(0, 0, 0, 0.5)" for="entrecalle2">Y calle</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-floating my-2">
-                            <textarea class="form-control" formControlName="referencia" placeholder="Referencias"
-                                id="referecia" style="height: 100px"></textarea>
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="referecias">Referencias</label>
-                        </div>
-
-                        <div class="row g-4">
-                            
-                            <div class="col-md">
-                                <div class="form-floating my-2">
-                                    <select class="form-select" formControlName="pais" id="pais">
-                                        <option selected value="Mexico">México</option>    
-                                    </select>
-                                    <label for="floatingSelectGrid">País</label>
-                                    <div class="text-danger" *ngIf="pacienteForm.get('pais')?.hasError('required') && pacienteForm.get('pais')?.touched">
-                                        <span> <strong>*Pais Obligatorio</strong> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        
-
-                        <div class="col-md">
-                            <div class="form-floating my-2">
-                                <select class="form-select" formControlName="estado" id="estado">
-                                    <option selected value="Nayarit">Nayarit</option>                                
-                                </select>
-                                <label for="floatingSelectGrid">Estado</label>
-                                <div class="text-danger" *ngIf="pacienteForm.get('estado')?.hasError('required') && pacienteForm.get('estado')?.touched">
-                                    <span> <strong>*Estado Obligatorio</strong> </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md">
-                            <div class="form-floating my-2">
-                                <select class="form-select" formControlName="municipio" id="estado">
-                                    <option selected value="Tepic">Tepic</option>
-                                    <option value="Otro">Huajicori</option>
-                                    <option value="Otro">Acaponeta</option>
-                                    <option value="Otro">Tecuala</option>
-                                    <option value="Otro">Rosamorada</option>
-                                    <option value="Otro">Tuxpan</option>
-                                    <option value="Otro">Ruiz</option>
-                                    <option value="Otro">Santiago</option>
-                                    <option value="Otro">San Blas</option>
-                                    <option value="Otro">Xalisco</option>
-                                    <option value="Otro">El nayar</option>
-                                    <option value="Otro">San Pedro</option>
-                                    <option value="Otro">Jala</option>
-                                    <option value="Otro">Ixtlan</option>
-                                    <option value="Otro">Amatlan</option>
-                                    <option value="Otro">Ahuacatlán</option>
-                                    <option value="Otro">Compostela</option>
-                                    <option value="Otro">Santa Maria</option>
-                                    <option value="Otro">La Yesca</option>
-                                </select>
-                                <label for="floatingSelectGrid">Municipio</label>
-                                <div class="text-danger" *ngIf="pacienteForm.get('municipio')?.hasError('required') && pacienteForm.get('municipio')?.touched">
-                                    <span> <strong>*Municipio Obligatorio</strong> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <br><br>
-                        <div class="d-grid col-12 mx-auto">
-                            <button [disabled]="
-                                pacienteForm.get('municipio')?.hasError('required') ||
-                                pacienteForm.get('estado')?.hasError('required') ||  
-                                pacienteForm.get('calle')?.hasError('required') || 
-                                pacienteForm.get('colonia')?.hasError('required') ||  
-                                pacienteForm.get('nombre')?.hasError('required') || 
-                                pacienteForm.get('usuario')?.hasError('required') || 
-                                pacienteForm.get('contraseña')?.hasError('required') || 
-                                pacienteForm.get('estado')?.hasError('required') || 
-                                pacienteForm.get('apPaterno')?.hasError('required') || 
-                                pacienteForm.get('apMaterno')?.hasError('required') || 
-                                pacienteForm.get('numero_EXT')?.hasError('required') || 
-                                pacienteForm.get('estado')?.hasError('required') || 
-                                pacienteForm.get('pais')?.hasError('required')"
-                             (onClick)="guardarPaciente()" class="btn btn-primary btn-lg" type="submit"
-                                style="background-color:rgb(33, 37, 41)" >Guardar</button>
-                        </div>
-                       
-                        <br>
-                    </form>
-
-                </div>
+            <div class="etiquetas">
+                <b>Datos personales:</b>
             </div>
+            <form action="mt-3" [formGroup]="pacienteForm" (ngSubmit)="guardarPaciente()">
+                <div class="form-floating my-2">
+                    <input formControlName="nombre" type="text" class="form-control" id="txtNombre"
+                        placeholder="Nombre(s)" onkeydown="return /[a-z,., ]/i.test(event.key)" required />
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="nombre">*Nombre(s)</label>
+                    <div class="text-danger" *ngIf="
+                pacienteForm.get('nombre')?.hasError('required') &&
+                pacienteForm.get('nombre')?.touched
+              ">
+                        <span>
+                            <strong>*El nombre del Paciente es Obligatorio</strong>
+                        </span>
+                    </div>
+                </div>
 
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
+                                placeholder="Apellido paterno" onkeydown="return /[a-z, ,.]/i.test(event.key)"
+                                required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="apPaterno">*Apellido paterno</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('apPaterno')?.hasError('required') &&
+                    pacienteForm.get('apPaterno')?.touched
+                  ">
+                                <span>
+                                    <strong>*El Apellido Paterno del Paciente es Obligatorio</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
+                                placeholder="Apellido materno" onkeydown="return /[a-z,., ]/i.test(event.key)"
+                                required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Apellido materno</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('apMaterno')?.hasError('required') &&
+                    pacienteForm.get('apMaterno')?.touched
+                  ">
+                                <span>
+                                    <strong>*El Apellido Materno del Paciente es Obligatorio</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input (change)="esMayor()" formControlName="fechaNac" type="date" min="{{ fechaMin }}"
+                                max="{{ fechaHoy }}" value="2000-01-01" class="form-control" id="txtFecha"
+                                placeholder="Fecha de nacimiento" required />
+                            <label for="fechaNac">*Fecha de nacimiento </label>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <select class="form-select" formControlName="sexo" id="floatingSelectGrid">
+                                <option selected value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                            <label for="floatingSelectGrid">Sexo</label>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="etiquetas">
+                    <b>Datos del usuario:</b>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="usuario" type="text" class="form-control" id="txtUsuario"
+                                placeholder="Usuario" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Usuario</label>
+                            <div class="text-danger" *ngIf="
+                                    pacienteForm.get('usuario')?.hasError('required') &&
+                                    pacienteForm.get('usuario')?.touched
+                                ">
+                                <span>
+                                    <strong>*El Usuario del Paciente es Obligatorio</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="password" type="password" class="form-control" id="txtPass"
+                                placeholder="Contraseña" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Contraseña</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('password')?.hasError('required') &&
+                    pacienteForm.get('password')?.touched
+                  ">
+
+                  
+                                <span>
+                                    <strong>*La Contraseña del Paciente es Obligatoria</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <button *ngIf="!pacienteForm.get('usuario')?.hasError('required')" type="button"
+                                class="btn btn-danger justify-content-center" (click)="comprobarDisponibilidad()">
+                                Comprobar Disponibilidad de Usuario
+                            </button>
+                            <button [attr.disabled]="true" *ngIf="pacienteForm.get('usuario')?.hasError('required')"
+                                type="button" class="btn btn-danger justify-content-center"
+                                (click)="comprobarDisponibilidad()">
+                                Comprobar Disponibilidad de Usuario
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div *ngIf="mostrarDatosTutor == 1" bg-info>
+                    <div class="etiquetas">
+                        <b>Datos personales del TUTOR:</b>
+                    </div>
+                    <div class="form-floating my-2">
+                        <input formControlName="nombreTutor" type="text" class="form-control" id="txtNombreTutor"
+                            placeholder="Nombre(s)" onkeydown="return /[a-z,., ]/i.test(event.key)" required />
+                        <label style="color: rgba(0, 0, 0, 0.5)" for="nombre">*Nombre(s) del tutor</label>
+                        <div class="text-danger" *ngIf="
+                                                        pacienteForm.get('nombreTutor')?.hasError('required') &&
+                                                        pacienteForm.get('nombreTutor')?.touched">
+                            <span>
+                                <strong>*El nombre del Tutor es Obligatorio</strong>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md">
+                            <div class="form-floating my-2">
+                                <input formControlName="apPaternoTutor" type="text" class="form-control"
+                                    id="txtPaternoTutor" placeholder="Apellido paterno Tutor"
+                                    onkeydown="return /[a-z,., ]/i.test(event.key)" required />
+                                <label style="color: rgba(0, 0, 0, 0.5)" for="apPaternoTutor">*Apellido paterno del
+                                    Tutor</label>
+                                <div class="text-danger" *ngIf="
+                      pacienteForm
+                        .get('apPaternoTutor')
+                        ?.hasError('required') &&
+                      pacienteForm.get('apPaternoTutor')?.touched
+                    ">
+                                    <span>
+                                        <strong>*El Apellido Paterno del Tutor es Obligatorio</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md">
+                            <div class="form-floating my-2">
+                                <input formControlName="apMaternoTutor" type="text" class="form-control"
+                                    id="txtMaternoTutor" placeholder="Apellido materno"
+                                    onkeydown="return /[a-z,., ]/i.test(event.key)" required />
+                                <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Apellido materno del
+                                    Tutor</label>
+                                <div class="text-danger" *ngIf="
+                      pacienteForm
+                        .get('apMaternoTutor')
+                        ?.hasError('required') &&
+                      pacienteForm.get('apMaternoTutor')?.touched
+                    ">
+                                    <span>
+                                        <strong>*El Apellido Materno del Tutor es Obligatorio</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md">
+                            <div class="form-floating my-2">
+                                <input formControlName="fechaNacTutor" type="date" min="{{ fechaMin }}"
+                                    max="{{ fechaHoy }}" max="2021-12-31" value="2000-01-01" class="form-control"
+                                    id="txtFecha" placeholder="Fecha de nacimiento" required />
+                                <label for="fechaNacTutor">*Fecha de nacimiento </label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating my-2">
+                                <select class="form-select" formControlName="sexoTutor" id="floatingSelectGrid">
+                                    <option selected value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
+                                <label for="floatingSelectGrid">Sexo del Tutor</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md">
+                            <div class="form-floating my-2">
+                                <input formControlName="telefonoTutor" type="text" class="form-control"
+                                    id="idTelefonoTutor" placeholder="Telefono Tutor"
+                                    onkeydown="return /[0-9,., ]/i.test(event.key)" maxlength="10" />
+                                <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Telefono del Tutor</label>
+                                <div class="text-danger" *ngIf="
+                      pacienteForm.get('telefonoTutor')?.hasError('required') &&
+                      pacienteForm.get('telefonoTutor')?.touched
+                    ">
+                                    <span>
+                                        <strong>*El telefonoTutor del Tutor es Obligatorio</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md">
+                            <div class="form-floating my-2">
+                                <select class="form-select" formControlName="parentesco" id="floatingSelectGrid">
+                                    <option value="Padre">Padre</option>
+                                    <option value="Madre">Madre</option>
+                                    <option value="Hermano">Hermano(a)</option>
+                                    <option value="Primo">Primo(a)</option>
+                                    <option value="Tio">Tio(a)</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                                <label for="floatingSelectGrid">Parentesco</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+
+                <div class="etiquetas">
+                    <b>Datos del domicilio:</b>
+                </div>
+
+                <div class="form-floating my-2">
+                    <input formControlName="calle" type="text" class="form-control" id="calle" placeholder="Calle"
+                        required />
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="calle">*Calle</label>
+                    <div class="text-danger" *ngIf="
+                pacienteForm.get('calle')?.hasError('required') &&
+                pacienteForm.get('calle')?.touched
+              ">
+                        <span>
+                            <strong>*La calle del Domicilio es Obligatoria</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="numero_EXT" type="text" class="form-control" id="numero_EXT"
+                                placeholder="Número externo" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_EXT">*Número externo</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('numero_EXT')?.hasError('required') &&
+                    pacienteForm.get('numero_EXT')?.touched
+                  ">
+                                <span> <strong>*Número Exterior Obligatorio</strong> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="numero_INT" type="text" class="form-control" id="numero_INT"
+                                placeholder="Número interno" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_INT">Número interno</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-floating my-2">
+                    <input formControlName="colonia" type="text" class="form-control" id="colonia" placeholder="Colonia"
+                        required />
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="colonia">*Colonia</label>
+                    <div class="text-danger" *ngIf="
+                pacienteForm.get('colonia')?.hasError('required') &&
+                pacienteForm.get('colonia')?.touched
+              ">
+                        <span> <strong>*Colonia Obligatoria</strong> </span>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="entrecalle1" type="text" class="form-control" id="entrecalle1"
+                                placeholder="Entre calle" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="entrecalle1">Entre calle</label>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="entrecalle2" type="text" class="form-control" id="entrecalle2"
+                                placeholder="Y calle" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="entrecalle2">Y calle</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-floating my-2">
+                    <textarea class="form-control" formControlName="referencia" placeholder="Referencias" id="referecia"
+                        style="height: 100px"></textarea>
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="referecias">Referencias</label>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <select class="form-select" formControlName="pais" id="pais">
+                                <option selected value="Mexico">México</option>
+                            </select>
+                            <label for="floatingSelectGrid">*País</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('pais')?.hasError('required') &&
+                    pacienteForm.get('pais')?.touched
+                  ">
+                                <span> <strong>*Pais Obligatorio</strong> </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <select class="form-select" formControlName="estado" id="estado">
+                                <option selected value="Nayarit">Nayarit</option>
+                            </select>
+                            <label for="floatingSelectGrid">*Estado</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('estado')?.hasError('required') &&
+                    pacienteForm.get('estado')?.touched
+                  ">
+                                <span> <strong>*Estado Obligatorio</strong> </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <select class="form-select" formControlName="municipio" id="estado">
+                                <option selected value="Tepic">Tepic</option>
+                                <option value="Otro">Huajicori</option>
+                                <option value="Otro">Acaponeta</option>
+                                <option value="Otro">Tecuala</option>
+                                <option value="Otro">Rosamorada</option>
+                                <option value="Otro">Tuxpan</option>
+                                <option value="Otro">Ruiz</option>
+                                <option value="Otro">Santiago</option>
+                                <option value="Otro">San Blas</option>
+                                <option value="Otro">Xalisco</option>
+                                <option value="Otro">El nayar</option>
+                                <option value="Otro">San Pedro</option>
+                                <option value="Otro">Jala</option>
+                                <option value="Otro">Ixtlan</option>
+                                <option value="Otro">Amatlan</option>
+                                <option value="Otro">Ahuacatlán</option>
+                                <option value="Otro">Compostela</option>
+                                <option value="Otro">Santa Maria</option>
+                                <option value="Otro">La Yesca</option>
+                            </select>
+                            <label for="floatingSelectGrid">*Municipio</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('municipio')?.hasError('required') &&
+                    pacienteForm.get('municipio')?.touched
+                  ">
+                                <span> <strong>*Municipio Obligatorio</strong> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br /><br />
+                <div class="d-grid col-12 mx-auto">
+                    <button [disabled]="
+                pacienteForm.get('municipio')?.hasError('required') ||
+                pacienteForm.get('estado')?.hasError('required') ||
+                pacienteForm.get('calle')?.hasError('required') ||
+                pacienteForm.get('colonia')?.hasError('required') ||
+                pacienteForm.get('nombre')?.hasError('required') ||
+                pacienteForm.get('usuario')?.hasError('required') ||
+                pacienteForm.get('contraseña')?.hasError('required') ||
+                pacienteForm.get('estado')?.hasError('required') ||
+                pacienteForm.get('apPaterno')?.hasError('required') ||
+                pacienteForm.get('apMaterno')?.hasError('required') ||
+                pacienteForm.get('numero_EXT')?.hasError('required') ||
+                pacienteForm.get('estado')?.hasError('required') ||
+                pacienteForm.get('pais')?.hasError('required')
+              " (onClick)="guardarPaciente()" class="btn btn-primary btn-lg" type="submit"
+                        style="background-color: rgb(33, 37, 41)">
+                        Guardar
+                    </button>
+                </div>
+
+                <br />
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
