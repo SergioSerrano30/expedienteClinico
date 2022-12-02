@@ -17,6 +17,12 @@ import { OperacionService } from 'src/app/services/operacion.service';
 export class NuevaHistoriaComponent implements OnInit {
   historiaForm: FormGroup;
 
+  checkAlergias=false;
+  checkCirugias=false;
+  checkTraumas=false;
+  checkCongenitas=false;
+  checkHereditarias=false;
+
   titulo = 'Registrar Historia';
   id: string;
   idUM: string;
@@ -48,6 +54,11 @@ export class NuevaHistoriaComponent implements OnInit {
   varTraFracturas=false;
   varEnfCongenitas=false;
   varEnfHereditarias=false;
+
+  errorNumConsulta=0;
+  errorNumeroTel=0;
+  errorPeso=0;
+  errorEstatura=0;
 
 
   constructor(
@@ -182,6 +193,42 @@ export class NuevaHistoriaComponent implements OnInit {
       let hora = this.horaHoyCorrecta;
       let usuarios_idTerapeuta = this.id;
       let usuarios_idPaciente=this.idPAC;
+
+      let pesoInt = parseFloat(peso);
+      let estaturaInt = parseFloat(estatura);
+
+      //borrar datos de los switch inhabilidados
+      if(this.titulo=="Editar Historia"){
+        if(this.varAlergias==false)
+        alergias='';
+        if(this.varCirugias==false)
+        cirugias='';
+        if(this.varTraFracturas==false)
+        traFracturas='';
+        if(this.varEnfCongenitas==false)
+        enfCongenitas='';
+        if(this.varEnfHereditarias==false)
+        enfHereditarias='';
+      }
+     
+
+      //Validaciones----------------------------
+      if(emeCelular.match("^[0-9]+$")==null ){  this.toastr.warning(
+        'Telefono No Valido',
+        'Corrija el Telefono!'
+      ); return}
+
+      if(estaturaInt< 0.1 || estaturaInt>300){ this.toastr.warning(
+        'Estatura No Valida',
+        'Corrija la Estatura de la Persona!'
+      );  
+        return}
+      
+        if(pesoInt< 0.1 || pesoInt>999){ this.toastr.warning(
+          'Peso No Valido',
+          'Corrija el Peso de la Persona!'
+        );  
+          return}
   
       //Crear Objetos
       const HISTORIA: Historia = {
@@ -265,17 +312,37 @@ export class NuevaHistoriaComponent implements OnInit {
        this.varTraFracturas=true;
        this.varEnfCongenitas=true;
        this.varEnfHereditarias=true;
+       this.checkCirugias=true;
+       this.checkAlergias=true;
+       this.checkTraumas=true;
+       this.checkCongenitas=true;
+       this.checkHereditarias=true;
 
-         if(data.cirugias=="")
-           this.varCirugias=false;
-         if(data.alergias=="")
-           this.varAlergias=false;
-         if(data.traFracturas=="")
-           this.varTraFracturas=false;
-         if(data.enfCongenitas=="")
-           this.varEnfCongenitas=false;
-         if(data.enfHereditarias=="")
-           this.varEnfHereditarias=false;
+         if(data.cirugias==""){
+          this.varCirugias=false;
+          this.checkCirugias=false;
+         }
+          
+         if(data.alergias==""){
+          this.varAlergias=false;
+          this.checkAlergias=false;
+         }
+          
+         if(data.traFracturas==""){
+          this.varTraFracturas=false;
+          this.checkTraumas=false;
+         }
+          
+         if(data.enfCongenitas==""){
+          this.varEnfCongenitas=false;
+          this.checkTraumas=false;
+         }
+          
+         if(data.enfHereditarias==""){
+          this.varEnfHereditarias=false;
+          this.checkHereditarias=false;
+         }
+           
 
        this.historiaForm.setValue({
          nombre: dataPaciente.usuario_persona.nombre,
@@ -359,6 +426,7 @@ export class NuevaHistoriaComponent implements OnInit {
     this.varAlergias=false;
     else
     this.varAlergias=true;
+    
   }
   cambiarEstado2(){
     if(this.varCirugias)
@@ -384,6 +452,59 @@ export class NuevaHistoriaComponent implements OnInit {
     else
     this.varEnfHereditarias=true;
   }
+
+
+  metodoTelefono(){
+    var numeroTel = this.historiaForm.get('emeCelular')?.value
+    var numeroTelVerificado="";
+    var ExpRegSoloNumeros="^[0-9]+$";
+
+    for(var i=0;i<numeroTel.length;i++){
+      if( numeroTel.match(ExpRegSoloNumeros)!=null ){
+        numeroTelVerificado+=numeroTel[i];
+        i++;
+      }else{
+        this.historiaForm.setValue({
+          telefonoTutor:  numeroTelVerificado.substring(0, numeroTelVerificado.length - 1)
+        })
+      }
+    }
+    
+    if(numeroTel.length>9){
+      this.historiaForm.setValue({
+        telefonoTutor: numeroTel[0] + numeroTel[1] + numeroTel[2] + numeroTel[3] + numeroTel[4] + numeroTel[5] + numeroTel[6] + numeroTel[7] + numeroTel[8] + numeroTel[9] 
+      })
+  }
+} //telefono
+
+tecleoNumeroConsulta(){
+  this.errorNumConsulta = 0
+  var num= parseInt(this.historiaForm.get('numConsultasTotales')?.value);
+  if(num==0 || num>999)
+  this.errorNumConsulta = 1
+}
+
+tecleoNumeroTel(){
+  this.errorNumeroTel = 0
+  var num= parseInt(this.historiaForm.get('emeCelular')?.value);
+  if(num<1000000000)
+  this.errorNumeroTel = 1
+}
+
+tecleoEstatura(){
+  this.errorEstatura = 0
+  var num= parseInt(this.historiaForm.get('estatura')?.value);
+  if(num<=0 || num>300)
+  this.errorEstatura = 1
+}
+
+tecleoPeso(){
+  this.errorPeso = 0
+  var num= parseInt(this.historiaForm.get('peso')?.value);
+  if(num<=0 || num>=300)
+  this.errorPeso = 1
+}
+
 
 
 }

@@ -24,6 +24,7 @@ export class RegistroDComponent implements OnInit {
   usuario: Usuario | null;
   nombre: string;
   rol = ''
+  bandera=0;
 
   today = new Date();
   day = this.today.getDate();
@@ -31,6 +32,7 @@ export class RegistroDComponent implements OnInit {
   año = this.today.getFullYear();
   year = this.today.getFullYear() - 18;
   year2 = this.year - 100;
+  
 
   hora = this.today.getHours();
   minuto = this.today.getMinutes();
@@ -56,6 +58,7 @@ export class RegistroDComponent implements OnInit {
       apMaterno: ['', Validators.required],
       fechaNac: ['', Validators.required],
       sexo: ['', Validators.required],
+
       usuario: ['', Validators.required],
       password: ['', Validators.required],
       calle: ['', Validators.required],
@@ -69,6 +72,7 @@ export class RegistroDComponent implements OnInit {
       estado: ['', Validators.required],
       pais: ['', Validators.required],
     });
+
     this.id = this.aRouter.snapshot.paramMap.get('id') + '';
     this.idUM = this.aRouter.snapshot.paramMap.get('idUM') + '';
     this.usuario = null;
@@ -142,6 +146,30 @@ export class RegistroDComponent implements OnInit {
     }
   }
   guardarTerapeuta() {
+    //Comprobar Disponibilidad Usuario
+    this._usuarioService.getUsuarios().subscribe((data) => {
+      console.log("comprobarUsuarioLibre:",data)
+      //buscar uno con el nombre 
+      this.bandera=0;
+      for(let i = 0;i<data.length;i++){
+        if(data[i].usuario ==this.usuarioForm.get('usuario')?.value && this.titulo=='Registrar Terapeuta'){
+          this.bandera=1;
+        }
+      }
+    })
+
+    if(this.bandera==1){
+      this.toastr.warning(
+        'Nombre de Usuario Ya Existe',
+        'Escoja otro Nombre de Usuario!',
+        {
+          timeOut: 8000,
+          progressBar: true,
+        }
+      );
+     
+    }else{
+
     let act = 'S';
     let idRol_PK = 2;
     let desRol = 'Terapeuta';
@@ -152,6 +180,14 @@ export class RegistroDComponent implements OnInit {
     let apMaterno = this.usuarioForm.get('apMaterno')?.value;
     let fechaNac = this.usuarioForm.get('fechaNac')?.value;
     let sexo = this.usuarioForm.get('sexo')?.value;
+    let nombreTutor = this.usuarioForm.get('nombre')?.value;
+    let apPaternoTutor = this.usuarioForm.get('apPaterno')?.value;
+    let apMaternoTutor = this.usuarioForm.get('apMaterno')?.value;
+    let fechaNacTutor = this.usuarioForm.get('fechaNac')?.value;
+    let sexoTutor = this.usuarioForm.get('sexo')?.value;
+    let telefonoTutor = this.usuarioForm.get('telefonoTutor')?.value;
+    let parentesco = this.usuarioForm.get('parentesco')?.value;
+
     let calle = this.usuarioForm.get('calle')?.value;
     let numero_EXT = this.usuarioForm.get('numero_EXT')?.value;
     let numero_INT = this.usuarioForm.get('numero_INT')?.value;
@@ -197,6 +233,13 @@ export class RegistroDComponent implements OnInit {
       apMaterno: apMaterno,
       fechaNac: fechaNac,
       sexo: sexo,
+      nombreTutor: nombreTutor,
+      apPaternoTutor: apPaternoTutor,
+      apMaternoTutor: apMaternoTutor,
+      fechaNacTutor: fechaNacTutor,
+      sexoTutor: sexoTutor,
+      telefonoTutor:telefonoTutor,
+      parentesco:parentesco,
       persona_domicilio: {
         calle: calle,
         numero_EXT: numero_EXT,
@@ -222,6 +265,13 @@ export class RegistroDComponent implements OnInit {
         apMaterno,
         fechaNac,
         sexo,
+        nombreTutor,
+        apPaternoTutor,
+        apMaternoTutor,
+        fechaNacTutor,
+        sexoTutor,
+        telefonoTutor,
+        parentesco,
         persona_domicilio: {
           calle: calle,
           numero_EXT: numero_EXT,
@@ -295,6 +345,7 @@ export class RegistroDComponent implements OnInit {
         }
       );
     }
+  }
   }
 
   guardarPersonaOperacion(op: Operacion) {
@@ -381,4 +432,59 @@ export class RegistroDComponent implements OnInit {
   irAtras(){
     this.router.navigate(['/terapeuta_lista/'+this.id]);
   }
+
+  comprobarUsuarioLibre(){
+    this._usuarioService.getUsuarios().subscribe((data) => {
+      console.log("comprobarUsuarioLibre:",data)
+
+      //buscar uno con el nombre
+      var bandera=0;
+      for(let i = 0;i<data.length;i++){
+        if(data[i].usuario ==this.usuarioForm.get('usuario')?.value){
+          //alert("El usuario ya Existe")
+          bandera=1;
+        }
+      }
+      if(bandera==1){
+        this.toastr.warning(
+          'El usuario ya Existe!',
+          'Cambie el Nombre de usuario!'
+        );
+        return
+      }
+    })
+}
+
+
+comprobarDisponibilidad(){
+  this._usuarioService.getUsuarios().subscribe((data) => {
+  var bandera=0;
+  for(let i = 0;i<data.length;i++){
+    if(data[i].usuario ==this.usuarioForm.get('usuario')?.value && this.titulo=='Registrar Terapeuta'){
+      bandera=1;
+      this.toastr.warning(
+        'Nombre de Usuario Ya Existe',
+        'Escoja otro Nombre de Usuario!',
+        {
+          timeOut: 8000,
+          progressBar: true,
+        }
+      );
+    }  
+  }//for
+  if(bandera==0){
+    this.toastr.success(
+      'Nombre de Usuario Disponible',
+      'Puede usar Este usuario',
+      {
+        timeOut: 8000,
+        progressBar: true,
+      }
+    );
+  }
+});
+}
+
+
+
 }

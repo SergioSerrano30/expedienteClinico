@@ -65,8 +65,9 @@
                         <div class="form-floating my-2">
                             <input formControlName="problematica" type="text" class="form-control" id="problematica"
                                 placeholder="Diagnostico" required />
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="problematica">Diagnostico...</label>
-                            <div class="text-danger" *ngIf="historiaForm.get('problematica')?.hasError('required') && historiaForm.get('problematica')?.touched">
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="problematica">*Diagnostico...</label>
+                            <div class="text-danger"
+                                *ngIf="historiaForm.get('problematica')?.hasError('required') && historiaForm.get('problematica')?.touched">
                                 <span> <strong>*Problematica Obligatoria</strong> </span>
                             </div>
                         </div>
@@ -80,23 +81,23 @@
                 </div>
 
                 <div class="form-floating my-2">
-                    <input [attr.disabled]="true" formControlName="nombre" type="text" class="form-control" id="txtNombre"
-                        placeholder="Nombre(s)" required />
+                    <input [attr.disabled]="true" formControlName="nombre" type="text" class="form-control"
+                        id="txtNombre" placeholder="Nombre(s)" required />
                     <label style="color: rgba(0, 0, 0, 0.5)" for="nombre">Nombre(s)</label>
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input [attr.disabled]="true" formControlName="apPaterno" type="text" class="form-control" id="txtPaterno"
-                                placeholder="Apellido paterno" required />
+                            <input [attr.disabled]="true" formControlName="apPaterno" type="text" class="form-control"
+                                id="txtPaterno" placeholder="Apellido paterno" required />
                             <label style="color: rgba(0, 0, 0, 0.5)" for="apPaterno">Apellido paterno</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input [attr.disabled]="true" formControlName="apMaterno" type="text" class="form-control" id="txtMaterno"
-                                placeholder="Apellido materno" required />
+                            <input [attr.disabled]="true" formControlName="apMaterno" type="text" class="form-control"
+                                id="txtMaterno" placeholder="Apellido materno" required />
                             <label style="color: rgba(0, 0, 0, 0.5)" for="password">Apellido materno</label>
                         </div>
                     </div>
@@ -104,15 +105,16 @@
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input [attr.disabled]="true" formControlName="fecNacimiento" type="date" min="1900-04-01" max="2021-12-31"
-                                value="aaaa-mm-dd" class="form-control" id="txtFecha" placeholder="Fecha de nacimiento"
-                                required />
+                            <input [attr.disabled]="true" formControlName="fecNacimiento" type="date" min="1900-04-01"
+                                max="2021-12-31" value="aaaa-mm-dd" class="form-control" id="txtFecha"
+                                placeholder="Fecha de nacimiento" required />
                             <label style="color: rgba(0, 0, 0, 0.5)" for="fecNacimiento">Fecha de nacimiento</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <select [attr.disabled]="true" class="form-select" formControlName="sexo" id="floatingSelectGrid">
+                            <select [attr.disabled]="true" class="form-select" formControlName="sexo"
+                                id="floatingSelectGrid">
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
@@ -125,15 +127,29 @@
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="peso" type="number" class="form-control" id="peso"
-                                placeholder="peso" required />
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_INT">Peso(kg)</label>
+                                placeholder="peso" onkeydown="return /[0-9, ]/i.test(event.key)" (keyup)="tecleoPeso()"  required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_INT">*Peso(kg)</label>
+                            <div class="text-danger"
+                                *ngIf="historiaForm.get('peso')?.hasError('required') && historiaForm.get('peso')?.touched ">
+                                <span> <strong>*Peso Obligatorio</strong> </span>
+                            </div>
+                            <div class="text-danger" *ngIf="errorPeso==1">
+                                <span> <strong>Peso debe ser mayor que 0 y menor que 300kg</strong> </span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="estatura" type="number" class="form-control" id="estatura"
-                                placeholder="estatura" required />
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_INT">Estatura(cm)</label>
+                                placeholder="estatura" onkeydown="return /[0-9, ]/i.test(event.key)" (keyup)="tecleoEstatura()"  required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="numero_INT">*Estatura(cm)</label>
+                            <div class="text-danger"
+                                *ngIf="historiaForm.get('estatura')?.hasError('required') && historiaForm.get('estatura')?.touched">
+                                <span> <strong>*Estatura Obligatoria</strong> </span>
+                            </div>
+                            <div class="text-danger" *ngIf="errorEstatura==1">
+                                <span> <strong>Estatura debe ser mayor que 0 y menor que 300cm</strong> </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,27 +162,41 @@
 
                 <div class="form-floating my-2">
                     <input formControlName="emeNombre" type="text" class="form-control" id="emeNombre"
-                        placeholder="emeNombre" required />
+                        placeholder="emeNombre" onkeydown="return /[a-z,., ]/i.test(event.key)" required />
                     <label style="color: rgba(0, 0, 0, 0.5)" for="emeNombre">Nombre(s)</label>
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="emeParentesco" type="text" class="form-control" id="parentesco"
-                                placeholder="parentesco" required />
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="parentesco">Parentesco</label>
+                            <select class="form-select" formControlName="emeParentesco" id="floatingSelectGrid">
+                                <option value="Padre">Padre</option>
+                                <option value="Madre">Madre</option>
+                                <option value="Hermano">Hermano(a)</option>
+                                <option value="Primo">Primo(a)</option>
+                                <option value="Tio">Tio(a)</option>
+                                <option value="Tio">Sobrino(a)</option>
+                                <option value="Tio">Cuñado(a)</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                            <label for="floatingSelectGrid">Parentesco</label>
                         </div>
                     </div>
-                </div>
-                <div class="row g-4">
+
+
                     <div class="col-md">
                         <div class="form-floating my-2">
-                            <input formControlName="emeCelular" type="number" class="form-control" id="celular"  minlength="4" maxlength="8" placeholder="celular" required />
-                                 <label style="color: rgba(0, 0, 0, 0.5)" for="celular">Número de celular</label>
+                            <input formControlName="emeCelular" type="text" class="form-control" id="celular"
+                                minlength="10" maxlength="10" placeholder="celular"
+                                onkeydown="return /[0-9, ]/i.test(event.key)" (keyup)="tecleoNumeroTel()" />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="celular">Número de celular</label>
+                        </div>
+                        <div class="text-danger" *ngIf="errorNumeroTel==1">
+                            <span> <strong>*El numero debe ser a 10 digitos</strong> </span>
                         </div>
                     </div>
                 </div>
+
 
                 <br />
 
@@ -176,39 +206,45 @@
                     <b>Datos médicos:</b>
                 </div>
 
+
+
+
                 <div class="row g-4" style="align-items: center">
                     <div class="col-3">
                         <div class="form-check form-switch text-center">
-                            <input (change)="cambiarEstado1()" class="form-check-input" type="checkbox" role="switch"
-                                id="switchAlergias" />
-                            <input *ngIf="varAlergias == true" (change)="cambiarEstado1()" class="form-check-input"
-                                type="checkbox" role="switch" id="switchAlergias" checked />
+                            <input (change)="cambiarEstado1()" [checked]="checkAlergias" class="form-check-input" type="checkbox" role="switch"
+                                id="switchAlergias"  />
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Alergias?</label>
                         </div>
                     </div>
                     <div class="col-9">
-                        <div *ngIf="varAlergias == true" class="form-floating my-2">
-                            <input formControlName="alergias" type="text" class="form-control" id="alergias"
-                                placeholder="alergias" required ng-disable="alergias" />
+                           <div class="form-floating my-2">
+                            <input [attr.disabled]="true" formControlName="alergias2" type="text" class="form-control"
+                                id="alergias" placeholder="alergias" required ng-disable="alergias" *ngIf="varAlergias == false"/>
+                            <input  formControlName="alergias" type="text" class="form-control"
+                                id="alergias" placeholder="alergias" required ng-disable="alergias" *ngIf="varAlergias == true"/>
                             <label style="color: rgba(0, 0, 0, 0.5)" for="alergias">Alergias</label>
                         </div>
                     </div>
                 </div>
 
+
+
+
                 <div class="row g-4" style="align-items: center">
                     <div class="col-3">
                         <div class="form-check form-switch text-center">
-                            <input (change)="cambiarEstado2()" class="form-check-input" type="checkbox" role="switch"
+                            <input (change)="cambiarEstado2()" [checked]="checkCirugias" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault" />
-                            <input (change)="cambiarEstado2()" class="form-check-input" type="checkbox" role="switch"
-                                id="flexSwitchCheckDefault" *ngIf="varCirugias == true" checked />
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Cirugias?</label>
                         </div>
                     </div>
                     <div class="col-9">
-                        <div class="form-floating my-2" *ngIf="varCirugias == true">
+                        <div class="form-floating my-2" >
+                            <input [attr.disabled]="true" formControlName="cirugias2" type="text" class="form-control" id="cirugias"
+                                placeholder="cirugias" ng-disable="cirugias" *ngIf="varCirugias == false"/>
                             <input formControlName="cirugias" type="text" class="form-control" id="cirugias"
-                                placeholder="cirugias" ng-disable="cirugias" />
+                                placeholder="cirugias" ng-disable="cirugias" *ngIf="varCirugias == true"/>
                             <label style="color: rgba(0, 0, 0, 0.5)" for="cirugias">Cirugias</label>
                         </div>
                     </div>
@@ -217,18 +253,17 @@
                 <div class="row g-4" style="align-items: center">
                     <div class="col-3">
                         <div class="form-check form-switch text-center">
-                            <input (change)="cambiarEstado3()" class="form-check-input" type="checkbox" role="switch"
+                            <input (change)="cambiarEstado3()" [checked]="checkTraumas" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault" />
-                            <input (change)="cambiarEstado3()" class="form-check-input" type="checkbox" role="switch"
-                                id="flexSwitchCheckDefault" *ngIf="varTraFracturas == true" checked />
-
                             <label class="form-check-label" for="flexSwitchCheckDefault">¿Traumas / Fracturas?</label>
                         </div>
                     </div>
                     <div class="col-9">
-                        <div class="form-floating my-2" *ngIf="varTraFracturas == true">
-                            <input formControlName="traFracturas" type="text" class="form-control" id="traFracturas"
-                                placeholder="traFracturas" />
+                        <div class="form-floating my-2" >
+                        <input [attr.disabled]="true" formControlName="traFracturas2" type="text" class="form-control" id="cirugias"
+                            placeholder="cirugias" ng-disable="cirugias" *ngIf="varTraFracturas == false"/>
+                        <input formControlName="traFracturas" type="text" class="form-control" id="cirugias"
+                            placeholder="cirugias" ng-disable="cirugias" *ngIf="varTraFracturas == true"/>
                             <label style="color: rgba(0, 0, 0, 0.5)" for="traFracturas">Traumas y Fracturas</label>
                         </div>
                     </div>
@@ -237,19 +272,18 @@
                 <div class="row g-4" style="align-items: center">
                     <div class="col-3">
                         <div class="form-check form-switch text-center">
-                            <input (change)="cambiarEstado4()" class="form-check-input" type="checkbox" role="switch"
+                            <input (click)="cambiarEstado4()" [checked]="checkCongenitas" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault" />
-                            <input (change)="cambiarEstado4()" class="form-check-input" type="checkbox" role="switch"
-                                id="flexSwitchCheckDefault" *ngIf="varEnfCongenitas == true" checked />
-
-                            <label class="form-check-label" for="flexSwitchCheckDefault">¿Enfermedades
+                                <label class="form-check-label" for="flexSwitchCheckDefault">¿Enfermedades
                                 congenitas?</label>
                         </div>
                     </div>
-                    <div *ngIf="varEnfCongenitas == true" class="col-9">
+                    <div class="col-9">
                         <div class="form-floating my-2">
-                            <input formControlName="enfCongenitas" type="text" class="form-control" id="enfCongenitas"
-                                placeholder="enfCongenitas" />
+                        <input [attr.disabled]="true" formControlName="enfCongenitas2" type="text" class="form-control" id="cirugias"
+                            placeholder="cirugias" ng-disable="cirugias" *ngIf="varEnfCongenitas == false"/>
+                        <input formControlName="enfCongenitas" type="text" class="form-control" id="cirugias"
+                            placeholder="cirugias" ng-disable="cirugias" *ngIf="varEnfCongenitas == true"/>
                             <label style="color: rgba(0, 0, 0, 0.5)" for="enfCongenitas">Enfermedades Congenitas</label>
                         </div>
                     </div>
@@ -258,19 +292,18 @@
                 <div class="row g-4" style="align-items: center">
                     <div class="col-3">
                         <div class="form-check form-switch text-center">
-                            <input (change)="cambiarEstado5()" class="form-check-input" type="checkbox" role="switch"
+                            <input (change)="cambiarEstado5()" [checked]="checkHereditarias" class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault" />
-                            <input (change)="cambiarEstado5()" class="form-check-input" type="checkbox" role="switch"
-                                id="flexSwitchCheckDefault" *ngIf="varEnfHereditarias == true" checked />
-
-                            <label class="form-check-label" for="flexSwitchCheckDefault">¿Enfermedades
+                                <label class="form-check-label" for="flexSwitchCheckDefault">¿Enfermedades
                                 hereditarias?</label>
                         </div>
                     </div>
                     <div class="col-9">
-                        <div class="form-floating my-2" *ngIf="varEnfHereditarias == true">
-                            <input formControlName="enfHereditarias" type="text" class="form-control"
-                                id="enfHereditarias" placeholder="enf_Hereditarias" />
+                        <div class="form-floating my-2">
+                        <input [attr.disabled]="true" formControlName="enfHereditarias2" type="text" class="form-control" id="cirugias"
+                            placeholder="cirugias" ng-disable="cirugias" *ngIf="varEnfHereditarias == false"/>
+                        <input formControlName="enfHereditarias" type="text" class="form-control" id="cirugias"
+                            placeholder="cirugias" ng-disable="cirugias" *ngIf="varEnfHereditarias == true"/>
                             <label style="color: rgba(0, 0, 0, 0.5)" for="enfHereditarias">Enfermedades
                                 Hereditarias</label>
                         </div>
@@ -299,12 +332,20 @@
 
                     <div class="col-md"><br>
                         <div class="form-floating my-2">
-                            <input formControlName="numConsultasTotales" type="number" class="form-control" id="numConsultasTotales"
-                                placeholder="peso" required />
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="numConsultasTotales">No. de Consultas Totales</label>
-                            <div class="text-danger" *ngIf="historiaForm.get('numConsultasTotales')?.hasError('required') && historiaForm.get('numConsultasTotales')?.touched">
+                            <input formControlName="numConsultasTotales" type="text" class="form-control"
+                                id="numConsultasTotales" placeholder="peso" minlength="1" maxlength="99"
+                                onkeydown="return /[0-9]/i.test(event.key)" (keyup)="tecleoNumeroConsulta()" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="numConsultasTotales">*No. de Consultas
+                                Totales</label>
+                            <div class="text-danger"
+                                *ngIf="historiaForm.get('numConsultasTotales')?.hasError('required') && historiaForm.get('numConsultasTotales')?.touched">
                                 <span> <strong>*Consultas Obligatorias</strong> </span>
                             </div>
+                            <div class="text-danger" *ngIf="errorNumConsulta==1">
+                                <span> <strong>*Error en el Numero de Consulta (debe ser mayor que 0 y menor que
+                                        999)</strong> </span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -313,9 +354,8 @@
                 <div class="d-grid col-12 mx-auto">
                     <button [disabled]="
                     historiaForm.get('problematica')?.hasError('required') ||
-                    historiaForm.get('numConsultasTotales')?.hasError('required')"  
-                    (onClick)="agregarHistoria()" class="btn btn-primary btn-lg" type="submit"
-                        style="background-color: rgb(33, 37, 41)">
+                    historiaForm.get('numConsultasTotales')?.hasError('required')" (onClick)="agregarHistoria()"
+                        class="btn btn-primary btn-lg" type="submit" style="background-color: rgb(33, 37, 41)">
                         {{ titulo }}
                     </button>
                 </div>
