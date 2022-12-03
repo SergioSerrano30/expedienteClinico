@@ -301,7 +301,7 @@ export class RegistroDComponent implements OnInit {
             (data) => {
               this.toastr.info(
                 'Terapeuta modificado con éxito!',
-                'Terapeuta Actualizada!'
+                'Terapeuta modificado!'
               );
               this.router.navigate(['/terapeuta_lista/' + this.id]);
             },
@@ -317,10 +317,12 @@ export class RegistroDComponent implements OnInit {
             this.toastr.success(
               'Se ha guardado el terapeuta con éxito!',
               'Terapeuta registrado!'
+              
             );
+            this.router.navigate(['/terapeuta_lista/' + this.id]);
           });
         }
-        this.router.navigate(['/terapeuta_lista/' + this.id]);
+        
       } else {
         //else esMayorDeEdad
         this.toastr.warning(
@@ -350,10 +352,6 @@ export class RegistroDComponent implements OnInit {
 
   guardarPersonaOperacion(op: Operacion) {
     this._operacionesService.guardarOperacion(op).subscribe((data) => {
-      this.toastr.success(
-        'Se ha guardado la Operacion con Exito!',
-        'Operacion Registrada!'
-      );
       // this.router.navigate(['/paciente_lista/' + this.id]);
     },(err) => {
       this.router.navigate(['/error']);
@@ -390,20 +388,13 @@ export class RegistroDComponent implements OnInit {
     //console.log(per);
     this.guardarDomicilio(dom);
     this._personaService.guardarPersona(per).subscribe((data) => {
-      this.toastr.success(
-        'Se ha guardado la persona con éxito!',
-        'Persona registrado!'
-      );
       //this.router.navigate(['/terapeuta-inicio']);
     });
   }
   guardarDomicilio(dom: Domicilio) {
     //console.log(dom);
     this._domicilioService.guardarDomicilio(dom).subscribe((data) => {
-      this.toastr.success(
-        'Se ha guardado el domicilio con éxito!',
-        'Domicilio registrado!'
-      );
+
       //this.router.navigate(['/terapeuta-inicio']);
     });
   }

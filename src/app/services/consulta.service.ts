@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Consulta } from '../models/consulta';
-
+import base from './api';
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultaService {
 
-  url = 'https://servidorexpedienteclinico.herokuapp.com/api/consultas/'
+  url = base+'/consultas/'
 
   constructor(private http: HttpClient) { }
 

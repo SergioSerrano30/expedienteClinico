@@ -115,23 +115,23 @@
                         </div>
                     </div>
 
-                    <div class="col-md">
-                        <div class="form-floating my-2">
-                            <button *ngIf="!usuarioForm.get('usuario')?.hasError('required')" 
-                            type="button" class="btn btn-danger  justify-content-center" (click)="comprobarDisponibilidad()">
-                                Comprobar Disponibilidad de Usuario
-                            </button>
-                        </div>
-                    </div>
 
                     <div class="col-md">
                         <div class="form-floating my-2">
                             <input formControlName="password" type="password" class="form-control" id="txtPass"
                                 placeholder="Contraseña" required>
                             <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Contraseña</label>
-                            <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
-                                <span> <strong>*Nombre Obligatorio</strong> </span>
+                            <div class="text-danger" *ngIf="usuarioForm.get('password')?.hasError('required') && usuarioForm.get('password')?.touched">
+                                <span> <strong>*Contraseña Obligatoria</strong> </span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <button *ngIf="!usuarioForm.get('usuario')?.hasError('required')" 
+                            type="button" class="btn btn-danger  justify-content-center" (click)="comprobarDisponibilidad()">
+                                Comprobar Disponibilidad de Usuario
+                            </button>
                         </div>
                     </div>
                 </div>
