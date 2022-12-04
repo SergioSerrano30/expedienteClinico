@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Domicilio } from '../models/domicilio';
-
+import base from './api';
 @Injectable({
   providedIn: 'root'
 })
 export class DomicilioService {
-  url = 'https://servidorexpedienteclinico.herokuapp.com/api/domicilios/'
+  url = base+'/domicilios/'
   constructor(private http: HttpClient) { }
 
   getDomicilios(): Observable<any>{

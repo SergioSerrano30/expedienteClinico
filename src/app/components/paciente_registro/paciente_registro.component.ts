@@ -395,20 +395,12 @@ export class RegistroPacienteComponent implements OnInit {
     //console.log(per);
     this.guardarDomicilio(dom);
     this._personaService.guardarPersona(per).subscribe((data) => {
-      this.toastr.success(
-        'Se ha guardado la persona con éxito!',
-        'Persona registrado!'
-      );
     });
    
   }
 
   guardarPersonaOperacion(op: Operacion) {
     this._operacionesService.guardarOperacion(op).subscribe((data) => {
-      this.toastr.success(
-        'Se ha guardado la Operacion con Exito!',
-        'Operacion Registrada!'
-      );
       // this.router.navigate(['/paciente_lista/' + this.id]);
     });
   }
@@ -416,10 +408,6 @@ export class RegistroPacienteComponent implements OnInit {
   guardarDomicilio(dom: Domicilio) {
     //console.log(dom);
     this._domicilioService.guardarDomicilio(dom).subscribe((data) => {
-      this.toastr.success(
-        'Se ha guardado el domicilio con éxito!',
-        'Domicilio registrado!'
-      );
       //this.router.navigate(['/terapeuta-inicio']);
     });
   }

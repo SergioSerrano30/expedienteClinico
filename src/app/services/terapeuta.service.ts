@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
-
+import base from './api';
 @Injectable({
   providedIn: 'root'
 })
 export class TerapeutaService {
-  url = 'https://servidorexpedienteclinico.herokuapp.com/api/terapeutas/';
-  urlActivos = 'https://servidorexpedienteclinico.herokuapp.com/api/terapeutas/activos';
+  url = base+'/terapeutas/';
+  urlActivos = base+'/terapeutas/activos';
   
   constructor(private http: HttpClient) { }
   getTerapeutas():Observable<any>{
