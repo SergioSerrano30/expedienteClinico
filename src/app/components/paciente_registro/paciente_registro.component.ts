@@ -28,6 +28,7 @@ export class RegistroPacienteComponent implements OnInit {
   rol = ''
   error = '-'
   mostrarDatosTutor=0;
+  password2="";
 
   today = new Date();
   day = this.today.getDate();
@@ -164,7 +165,8 @@ export class RegistroPacienteComponent implements OnInit {
     let idRol_PK = 3;
     let desRol = 'Paciente';
     let usuario = this.pacienteForm.get('usuario')?.value;
-    let password = this.pacienteForm.get('password')?.value;
+    let password = ""+this.pacienteForm.get('password')?.value;
+    let password2 =""+ this.pacienteForm.get('password2')?.value;
     let nombre = this.pacienteForm.get('nombre')?.value;
     let apPaterno = this.pacienteForm.get('apPaterno')?.value;
     let apMaterno = this.pacienteForm.get('apMaterno')?.value;
@@ -189,6 +191,12 @@ export class RegistroPacienteComponent implements OnInit {
     let telefonoTutor =  "";
     let parentesco =  "";
 
+  
+    //Comprobar que las contraseñas coinciden
+    // if(password==password2){}else{this.toastr.warning(
+    //   'Contraseñas no Coinciden',
+    //   'Deben Coincidir las contraseñas'
+    // ); return}
 
     //Comprobar Disponibilidad Usuario
     this._usuarioService.getUsuarios().subscribe((data) => {
@@ -218,16 +226,14 @@ export class RegistroPacienteComponent implements OnInit {
         let fechaRegistro = this.fechaHoyCorrecta+"";
         let hora = this.horaHoyCorrecta+"";
         let usuarios_idUsuario = this.id;
-    
        
         if (this.passFormatoCorrecto(password)) {
           //Calcular edad 
-
-
           var fecha_nacimiento = fechaNac;
           var hoy = new Date();
           var cumpleanos = new Date(fecha_nacimiento);
           var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+          alert(edad);
           if (edad >= 18) {
             nombreTutor = "";
             apPaternoTutor =  "";
@@ -237,24 +243,36 @@ export class RegistroPacienteComponent implements OnInit {
             telefonoTutor =  "";
             parentesco =  "";
           } else {
+            fechaNacTutor = this.pacienteForm.get('fechaNacTutor')?.value;
+       
+            var hoy = new Date();
+            var cumpleanos = new Date(fechaNacTutor);
+            var edadTutor = hoy.getFullYear() - cumpleanos.getFullYear();
             //else esMenorDeEdad
             nombreTutor = this.pacienteForm.get('nombreTutor')?.value;
             apPaternoTutor = this.pacienteForm.get('apPaternoTutor')?.value;
             apMaternoTutor = this.pacienteForm.get('apMaternoTutor')?.value;
-            fechaNacTutor = this.pacienteForm.get('fechaNacTutor')?.value;
             sexoTutor = this.pacienteForm.get('sexoTutor')?.value;
             telefonoTutor = this.pacienteForm.get('telefonoTutor')?.value;
             parentesco = this.pacienteForm.get('parentesco')?.value;
+
+
+            if(edadTutor<18){ this.toastr.warning(
+              'Requisitos Tutor Invalidos',
+              'El Tutor debe ser mayor de Edad!'
+              ); return}
            
-            if(telefonoTutor.match("^[0-9]+$")==null){  this.toastr.warning(
+            if(telefonoTutor.match("^[0-9]+$")==null || telefonoTutor.length!=10){  this.toastr.warning(
               'Telefono No Valido',
               'Debe Tener solo numeros!'
             ); return}
 
-            if(telefonoTutor.length!=10){this.toastr.warning(
-              'Telefono No Valido',
-              'Debe tener 10 Digitos!'
-            ); return}
+            if(nombreTutor=="" || apPaternoTutor=="" || telefonoTutor==""){this.toastr.warning(
+              'Datos Incompletos',
+              'Debe poner los campos obligatorios del Tutor'
+            ); return
+
+            }
           }
 
           const DOMICILIO: Domicilio = {
@@ -276,7 +294,7 @@ export class RegistroPacienteComponent implements OnInit {
             tipoOperacion: tipoOperacion,
             usuarios_idUsuario: usuarios_idUsuario,
           };
-      
+         
           const PERSONA: Persona = {
             nombre: nombre,
             apPaterno: apPaterno,
@@ -355,6 +373,7 @@ export class RegistroPacienteComponent implements OnInit {
               }
             );
           } else {
+           
             //guardamos paciente
             this.guardarPersona(PERSONA, DOMICILIO);
             this._usuarioService.guardarUsuario(USUARIO).subscribe((data) => {

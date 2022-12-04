@@ -145,16 +145,15 @@
                                 placeholder="Usuario" required />
                             <label style="color: rgba(0, 0, 0, 0.5)" for="password">*Usuario</label>
                             <div class="text-danger" *ngIf="
-                                    pacienteForm.get('usuario')?.hasError('required') &&
-                                    pacienteForm.get('usuario')?.touched
-                                ">
+                    pacienteForm.get('usuario')?.hasError('required') &&
+                    pacienteForm.get('usuario')?.touched
+                  ">
                                 <span>
-                                    <strong>*El Usuario del Paciente es Obligatorio</strong>
+                                    <strong>*Usuario  Obligatorio</strong>
                                 </span>
                             </div>
                         </div>
                     </div>
-
 
                     <div class="col-md">
                         <div class="form-floating my-2">
@@ -165,10 +164,23 @@
                     pacienteForm.get('password')?.hasError('required') &&
                     pacienteForm.get('password')?.touched
                   ">
-
-                  
                                 <span>
-                                    <strong>*La Contraseña del Paciente es Obligatoria</strong>
+                                    <strong>*Contraseña Obligatoria</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating my-2">
+                            <input formControlName="password2" type="password" class="form-control" id="txtPass2"
+                                placeholder="Repetir Contraseña" required />
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="password2">*Repetir Contraseña</label>
+                            <div class="text-danger" *ngIf="
+                    pacienteForm.get('password2')?.hasError('password2') &&
+                    pacienteForm.get('password2')?.touched
+                  ">
+                                <span>
+                                    <strong>*Validacion Obligatoria</strong>
                                 </span>
                             </div>
                         </div>
@@ -178,14 +190,14 @@
                         <div class="form-floating my-2">
                             <button *ngIf="!pacienteForm.get('usuario')?.hasError('required')" type="button"
                                 class="btn btn-danger justify-content-center" (click)="comprobarDisponibilidad()">
-                                Comprobar Disponibilidad de Usuario
+                                Comprobar Usuario Disponible 
                             </button>
                             <button [attr.disabled]="true" *ngIf="pacienteForm.get('usuario')?.hasError('required')"
                                 type="button" class="btn btn-danger justify-content-center"
                                 (click)="comprobarDisponibilidad()">
-                                Comprobar Disponibilidad de Usuario
+                                Comprobar Usuario Disponible
                             </button>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <br />
@@ -199,8 +211,9 @@
                             placeholder="Nombre(s)" onkeydown="return /[a-z,., ]/i.test(event.key)" required />
                         <label style="color: rgba(0, 0, 0, 0.5)" for="nombre">*Nombre(s) del tutor</label>
                         <div class="text-danger" *ngIf="
-                                                        pacienteForm.get('nombreTutor')?.hasError('required') &&
-                                                        pacienteForm.get('nombreTutor')?.touched">
+                  pacienteForm.get('nombreTutor')?.hasError('required') &&
+                  pacienteForm.get('nombreTutor')?.touched
+                ">
                             <span>
                                 <strong>*El nombre del Tutor es Obligatorio</strong>
                             </span>
@@ -252,9 +265,9 @@
                     <div class="row g-4">
                         <div class="col-md">
                             <div class="form-floating my-2">
-                                <input formControlName="fechaNacTutor" type="date" min="{{ fechaMin }}"
-                                    max="{{ fechaHoy }}" max="2021-12-31" value="2000-01-01" class="form-control"
-                                    id="txtFecha" placeholder="Fecha de nacimiento" required />
+                                <input formControlName="fechaNacTutor" type="date" min={{fechaMin}} max={{fechaHoy}} max="2021-12-31"
+                                value="2000-01-01" class="form-control" id="txtFecha" placeholder="Fecha de nacimiento"
+                                required>
                                 <label for="fechaNacTutor">*Fecha de nacimiento </label>
                             </div>
                         </div>
