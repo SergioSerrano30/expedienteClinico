@@ -122,8 +122,8 @@ export class InicioAdminTComponent implements OnInit {
         (data) => {
           this.obtenerUsuarios();
           this.toastr.info(
-            'Se le ha denegado el acceso al sistema',
-            'Acceso Denegado!'
+            'Se le ha Concebido el acceso al sistema',
+            'Acceso Reestablecido!'
           );
           this.router.navigate(['/terapeuta_lista/' + this.id]);
         },

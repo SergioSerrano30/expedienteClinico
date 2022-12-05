@@ -58,7 +58,7 @@
 
             <form action="mt-3" [formGroup]="historiaForm" (ngSubmit)="agregarHistoria()">
                 <div class="etiquetas">
-                    <b>Diagnostico:</b>
+                    <b>*Diagnostico:</b>
                 </div>
                 <div class="row g-4">
                     <div class="col-md">
@@ -163,7 +163,11 @@
                 <div class="form-floating my-2">
                     <input formControlName="emeNombre" type="text" class="form-control" id="emeNombre"
                         placeholder="emeNombre" onkeydown="return /[a-z,., ]/i.test(event.key)" required />
-                    <label style="color: rgba(0, 0, 0, 0.5)" for="emeNombre">Nombre(s)</label>
+                    <label style="color: rgba(0, 0, 0, 0.5)" for="emeNombre">*Nombre(s)</label>
+                    <div class="text-danger"
+                                *ngIf="historiaForm.get('emeNombre')?.hasError('required') && historiaForm.get('emeNombre')?.touched">
+                                <span> <strong>*Persona de Emergencia Obligatoria</strong> </span>
+                            </div>
                 </div>
 
                 <div class="row g-4">
@@ -189,7 +193,7 @@
                             <input formControlName="emeCelular" type="text" class="form-control" id="celular"
                                 minlength="10" maxlength="10" placeholder="celular"
                                 onkeydown="return /[0-9, ]/i.test(event.key)" (keyup)="tecleoNumeroTel()" />
-                            <label style="color: rgba(0, 0, 0, 0.5)" for="celular">Número de celular</label>
+                            <label style="color: rgba(0, 0, 0, 0.5)" for="celular">*Número de Emergencia</label>
                         </div>
                         <div class="text-danger" *ngIf="errorNumeroTel==1">
                             <span> <strong>*El numero debe ser a 10 digitos</strong> </span>
