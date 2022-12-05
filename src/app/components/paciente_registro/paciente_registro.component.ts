@@ -233,7 +233,7 @@ export class RegistroPacienteComponent implements OnInit {
           var hoy = new Date();
           var cumpleanos = new Date(fecha_nacimiento);
           var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-          alert(edad);
+    
           if (edad >= 18) {
             nombreTutor = "";
             apPaternoTutor =  "";

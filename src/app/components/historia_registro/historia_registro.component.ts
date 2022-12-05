@@ -229,6 +229,12 @@ export class NuevaHistoriaComponent implements OnInit {
           'Corrija el Peso de la Persona!'
         );  
           return}
+
+          if(emeNombre==""){ this.toastr.warning(
+            'Nombre de emergencia no valido',
+            'Contacto Invalido!'
+          );  
+            return}
   
       //Crear Objetos
       const HISTORIA: Historia = {
